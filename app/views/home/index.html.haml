@@ -1,4 +1,26 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.email, user}
+%h3 Portal Alumni Keluarga FIM
+
+%p 
+  Selamat datang di portal kami! Di sini Anda bisa bertemu dengan saudara-saudara FIM yang sudah lama tidak bertemu.. 
+  Blablablabla... Blablablabla... Blablablabla... Blablablabla. Yey!
+  
+%br
+
+.thumbnails
+  .span4
+    .thumbnail
+      %img{:"data-src" => "holder.js/300x200", :alt => "", :src=>'http://www.mikabethedwardsphotography.com/blog/wp-content/uploads/2009/02/103-300x200.jpg'}
+      .caption
+        %h3 Tentang Anda
+        %p Silakan yang belum masukan data, cekidot!
+        =link_to "Register", new_user_registration_path, {:class => 'btn btn-primary'}
+        =link_to "Log in", new_user_session_path, {:class => 'btn'}
+        
+
+  .span4
+    .thumbnail
+      %img{:"data-src" => "holder.js/300x200", :alt => "", :src=>'http://www.mikabethedwardsphotography.com/blog/wp-content/uploads/2009/02/103-300x200.jpg'}
+      .caption
+        %h3 Lihat data
+        %p Semua data ada di sini gan!
+        =link_to "Lihat data", profile_path, {:class => 'btn btn-primary'}

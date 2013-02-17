@@ -1,0 +1,12 @@
+= simple_form_for(@profile, :url => profile_path, :html => {:class => 'form-horizontal' }) do |f|
+  = f.error_notification
+
+  = f.input :fullname, :required => true
+  = f.input :dob
+  = f.input :place_of_birth
+  = f.input :location
+  = f.input :motto, :input_html => {:rows => 5}
+  = f.input :interest, :input_html => {:rows => 5}
+  = f.input :batch
+
+  = f.button :submit, :class => 'btn-primary'

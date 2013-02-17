@@ -1,0 +1,22 @@
+%h3 Data alumni FIM
+
+.span8
+  %table.table.table-condensed
+    %tr
+      %th Fullname
+      %th Dob
+      %th Place of birth
+      %th Location
+      %th Motto
+      %th Interest
+      %th Batch
+  
+    - @profiles.each do |profile|
+      %tr
+        %td= profile.fullname
+        %td= profile.dob
+        %td= profile.place_of_birth
+        %td= profile.location
+        %td= profile.motto
+        %td= profile.interest
+        %td= profile.batch
