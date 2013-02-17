@@ -2,11 +2,13 @@
   = f.error_notification
 
   = f.input :fullname, :required => true
-  = f.input :dob
+  = f.input :dob, :input_html => {:style => 'width:auto'}
   = f.input :place_of_birth
   = f.input :location
   = f.input :motto, :input_html => {:rows => 5}
   = f.input :interest, :input_html => {:rows => 5}
-  = f.input :batch
+  = f.input :batch, :collection => 1..13
 
-  = f.button :submit, :class => 'btn-primary'
+  .control-group
+    .controls
+      = f.button :submit, :class => 'btn-primary'
