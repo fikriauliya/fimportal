@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @profiles = Profile.all
   end
   
   def index_authenticated
