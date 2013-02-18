@@ -1,4 +1,47 @@
-= simple_form_for(@profile, :url => profile_path, :html => {:class => 'form-horizontal' }) do |f|
+-content_for :head do
+  %meta{name: "viewport", content: "initial-scale=1.0, user-scalable=no"}
+  :javascript
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
+    }
+    
+    function loadScript() {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyCEY0Wtv2sMZZRW0Fb3hmutA-7ET0O-58o&sensor=true&callback=initialize";
+      document.body.appendChild(script);
+    }
+    
+    window.onload = loadScript;
+    
+    isGeoCoded = false;
+    
+    $(document).ready(function() {
+      $("#profile_form").submit(function (event) {
+        var latitude = $("#profile_latitude");
+        var longitude = $("#profile_longitude");
+        
+        if (!isGeoCoded) {
+          event.preventDefault();
+
+          if (geocoder) {
+            var address = $("#profile_location").val();
+            
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                latitude.val(results[0].geometry.location.Ya);
+                longitude.val(results[0].geometry.location.Za);
+              }
+              isGeoCoded = true;
+              
+              $("#profile_form").submit();
+            });
+          }
+        }
+      });
+    });
+
+= simple_form_for(@profile, :url => profile_path, :html => {:id => 'profile_form', :class => 'form-horizontal' }) do |f|
   = f.error_notification
 
   = f.input :fullname, :required => true
@@ -8,6 +51,8 @@
   = f.input :motto, :input_html => {:rows => 5}
   = f.input :interest, :input_html => {:rows => 5}
   = f.input :batch, :collection => 1..13
+  = f.hidden_field :latitude
+  = f.hidden_field :longitude
 
   .control-group
     .controls
