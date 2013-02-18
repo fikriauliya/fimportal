@@ -36,12 +36,6 @@
     
     window.onload = loadScript;
 
-.span3
-  - if @profile.nil?
-    %br
-    %br
-    = link_to 'Create your profile', new_profile_candidate_path, :class => 'btn btn-primary'
-
 .span8
   #map_canvas{:style => "width:800px; height:400px"}
 

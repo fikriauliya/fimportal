@@ -1,5 +1,55 @@
+-content_for :head do
+  %meta{name: "viewport", content: "initial-scale=1.0, user-scalable=no"}
+  :javascript
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
+    }
+    
+    function loadScript() {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyCEY0Wtv2sMZZRW0Fb3hmutA-7ET0O-58o&sensor=true&callback=initialize";
+      document.body.appendChild(script);
+    }
+    
+    window.onload = loadScript;
+    
+    isGeoCoded = false;
+    
+    $(document).ready(function() {
+      $("#profile_form").submit(function (event) {
+        console.log("Submitting");
+        
+        var latitude = $("#profile_candidate_latitude");
+        var longitude = $("#profile_candidate_longitude");
+        
+        if (!isGeoCoded) {
+          event.preventDefault();
+
+          if (geocoder) {
+            console.log("Looking for location...");
+            
+            var address = $("#profile_candidate_location").val();
+            
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                latitude.val(results[0].geometry.location.Ya);
+                longitude.val(results[0].geometry.location.Za);
+                
+                console.log("Found location: " + latitude.val() + ", " + longitude.val());
+              }
+              isGeoCoded = true;
+              
+              $("#profile_form").submit();
+            });
+          }
+        }
+      });
+    });
+
+
 .box-form
-  = simple_form_for(@profile, :html => {:class => 'form-horizontal'}) do |f|
+  = simple_form_for(@profile, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
     = f.error_notification
   
     .form-inputs
@@ -24,6 +74,8 @@
       = f.input :application_count, :label => "Sudah Berapa Kali Mendaftar FIM", :collection => ["Belum pernah", "1", "2", "3", "4", "5", ">5"]
       = f.input :performance_type, :label => "Ekspresi Seni Budaya"
       = f.input :referal, :label => "Tuliskan Nama Alumni FIM yang Merekomendasikan Anda"
-  
+      = f.hidden_field :latitude
+      = f.hidden_field :longitude
+
     .form-actions
       = f.submit "Daftar", :class => "btn btn-primary"

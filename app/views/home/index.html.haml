@@ -36,32 +36,37 @@
     
     window.onload = loadScript;
 
-%h3 Portal Alumni Keluarga FIM
 
-%p 
-  Selamat datang di portal kami! Di sini Anda bisa bertemu dengan saudara-saudara FIM yang sudah lama tidak bertemu.. 
-  Blablablabla... Blablablabla... Blablablabla... Blablablabla. Yey!
-  
-%br
-#map_canvas{:style => "width:600px; height:300px"}
+.row
+  .container
 
-%br
+#about.row
+  .container
+    .span5
+      %h2 About FIM
+      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar tortor ac tortor dictum congue. Maecenas placerat, massa in aliquet consequat, enim purus convallis neque, et viverra augue purus vitae urna.
+      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar tortor ac tortor dictum congue. Maecenas placerat, massa in aliquet consequat, enim purus convallis neque, et viverra augue purus vitae urna.
+    .span4
+      #map_canvas{:style => "width:550px; height:300px"}
 
-.thumbnails
-  .span4
-    .thumbnail
-      %img{:"data-src" => "holder.js/300x200", :alt => "", :src=>'http://www.mikabethedwardsphotography.com/blog/wp-content/uploads/2009/02/103-300x200.jpg'}
-      .caption
-        %h3 Tentang Anda
-        %p Silakan yang belum masukan data, cekidot!
-        =link_to "Register", new_user_registration_path, {:class => 'btn btn-primary'}
-        =link_to "Log in", new_user_session_path, {:class => 'btn'}
-        
-
-  .span4
-    .thumbnail
-      %img{:"data-src" => "holder.js/300x200", :alt => "", :src=>'http://www.mikabethedwardsphotography.com/blog/wp-content/uploads/2009/02/103-300x200.jpg'}
-      .caption
-        %h3 Lihat data
-        %p Semua data ada di sini gan!
-        =link_to "Lihat data", profile_path, {:class => 'btn btn-primary'}
+#services.row
+  .container
+    .span12
+      %h3 Apa yang ingin Anda lakukan
+    .span12
+      .span3.service-item
+        %h4
+          %i.icon-file>
+          Pendaftaran FIM 14
+        %img{:alt => "", :src => "http://placehold.it/270x125"}/
+        %p
+        =link_to new_profile_candidate_path do
+          %button.btn.btn-primary{:type => "button"} Daftar >>
+      .span3.service-item
+        %h4
+          %i.icon-list-alt>
+          Daftar Calon Peserta FIM 14
+        %img{:alt => "", :src => "http://placehold.it/270x125"}/
+        %p
+        =link_to profile_candidates_path do
+          %button.btn.btn-primary{:type => "submit"} Lihat >>
