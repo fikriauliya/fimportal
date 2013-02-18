@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
   has_one :profile
+  has_one :profile_candidate
 end

@@ -1,0 +1,2 @@
+module ProfileCandidatesHelper
+end

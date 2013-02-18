@@ -3,22 +3,22 @@ class ProfilesController < ApplicationController
 
   def index
     @profiles = Profile.all
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @profiles }
+    end
   end
   
   def show
     if params[:id]
       @profile = Profile.find(params[:id])
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @profile }
+      end
     else 
-      redirect_to root_path
-      # @profile = Profile.find_by_id(current_user.id)
-      # if @profile.nil?
-        # redirect_to new_profile_path
-      # else
-        # respond_to do |format|
-          # format.html # show.html.erb
-          # format.json { render json: @profile }
-        # end
-      # end
+      redirect_to alumni_home_path
     end
   end
 
@@ -28,6 +28,11 @@ class ProfilesController < ApplicationController
       redirect_to edit_profile_path
     else    
       @profile = Profile.new
+      
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @profile }
+      end
     end
   end
 

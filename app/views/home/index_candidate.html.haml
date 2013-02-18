@@ -1,0 +1,63 @@
+-content_for :head do
+  %meta{name: "viewport", content: "initial-scale=1.0, user-scalable=no"}
+  :css
+    -# html { height: 100% }
+    -# body { height: 100%; margin: 0; padding: 0 }
+    #map_canvas { height: 100% }
+  :javascript
+    function initialize() {
+      var mapOptions = {
+        zoom: 4,
+        center: new google.maps.LatLng(5, 120.644),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+      
+      #{
+        res = ""
+        i = 0
+        @profiles.each do |p|
+          unless p.latitude.nil?
+            res += "var myLatLng_#{i} = new google.maps.LatLng(#{p.latitude}, #{p.longitude});"
+            res += "var marker_#{i} = new google.maps.Marker({position: myLatLng_#{i},map: map,title:'s'});"
+            i += 1
+          end
+        end
+        res
+      }
+    }
+    
+    function loadScript() {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyCEY0Wtv2sMZZRW0Fb3hmutA-7ET0O-58o&sensor=true&callback=initialize";
+      document.body.appendChild(script);
+    }
+    
+    window.onload = loadScript;
+
+.span3
+  - if @profile.nil?
+    %br
+    %br
+    = link_to 'Create your profile', new_profile_candidate_path, :class => 'btn btn-primary'
+
+.span8
+  #map_canvas{:style => "width:800px; height:400px"}
+
+  %h3 Data pendaftar FIM 14
+        
+  %table.table.table-condensed
+    %tr
+      %th Fullname
+      %th Gender
+      %th Religion
+      %th School
+  
+    - @profiles.each do |profile|
+      %tr
+        %td= profile.fullname
+        %td= profile.gender
+        %td= profile.religion
+        %td= profile.school
+

@@ -1,0 +1,69 @@
+%p#notice= notice
+
+%p
+  %b Fullname:
+  = @profile_candidate.fullname
+%p
+  %b Dob:
+  = @profile_candidate.dob
+%p
+  %b Place of birth:
+  = @profile_candidate.place_of_birth
+%p
+  %b Location:
+  = @profile_candidate.location
+%p
+  %b Gender:
+  = @profile_candidate.gender
+%p
+  %b Religion:
+  = @profile_candidate.religion
+%p
+  %b Phone:
+  = @profile_candidate.phone
+%p
+  %b Email:
+  = @profile_candidate.email
+%p
+  %b Hobby:
+  = @profile_candidate.hobby
+%p
+  %b Blood type:
+  = @profile_candidate.blood_type
+%p
+  %b School:
+  = @profile_candidate.school
+%p
+  %b Batch:
+  = @profile_candidate.batch
+%p
+  %b Non formal education:
+  = @profile_candidate.non_formal_education
+%p
+  %b Organization:
+  = @profile_candidate.organization
+%p
+  %b Committee:
+  = @profile_candidate.committee
+%p
+  %b Workshop:
+  = @profile_candidate.workshop
+%p
+  %b Motivation:
+  = @profile_candidate.motivation
+%p
+  %b Information from:
+  = @profile_candidate.information_from
+%p
+  %b Application count:
+  = @profile_candidate.application_count
+%p
+  %b Performance type:
+  = @profile_candidate.performance_type
+%p
+  %b Referal:
+  = @profile_candidate.referal
+
+= link_to 'Edit', edit_profile_candidate_path(@profile_candidate)
+\|
+= link_to 'Back', profile_candidates_path

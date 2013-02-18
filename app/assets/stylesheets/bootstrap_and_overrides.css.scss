@@ -1,3 +1,14 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
+
+.box-form {
+   min-height: 1600px;
+   width: 1000px;
+   background-color: #E8E8E8;
+   border-radius:3px;
+   border-style:solid;
+   border-width:1px;
+   border-color:#D6D6D6;
+   padding: 10px;
+}

@@ -1,0 +1,59 @@
+%h1 Listing profile_candidates
+
+%table
+  %tr
+    %th Fullname
+    %th Dob
+    %th Place of birth
+    %th Location
+    %th Gender
+    %th Religion
+    %th Phone
+    %th Email
+    %th Hobby
+    %th Blood type
+    %th School
+    %th Batch
+    %th Non formal education
+    %th Organization
+    %th Committee
+    %th Workshop
+    %th Motivation
+    %th Information from
+    %th Application count
+    %th Performance type
+    %th Referal
+    %th
+    %th
+    %th
+
+  - @profiles.each do |profile|
+    %tr
+      %td= profile,fullname
+      %td= profile.dob
+      %td= profile,place_of_birth
+      %td= profile,location
+      %td= profile,gender
+      %td= profile,religion
+      %td= profile,phone
+      %td= profile,email
+      %td= profile,hobby
+      %td= profile,blood_type
+      %td= profile,school
+      %td= profile,batch
+      %td= profile,non_formal_education
+      %td= profile,organization
+      %td= profile,committee
+      %td= profile,workshop
+      %td= profile,motivation
+      %td= profile,information_from
+      %td= profile,application_count
+      %td= profile,performance_type
+      %td= profile,referal
+      %td= link_to 'Show', profile_candidate
+      %td= link_to 'Edit', edit_profile_candidate_path(profile_candidate)
+      %td= link_to 'Destroy', profile_candidate, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Profile candidate', new_profile_candidate_path

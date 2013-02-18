@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130217135025) do
+ActiveRecord::Schema.define(:version => 20130218153335) do
+
+  create_table "profile_candidates", :force => true do |t|
+    t.string   "fullname"
+    t.date     "dob"
+    t.string   "place_of_birth"
+    t.string   "location"
+    t.binary   "gender"
+    t.string   "religion"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "hobby"
+    t.string   "blood_type"
+    t.string   "school"
+    t.integer  "batch"
+    t.text     "non_formal_education"
+    t.text     "organization"
+    t.text     "committee"
+    t.text     "workshop"
+    t.text     "motivation"
+    t.string   "information_from"
+    t.integer  "application_count"
+    t.string   "performance_type"
+    t.string   "referal"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+  end
 
   create_table "profiles", :force => true do |t|
     t.string   "fullname"
