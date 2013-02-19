@@ -3,12 +3,12 @@
   %li
     = link_to "Pendaftaran FIM", new_profile_candidate_path
   %li
-    = link_to "Pendaftaran Alumni", new_profile_path
+    = link_to "Alumni", profile_path
   
 %ul.nav.pull-right
   - if user_signed_in?
     %li
-    = link_to 'Logout', destroy_user_session_path, :method =>'delete', :class => 'btn btn-danger', :html => {:style => 'margin-top:10px; margin-bottom:-10px;'}
+      = button_to 'Logout', destroy_user_session_path, :method =>'delete', :class => 'btn btn-danger', :style => 'margin-top:10px; margin-bottom:-10px;'
   - else
     = form_for @user, :url => new_user_session_path, :html => {:class => 'form-inline'} do |f|
       = f.text_field :email, :autofocus => true, :class => 'input-small', :placeholder => "Email", :style => 'margin-top:10px; margin-bottom:-10px; width:150px'

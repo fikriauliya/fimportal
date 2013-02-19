@@ -44,7 +44,7 @@ class ProfileCandidatesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile candidate was successfully created.' }
+        format.html { redirect_to profile_candidates_path, notice: 'Profile candidate was successfully created.' }
         format.json { render json: @profile, status: :created, location: @profile }
       else
         format.html { render action: "new" }

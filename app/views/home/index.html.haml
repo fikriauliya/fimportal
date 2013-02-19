@@ -36,37 +36,33 @@
     
     window.onload = loadScript;
 
+.row
+  .span5
+    %h2 About FIM
+    %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar tortor ac tortor dictum congue. Maecenas placerat, massa in aliquet consequat, enim purus convallis neque, et viverra augue purus vitae urna.
+    %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar tortor ac tortor dictum congue. Maecenas placerat, massa in aliquet consequat, enim purus convallis neque, et viverra augue purus vitae urna.
+  .span4
+    %h4 Rekapitulasi pendaftar FIM 14
+    #map_canvas{:style => "width:550px; height:300px"}
 
 .row
-  .container
+  .span12
+    %h3 Apa yang ingin Anda lakukan
 
-#about.row
-  .container
-    .span5
-      %h2 About FIM
-      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar tortor ac tortor dictum congue. Maecenas placerat, massa in aliquet consequat, enim purus convallis neque, et viverra augue purus vitae urna.
-      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar tortor ac tortor dictum congue. Maecenas placerat, massa in aliquet consequat, enim purus convallis neque, et viverra augue purus vitae urna.
-    .span4
-      #map_canvas{:style => "width:550px; height:300px"}
-
-#services.row
-  .container
-    .span12
-      %h3 Apa yang ingin Anda lakukan
-    .span12
-      .span3.service-item
-        %h4
-          %i.icon-file>
-          Pendaftaran FIM 14
-        %img{:alt => "", :src => "http://placehold.it/270x125"}/
-        %p
-        =link_to new_profile_candidate_path do
-          %button.btn.btn-primary{:type => "button"} Daftar >>
-      .span3.service-item
-        %h4
-          %i.icon-list-alt>
-          Daftar Calon Peserta FIM 14
-        %img{:alt => "", :src => "http://placehold.it/270x125"}/
-        %p
-        =link_to profile_candidates_path do
-          %button.btn.btn-primary{:type => "submit"} Lihat >>
+.row
+  .span3.service-item
+    %h4
+      %i.icon-file>
+      Pendaftaran FIM 14
+    %img{:alt => "", :src => "http://placehold.it/270x125"}/
+    %p
+    =link_to new_profile_candidate_path do
+      %button.btn.btn-primary{:type => "button"} Daftar >>
+  .span3.service-item
+    %h4
+      %i.icon-list-alt>
+      Daftar Calon Peserta FIM 14
+    %img{:alt => "", :src => "http://placehold.it/270x125"}/
+    %p
+    =link_to profile_candidates_path do
+      %button.btn.btn-primary{:type => "submit"} Lihat >>
