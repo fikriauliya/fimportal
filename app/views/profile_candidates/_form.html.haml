@@ -1,5 +1,6 @@
 -content_for :head do
   %meta{name: "viewport", content: "initial-scale=1.0, user-scalable=no"}
+
   :javascript
     function initialize() {
       geocoder = new google.maps.Geocoder();
@@ -18,8 +19,6 @@
     
     $(document).ready(function() {
       $("#profile_form").submit(function (event) {
-        console.log("Submitting");
-        
         var latitude = $("#profile_candidate_latitude");
         var longitude = $("#profile_candidate_longitude");
         
@@ -27,14 +26,14 @@
           event.preventDefault();
 
           if (geocoder) {
-            console.log("Looking for location...");
-            
             var address = $("#profile_candidate_location").val();
+            console.log("Looking for location...: ");
+            console.log(address);
             
             geocoder.geocode({'address': address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                latitude.val(results[0].geometry.location.Ya);
-                longitude.val(results[0].geometry.location.Za);
+                latitude.val(results[0].geometry.location.lat());
+                longitude.val(results[0].geometry.location.lng());
                 
                 console.log("Found location: " + latitude.val() + ", " + longitude.val());
               }

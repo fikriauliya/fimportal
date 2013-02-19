@@ -1,40 +1,9 @@
 -content_for :head do
   %meta{name: "viewport", content: "initial-scale=1.0, user-scalable=no"}
-  :css
-    -# html { height: 100% }
-    -# body { height: 100%; margin: 0; padding: 0 }
-    #map_canvas { height: 100% }
+  %script{type: "text/javascript", src: 'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js'}
+
   :javascript
-    function initialize() {
-      var mapOptions = {
-        zoom: 4,
-        center: new google.maps.LatLng(5, 120.644),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      }
-      var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-      
-      #{
-        res = ""
-        i = 0
-        @profiles.each do |p|
-          unless p.latitude.nil?
-            res += "var myLatLng_#{i} = new google.maps.LatLng(#{p.latitude}, #{p.longitude});"
-            res += "var marker_#{i} = new google.maps.Marker({position: myLatLng_#{i},map: map,title:'s'});"
-            i += 1
-          end
-        end
-        res
-      }
-    }
-    
-    function loadScript() {
-      var script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyCEY0Wtv2sMZZRW0Fb3hmutA-7ET0O-58o&sensor=true&callback=initialize";
-      document.body.appendChild(script);
-    }
-    
-    window.onload = loadScript;
+    #{map_loader(@latitudes, @longitudes)}  
 
 .row
   .span3
