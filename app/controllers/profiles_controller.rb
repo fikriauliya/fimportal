@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
   end
 
   def new
-    @profile = Profile.find_by_id(current_user.id)
+    @profile = current_user.profile
     if !@profile.nil?
       redirect_to edit_profile_path
     else    
@@ -37,7 +37,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    if !Profile.find_by_id(current_user.id).nil?
+    if !current_user.profile.nil?
       redirect_to edit_profile_path
     else
       @profile = Profile.new(params[:profile])
@@ -56,11 +56,11 @@ class ProfilesController < ApplicationController
   end
   
   def edit
-    @profile = Profile.find(current_user.id)
+    @profile = current_user.profile
   end
 
   def update
-    @profile = Profile.find(current_user.id)
+    @profile = current_user.profile
     
     respond_to do |format|
       if @profile.update_attributes(params[:profile])

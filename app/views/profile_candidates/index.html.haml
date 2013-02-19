@@ -6,12 +6,13 @@
       %thead
         %tr
           %th{:style=>'width:10%'} No
-          %th{:style=>'width:50%'} Nama
-          %th{:style=>'width:40%'} Asal Kampus
+          %th{:style=>'width:30%'} Nama
+          %th{:style=>'width:30%'} Asal Kampus
+          %th{:style=>'width:30%'} Asal Daerah
       %tbody
         - @profiles.each_with_index do |profile, i|
           %tr
             %td= i+1
             %td= profile.fullname
-            %td= profile.location
             %td= profile.school
+            %td= profile.location

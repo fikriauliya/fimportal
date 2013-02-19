@@ -1,5 +1,14 @@
 FimAlumni::Application.routes.draw do
-  resources :profile_candidates, :path => 'candidates'
+  resources :profile_candidates, :path => 'candidates' do
+    collection do
+      get 'step1'
+      get 'step2'
+      get 'step3'
+      
+      match 'step1' => 'profile_candidates#step1_post', :via => :post
+    end
+  end
+  
   resource :profile
   resources :profiles
   
