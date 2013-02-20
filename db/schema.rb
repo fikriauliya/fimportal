@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219150902) do
+ActiveRecord::Schema.define(:version => 20130220001304) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20130219150902) do
     t.binary   "gender"
     t.string   "religion"
     t.string   "phone"
-    t.string   "email"
     t.string   "hobby"
     t.string   "blood_type"
     t.string   "school"

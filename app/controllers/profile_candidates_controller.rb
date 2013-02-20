@@ -1,6 +1,6 @@
 class ProfileCandidatesController < ApplicationController
   before_filter :authenticate_user!
-  skip_before_filter :authenticate_user!, :only => [:step1]
+  skip_before_filter :authenticate_user!, :only => [:step1, :index]
   
   def step1
     if user_signed_in?
