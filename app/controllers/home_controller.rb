@@ -7,14 +7,14 @@ class HomeController < ApplicationController
   def index_alumni
     authenticate_user!
     @profiles = Profile.all
-    @profile = Profile.find_by_id(current_user.id)
+    @profile = Profile.find_by_user_id(current_user.id)
     initialize_latitudes_longitudes(@profiles)
   end
   
   def index_candidate
     authenticate_user!
     @profiles = ProfileCandidate.all
-    @profile = ProfileCandidate.find_by_id(current_user.id)
+    @profile = ProfileCandidate.find_by_user_id(current_user.id)
     initialize_latitudes_longitudes(@profiles)
   end
   

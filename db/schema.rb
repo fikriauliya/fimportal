@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220010547) do
+ActiveRecord::Schema.define(:version => 20130220135231) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20130220010547) do
     t.float    "longitude"
     t.integer  "user_id"
     t.text     "agreement"
+    t.text     "biodata"
   end
 
   create_table "profiles", :force => true do |t|

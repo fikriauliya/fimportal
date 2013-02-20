@@ -15,7 +15,7 @@ class ProfileCandidatesController < ApplicationController
     logger.info @profile.inspect
     
     if !@profile.nil?
-      redirect_to profile_candidates_path
+      redirect_to candidate_home_path
     else
       @profile = ProfileCandidate.new
   
@@ -62,12 +62,27 @@ class ProfileCandidatesController < ApplicationController
       
       respond_to do |format|
         if @profile.save
-          format.html { redirect_to profile_candidates_path, notice: 'Profile candidate was successfully created.' }
+          format.html { redirect_to candidate_home_path, notice: 'Profile candidate was successfully created.' }
           format.json { render json: @profile, status: :created, location: @profile }
         else
           format.html { render action: "step2" }
           format.json { render json: @profile.errors, status: :unprocessable_entity }
         end
+      end
+    end
+  end
+  
+  def update
+    @profile = current_user.profile_candidate
+    
+    respond_to do |format|
+      if @profile.update_attributes(:biodata => params[:profile_candidate][:biodata])
+        format.html { redirect_to candidate_home_path, notice: 'Profile was successfully updated.' }
+        format.json { head :no_content }
+      else
+        logger.info "Not Success!"
+        format.html { render action: "edit" }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
   end
