@@ -2,7 +2,8 @@ class ProfileCandidate < ActiveRecord::Base
   attr_accessible :application_count, :batch, :blood_type, :committee, :dob, :fullname, :gender, 
     :hobby, :information_from, :location, :motivation, :non_formal_education, :organization, 
     :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
-    :latitude, :longitude, :agreement, :biodata, :photo
+    :latitude, :longitude, :agreement, :biodata, :photo, :photo_file_name, :photo_file_size,
+    :photo_content_type
   belongs_to :user
   
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
