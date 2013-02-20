@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220135231) do
+ActiveRecord::Schema.define(:version => 20130220145036) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -41,6 +41,10 @@ ActiveRecord::Schema.define(:version => 20130220135231) do
     t.integer  "user_id"
     t.text     "agreement"
     t.text     "biodata"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "profiles", :force => true do |t|

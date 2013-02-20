@@ -15,7 +15,7 @@ class ProfileCandidatesController < ApplicationController
     logger.info @profile.inspect
     
     if !@profile.nil?
-      redirect_to candidate_home_path
+      redirect_to candidate_home_path, notice: "Anda sudah terdaftar"
     else
       @profile = ProfileCandidate.new
   
