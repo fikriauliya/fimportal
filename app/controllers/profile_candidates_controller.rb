@@ -65,7 +65,7 @@ class ProfileCandidatesController < ApplicationController
           format.html { redirect_to profile_candidates_path, notice: 'Profile candidate was successfully created.' }
           format.json { render json: @profile, status: :created, location: @profile }
         else
-          format.html { render action: "new" }
+          format.html { render action: "step2" }
           format.json { render json: @profile.errors, status: :unprocessable_entity }
         end
       end
