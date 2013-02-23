@@ -28,13 +28,14 @@ module ApplicationHelper
         varLat + varLng
       }
       
+      var mcOptions = {gridSize: 10, maxZoom: 15};
       var markers = [];
       for (var i = 0; i < varLat.length; i++) {
         var newLatLng = new google.maps.LatLng(varLat[i], varLng[i]);
         var marker = new google.maps.Marker({position: newLatLng,map: map});
         markers.push(marker);
       }
-      var markerCluster = new MarkerClusterer(map, markers);
+      var markerCluster = new MarkerClusterer(map, markers, mcOptions);
     }
     
     function loadScript() {
