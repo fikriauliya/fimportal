@@ -1,12 +1,16 @@
 %ul.nav.nav-pills
   %li.active
-    %a{:href => "#"} 1) Registrasi
+    =link_to step1_profile_candidates_path do
+      1) Registrasi
   %li
-    %a{:href => "#"} 2) Pengisian Formulir
+    =link_to step2_profile_candidates_path do
+      2) Pengisian Formulir
   %li
-    %a{:href => "#"} 3) Unggah Foto
+    =link_to step3_profile_candidates_path do
+      3) Unggah Foto
   %li
-    %a{:href => "#"} 4) Unggah Surat Rekomendasi
+    =link_to step4_profile_candidates_path do
+      4) Unggah Surat Rekomendasi
 
 .row
   .span3
@@ -15,7 +19,7 @@
       = simple_form_for(@user, :url => registration_path(@user), :html => {:class => 'form-vertical' }) do |f|
         = f.error_notification
         = display_base_errors @user
-        = f.input :email, :required => true
+        = f.input :email, :required => true, :autofocus => true
         = f.input :password, :required => true
         = f.input :password_confirmation, :required => true
         = f.button :submit, 'Sign up', :class => 'btn-primary'
@@ -27,6 +31,6 @@
     %h4 Log in
     .well
       = simple_form_for(@user, :url => session_path(@user), :html => {:class => 'form-vertical' }) do |f|
-        = f.input :email, :autofocus => true
+        = f.input :email
         = f.input :password
         = f.button :submit, "Sign in", :class => 'btn-primary'

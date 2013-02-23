@@ -1,12 +1,16 @@
 %ul.nav.nav-pills
   %li
-    %a{:href => "#"} 1) Registrasi
+    =link_to step1_profile_candidates_path do
+      1) Registrasi
   %li
-    %a{:href => "#"} 2) Pengisian Formulir
+    =link_to step2_profile_candidates_path do
+      2) Pengisian Formulir
   %li
-    %a{:href => "#"} 3) Unggah foto
+    =link_to step3_profile_candidates_path do
+      3) Unggah Foto
   %li.active
-    %a{:href => "#"} 4) Unggah surat rekomendasi
+    =link_to step4_profile_candidates_path do
+      4) Unggah Surat Rekomendasi
     
 %h2 Pendaftaran FIM 14
 %p Unggah surat rekomendasi dari institusi/organisasi yang Anda ikuti

@@ -6,6 +6,16 @@
       = display_base_errors @profile
 
       .form-inputs
-        = f.input :recommendation_letter
+        .control-group
+          = f.label "Surat rekomendasi"
+          - if @profile.recommendation_letter?
+            .controls
+              = link_to "[Cek]", @profile.recommendation_letter_url
+              
+          = f.input :recommendation_letter, :label => false
       .form-actions
-        = f.submit "Upload", :class => "btn btn-primary"
+        %p
+          Dengan menekan tombol "Kumpulkan" di bawah ini, informasi Anda akan 
+          diproses oleh tim rekruiter. Anda tidak bisa mengubah lagi.
+          
+        = f.submit "Kumpulkan", :class => "btn btn-primary"

@@ -1,14 +1,18 @@
 %ul.nav.nav-pills
   %li
-    %a{:href => "#"} 1) Registrasi
+    =link_to step1_profile_candidates_path do
+      1) Registrasi
   %li.active
-    %a{:href => "#"} 2) Pengisian Formulir
+    =link_to step2_profile_candidates_path do
+      2) Pengisian Formulir
   %li
-    %a{:href => "#"} 3) Unggah Foto
+    =link_to step3_profile_candidates_path do
+      3) Unggah Foto
   %li
-    %a{:href => "#"} 4) Unggah Surat Rekomendasi
+    =link_to step4_profile_candidates_path do
+      4) Unggah Surat Rekomendasi
     
 %h2 Pendaftaran FIM 14
-%p Silahkan isi Data dengan Lengkap, kelengkapan merupakan syarat utama untuk menjadi salah satu peserta FIM 14
+%p Silahkan isi data dengan Lengkap, kelengkapan merupakan syarat utama untuk menjadi salah satu peserta FIM 14
 
 = render 'form'

@@ -1,6 +1,14 @@
 class ProfileCandidatesController < ApplicationController
   before_filter :authenticate_user!
   skip_before_filter :authenticate_user!, :only => [:step1, :index]
+  before_filter :check_submission_status!, :only => [:step2, :step3, :step4]
+  
+  def check_submission_status!
+    @profile = current_user.profile_candidate
+    if !@profile.nil? && @profile.status == "SUBMITTED"
+      redirect_to candidate_home_path, :notice => "Data Anda sudah kami terima. Terimakasih"
+    end
+  end
   
   def step1
     if user_signed_in?
@@ -13,23 +21,20 @@ class ProfileCandidatesController < ApplicationController
   def step2
     @profile = current_user.profile_candidate
     
-    if !@profile.nil?
-      redirect_to step3_profile_candidates_path
-    else
+    if @profile.nil?
       @profile = ProfileCandidate.new
-  
-      respond_to do |format|
-        format.html 
-        format.json { render json: @profile }
-      end
+    end
+
+    respond_to do |format|
+      format.html 
+      format.json { render json: @profile }
     end
   end
   
   def step3
     @profile = current_user.profile_candidate
-    
-    if @profile.photo?
-      redirect_to step4_profile_candidates_path
+    if @profile.nil?
+      redirect_to step2_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
     else
       respond_to do |format|
         format.html 
@@ -40,9 +45,8 @@ class ProfileCandidatesController < ApplicationController
   
   def step4
     @profile = current_user.profile_candidate
-    
-    if @profile.recommendation_letter?
-      redirect_to candidate_home_path, :notice => 'Aplikasi Anda sudah kami terima. Terimakasih'
+    if @profile.nil? or !@profile.photo?
+      redirect_to step3_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
     else
       respond_to do |format|
         format.html 
@@ -97,13 +101,33 @@ class ProfileCandidatesController < ApplicationController
     end
   end
   
+  #step2 put
+  def update
+    @profile = current_user.profile_candidate
+    
+    respond_to do |format|
+      if @profile.update_attributes(params[:profile_candidates])
+        format.html { redirect_to step3_profile_candidates_path, notice: 'Profile was successfully updated.' }
+        format.json { head :no_content }
+      else
+        logger.info "Not Success!"
+        format.html { render action: "step2" }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   def upload_photo
     @profile = current_user.profile_candidate
     respond_to do |format|
-      if @profile.update_attribute(:photo, params[:profile_candidate][:photo])
+      if params[:profile_candidate].nil? && @profile.photo?
+        format.html { redirect_to step4_profile_candidates_path }
+        format.json { render json: @profile, status: :created, location: @profile }
+      elsif !params[:profile_candidate].nil? && @profile.update_attribute(:photo, params[:profile_candidate][:photo])
         format.html { redirect_to step4_profile_candidates_path }
         format.json { render json: @profile, status: :created, location: @profile }
       else
+        @profile.errors.add :photo, ''
         format.html { render action: "step3" }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
@@ -113,10 +137,20 @@ class ProfileCandidatesController < ApplicationController
   def upload_recommendation_letter
     @profile = current_user.profile_candidate
     respond_to do |format|
-      if @profile.update_attribute(:recommendation_letter, params[:profile_candidate][:recommendation_letter])
-        format.html { redirect_to candidate_home_path }
-        format.json { render json: @profile, status: :created, location: @profile }
+      if !params[:profile_candidate].nil?
+        new_attr = Hash.new
+        new_attr[:recommendation_letter] = params[:profile_candidate][:recommendation_letter]
+        new_attr[:status] = "SUBMITTED" 
+        if @profile.update_attributes(new_attr, :as => :final_step)
+          format.html { redirect_to candidate_home_path, notice: 'Data Anda sudah kami terima. Terimakasih' }
+          format.json { render json: @profile, status: :created, location: @profile }
+        else
+          @profile.errors.add :recommendation_letter, ''
+          format.html { render action: "step4" }
+          format.json { render json: @profile.errors, status: :unprocessable_entity }
+        end
       else
+        @profile.errors.add :recommendation_letter, ''
         format.html { render action: "step4" }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
@@ -124,7 +158,7 @@ class ProfileCandidatesController < ApplicationController
   end
   
   #only for updating biodata
-  def update
+  def update_biodata
     @profile = current_user.profile_candidate
     
     respond_to do |format|
