@@ -51,7 +51,8 @@
   .well
     = simple_form_for(@profile, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
       = f.error_notification
-    
+      = display_base_errors @profile
+
       .form-inputs
         = f.input :fullname, :label => "Nama lengkap"
         = f.input :dob, :input_html => {:style => 'width:auto'}, :label => "Tanggal lahir", 
