@@ -1,6 +1,6 @@
 class ProfileCandidatesController < ApplicationController
   before_filter :authenticate_user!
-  skip_before_filter :authenticate_user!, :only => [:step1, :index]
+  skip_before_filter :authenticate_user!, :only => [:new, :step1, :index]
   before_filter :check_submission_status!, :only => [:step2, :step3, :step4]
   
   def check_submission_status!
