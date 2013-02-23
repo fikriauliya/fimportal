@@ -26,7 +26,8 @@
       %thead
         %tr
           %th{:style=>'width:5%'} No
-          %th{:style=>'width:15%'} Nama
+          %th{:style=>'width:5%'}
+          %th{:style=>'width:10%'} Nama
           %th{:style=>'width:20%'} Asal Kampus
           %th{:style=>'width:20%'} Asal Daerah
           %th{:style=>'width:40%'} Biodata singkat
@@ -34,6 +35,9 @@
         - @profiles.each_with_index do |profile, i|
           %tr
             %td= i+1
+            %td
+              = link_to(profile.photo_url.to_s) do
+                = image_tag(profile.photo_url.to_s)
             %td= profile.fullname
             %td= profile.school
             %td= profile.location

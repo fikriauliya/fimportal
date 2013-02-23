@@ -8,4 +8,7 @@ class ProfileCandidate < ActiveRecord::Base
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
     :information_from, :location, :motivation, :phone, :place_of_birth, :religion, 
     :school, :latitude, :longitude, :agreement, :presence => true
+
+  mount_uploader :photo, CandidatePhotoUploader
+  mount_uploader :recommendation_letter, CandidateRecommendationLetterUploader
 end

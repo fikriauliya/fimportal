@@ -1,0 +1,11 @@
+.span8
+  .well
+    = simple_form_for(@profile, :url => upload_recommendation_letter_profile_candidates_path, :method => :post, 
+      :html => {:id => 'profile_form', :class => 'form-horizontal', :multipart => true}) do |f|
+      = f.error_notification
+      = display_base_errors @profile
+
+      .form-inputs
+        = f.input :recommendation_letter
+      .form-actions
+        = f.submit "Upload", :class => "btn btn-primary"

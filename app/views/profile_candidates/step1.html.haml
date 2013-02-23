@@ -3,6 +3,10 @@
     %a{:href => "#"} 1) Registrasi
   %li
     %a{:href => "#"} 2) Pengisian Formulir
+  %li
+    %a{:href => "#"} 3) Unggah Foto
+  %li
+    %a{:href => "#"} 4) Unggah Surat Rekomendasi
 
 .row
   .span3
@@ -20,7 +24,7 @@
       %b{:style => "font-size:20px"}
         #{"- atau -"}
   .span3
-    %h4 Sudah punya akun?
+    %h4 Log in
     .well
       = simple_form_for(@user, :url => session_path(@user), :html => {:class => 'form-vertical' }) do |f|
         = f.input :email, :autofocus => true

@@ -4,8 +4,10 @@ FimAlumni::Application.routes.draw do
       get 'step1'
       get 'step2'
       get 'step3'
+      get 'step4'
       
-      match 'step1' => 'profile_candidates#step1_post', :via => :post
+      match 'upload_photo' => 'profile_candidates#upload_photo', :via => :post
+      match 'upload_recommendation_letter' => 'profile_candidates#upload_recommendation_letter', :via => :post
     end
   end
   
