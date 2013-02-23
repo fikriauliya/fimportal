@@ -38,3 +38,4 @@ gem "better_errors", ">= 0.6.0", :group => :development
 gem "binding_of_caller", ">= 0.6.9", :group => :development
 gem 'carrierwave'
 gem "fog", "~> 1.3.1"
+gem 'will_paginate', '> 3.0'

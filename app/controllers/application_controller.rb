@@ -17,4 +17,18 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
+  
+  private
+  
+  def initialize_latitudes_longitudes(profiles)
+    @latitudes = []
+    @longitudes = []
+   
+    profiles.each do |p|
+      unless p.latitude.nil? or p.longitude.nil?
+        @latitudes << p.latitude
+        @longitudes << p.longitude
+      end
+    end
+  end
 end

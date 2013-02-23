@@ -6,7 +6,7 @@ class ProfileCandidatesController < ApplicationController
   def check_submission_status!
     @profile = current_user.profile_candidate
     if !@profile.nil? && @profile.status == "SUBMITTED"
-      redirect_to candidate_home_path, :notice => "Data Anda sudah kami terima. Terimakasih"
+      redirect_to profile_candidates_path, :notice => "Data Anda sudah kami terima. Terimakasih"
     end
   end
   
@@ -56,8 +56,13 @@ class ProfileCandidatesController < ApplicationController
   end
   
   def index
-    @profiles = ProfileCandidate.all
-
+    @profiles = ProfileCandidate.paginate(:page => params[:page],:per_page => 20)
+    if user_signed_in?
+      @profile = ProfileCandidate.find_by_user_id(current_user.id)
+    end
+    
+    initialize_latitudes_longitudes(ProfileCandidate.select([:latitude, :longitude]))
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @profiles }
@@ -72,7 +77,7 @@ class ProfileCandidatesController < ApplicationController
         format.json { render json: @profile }
       end
     else
-      redirect_to candidate_home_path
+      redirect_to profile_candidates_path
     end
   end
 
@@ -142,7 +147,7 @@ class ProfileCandidatesController < ApplicationController
         new_attr[:recommendation_letter] = params[:profile_candidate][:recommendation_letter]
         new_attr[:status] = "SUBMITTED" 
         if @profile.update_attributes(new_attr, :as => :final_step)
-          format.html { redirect_to candidate_home_path, notice: 'Data Anda sudah kami terima. Terimakasih' }
+          format.html { redirect_to profile_candidates_path, notice: 'Data Anda sudah kami terima. Terimakasih' }
           format.json { render json: @profile, status: :created, location: @profile }
         else
           @profile.errors.add :recommendation_letter, ''
@@ -163,7 +168,7 @@ class ProfileCandidatesController < ApplicationController
     
     respond_to do |format|
       if @profile.update_attributes(:biodata => params[:profile_candidate][:biodata])
-        format.html { redirect_to candidate_home_path, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to profile_candidates_path, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
         logger.info "Not Success!"

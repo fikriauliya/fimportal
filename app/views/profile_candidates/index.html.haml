@@ -1,18 +1,30 @@
+-content_for :head do
+  %meta{name: "viewport", content: "initial-scale=1.0, user-scalable=no"}
+  %script{type: "text/javascript", src: 'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js'}
+
+  :javascript
+    #{map_loader(@latitudes, @longitudes)}
+    
 .row
-  .span10.offset1
+  -if user_signed_in?
+    .span3
+      %h4 Profil Anda
+      %p
+        Ayo, manfaatkan kesempatan ini untuk berkoneksi dengan teman-teman hebat dari penjuru Indonesia!
+        
+      = simple_form_for(@profile, :url => update_biodata_profile_candidates_path, :method => :put, :html => {:id => 'profile_form', :class => 'form-vertical'}) do |f|
+        = f.error_notification
+    
+        .form-inputs
+          = f.input :biodata, :label => "Biodata singkat (max 160 karakter)", :input_html => {:rows => 6}, :placeholder => 'Contoh: Pendiri Yayasan X, hobi traveling, bercita-cita keliling Indonesia, minat di pemberdayaan desa, @anakUI.com'
+          = f.submit "Update", :class => "btn btn-primary"
+    .span8
+      #map_canvas{:style => "width:800px; height:300px"}
+  -else
+    .span12
+      #map_canvas{:style => "width:100%; height:400px"}  
+.row
+  .span12
     %h3 Daftar calon peserta FIM 14
 
-    %table.table.table-striped
-      %thead
-        %tr
-          %th{:style=>'width:10%'} No
-          %th{:style=>'width:30%'} Nama
-          %th{:style=>'width:30%'} Asal Kampus
-          %th{:style=>'width:30%'} Asal Daerah
-      %tbody
-        - @profiles.each_with_index do |profile, i|
-          %tr
-            %td= i+1
-            %td= profile.fullname
-            %td= profile.school
-            %td= profile.location
+    = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles}
