@@ -51,8 +51,7 @@
   .well
     = simple_form_for(@profile, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
       = f.error_notification
-      = display_base_errors @profile
-      
+    
       .form-inputs
         = f.input :fullname, :label => "Nama lengkap"
         = f.input :dob, :input_html => {:style => 'width:auto'}, :label => "Tanggal lahir", 
@@ -85,8 +84,6 @@
         = f.input :agreement, :label => false, :input_html => {:rows => 3, :class => "span5"}
         
         = f.input :referal, :label => "Tuliskan Nama Alumni FIM yang Merekomendasikan Anda"
-        = f.input :photo, :label => "Foto", :type => :file
-        
         = f.hidden_field :latitude
         = f.hidden_field :longitude
   
