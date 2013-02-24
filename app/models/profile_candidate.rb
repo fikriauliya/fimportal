@@ -12,8 +12,8 @@ class ProfileCandidate < ActiveRecord::Base
     :school, :latitude, :longitude, :agreement, :presence => true
   validates_length_of :motivation, :maximum => 200, :tokenizer => lambda {|str| str.scan(/\w+/) }
   validates_format_of :agreement, :with => lambda {|me|
-     /\s*Saya, #{me.fullname} menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013\s*/
-   }, :message => "Tidak sama dengan contoh di atas"
+     /\s*Saya,\s*#{me.fullname} \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013\s*/i
+   }, :message => "Tidak sama dengan contoh di atas. Coba periksa nama Anda terisi dengan benar."
 
   mount_uploader :photo, CandidatePhotoUploader
   mount_uploader :recommendation_letter, CandidateRecommendationLetterUploader
