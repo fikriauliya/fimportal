@@ -8,6 +8,6 @@ class HomeController < ApplicationController
     authenticate_user!
     @profiles = Profile.all
     @profile = Profile.find_by_user_id(current_user.id)
-    initialize_latitudes_longitudes(Profile.selectr([:latitude, :longitude]))
+    initialize_latitudes_longitudes(Profile.select([:latitude, :longitude]))
   end
 end

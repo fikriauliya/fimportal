@@ -1,0 +1,2 @@
+module RecruiterHelper
+end

@@ -1,4 +1,6 @@
 FimAlumni::Application.routes.draw do
+  get "recruiter/index"
+
   resources :profile_candidates, :path => 'candidates' do
     collection do
       get 'step1'

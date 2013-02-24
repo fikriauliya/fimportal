@@ -72,6 +72,8 @@ class ProfileCandidatesController < ApplicationController
   def show
     if params[:id] then
       @profile = ProfileCandidate.find(params[:id])
+      authorize! :read, @profile, :message => 'Not authorized as a recruiter.'
+      
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @profile }
@@ -111,11 +113,10 @@ class ProfileCandidatesController < ApplicationController
     @profile = current_user.profile_candidate
     
     respond_to do |format|
-      if @profile.update_attributes(params[:profile_candidates])
+      if @profile.update_attributes(params[:profile_candidate])
         format.html { redirect_to step3_profile_candidates_path, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
-        logger.info "Not Success!"
         format.html { render action: "step2" }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end

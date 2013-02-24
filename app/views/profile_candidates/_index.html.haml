@@ -3,11 +3,35 @@
 %table.table.table-striped
   %thead
     %tr
-      %th{:style=>'width:5%'} No
-      %th{:style=>'width:5%'}
-      %th{:style=>'width:20%'} Nama
-      %th{:style=>'width:20%'} Asal Kampus
-      %th{:style=>'width:40%'} Biodata singkat
+      - if !full_column
+        %th{:style=>'width:5%'} No
+        %th{:style=>'width:5%'}
+        %th{:style=>'width:20%'} Nama
+        %th{:style=>'width:20%'} Asal Kampus
+        %th{:style=>'width:40%'} Biodata singkat
+      -else
+        %th{:style=>'width:10px'} No
+        %th{:style=>'width:40px'}
+        %th{:style=>'width:150px'} Nama
+        %th{:style=>'width:80px'} DOB
+        %th{:style=>'width:120px'} Tempat lahir
+        %th{:style=>'width:200px'} Alamat
+        %th{:style=>'width:40px'} Gender
+        %th{:style=>'width:40px'} Agama
+        %th{:style=>'width:40px'} Handphone
+        %th{:style=>'width:150px'} Hobi
+        %th{:style=>'width:40px'} Gol
+        %th{:style=>'width:200px'} Sekolah
+        %th{:style=>'width:40px'} Angkatan
+        %th{:style=>'width:400px'} Pendidikan non-formal
+        %th{:style=>'width:400px'} Organisasi
+        %th{:style=>'width:400px'} Kepanitiaan
+        %th{:style=>'width:400px'} Workshop kepemudaan
+        %th{:style=>'width:400px'} Motivasi
+        %th{:style=>'width:40px'} Info dari
+        %th{:style=>'width:80px'} Daftar ke
+        %th{:style=>'width:100px'} Pertunjukan
+        %th{:style=>'width:100px'} Direkomendasikan
   %tbody
     - profiles.each_with_index do |profile, i|
       %tr
@@ -15,6 +39,30 @@
         %td
           = link_to(profile.photo_url.to_s) do
             = image_tag(profile.photo_url.to_s)
-        %td= profile.fullname
-        %td= profile.school
-        %td= profile.biodata
+        -if !full_column
+          %td= profile.fullname
+          %td= profile.school
+          %td= profile.biodata
+        -else
+          %td
+            = link_to(profile) do
+              = profile.fullname
+          %td= profile.dob
+          %td= profile.place_of_birth
+          %td= profile.location
+          %td= profile.gender == 0 ? 'Laki-laki' : 'Perempuan'
+          %td= profile.religion
+          %td= profile.phone
+          %td= profile.hobby
+          %td= profile.blood_type
+          %td= profile.school
+          %td= profile.batch
+          %td= profile.non_formal_education
+          %td= profile.organization
+          %td= profile.committee
+          %td= profile.workshop
+          %td= profile.motivation
+          %td= profile.information_from
+          %td= profile.application_count
+          %td= profile.performance_type
+          %td= profile.referal
