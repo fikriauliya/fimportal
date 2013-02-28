@@ -14,7 +14,4 @@ class ProfileCandidate < ActiveRecord::Base
   validates_format_of :agreement, :with => lambda {|me|
      /\s*Saya,\s*#{me.fullname} \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013\s*/i
    }, :message => "Tidak sama dengan contoh di atas. Coba periksa nama Anda terisi dengan benar."
-
-  mount_uploader :photo, CandidatePhotoUploader
-  mount_uploader :recommendation_letter, CandidateRecommendationLetterUploader
 end
