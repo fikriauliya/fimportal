@@ -1,24 +1,27 @@
 .span8
   .well
-    = simple_form_for(@profile, :url => upload_photo_profile_candidates_path, :method => :post, 
-      :html => {:id => 'profile_form', :class => 'form-horizontal', :multipart => true}) do |f|
-      = f.error_notification
-      = display_base_errors @profile
+    = s3_uploader_form post: upload_photo_profile_candidates_path, as: "profile_candidate[photo]", 
+      id: "myS3Uploader", max_file_size: 300.kilobytes do
+      - if @profile.photo?
+        .controls
+          = link_to @profile.photo do
+            = image_tag(@profile.photo, :style => 'width:100px; height:100px')
+    
+      -if @profile.photo?
+        %br
+        %p 
+          Untuk mengganti foto, silakan unggah foto baru Anda.
+          %br
+          Jika tidak ingin mengganti, silakan klik Next
 
-      .form-inputs
-        .control-group
-          = f.label "Foto"
-          - if @profile.photo?
-            .controls
-              = image_tag(@profile.photo_url, :style => 'width:100px; height:100px')
-        
-          -if @profile.photo?
-            %br
-            %p 
-              Untuk mengganti foto, silakan unggah foto baru Anda.
-              %br
-              Jika tidak ingin mengganti, silakan klik Next
-          
-          = f.input :photo, :label => false
-      .form-actions
-        = f.submit "Next", :class => "btn btn-primary"
+      = file_field_tag :file, multiple: true
+      
+      %br
+      %br
+      = link_to "Next", step4_profile_candidates_path, :class => 'btn btn-primary'
+
+%script{id:"template-upload", type:"text/x-tmpl"}
+  %div{id:"file-{%=o.unique_id%}", :class=>"upload"}
+    {%=o.name%}
+    .progress
+      .bar{style:"width: 0%"}

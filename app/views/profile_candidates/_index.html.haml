@@ -37,8 +37,8 @@
       %tr
         %td= i+1
         %td
-          = link_to(profile.photo_url.to_s) do
-            = image_tag(profile.photo_url.to_s)
+          = link_to(profile.photo) do
+            = image_tag(profile.photo)
         -if !full_column
           %td= profile.fullname
           %td= profile.school

@@ -1,16 +1,4 @@
-%ul.nav.nav-pills
-  %li.active
-    =link_to step1_profile_candidates_path do
-      1) Registrasi
-  %li
-    =link_to step2_profile_candidates_path do
-      2) Pengisian Formulir
-  %li
-    =link_to step3_profile_candidates_path do
-      3) Unggah Foto
-  %li
-    =link_to step4_profile_candidates_path do
-      4) Unggah Surat Rekomendasi
+= render :partial => 'step_navigator', :locals => {:step => 1}
 
 .row
   .span3

@@ -36,6 +36,12 @@ class ProfileCandidatesController < ApplicationController
     if @profile.nil?
       redirect_to step2_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
     else
+      if params[:uploaded]
+        flash[:notice] = "Foto Anda sudah diupload. Jika tidak ingin menganti, silakan klik Next"
+      else
+        flash[:notice] = nil
+      end
+      
       respond_to do |format|
         format.html 
         format.json { render json: @profile }
@@ -47,6 +53,24 @@ class ProfileCandidatesController < ApplicationController
     @profile = current_user.profile_candidate
     if @profile.nil? or !@profile.photo?
       redirect_to step3_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
+    else
+      if params[:uploaded]
+        flash[:notice] = "Surat rekomendasi Anda sudah diupload. Jika tidak ingin mengganti, silakan klik Next"
+      else
+        flash[:notice] = nil
+      end
+
+      respond_to do |format|
+        format.html 
+        format.json { render json: @profile }
+      end
+    end
+  end
+  
+  def step5
+    @profile = current_user.profile_candidate
+    if @profile.nil? or !@profile.recommendation_letter?
+      redirect_to step4_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
     else
       respond_to do |format|
         format.html 
@@ -125,41 +149,32 @@ class ProfileCandidatesController < ApplicationController
   
   def upload_photo
     @profile = current_user.profile_candidate
-    respond_to do |format|
-      if params[:profile_candidate].nil? && @profile.photo?
-        format.html { redirect_to step4_profile_candidates_path }
-        format.json { render json: @profile, status: :created, location: @profile }
-      elsif !params[:profile_candidate].nil? && @profile.update_attribute(:photo, params[:profile_candidate][:photo])
-        format.html { redirect_to step4_profile_candidates_path }
-        format.json { render json: @profile, status: :created, location: @profile }
-      else
-        @profile.errors.add :photo, ''
-        format.html { render action: "step3" }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
-      end
+    if !params[:profile_candidate].nil? && @profile.update_attribute(:photo, params[:profile_candidate][:photo])
+      @success = true
+      render "upload_photo_response", :layout => false
+    else
+      @success = false
+      render "upload_photo_response", :layout => false
     end
   end
   
   def upload_recommendation_letter
     @profile = current_user.profile_candidate
-    respond_to do |format|
-      if !params[:profile_candidate].nil?
-        new_attr = Hash.new
-        new_attr[:recommendation_letter] = params[:profile_candidate][:recommendation_letter]
-        new_attr[:status] = "SUBMITTED" 
-        if @profile.update_attributes(new_attr, :as => :final_step)
-          format.html { redirect_to profile_candidates_path, notice: 'Data Anda sudah kami terima. Terimakasih' }
-          format.json { render json: @profile, status: :created, location: @profile }
-        else
-          @profile.errors.add :recommendation_letter, ''
-          format.html { render action: "step4" }
-          format.json { render json: @profile.errors, status: :unprocessable_entity }
-        end
-      else
-        @profile.errors.add :recommendation_letter, ''
-        format.html { render action: "step4" }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
-      end
+    if !params[:profile_candidate].nil? && @profile.update_attribute(:recommendation_letter, params[:profile_candidate][:recommendation_letter])
+      @success = true
+      render "upload_recommendation_letter_response", :layout => false
+    else
+      @success = false
+      render "upload_recommendation_letter_response", :layout => false
+    end
+  end
+  
+  def submit_confirmation
+    @profile = current_user.profile_candidate
+    if params[:confirmation] && params[:confirmation] == "1" && @profile.update_attribute(:status, 'SUBMITTED')
+      redirect_to profile_candidates_path, notice: 'Data Anda sudah kami terima. Terimakasih'
+    else
+      redirect_to step5_profile_candidates_path, :alert => 'Anda harus mencentang persetujuan di bawah'
     end
   end
   

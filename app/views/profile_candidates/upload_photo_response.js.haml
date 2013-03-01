@@ -1,0 +1,4 @@
+-if @success
+  window.location.replace("#{step3_profile_candidates_path(:uploaded => true)}");
+-else
+  alert("Failed to upload model: #{j @profile.errors.full_messages.join(', ').html_safe}");

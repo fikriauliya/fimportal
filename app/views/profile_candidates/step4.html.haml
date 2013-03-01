@@ -1,18 +1,8 @@
-%ul.nav.nav-pills
-  %li
-    =link_to step1_profile_candidates_path do
-      1) Registrasi
-  %li
-    =link_to step2_profile_candidates_path do
-      2) Pengisian Formulir
-  %li
-    =link_to step3_profile_candidates_path do
-      3) Unggah Foto
-  %li.active
-    =link_to step4_profile_candidates_path do
-      4) Unggah Surat Rekomendasi
-    
+= render :partial => 'step_navigator', :locals => {:step => 4}
+
 %h2 Pendaftaran FIM 14
-%p Unggah surat rekomendasi dari institusi/organisasi yang Anda ikuti
+%p 
+  Unggah surat rekomendasi dari institusi/organisasi yang Anda ikuti. Ukuran maksimum file: 
+  %b 400KB
 
 = render 'form_recommendation_letter'

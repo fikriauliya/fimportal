@@ -1,0 +1,12 @@
+= render :partial => 'step_navigator', :locals => {:step => 5}
+
+%h2 Pendaftaran FIM 14
+.span8
+  .well
+    = form_tag(:submit_confirmation_profile_candidates, :via => :post) do
+      .form-inputs
+        = check_box_tag(:confirmation)
+        Dengan ini saya menyatakan bahwa informasi yang saya masukan benar adanya. Data yang sudah dikumpulkan akan segera kami proses. Tidak ada isian yang bisa diubah lagi setelah ini.
+        
+      .form-actions
+        = submit_tag('Kumpulkan', :class => 'btn btn-primary')
