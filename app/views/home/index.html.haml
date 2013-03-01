@@ -1,10 +1,20 @@
 -content_for :head do
   %meta{name: "viewport", content: "initial-scale=1.0, user-scalable=no"}
   %script{type: "text/javascript", src: 'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js'}
-
+  %meta{property: "fb:admins", content: "100003294745679"}
   :javascript
     #{map_loader(@latitudes, @longitudes)}  
 
+#fb-root
+:javascript
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=268730903259240";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  
 .row
   .span5
     %h2 About FIM
@@ -15,23 +25,19 @@
     #map_canvas{:style => "width:600px; height:300px"}
 
 .row
-  .span12
-    %h3 Apa yang ingin Anda lakukan
-
-.row
-  .span3.service-item
+  .span4.service-item
     %h4
       %i.icon-file>
-      Pendaftaran FIM 14
-    %img{:alt => "", :src => "http://placehold.it/270x125"}/
-    %p
+      FIM 14
     =link_to new_profile_candidate_path do
       %button.btn.btn-primary{:type => "button"} Daftar >>
-  .span3.service-item
-    %h4
-      %i.icon-list-alt>
-      Daftar Calon Peserta FIM 14
-    %img{:alt => "", :src => "http://placehold.it/270x125"}/
-    %p
     =link_to profile_candidates_path do
-      %button.btn.btn-primary{:type => "submit"} Lihat >>
+      %button.btn.btn-primary{:type => "submit"} Pendaftar FIM 14
+
+.row{:style => 'margin-top:40px'}
+  .span6
+    .fb-like{"data-href" => "http://portal.forumindonesiamuda.org", "data-send" => "true", "data-show-faces" => "true", "data-width" => "450"}
+    %br
+    %br
+    .fb-comments{"data-href" => "http://portal.forumindonesiamuda.org", "data-num-posts" => "15", "data-width" => "600"}
+    
