@@ -18,7 +18,8 @@
       
       %br
       %br
-      = link_to "Next", step4_profile_candidates_path, :class => 'btn btn-primary'
+      = link_to "< Back", step2_profile_candidates_path, :class => 'btn btn-danger'
+      = link_to "Next >", step4_profile_candidates_path, :class => 'btn btn-primary'
 
 %script{id:"template-upload", type:"text/x-tmpl"}
   %div{id:"file-{%=o.unique_id%}", :class=>"upload"}
