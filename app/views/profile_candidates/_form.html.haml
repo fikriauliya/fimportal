@@ -70,25 +70,25 @@
         = f.input :dob, :input_html => {:style => 'width:auto'}, :label => "Tanggal lahir", 
           start_year: Date.today.year - 30, end_year: Date.today.year - 12, order: [:day, :month, :year]
         = f.input :place_of_birth, :label => "Tempat lahir"
-        = f.input :gender, :as => :select, :collection => [["Laki-laki", 0], ["Perempuan", 1]], :selected => 0
-        = f.input :religion, :label => "Agama", :collection => ["Islam", "Katolik", "Protestan", "Hindu", "Budha", "Konghuchu"], :selected => 0
+        = f.input :gender, :as => :select, :collection => [["Laki-laki", 0], ["Perempuan", 1]]
+        = f.input :religion, :label => "Agama", :collection => ["Islam", "Katolik", "Protestan", "Hindu", "Budha", "Konghuchu"]
         = f.input :location, :label => "Alamat (e.g. Jalan Kaliuran Km 10, Wonorejo, Ngaglik, Sleman, Yogyakarta, Indonesia)", :as => :text, :input_html => {:rows => 5, :class => "span4"}
         = f.input :phone, :label => "Handphone"
         = f.input :hobby, :label => "Hobi"
-        = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"], :selected => 0
+        = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"]
         = f.input :school, :label => "Sekolah (Universitas/SMA)"
-        = f.input :batch, :label => "Angkatan", :collection => (2000..2013), :selected => 2013
+        = f.input :batch, :label => "Angkatan", :collection => (2000..2013)
         = f.input :non_formal_education, :label => "Pendidikan non-formal", :input_html => {:rows => 8, :class => "span5"}
         = f.input :organization, :label => "Pengalaman Organisasi", :input_html => {:rows => 8, :class => "span5"}
         = f.input :committee, :label => "Pengalaman Kepanitiaan", :input_html => {:rows => 8, :class => "span5"}
         = f.input :workshop, :label => "Pelatihan Workshop Kepemudaan yang Pernah Diikuti", :input_html => {:rows => 8, :class => "span5"}
-        = f.label "Motivasi Mengikuti FIM (maks 200 kata)"
+        = f.label "*Motivasi Mengikuti FIM (maks 200 kata)"
         = f.input :motivation, :label => false, :input_html => {:rows => 8, :class => "span5"}
         .controls
           %label#remaining_words
             Sisa kata: 200  
         = f.input :information_from, :label => "Sumber Informasi FIM"
-        = f.input :application_count, :label => "Sudah Berapa Kali Mendaftar FIM", :collection => [["Belum pernah", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], [">5", 6]], :selected => 0
+        = f.input :application_count, :label => "Sudah Berapa Kali Mendaftar FIM", :collection => [["Belum pernah", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], [">5", 6]]
         = f.input :performance_type, :label => "Ekspresi Seni Budaya"
         
         .controls
