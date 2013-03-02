@@ -19,25 +19,23 @@
     
     function updateInspiringStoryWordCount() {
       var words = $('#profile_candidate_inspiring_story').val().split(' ').filter( function(word) { return word.length > 0});
-      console.log(words.length);
       $("#remaining_inspiring_story_words").text("Sisa kata: " + (500 - words.length));
     }
         
     function updateMotivationWordCount() {
       var words = $('#profile_candidate_motivation').val().split(' ').filter( function(word) { return word.length > 0});
-      console.log(words.length);
       $("#remaining_motivation_words").text("Sisa kata: " + (200 - words.length));
     }
 
     function updateCollaborationWordCount() {
       var words = $('#profile_candidate_collaboration').val().split(' ').filter( function(word) { return word.length > 0});
-      console.log(words.length);
       $("#remaining_collaboration_words").text("Sisa kata: " + (200 - words.length));
     }
         
     $(document).ready(function() {
       updateMotivationWordCount();
       updateInspiringStoryWordCount();
+      updateCollaborationWordCount();
       
       $("#profile_candidate_motivation").keyup(function() {
         updateMotivationWordCount();
@@ -95,7 +93,7 @@
         = f.input :phone, :label => "Nomor telepon genggam"
         = f.input :hobby, :label => "Hobi"
         = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"]
-        = f.input :school, :label => "Sekolah (universitas/SMA/organisasi kepemudaan)"
+        = f.input :school, :label => "Sekolah (universitas/SMA/organisasi kepemudaan)", :input_html => {"data-provide" => "typeahead", "data-source" => all_school_json}
         = f.input :batch, :label => "Angkatan masuk", :collection => (2000..2013)
         = f.input :non_formal_education, :label => "Pendidikan non-formal", :input_html => {:rows => 8, :class => "span5"}
         = f.input :organization, :label => "Pengalaman organisasi", :input_html => {:rows => 8, :class => "span5"}
