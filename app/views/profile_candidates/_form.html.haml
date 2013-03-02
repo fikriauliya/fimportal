@@ -95,26 +95,24 @@
         = f.input :phone, :label => "Nomor telepon genggam"
         = f.input :hobby, :label => "Hobi"
         = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"]
-        = f.input :school, :label => "Sekolah (universitas/SMA)"
+        = f.input :school, :label => "Sekolah (universitas/SMA/organisasi kepemudaan)"
         = f.input :batch, :label => "Angkatan masuk", :collection => (2000..2013)
         = f.input :non_formal_education, :label => "Pendidikan non-formal", :input_html => {:rows => 8, :class => "span5"}
         = f.input :organization, :label => "Pengalaman organisasi", :input_html => {:rows => 8, :class => "span5"}
         = f.input :committee, :label => "Pengalaman kepanitiaan", :input_html => {:rows => 8, :class => "span5"}
         = f.input :workshop, :label => "Pelatihan workshop kepemudaan yang pernah diikuti", :input_html => {:rows => 8, :class => "span5"}
-        = f.label "Motivasi mengikuti FIM (maks 200 kata)"
-        = f.input :motivation, :label => false, :input_html => {:rows => 8, :class => "span5"}
+        
+        = f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
           %label#remaining_motivation_words
             Sisa kata: 200  
         
-        = f.label "Apa kolaborasi yang Anda tawarkan untuk bisa dikerjakan bersama-sama rekan-rekan FIM jika terpilih ikut FIM (maks 200 kata)"
-        = f.input :collaboration, :label => false, :input_html => {:rows => 8, :class => "span5"}
+        = f.input :collaboration, :label => 'Apa kolaborasi yang Anda tawarkan untuk bisa dikerjakan bersama-sama rekan-rekan FIM jika terpilih ikut FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
           %label#remaining_collaboration_words
             Sisa kata: 200
         
-        = f.label "Uraikan pengalaman sukses dan gagal yang paling berkesan dalam hidupmu (maks 500 kata)"
-        = f.input :inspiring_story, :label => false, :input_html => {:rows => 8, :class => "span5"}
+        = f.input :inspiring_story, :label => "Uraikan pengalaman sukses dan gagal yang paling berkesan dalam hidupmu (maks 500 kata)", :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
           %label#remaining_inspiring_story_words
             Sisa kata: 500
