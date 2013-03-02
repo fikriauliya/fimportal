@@ -40,14 +40,14 @@
               %td
                 = f.input :is_visible_to_public, :label => false
               %td
-                Tampilan nama saya di daftar pendaftar
+                Tampilan nama saya di daftar calon peserta
             %tr#photo_visibility_row
               %td
                 = f.input :is_photo_visible_to_public, :label => false
               %td
-                Tampilkan foto saya di daftar peserta
+                Tampilkan foto saya di daftar calon peserta
           
-          = f.submit "Update", :class => "btn btn-primary"
+          = f.submit "Update", :class => "btn btn-primary", :style => 'margin-top:10px'
           
     .span8
       #map_canvas{:style => "width:800px; height:300px"}
