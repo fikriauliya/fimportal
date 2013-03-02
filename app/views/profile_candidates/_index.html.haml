@@ -38,7 +38,7 @@
         %td= i+1
         %td
           = link_to(profile.photo) do
-            = image_tag(profile.photo)
+            = image_tag(profile.photo, :style => 'width:40px; height:40px')
         -if !full_column
           %td= profile.fullname
           %td= profile.school
