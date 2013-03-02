@@ -80,12 +80,12 @@ class ProfileCandidatesController < ApplicationController
   end
   
   def index
-    @profiles = ProfileCandidate.paginate(:page => params[:page],:per_page => 20)
+    @profiles = ProfileCandidate.where(:status => 'SUBMITTED').paginate(:page => params[:page],:per_page => 20)
     if user_signed_in?
       @profile = ProfileCandidate.find_by_user_id(current_user.id)
     end
     
-    initialize_latitudes_longitudes(ProfileCandidate.select([:latitude, :longitude]))
+    initialize_latitudes_longitudes(ProfileCandidate.where(:status => 'SUBMITTED').select([:latitude, :longitude]))
     
     respond_to do |format|
       format.html # index.html.erb
