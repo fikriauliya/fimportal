@@ -11,8 +11,9 @@
       %td
         = @profile.fullname
         %br
-        = link_to(@profile.photo_url.to_s) do
-          = image_tag(@profile.photo_url.to_s, :style => 'width:100px; margin-right:10px', :class =>'img-polaroid')
+        - if @profile.photo?
+          = link_to(@profile.photo) do
+            = image_tag(@profile.photo, :style => 'width:100px; margin-right:10px', :class =>'img-polaroid')
         
     %tr
       %td Tanggal lahir

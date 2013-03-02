@@ -4,7 +4,7 @@ class RecruiterController < ApplicationController
   def index
     authorize! :update, ProfileCandidate, :message => 'Not authorized as an administrator.'
 
-    @profiles = ProfileCandidate.paginate(:page => params[:page],:per_page => 20)
+    @profiles = ProfileCandidate.where(:status => 'SUBMITTED').paginate(:page => params[:page],:per_page => 20)
     
     respond_to do |format|
       format.html # index.html.erb
