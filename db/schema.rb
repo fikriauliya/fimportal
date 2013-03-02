@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130302034922) do
+ActiveRecord::Schema.define(:version => 20130302085916) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20130302034922) do
     t.string   "status",                :default => "NOT SUBMITTED"
     t.text     "inspiring_story"
     t.text     "collaboration"
+    t.string   "province"
   end
 
   create_table "profiles", :force => true do |t|

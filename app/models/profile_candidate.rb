@@ -2,13 +2,13 @@ class ProfileCandidate < ActiveRecord::Base
   attr_accessible :application_count, :batch, :blood_type, :committee, :dob, :fullname, :gender, 
     :hobby, :information_from, :location, :motivation, :non_formal_education, :organization, 
     :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
-    :latitude, :longitude, :agreement, :biodata, :photo, :recommendation_letter, :collaboration, :inspiring_story
+    :latitude, :longitude, :agreement, :biodata, :photo, :recommendation_letter, :collaboration, :inspiring_story, :province
   
   belongs_to :user
   
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
     :information_from, :location, :motivation, :phone, :place_of_birth, :religion, 
-    :school, :agreement, :inspiring_story, :collaboration, :presence => true
+    :school, :agreement, :inspiring_story, :collaboration, :province, :presence => true
     
   validates_length_of :motivation, :maximum => 200, :tokenizer => lambda {|str| str.scan(/\w+/) }
   validates_length_of :inspiring_story, :maximum => 500, :tokenizer => lambda {|str| str.scan(/\w+/) }
@@ -39,5 +39,13 @@ class ProfileCandidate < ActiveRecord::Base
       'Universitas Pendidikan Indonesia', 'Universitas Riau', 'Universitas Sam Ratulangi', 'Universitas Sriwijaya', 
       'Universitas Sultan Ageng Tirtayasa', 'Universitas Sumatera Utara', 'Universitas Syiah Kuala', 
       'Universitas Tadulako', 'Universitas Tanjungpura', 'Universitas Trisakti', 'Universitas Udayana']
+  end
+  
+  def self.all_province
+    ["Aceh", "Bali", "Banten", "Bengkulu", "Gorontalo", "Jakarta", "Jambi", "Jawa Barat", "Jawa Tengah", "Jawa Timur", 
+      "Kalimantan Barat", "Kalimantan Selatan", "Kalimantan Tengah", "Kalimantan Timur", "Kalimantan Utara", 
+      "Kepulauan Bangka Belitung", "Kepulauan Riau", "Lampung", "Maluku", "Maluku Utara", "Nusa Tenggara Timur", 
+      "Nusa Tenggara Barat", "Papua", "Papua Barat", "Riau", "Sulawesi Barat", "Sulawesi Selatan", "Sulawesi Tengah", 
+      "Sulawesi Tenggara", "Sulawesi Utara", "Sumatera Barat", "Sumatera Selatan", "Sumatera Utara", "Yogyakarta"] 
   end
 end

@@ -89,7 +89,8 @@
         = f.input :place_of_birth, :label => "Tempat lahir"
         = f.input :gender, :label => "Jenis kelamin", :as => :select, :collection => [["Laki-laki", 0], ["Perempuan", 1]]
         = f.input :religion, :label => "Agama", :collection => ["Islam", "Katolik", "Protestan", "Hindu", "Budha", "Konghuchu"]
-        = f.input :location, :label => "Alamat (e.g. Jalan Kaliurang Km 10, Wonorejo, Ngaglik, Sleman, Yogyakarta, Indonesia)", :as => :text, :input_html => {:rows => 5, :class => "span4"}
+        = f.input :location, :label => "Alamat lengkap (contoh: Jalan Kaliurang Km 10, Wonorejo, Ngaglik, Sleman, Yogyakarta, Indonesia)", :as => :text, :input_html => {:rows => 5, :class => "span4"}
+        = f.input :province, :label => "Provinsi domisili saat ini", :collection => ["Luar negeri"] + ProfileCandidate.all_province
         = f.input :phone, :label => "Nomor telepon genggam"
         = f.input :hobby, :label => "Hobi"
         = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"]
