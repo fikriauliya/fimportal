@@ -6,7 +6,7 @@
     #{map_loader(@latitudes, @longitudes)}
     
 .row
-  -if user_signed_in?
+  -if user_signed_in? && !@profile.nil?
     .span3
       %h4 Profil Anda
       %p
