@@ -184,11 +184,10 @@ class ProfileCandidatesController < ApplicationController
     
     respond_to do |format|
       if @profile.update_attributes(:biodata => params[:profile_candidate][:biodata])
-        format.html { redirect_to profile_candidates_path, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to profile_candidates_path, notice: 'Data Anda telah diupdate' }
         format.json { head :no_content }
       else
-        logger.info "Not Success!"
-        format.html { render action: "edit" }
+        format.html { redirect_to profile_candidates_path, alert: 'Data Anda tidak valid' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end

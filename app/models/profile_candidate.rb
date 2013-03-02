@@ -13,6 +13,7 @@ class ProfileCandidate < ActiveRecord::Base
   validates_length_of :motivation, :maximum => 200, :tokenizer => lambda {|str| str.scan(/\w+/) }
   validates_length_of :inspiring_story, :maximum => 500, :tokenizer => lambda {|str| str.scan(/\w+/) }
   validates_length_of :collaboration, :maximum => 200, :tokenizer => lambda {|str| str.scan(/\w+/) }
+  validates_length_of :biodata, :maximum => 160
   
   validates_format_of :agreement, :with => lambda {|me|
      /\s*Saya,\s*#{me.fullname} \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013\s*/i
