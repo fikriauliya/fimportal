@@ -5,6 +5,24 @@
   :javascript
     #{map_loader(@latitudes, @longitudes)}
     
+    function updatePrivacySettings() {
+      if (!$("#profile_candidate_is_visible_to_public").is(':checked')) {
+        $("#photo_visibility_row").hide();
+        $("#profile_candidate_is_photo_visible_to_public").attr('checked', true);    
+      } else {
+        $("#photo_visibility_row").show();
+        $("#profile_candidate_is_photo_visible_to_public").attr('checked', false);
+      }
+    }
+    
+    $(document).ready(function() {
+      $("#profile_candidate_is_visible_to_public").change(function() {
+        updatePrivacySettings();
+      });
+      
+      updatePrivacySettings();
+    });
+    
 .row
   -if user_signed_in? && !@profile.nil?
     .span3
@@ -16,8 +34,21 @@
         = f.error_notification
     
         .form-inputs
-          = f.input :biodata, :label => "Biodata singkat (max 160 karakter)", :input_html => {:rows => 6}, :placeholder => 'Contoh: Pendiri Yayasan X, hobi traveling, bercita-cita keliling Indonesia, minat di pemberdayaan desa, @anakUI.com'
+          = f.input :biodata, :label => "Biodata singkat (maks 160 karakter)", :input_html => {:rows => 6}, :placeholder => 'Contoh: Pendiri Yayasan X, hobi traveling, bercita-cita keliling Indonesia, minat di pemberdayaan desa, @anakUI.com'
+          %table
+            %tr
+              %td
+                = f.input :is_visible_to_public, :label => false
+              %td
+                Tampilan nama saya di daftar pendaftar
+            %tr#photo_visibility_row
+              %td
+                = f.input :is_photo_visible_to_public, :label => false
+              %td
+                Tampilkan foto saya di daftar peserta
+          
           = f.submit "Update", :class => "btn btn-primary"
+          
     .span8
       #map_canvas{:style => "width:800px; height:300px"}
   -else

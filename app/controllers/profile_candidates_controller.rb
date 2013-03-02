@@ -183,7 +183,7 @@ class ProfileCandidatesController < ApplicationController
     @profile = current_user.profile_candidate
     
     respond_to do |format|
-      if @profile.update_attributes(:biodata => params[:profile_candidate][:biodata])
+      if @profile.update_attributes(params[:profile_candidate], :as => :additional_fields)
         format.html { redirect_to profile_candidates_path, notice: 'Data Anda telah diupdate' }
         format.json { head :no_content }
       else

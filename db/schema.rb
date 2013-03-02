@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130302085916) do
+ActiveRecord::Schema.define(:version => 20130302092858) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20130302085916) do
     t.integer  "application_count"
     t.string   "performance_type"
     t.string   "referal"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "user_id"
@@ -43,10 +43,13 @@ ActiveRecord::Schema.define(:version => 20130302085916) do
     t.text     "biodata"
     t.string   "photo"
     t.string   "recommendation_letter"
-    t.string   "status",                :default => "NOT SUBMITTED"
+    t.string   "status",                     :default => "NOT SUBMITTED"
     t.text     "inspiring_story"
     t.text     "collaboration"
     t.string   "province"
+    t.boolean  "display_photo_publicly"
+    t.boolean  "is_photo_visible_to_public", :default => false
+    t.boolean  "is_visible_to_public",       :default => true
   end
 
   create_table "profiles", :force => true do |t|

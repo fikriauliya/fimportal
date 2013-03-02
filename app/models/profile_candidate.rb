@@ -2,7 +2,10 @@ class ProfileCandidate < ActiveRecord::Base
   attr_accessible :application_count, :batch, :blood_type, :committee, :dob, :fullname, :gender, 
     :hobby, :information_from, :location, :motivation, :non_formal_education, :organization, 
     :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
-    :latitude, :longitude, :agreement, :biodata, :photo, :recommendation_letter, :collaboration, :inspiring_story, :province
+    :latitude, :longitude, :agreement, :photo, :recommendation_letter, :collaboration, 
+    :inspiring_story, :province
+  
+  attr_accessible :biodata, :is_photo_visible_to_public, :is_visible_to_public, :as => :additional_fields
   
   belongs_to :user
   

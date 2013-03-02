@@ -37,11 +37,11 @@
       %tr
         %td= i+1
         %td
-          - if profile.photo?
+          - if profile.photo? && (full_column || profile.is_photo_visible_to_public)
             = link_to(profile.photo) do
               = image_tag(profile.photo, :style => 'width:40px; height:40px')
         -if !full_column
-          %td= profile.fullname
+          %td= profile.is_visible_to_public ? profile.fullname : "[Tidak ditampilkan]"
           %td= profile.school
           %td= profile.biodata
         -else
