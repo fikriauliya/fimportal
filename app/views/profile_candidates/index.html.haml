@@ -9,7 +9,7 @@
       if (!$("#profile_candidate_is_visible_to_public").is(':checked')) {
         $("#photo_visibility_row").hide();
         if (!isInitialLoading) {
-          $("#profile_candidate_is_photo_visible_to_public").attr('checked', true);
+          $("#profile_candidate_is_photo_visible_to_public").attr('checked', false);
         }    
       } else {
         $("#photo_visibility_row").show();
