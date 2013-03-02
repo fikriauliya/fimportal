@@ -17,17 +17,36 @@
     
     isGeoCoded = false;
     
-    function updateWordCount() {
+    function updateInspiringStoryWordCount() {
+      var words = $('#profile_candidate_inspiring_story').val().split(' ').filter( function(word) { return word.length > 0});
+      console.log(words.length);
+      $("#remaining_inspiring_story_words").text("Sisa kata: " + (500 - words.length));
+    }
+        
+    function updateMotivationWordCount() {
       var words = $('#profile_candidate_motivation').val().split(' ').filter( function(word) { return word.length > 0});
       console.log(words.length);
-      $("#remaining_words").text("Sisa kata: " + (200 - words.length));
+      $("#remaining_motivation_words").text("Sisa kata: " + (200 - words.length));
     }
-    
+
+    function updateCollaborationWordCount() {
+      var words = $('#profile_candidate_collaboration').val().split(' ').filter( function(word) { return word.length > 0});
+      console.log(words.length);
+      $("#remaining_collaboration_words").text("Sisa kata: " + (200 - words.length));
+    }
+        
     $(document).ready(function() {
-      updateWordCount();
+      updateMotivationWordCount();
+      updateInspiringStoryWordCount();
       
       $("#profile_candidate_motivation").keyup(function() {
-        updateWordCount();
+        updateMotivationWordCount();
+      });
+      $("#profile_candidate_inspiring_story").keyup(function() {
+        updateInspiringStoryWordCount();
+      });
+      $("#profile_candidate_collaboration").keyup(function() {
+        updateCollaborationWordCount();
       });
       
       $("#profile_form").submit(function (event) {
@@ -84,9 +103,22 @@
         = f.input :workshop, :label => "Pelatihan workshop kepemudaan yang pernah diikuti", :input_html => {:rows => 8, :class => "span5"}
         = f.label "Motivasi mengikuti FIM (maks 200 kata)"
         = f.input :motivation, :label => false, :input_html => {:rows => 8, :class => "span5"}
-        .controls
-          %label#remaining_words
+        .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
+          %label#remaining_motivation_words
             Sisa kata: 200  
+        
+        = f.label "Apa kolaborasi yang Anda tawarkan untuk bisa dikerjakan bersama-sama rekan-rekan FIM jika terpilih ikut FIM (maks 200 kata)"
+        = f.input :collaboration, :label => false, :input_html => {:rows => 8, :class => "span5"}
+        .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
+          %label#remaining_collaboration_words
+            Sisa kata: 200
+        
+        = f.label "Uraikan pengalaman sukses dan gagal yang paling berkesan dalam hidupmu (maks 500 kata)"
+        = f.input :inspiring_story, :label => false, :input_html => {:rows => 8, :class => "span5"}
+        .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
+          %label#remaining_inspiring_story_words
+            Sisa kata: 500
+        
         = f.input :information_from, :label => "Sumber informasi FIM", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut", "Lainnya"]
         = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM", :collection => [["Belum pernah", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], [">5", 6]]
         = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 14. Contoh: Tari Pendet, main biola, monolog, dll",
