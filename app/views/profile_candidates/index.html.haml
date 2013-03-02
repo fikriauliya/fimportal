@@ -5,22 +5,26 @@
   :javascript
     #{map_loader(@latitudes, @longitudes)}
     
-    function updatePrivacySettings() {
+    function updatePrivacySettings(isInitialLoading) {
       if (!$("#profile_candidate_is_visible_to_public").is(':checked')) {
         $("#photo_visibility_row").hide();
-        $("#profile_candidate_is_photo_visible_to_public").attr('checked', true);    
+        if (!isInitialLoading) {
+          $("#profile_candidate_is_photo_visible_to_public").attr('checked', true);
+        }    
       } else {
         $("#photo_visibility_row").show();
-        $("#profile_candidate_is_photo_visible_to_public").attr('checked', false);
+        if (!isInitialLoading) {
+          $("#profile_candidate_is_photo_visible_to_public").attr('checked', false);
+        }
       }
     }
     
     $(document).ready(function() {
       $("#profile_candidate_is_visible_to_public").change(function() {
-        updatePrivacySettings();
+        updatePrivacySettings(false);
       });
       
-      updatePrivacySettings();
+      updatePrivacySettings(true);
     });
     
 .row
