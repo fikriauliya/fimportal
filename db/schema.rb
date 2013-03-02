@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(:version => 20130302092858) do
     t.text     "inspiring_story"
     t.text     "collaboration"
     t.string   "province"
-    t.boolean  "display_photo_publicly"
     t.boolean  "is_photo_visible_to_public", :default => false
     t.boolean  "is_visible_to_public",       :default => true
   end
