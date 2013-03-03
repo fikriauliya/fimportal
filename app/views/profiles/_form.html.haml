@@ -26,11 +26,11 @@
 
           if (geocoder) {
             var address = $("#profile_location").val();
-            
+                        
             geocoder.geocode({'address': address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                latitude.val(results[0].geometry.location.Ya);
-                longitude.val(results[0].geometry.location.Za);
+                latitude.val(results[0].geometry.location.lat());
+                longitude.val(results[0].geometry.location.lng());
               }
               isGeoCoded = true;
               
