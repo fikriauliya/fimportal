@@ -10,7 +10,7 @@
     - if @profile.nil?
       %br
       %br
-      = link_to 'Create your profile', new_profile_path, :class => 'btn btn-primary'
+      = link_to 'Masukan data Anda', new_profile_path, :class => 'btn btn-primary'
     - else
       %h4
         = @profile.fullname
@@ -34,7 +34,7 @@
         = @profile.batch
       
       %br
-      = link_to 'Edit', edit_profile_path, :class => 'btn btn-primary'
+      = link_to 'Ubah data Anda', edit_profile_path, :class => 'btn btn-primary'
   
   .span8
     #map_canvas{:style => "width:800px; height:300px"}

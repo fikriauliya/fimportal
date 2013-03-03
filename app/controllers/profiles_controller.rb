@@ -1,11 +1,17 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  skip_before_filter :authenticate_user!, :only => [:new] 
+  skip_before_filter :authenticate_user!, :only => [:new, :index] 
   
   def index
-    @profiles = Profile.all
-    @profile = Profile.find_by_user_id(current_user.id)
-    initialize_latitudes_longitudes(Profile.select([:latitude, :longitude]))
+    @user = User.new
+    if user_signed_in?
+      @profiles = Profile.all
+      @profile = Profile.find_by_user_id(current_user.id)
+      initialize_latitudes_longitudes(Profile.select([:latitude, :longitude]))
+    else
+      session[:after_sign_in_path_for] = profiles_path
+      render "welcome"
+    end
   end
 
   def new
