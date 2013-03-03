@@ -1,6 +1,20 @@
 = render :partial => 'step_navigator', :locals => {:step => 2}
     
 %h2 Pendaftaran FIM 14
-%p Silahkan isi data dengan lengkap, kelengkapan merupakan syarat utama untuk menjadi salah satu peserta FIM 14
+%ul
+  %li Silahkan isi data dengan lengkap, kelengkapan merupakan syarat utama untuk menjadi salah satu peserta FIM 14
+  %li 
+    Masukan yang memilki tanda 
+    %b * 
+    di samping kirinya 
+    %b harus
+    diisi
+  %li 
+    Data akan tersimpan setelah Anda menekan tombol 
+    %b "Next >"
+  %li
+    Jika kemudian ada data yang ingin diperbaiki, Anda bisa kembali ke halaman ini dengan menekan tombol 
+    %b "< Prev"
+
 
 = render 'form'

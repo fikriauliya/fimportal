@@ -1,2 +1,33 @@
 = render :partial => 'step_navigator', :locals => {:step => 1}
+
+%h3 Selamat datang calon peserta FIM 14!
+%p
+  Sebelum Anda mengisi informasi pendaftaran, silakan membuat akun terlebih dahulu
+%p
+  Dokumen yang perlu Anda siapkan:
+  %ul
+    %li
+      Foto yang menampilkan wajah dengan jelas.
+      %br
+      Ukuran maximum foto: 
+      %b 300KB
+      dan tipe file yang dibolehkan adalah 
+      %b .png, .jpg, .bmp
+    %li
+      Surat rekomendasi dari organisasi/institusi yang pernah/sedang Anda ikuti.
+      %br
+      Ukuran maksimum file: 
+      %b 400KB.
+      Surat rekomendasi harus mencamtumkan:
+    %ul
+      %li
+        Identitas lengkap diri Anda (misal: nama, NIM/NPM, jurusan)
+      %li   
+        Peryataan dan tanda tangan dari ketua organisasi bahwa Anda pernah/sedang aktif di organisasi tersebut
+      %li
+        Nama jabatan dan periode menjabatnya
+      %li 
+        Alasan merekomendasikan Anda untuk mengikuti FIM 14
+  
+
 = render :partial => 'devise/shared/register_or_sign_in', :locals => {:user => @user}
