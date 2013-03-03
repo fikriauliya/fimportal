@@ -28,11 +28,25 @@ module ApplicationHelper
         varLat + varLng
       }
       
+      var image = new google.maps.MarkerImage(
+        'http://maps.google.com/mapfiles/ms/micons/red-dot.png',
+        null,
+        null,
+        null,
+        new google.maps.Size(20, 20)
+      );
+      
       var mcOptions = {gridSize: 10, maxZoom: 15};
       var markers = [];
       for (var i = 0; i < varLat.length; i++) {
         var newLatLng = new google.maps.LatLng(varLat[i], varLng[i]);
-        var marker = new google.maps.Marker({position: newLatLng,map: map});
+        var marker = new google.maps.Marker(
+          {
+            position: newLatLng,
+            map: map, 
+            animation:google.maps.Animation.DROP,
+            icon: image
+          });
         markers.push(marker);
       }
       var markerCluster = new MarkerClusterer(map, markers, mcOptions);
