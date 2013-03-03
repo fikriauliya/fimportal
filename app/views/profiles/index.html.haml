@@ -4,6 +4,9 @@
 
   :javascript
     #{map_loader(@latitudes, @longitudes)}  
+    $(function() {
+      $('.footable').footable();
+    });
 
 .row
   .span3
@@ -40,14 +43,21 @@
     #map_canvas{:style => "width:800px; height:300px"}
   
     %h3 Data alumni FIM
-    %table.table.table-condensed
-      %tr
-        %th Fullname
-        %th Location
-        %th Batch
-    
-      - @profiles.each do |profile|
+    %table.footable
+      %thead
         %tr
-          %td= profile.fullname
-          %td= profile.location
-          %td= profile.batch
+          %th{:style => 'width:30%', 'data-class' => 'expand'} Nama Lengkap
+          %th{:style => 'width:60%'} Minat
+          %th{:style => 'width:10%'} Angkatan
+          %th{'data-hide'=>'all'} Tanggal lahir
+          %th{'data-hide'=>'all'} Tempat lahir
+          %th{'data-hide'=>'all'} Visi
+      %tbody
+        - @profiles.each do |profile|
+          %tr
+            %td= profile.fullname
+            %td= profile.interest
+            %td= profile.batch
+            %td= profile.dob
+            %td= profile.place_of_birth
+            %td= profile.motto
