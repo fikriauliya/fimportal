@@ -48,7 +48,7 @@
     - profiles.each_with_index do |profile, i|
       %tr
         %td{:style => 'width:20px'}
-          = i+1
+          = profiles.offset + i+1
           )
           - if profile.photo? && (full_column || profile.is_photo_visible_to_public)
             = link_to(profile.photo) do
