@@ -94,12 +94,12 @@
         = f.input :phone, :label => "Nomor telepon genggam"
         = f.input :hobby, :label => "Hobi"
         = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"]
-        = f.input :school, :label => "Sekolah (universitas/SMA/organisasi kepemudaan)", :input_html => {"data-provide" => "typeahead", "data-source" => all_school_json}
-        = f.input :batch, :label => "Angkatan masuk", :collection => (2000..2013)
-        = f.input :non_formal_education, :label => "Pendidikan non-formal", :input_html => {:rows => 8, :class => "span5"}
-        = f.input :organization, :label => "Pengalaman organisasi", :input_html => {:rows => 8, :class => "span5"}
-        = f.input :committee, :label => "Pengalaman kepanitiaan", :input_html => {:rows => 8, :class => "span5"}
-        = f.input :workshop, :label => "Pelatihan workshop kepemudaan yang pernah diikuti", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :school, :label => "Sekolah (universitas/SMA/organisasi kepemudaan).<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama sekolah];</i>", :input_html => {"data-provide" => "typeahead", "data-source" => all_school_json}
+        = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2013)
+        = f.input :non_formal_education, :label => "Pendidikan non-formal.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama institusi];</i>", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :organization, :label => "Pengalaman organisasi.<br/><b>Format</b>:<i>[tahun mulai]-[tahun selesai];[nama organisasi];[jabatan];[tingkat, misal:internasional, sekolah, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, sekolah, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :workshop, :label => "Pelatihan workshop kepemudaan yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama pelatihan]</i>", :input_html => {:rows => 8, :class => "span5"}
         
         = f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
