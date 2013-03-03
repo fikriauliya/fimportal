@@ -24,16 +24,16 @@
         %b Tanggal lahir:
         = @profile.dob.to_formatted_s(:rfc822) 
       %div
-        %b Domisili:
+        %b Alamat:
         = @profile.location
       %div
-        %b Motto:
+        %b Visi untuk Indonesia:
         = @profile.motto
       %div
-        %b Interest:
+        %b Minat:
         = @profile.interest
       %div
-        %b Batch:
+        %b Angkatan FIM:
         = @profile.batch
       
       %br
@@ -47,17 +47,17 @@
       %thead
         %tr
           %th{:style => 'width:30%', 'data-class' => 'expand'} Nama Lengkap
-          %th{:style => 'width:60%'} Minat
+          %th{:style => 'width:60%'} Visi
           %th{:style => 'width:10%'} Angkatan
+          %th{'data-hide'=>'all'} Minat
           %th{'data-hide'=>'all'} Tanggal lahir
           %th{'data-hide'=>'all'} Tempat lahir
-          %th{'data-hide'=>'all'} Visi
       %tbody
         - @profiles.each do |profile|
           %tr
             %td= profile.fullname
-            %td= profile.interest
+            %td= profile.motto
             %td= profile.batch
+            %td= profile.interest
             %td= profile.dob
             %td= profile.place_of_birth
-            %td= profile.motto

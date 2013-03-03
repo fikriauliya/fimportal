@@ -49,9 +49,9 @@
     start_year: Date.today.year - 40, end_year: Date.today.year - 12, order: [:day, :month, :year]
   = f.input :place_of_birth, :label => "Tempat lahir"
   = f.input :location, :label => "Alamat lengkap saat ini", :as => :text, :input_html => {:rows => 5, :class => "span4"}
-  = f.input :motto, :label => "Visi", :input_html => {:rows => 5, :class => "span4"}
+  = f.input :motto, :label => "Visi untuk Indonesia", :input_html => {:rows => 5, :class => "span4"}
   = f.input :interest, :label => "Minat", :input_html => {:rows => 5, :class => "span4"}
-  = f.input :batch, :label => "Angkatan ke", :collection => ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Rescue", "10", "11", "12", "13"]
+  = f.input :batch, :label => "Angkatan FIM ke", :collection => ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Rescue", "10", "11", "12", "13"]
   = f.hidden_field :latitude
   = f.hidden_field :longitude
 
