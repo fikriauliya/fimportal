@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130303123348) do
+ActiveRecord::Schema.define(:version => 20130303233636) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -49,6 +49,9 @@ ActiveRecord::Schema.define(:version => 20130303123348) do
     t.string   "province"
     t.boolean  "is_photo_visible_to_public", :default => false
     t.boolean  "is_visible_to_public",       :default => true
+    t.string   "facebook"
+    t.string   "twitter"
+    t.boolean  "is_email_displayed",         :default => false
   end
 
   create_table "profiles", :force => true do |t|

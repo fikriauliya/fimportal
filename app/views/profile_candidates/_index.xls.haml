@@ -26,6 +26,9 @@
       %th Daftar ke
       %th Pertunjukan
       %th Direkomendasikan
+      %th Facebook
+      %th Twitter
+      %th Email
   %tbody
     - profiles.each do |profile|
       %tr
@@ -54,3 +57,6 @@
         %td= profile.application_count
         %td= profile.performance_type
         %td= profile.referal
+        %td= profile.facebook_url
+        %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
+        %td= profile.user.email

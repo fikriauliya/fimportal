@@ -13,15 +13,15 @@
   %thead
     %tr
       - if !full_column
-        %th{:style=>'width:8%'} No
+        %th{:style=>'width:10%'} No
         %th{:style=>'width:20%'} Nama
         %th{:style=>'width:30%'} Asal sekolah
-        %th{:style=>'width:45%'} Biodata singkat
+        %th{:style=>'width:40%'} Biodata singkat
       -else
-        %th{:style=>"width:8%"} No
+        %th{:style=>"width:10%"} No
         %th{'data-class' => 'expand', :style => 'width:20%'} Nama
         %th{:style=>'width:30%'} Asal sekolah
-        %th{:style=>'width:45%'} Provinsi
+        %th{:style=>'width:50%'} Provinsi
         %th{'data-hide' => 'all'} Surat rekomendasi
         %th{'data-hide' => 'all'} Biodata singkat
         %th{'data-hide' => 'all'} Tanggal lahir
@@ -44,6 +44,10 @@
         %th{'data-hide' => 'all'} Daftar ke
         %th{'data-hide' => 'all'} Pertunjukan
         %th{'data-hide' => 'all'} Direkomendasikan
+        
+      %th{'data-hide'=>'all'} Facebook
+      %th{'data-hide'=>'all'} Twitter
+      %th{'data-hide'=>'all'} Email
   %tbody
     - profiles.each_with_index do |profile, i|
       %tr
@@ -86,3 +90,6 @@
           %td= profile.application_count
           %td= profile.performance_type
           %td= profile.referal
+        %td= profile.facebook_url
+        %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
+        %td= (full_column || profile.is_email_displayed) ? profile.user.email : "-"

@@ -7,14 +7,16 @@
     
     function updatePrivacySettings(isInitialLoading) {
       if (!$("#profile_candidate_is_visible_to_public").is(':checked')) {
-        $("#photo_visibility_row").hide();
+        $(".photo_visibility_row").hide();
         if (!isInitialLoading) {
           $("#profile_candidate_is_photo_visible_to_public").attr('checked', false);
+          $("#profile_candidate_is_email_displayed").attr('checked', false);
         }    
       } else {
-        $("#photo_visibility_row").show();
+        $(".photo_visibility_row").show();
         if (!isInitialLoading) {
           $("#profile_candidate_is_photo_visible_to_public").attr('checked', false);
+          $("#profile_candidate_is_email_displayed").attr('checked', false);
         }
       }
     }
@@ -39,18 +41,24 @@
     
         .form-inputs
           = f.input :biodata, :label => "Biodata singkat (maks 160 karakter)", :input_html => {:rows => 6}, :placeholder => 'Contoh: Pendiri Yayasan X, hobi traveling, bercita-cita keliling Indonesia, minat di pemberdayaan desa, @anakUI.com'
+          = f.input :facebook, :label => "Alamat Facebook", :placeholder => 'http://www.facebook.com/andi.suroso'
+          = f.input :twitter, :label => "Alamat Twitter", :placeholder => '@presidenRI'
           %table
             %tr
               %td
                 = f.input :is_visible_to_public, :label => false, :as => :boolean
               %td
                 Tampilan nama saya di daftar calon peserta
-            %tr#photo_visibility_row
+            %tr.photo_visibility_row
               %td
                 = f.input :is_photo_visible_to_public, :label => false, :as => :boolean
               %td
-                Tampilkan foto saya di daftar calon peserta
-          
+                Tampilkan foto saya
+            %tr.photo_visibility_row
+              %td
+                = f.input :is_email_displayed, :label => false
+              %td
+                Tampilan email saya
           = f.submit "Update", :class => "btn btn-primary", :style => 'margin-top:10px'
           
     .span8
@@ -58,8 +66,13 @@
   -else
     .span12
       #map_canvas{:style => "width:100%; height:400px"}  
-.row
-  .span12
-    %h3 Daftar calon peserta FIM 14
-
-    = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles, :full_column => false}
+  -if user_signed_in? && !@profile.nil?
+    .span9
+      %h3 Daftar calon peserta FIM 14
+  
+      = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles, :full_column => false}
+  -else
+    .span12
+      %h3 Daftar calon peserta FIM 14
+  
+      = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles, :full_column => false}

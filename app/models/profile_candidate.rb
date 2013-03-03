@@ -5,7 +5,8 @@ class ProfileCandidate < ActiveRecord::Base
     :latitude, :longitude, :agreement, :photo, :recommendation_letter, :collaboration, 
     :inspiring_story, :province
   
-  attr_accessible :biodata, :is_photo_visible_to_public, :is_visible_to_public, :as => :additional_fields
+  attr_accessible :biodata, :is_photo_visible_to_public, :is_visible_to_public,
+   :facebook, :twitter, :is_email_displayed, :as => :additional_fields
   
   belongs_to :user
   
@@ -50,5 +51,15 @@ class ProfileCandidate < ActiveRecord::Base
       "Kepulauan Bangka Belitung", "Kepulauan Riau", "Lampung", "Maluku", "Maluku Utara", "Nusa Tenggara Timur", 
       "Nusa Tenggara Barat", "Papua", "Papua Barat", "Riau", "Sulawesi Barat", "Sulawesi Selatan", "Sulawesi Tengah", 
       "Sulawesi Tenggara", "Sulawesi Utara", "Sumatera Barat", "Sumatera Selatan", "Sumatera Utara", "Yogyakarta"] 
+  end
+  
+  def facebook_url
+    if facebook? && !facebook.match(/facebook.com/)
+      'http://www.facebook.com/' + facebook
+    elsif facebook?
+      facebook
+    else
+      '-'
+    end
   end
 end
