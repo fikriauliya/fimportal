@@ -93,20 +93,6 @@ class ProfileCandidatesController < ApplicationController
     end
   end
 
-  def show
-    if params[:id] then
-      @profile = ProfileCandidate.find(params[:id])
-      authorize! :read, @profile, :message => 'Not authorized as a recruiter.'
-      
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: @profile }
-      end
-    else
-      redirect_to profile_candidates_path
-    end
-  end
-
   #redirect to step1
   def new
     redirect_to step1_profile_candidates_path

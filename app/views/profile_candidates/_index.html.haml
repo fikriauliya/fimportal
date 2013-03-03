@@ -1,53 +1,71 @@
+=content_for :head do
+  :javascript
+    $(function() {
+      $('.footable').footable();
+    });
+    
+
+
 %div{:style => "text-align:center"}
   = will_paginate profiles 
-%table.table.table-striped
+  
+%table.footable
   %thead
     %tr
       - if !full_column
-        %th{:style=>'width:5%'} No
-        %th{:style=>'width:5%'}
+        %th{:style=>'width:8%'} No
         %th{:style=>'width:20%'} Nama
-        %th{:style=>'width:20%'} Asal Kampus
-        %th{:style=>'width:40%'} Biodata singkat
+        %th{:style=>'width:30%'} Asal sekolah
+        %th{:style=>'width:45%'} Biodata singkat
       -else
-        %th{:style=>'width:10px'} No
-        %th{:style=>'width:40px'}
-        %th{:style=>'width:150px'} Nama
-        %th{:style=>'width:80px'} DOB
-        %th{:style=>'width:120px'} Tempat lahir
-        %th{:style=>'width:200px'} Alamat
-        %th{:style=>'width:40px'} Gender
-        %th{:style=>'width:40px'} Agama
-        %th{:style=>'width:40px'} Handphone
-        %th{:style=>'width:150px'} Hobi
-        %th{:style=>'width:40px'} Gol
-        %th{:style=>'width:200px'} Sekolah
-        %th{:style=>'width:40px'} Angkatan
-        %th{:style=>'width:400px'} Pendidikan non-formal
-        %th{:style=>'width:400px'} Organisasi
-        %th{:style=>'width:400px'} Kepanitiaan
-        %th{:style=>'width:400px'} Workshop kepemudaan
-        %th{:style=>'width:400px'} Motivasi
-        %th{:style=>'width:40px'} Info dari
-        %th{:style=>'width:80px'} Daftar ke
-        %th{:style=>'width:100px'} Pertunjukan
-        %th{:style=>'width:100px'} Direkomendasikan
+        %th{:style=>"width:8%"} No
+        %th{'data-class' => 'expand', :style => 'width:20%'} Nama
+        %th{:style=>'width:30%'} Asal sekolah
+        %th{:style=>'width:45%'} Provinsi
+        %th{'data-hide' => 'all'} Surat rekomendasi
+        %th{'data-hide' => 'all'} Biodata singkat
+        %th{'data-hide' => 'all'} Tanggal lahir
+        %th{'data-hide' => 'all'} Tempat lahir
+        %th{'data-hide' => 'all'} Alamat
+        %th{'data-hide' => 'all'} Gender
+        %th{'data-hide' => 'all'} Agama
+        %th{'data-hide' => 'all'} Handphone
+        %th{'data-hide' => 'all'} Hobi
+        %th{'data-hide' => 'all'} Gol darah
+        %th{'data-hide' => 'all'} Angkatan
+        %th{'data-hide' => 'all'} Pendidikan non-formal
+        %th{'data-hide' => 'all'} Organisasi
+        %th{'data-hide' => 'all'} Kepanitiaan
+        %th{'data-hide' => 'all'} Workshop kepemudaan
+        %th{'data-hide' => 'all'} Motivasi
+        %th{'data-hide' => 'all'} Kolaborasi yang ditawarkan
+        %th{'data-hide' => 'all'} Kisah yang menginspirasi
+        %th{'data-hide' => 'all'} Info dari
+        %th{'data-hide' => 'all'} Daftar ke
+        %th{'data-hide' => 'all'} Pertunjukan
+        %th{'data-hide' => 'all'} Direkomendasikan
   %tbody
     - profiles.each_with_index do |profile, i|
       %tr
-        %td= i+1
-        %td
+        %td{:style => 'width:20px'}
+          = i+1
+          )
           - if profile.photo? && (full_column || profile.is_photo_visible_to_public)
             = link_to(profile.photo) do
               = image_tag(profile.photo, :style => 'width:40px; height:40px')
+        %td
+          - if !full_column
+            = profile.is_visible_to_public ? profile.fullname : "[Tidak ditampilkan]"
+          - else
+            = profile.fullname
+          
+        %td= profile.school
         -if !full_column
-          %td= profile.is_visible_to_public ? profile.fullname : "[Tidak ditampilkan]"
-          %td= profile.school
           %td= profile.biodata
         -else
-          %td
-            = link_to(profile) do
-              = profile.fullname
+          %td= profile.province
+          %td= link_to('Download', profile.recommendation_letter)
+          %td= profile.biodata
           %td= profile.dob
           %td= profile.place_of_birth
           %td= profile.location
@@ -56,13 +74,14 @@
           %td= profile.phone
           %td= profile.hobby
           %td= profile.blood_type
-          %td= profile.school
           %td= profile.batch
           %td= profile.non_formal_education
           %td= profile.organization
           %td= profile.committee
           %td= profile.workshop
           %td= profile.motivation
+          %td= profile.collaboration
+          %td= profile.inspiring_story
           %td= profile.information_from
           %td= profile.application_count
           %td= profile.performance_type

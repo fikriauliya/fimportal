@@ -1,8 +1,9 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap
-#= require_tree .
 #= require s3_direct_upload
+#= require footable/footable-0.1.js
+
 jQuery ->
   $("#myS3Uploader").S3Uploader()
   
