@@ -11,10 +11,11 @@ class ProfileCandidatesController < ApplicationController
   end
   
   def step1
+    @user = User.new
     if user_signed_in?
       redirect_to step2_profile_candidates_path
     else
-      flash[:from_step1] = true
+      session[:after_sign_in_path_for] = step2_profile_candidates_path
     end
   end
   

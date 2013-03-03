@@ -7,12 +7,14 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_user
-    @user = User.new
+    @new_user = User.new
   end
   
   def after_sign_in_path_for(resource)
-    if flash[:from_step1]
-      step2_profile_candidates_path
+    if session[:after_sign_in_path_for]
+      redirect_url = session[:after_sign_in_path_for]
+      session[:after_sign_in_path_for] = nil
+      redirect_url
     else
       root_path
     end

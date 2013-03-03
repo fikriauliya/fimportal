@@ -1,38 +1,30 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-
+  skip_before_filter :authenticate_user!, :only => [:new] 
+  
   def index
     @profiles = Profile.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @profiles }
-    end
-  end
-  
-  def show
-    if params[:id]
-      @profile = Profile.find(params[:id])
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: @profile }
-      end
-    else 
-      redirect_to alumni_home_path
-    end
+    @profile = Profile.find_by_user_id(current_user.id)
+    initialize_latitudes_longitudes(Profile.select([:latitude, :longitude]))
   end
 
   def new
-    @profile = current_user.profile
-    if !@profile.nil?
-      redirect_to edit_profile_path
-    else    
-      @profile = Profile.new
-      
-      respond_to do |format|
-        format.html # new.html.erb
-        format.json { render json: @profile }
+    @user = User.new
+    if user_signed_in?
+      @profile = current_user.profile
+      if !@profile.nil?
+        redirect_to profiles_path
+      else    
+        @profile = Profile.new
+        
+        respond_to do |format|
+          format.html # new.html.erb
+          format.json { render json: @profile }
+        end
       end
+    else
+      session[:after_sign_in_path_for] = new_profile_path
+      render "welcome"
     end
   end
 
@@ -45,7 +37,7 @@ class ProfilesController < ApplicationController
 
       respond_to do |format|
         if @profile.save
-          format.html  { redirect_to @profile, notice: 'Profile was successfully created.'}
+          format.html  { redirect_to profiles_path, notice: 'Profile was successfully created.'}
           format.json  { render json: @profile, status: :created, location: @profile }
         else
           format.html  { render action: "new" }
@@ -64,10 +56,9 @@ class ProfilesController < ApplicationController
     
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to profiles_path, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
-        logger.info "Not Success!"
         format.html { render action: "edit" }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end

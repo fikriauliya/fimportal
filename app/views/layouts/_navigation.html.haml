@@ -3,7 +3,7 @@
   %li
     = link_to "Pendaftaran FIM", step1_profile_candidates_path
   %li
-    = link_to "Alumni", profile_path
+    = link_to "Alumni", new_profile_path
   - if user_signed_in?
     - if current_user.has_role? :admin
       %li
@@ -19,7 +19,7 @@
     %li
       = button_to 'Logout', destroy_user_session_path, :method =>'delete', :class => 'btn btn-danger', :style => 'margin-top:10px; margin-bottom:-10px;'
   - else
-    = form_for @user, :url => new_user_session_path, :html => {:class => 'form-inline'} do |f|
+    = form_for @new_user, :url => new_user_session_path, :html => {:class => 'form-inline'} do |f|
       = f.text_field :email, :autofocus => true, :class => 'input-small', :placeholder => "Email", :style => 'margin-top:10px; margin-bottom:-10px; width:150px'
       = f.password_field :password, :class => 'input-small', :placeholder => "Password", :style => 'margin-top:10px; margin-bottom:-10px; width:150px'
       = f.submit "Sign in", :class => 'btn btn-primary', :style => 'margin-top:10px; margin-bottom:-10px;'

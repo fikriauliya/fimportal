@@ -1,0 +1,22 @@
+.row
+  .span3
+    %h4 Registrasi akun baru
+    .well
+      = simple_form_for(user, :url => registration_path(user), :html => {:class => 'form-vertical' }) do |f|
+        = f.error_notification
+        = display_base_errors user
+        = f.input :email, :required => true, :autofocus => true
+        = f.input :password, :required => true
+        = f.input :password_confirmation, :required => true
+        = f.button :submit, 'Sign up', :class => 'btn-primary'
+  .span2
+    %p{:style => 'margin-top:80px; text-align:center'}
+      %b{:style => "font-size:20px"}
+        #{"- atau -"}
+  .span3
+    %h4 Log in
+    .well
+      = simple_form_for(user, :url => session_path(user), :html => {:class => 'form-vertical' }) do |f|
+        = f.input :email
+        = f.input :password
+        = f.button :submit, "Sign in", :class => 'btn-primary'
