@@ -41,7 +41,7 @@
         = @profile.interest? ? @profile.interest : "-"
       %div
         %b Facebook:
-        = @profile.facebook? ? link_to(@profile.facebook, @profile.facebook) : "-"
+        = @profile.facebook_url
       %div
         %b Twitter:
         = @profile.twitter? ? link_to(@profile.twitter, "https://twitter.com/#{@profile.twitter}") : "-"
@@ -82,6 +82,6 @@
             %td= profile.interest? ? profile.interest : "-"
             %td= profile.dob? ? profile.dob.to_formatted_s(:rfc822) : "-"
             %td= profile.place_of_birth? ? profile.place_of_birth : "-"
-            %td= profile.facebook? ? link_to(profile.facebook, profile.facebook) : "-"
+            %td= profile.facebook_url
             %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
             %td= profile.is_email_displayed ? profile.user.email : "-"

@@ -4,4 +4,14 @@ class Profile < ActiveRecord::Base
     
   validates :fullname, :batch, :presence => true
   belongs_to :user
+  
+  def facebook_url
+    if facebook? && !facebook.match(/facebook.com/)
+      'http://www.facebook.com/' + facebook
+    elsif facebook?
+      facebook
+    else
+      '-'
+    end
+  end
 end
