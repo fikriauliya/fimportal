@@ -19,8 +19,8 @@ class ProfileCandidate < ActiveRecord::Base
   validates_length_of :biodata, :maximum => 160
   
   validates_format_of :agreement, :with => lambda {|me|
-     /\s*Saya,\s*#{me.fullname} \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013\s*/i
-   }, :message => "Tidak sama dengan contoh di atas. Coba periksa nama Anda terisi dengan benar."
+     /\s*Saya,\s*\[?\s*#{me.fullname}\s*\]? \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013\s*/i
+   }, :message => "Tidak sama dengan contoh di atas. Coba periksa apakah [Nama Anda] terisi dengan benar (sama dengan nama lengkap yang Anda cantumkan di atas)."
    
   def self.all_school
     ['Institut Manajemen Telkom', 'Institut Pertanian Bogor', 'Institut Teknologi Bandung', 
