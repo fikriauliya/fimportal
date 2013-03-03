@@ -125,7 +125,7 @@ class ProfileCandidatesController < ApplicationController
     
     respond_to do |format|
       if @profile.update_attributes(params[:profile_candidate])
-        format.html { redirect_to step3_profile_candidates_path, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to step3_profile_candidates_path, notice: 'Data Anda telah diupdate' }
         format.json { head :no_content }
       else
         format.html { render action: "step2" }

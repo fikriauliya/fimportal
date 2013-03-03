@@ -19,23 +19,39 @@
         = @profile.fullname
       %div
         %b Tempat lahir:
-        = @profile.place_of_birth
+        = @profile.place_of_birth? ? @profile.place_of_birth : "-"
       %div
         %b Tanggal lahir:
-        = @profile.dob.to_formatted_s(:rfc822) 
+        = @profile.dob? ? @profile.dob.to_formatted_s(:rfc822) : "-"
       %div
         %b Alamat:
-        = @profile.location
+        %br
+        = @profile.location? ? @profile.location : "-"
+      %div
+        %b Program yang sedang dijalani:
+        %br
+        = @profile.program? ? @profile.program : "-"
       %div
         %b Visi untuk Indonesia:
-        = @profile.motto
+        %br
+        = @profile.motto? ? @profile.motto : "-"
       %div
         %b Minat:
-        = @profile.interest
+        %br
+        = @profile.interest? ? @profile.interest : "-"
+      %div
+        %b Facebook:
+        = @profile.facebook? ? link_to(@profile.facebook, @profile.facebook) : "-"
+      %div
+        %b Twitter:
+        = @profile.twitter? ? link_to(@profile.twitter, "https://twitter.com/#{@profile.twitter}") : "-"
       %div
         %b Angkatan FIM:
         = @profile.batch
-      
+      %div
+        %b Tampilkan email saya:
+        = @profile.is_email_displayed ? "Ya" : "Tidak"
+        
       %br
       = link_to 'Ubah data Anda', edit_profile_path, :class => 'btn btn-primary'
   
@@ -49,15 +65,23 @@
           %th{:style => 'width:30%', 'data-class' => 'expand'} Nama Lengkap
           %th{:style => 'width:60%'} Visi
           %th{:style => 'width:10%'} Angkatan
+          %th{'data-hide'=>'all'} Program yang sedang dijalankan
           %th{'data-hide'=>'all'} Minat
           %th{'data-hide'=>'all'} Tanggal lahir
           %th{'data-hide'=>'all'} Tempat lahir
+          %th{'data-hide'=>'all'} Facebook
+          %th{'data-hide'=>'all'} Twitter
+          %th{'data-hide'=>'all'} Email
       %tbody
         - @profiles.each do |profile|
           %tr
             %td= profile.fullname
-            %td= profile.motto
+            %td= profile.motto? ? profile.motto : "-"
             %td= profile.batch
-            %td= profile.interest
-            %td= profile.dob
-            %td= profile.place_of_birth
+            %td= profile.program? ? profile.program : "-"
+            %td= profile.interest? ? profile.interest : "-"
+            %td= profile.dob? ? profile.dob.to_formatted_s(:rfc822) : "-"
+            %td= profile.place_of_birth? ? profile.place_of_birth : "-"
+            %td= profile.facebook? ? link_to(profile.facebook, profile.facebook) : "-"
+            %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
+            %td= profile.is_email_displayed ? profile.user.email : "-"
