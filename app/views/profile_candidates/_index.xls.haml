@@ -37,7 +37,7 @@
         %td= profile.dob.strftime("%d %B, %Y")
         %td= profile.place_of_birth
         %td= profile.location
-        %td= profile.gender == 0 ? 'Laki-laki' : 'Perempuan'
+        %td= profile.gender == "0" ? 'Laki-laki' : 'Perempuan'
         %td= profile.religion
         %td= "'#{profile.phone}"
         %td= profile.hobby
