@@ -1,7 +1,5 @@
 .row
   .span12
     %h3 Daftar calon peserta FIM 14
-    = link_to('Download', recruiter_index_path(:format => 'xls'), :class => 'btn btn-primary')
-.row{:style => 'margin-top: 40px'}
-  .span12
+
     = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles, :full_column => true}

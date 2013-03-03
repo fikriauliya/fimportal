@@ -1,0 +1,56 @@
+%table
+  %thead
+    %tr
+      %th Nama
+      %th Asal sekolah
+      %th Provinsi
+      %th Surat rekomendasi
+      %th Biodata singkat
+      %th Tanggal lahir
+      %th Tempat lahir
+      %th Alamat
+      %th Gender
+      %th Agama
+      %th Handphone
+      %th Hobi
+      %th Gol darah
+      %th Angkatan
+      %th Pendidikan non-formal
+      %th Organisasi
+      %th Kepanitiaan
+      %th Workshop kepemudaan
+      %th Motivasi
+      %th Kolaborasi yang ditawarkan
+      %th Kisah yang menginspirasi
+      %th Info dari
+      %th Daftar ke
+      %th Pertunjukan
+      %th Direkomendasikan
+  %tbody
+    - profiles.each do |profile|
+      %tr
+        %td= link_to(profile.fullname, profile.photo)
+        %td= profile.school
+        %td= profile.province
+        %td= link_to('Download', profile.recommendation_letter)
+        %td= profile.biodata
+        %td= profile.dob.strftime("%d %B, %Y")
+        %td= profile.place_of_birth
+        %td= profile.location
+        %td= profile.gender == 0 ? 'Laki-laki' : 'Perempuan'
+        %td= profile.religion
+        %td= "'#{profile.phone}"
+        %td= profile.hobby
+        %td= profile.blood_type
+        %td= profile.batch
+        %td= profile.non_formal_education
+        %td= profile.organization
+        %td= profile.committee
+        %td= profile.workshop
+        %td= profile.motivation
+        %td= profile.collaboration
+        %td= profile.inspiring_story
+        %td= profile.information_from
+        %td= profile.application_count
+        %td= profile.performance_type
+        %td= profile.referal
