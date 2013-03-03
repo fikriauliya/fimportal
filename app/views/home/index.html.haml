@@ -45,12 +45,11 @@
       %a{href: "mailto:forumindonesiamuda@yahoo.co.id"}
         forumindonesiamuda@yahoo.co.id
 
-  .span4
+  .span7
     %h4 Rekapitulasi pendaftar FIM 14
-    #map_canvas{:style => "width:600px; height:300px"}
-
+    #map_canvas{:style => "width:650px; height:300px"}
 .row
-  .span4.service-item
+  .span6.service-item
     %h4
       %i.icon-file>
       FIM 14
@@ -58,11 +57,17 @@
       %button.btn.btn-primary{:type => "button"} Daftar >>
     =link_to profile_candidates_path do
       %button.btn.btn-primary{:type => "submit"} Pendaftar FIM 14
-
-.row{:style => 'margin-top:40px'}
-  .span6
+    
+    %hr
+    %br
+    %br
     .fb-like{"data-href" => "http://portal.forumindonesiamuda.org", "data-send" => "true", "data-show-faces" => "true", "data-width" => "450"}
     %br
     %br
     .fb-comments{"data-href" => "http://portal.forumindonesiamuda.org", "data-num-posts" => "15", "data-width" => "600"}
+    
+  .span4.offset1
+    %a.twitter-timeline{"data-widget-id" => "308020397293568000", :href => "https://twitter.com/fimnews"} Tweets by @fimnews
+    :javascript
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
     
