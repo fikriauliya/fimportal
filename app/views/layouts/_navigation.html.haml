@@ -2,8 +2,6 @@
 %ul.nav
   %li
     = link_to "Pendaftaran FIM 14", step1_profile_candidates_path
-  %li
-    = link_to "Pendataan Alumni", profiles_path
     
   - if user_signed_in?
     - if current_user.has_role? :admin

@@ -17,8 +17,8 @@ FimAlumni::Application.routes.draw do
     end
   end
   
-  resource :profile, :path => 'alumni'
-  resources :profiles, :path => 'alumnis', :except => [:show]
+  # resource :profile, :path => 'alumni'
+  # resources :profiles, :path => 'alumnis', :except => [:show]
   
   # authenticated :user do
     # root :to => 'home#index_authenticated'
