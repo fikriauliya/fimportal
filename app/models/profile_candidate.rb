@@ -3,7 +3,7 @@ class ProfileCandidate < ActiveRecord::Base
     :hobby, :information_from, :location, :motivation, :non_formal_education, :organization, 
     :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
     :latitude, :longitude, :agreement, :photo, :recommendation_letter, :collaboration, 
-    :inspiring_story, :province
+    :inspiring_story, :province, :status, :submitted_at
   
   attr_accessible :biodata, :is_photo_visible_to_public, :is_visible_to_public,
    :facebook, :twitter, :is_email_displayed, :as => :additional_fields
