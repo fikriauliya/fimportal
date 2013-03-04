@@ -1,0 +1,22 @@
+%h2 Penilaian calon peserta FIM 14
+.span8
+  %ul
+    %li
+      Nama:
+      %b 
+        = @profile.fullname
+    %li
+      Sekolah:
+      %b
+        = @profile.school
+  .well
+    = simple_form_for(@profile, :url => update_point_profile_candidates_path, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
+      = f.error_notification
+      = display_base_errors @profile
+
+      .form-inputs
+        = f.input :id, :as => :hidden
+        = f.input :point, :label => "Poin"
+        = f.input :comment, :label => "Komentar"
+      .form-actions
+        = f.submit "Simpan", :class => "btn btn-primary"

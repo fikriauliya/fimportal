@@ -12,6 +12,7 @@ FimAlumni::Application.routes.draw do
       match 'upload_photo' => 'profile_candidates#upload_photo', :via => :post
       match 'upload_recommendation_letter' => 'profile_candidates#upload_recommendation_letter', :via => :post
       match 'update_biodata' => 'profile_candidates#update_biodata', :via => :put
+      match 'update_point' => 'profile_candidates#update_point', :via => :put
       match 'submit_confirmation' => 'profile_candidates#submit_confirmation', :via => :post
     end
   end

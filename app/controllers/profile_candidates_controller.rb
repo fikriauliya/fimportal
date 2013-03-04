@@ -179,4 +179,25 @@ class ProfileCandidatesController < ApplicationController
       end
     end
   end
+  
+  def edit
+    authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
+    @profile = ProfileCandidate.find(params[:id])
+  end
+  
+  def update_point
+    authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
+    @profile = ProfileCandidate.find(params[:profile_candidate][:id])
+    
+    respond_to do |format|
+      if @profile.update_attributes({:comment => params[:profile_candidate][:comment], 
+        :point => params[:profile_candidate][:point], :marked_by => current_user}, :as => :recruiter)
+        format.html { redirect_to recruiter_index_path, :notice => "Data telah disimpan" }
+        format.json { head :no_content }
+      else
+        format.html { render "edit" }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 end

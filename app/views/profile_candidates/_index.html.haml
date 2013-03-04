@@ -21,7 +21,11 @@
         %th{:style=>"width:10%"} No
         %th{'data-class' => 'expand', :style => 'width:20%'} Nama
         %th{:style=>'width:30%'} Asal sekolah
-        %th{:style=>'width:50%'} Provinsi
+        %th{:style=>'width:10%'} Dinilai oleh
+        %th{:style=>'width:10%'} Poin
+        %th{:style=>'width:15%'} Komentar
+        %th{:style=>'width:5%'} Ubah
+        %th{'data-hide' => 'all'} Provinsi
         %th{'data-hide' => 'all'} Surat rekomendasi
         %th{'data-hide' => 'all'} Biodata singkat
         %th{'data-hide' => 'all'} Tanggal lahir
@@ -67,6 +71,10 @@
         -if !full_column
           %td= profile.biodata
         -else
+          %td= !profile.marked_by.nil? ? profile.marked_by.email : ""
+          %td= profile.point
+          %td= profile.comment
+          %td= link_to("Ubah", edit_profile_candidate_path(profile))
           %td= profile.province
           %td= link_to('Download', profile.recommendation_letter)
           %td= profile.biodata

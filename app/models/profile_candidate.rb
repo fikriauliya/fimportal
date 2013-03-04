@@ -7,8 +7,11 @@ class ProfileCandidate < ActiveRecord::Base
   
   attr_accessible :biodata, :is_photo_visible_to_public, :is_visible_to_public,
    :facebook, :twitter, :is_email_displayed, :as => :additional_fields
+   
+  attr_accessible :comment, :marked_by, :point, :as => :recruiter
   
   belongs_to :user
+  belongs_to :marked_by, :class_name => "User"
   
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
     :information_from, :location, :motivation, :phone, :place_of_birth, :religion, 
