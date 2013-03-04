@@ -190,8 +190,8 @@ class ProfileCandidatesController < ApplicationController
     @profile = ProfileCandidate.find(params[:profile_candidate][:id])
     
     respond_to do |format|
-      if @profile.update_attributes({:comment => params[:profile_candidate][:comment], 
-        :point => params[:profile_candidate][:point], :marked_by => current_user}, :as => :recruiter)
+      if @profile.update_attributes(params[:profile_candidate], :as => :recruiter)
+        @profile.update_attribute(:marked_by, current_user)
         format.html { redirect_to recruiter_index_path, :notice => "Data telah disimpan" }
         format.json { head :no_content }
       else

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304100636) do
+ActiveRecord::Schema.define(:version => 20130304130823) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20130304100636) do
     t.integer  "application_count"
     t.string   "performance_type"
     t.string   "referal"
-    t.datetime "created_at",                                              :null => false
-    t.datetime "updated_at",                                              :null => false
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "user_id"
@@ -43,19 +43,25 @@ ActiveRecord::Schema.define(:version => 20130304100636) do
     t.text     "biodata"
     t.string   "photo"
     t.string   "recommendation_letter"
-    t.string   "status",                     :default => "NOT SUBMITTED"
+    t.string   "status",                      :default => "NOT SUBMITTED"
     t.text     "inspiring_story"
     t.text     "collaboration"
     t.string   "province"
-    t.boolean  "is_photo_visible_to_public", :default => false
-    t.boolean  "is_visible_to_public",       :default => true
+    t.boolean  "is_photo_visible_to_public",  :default => false
+    t.boolean  "is_visible_to_public",        :default => true
     t.string   "facebook"
     t.string   "twitter"
-    t.boolean  "is_email_displayed",         :default => false
-    t.string   "comment"
-    t.float    "point"
+    t.boolean  "is_email_displayed",          :default => false
     t.integer  "marked_by_id"
     t.datetime "submitted_at"
+    t.integer  "organization_point",          :default => 0
+    t.integer  "committee_point",             :default => 0
+    t.integer  "personal_knowledge_point",    :default => 0
+    t.integer  "document_completeness_point", :default => 0
+    t.integer  "reliability_point",           :default => 0
+    t.integer  "willingness_point",           :default => 0
+    t.string   "special_location_comment"
+    t.string   "special_character_comment"
   end
 
   create_table "profiles", :force => true do |t|

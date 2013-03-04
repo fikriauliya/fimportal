@@ -8,7 +8,11 @@ class ProfileCandidate < ActiveRecord::Base
   attr_accessible :biodata, :is_photo_visible_to_public, :is_visible_to_public,
    :facebook, :twitter, :is_email_displayed, :as => :additional_fields
    
-  attr_accessible :comment, :marked_by, :point, :as => :recruiter
+  attr_accessible :marked_by, 
+    :organization_point, :committee_point, :personal_knowledge_point, :document_completeness_point,
+    :reliability_point, :willingness_point, 
+    :special_location_comment, :special_character_comment,
+    :as => :recruiter
   
   belongs_to :user
   belongs_to :marked_by, :class_name => "User"
@@ -64,5 +68,17 @@ class ProfileCandidate < ActiveRecord::Base
     else
       '-'
     end
+  end
+  
+  def cv_total_point
+    0.3 * organization_point + 0.3 * committee_point + 0.3 * personal_knowledge_point + 0.1 * document_completeness_point
+  end
+  
+  def motivation_total_point
+    0.5 * reliability_point + 0.5 * willingness_point
+  end
+  
+  def total_point
+    0.65 * cv_total_point + 0.35 * motivation_total_point
   end
 end

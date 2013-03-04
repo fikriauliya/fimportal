@@ -16,7 +16,13 @@
 
       .form-inputs
         = f.input :id, :as => :hidden
-        = f.input :point, :label => "Poin"
-        = f.input :comment, :label => "Komentar"
+        = f.input :organization_point
+        = f.input :committee_point
+        = f.input :personal_knowledge_point
+        = f.input :document_completeness_point
+        = f.input :reliability_point
+        = f.input :willingness_point
+        = f.input :special_location_comment
+        = f.input :special_character_comment
       .form-actions
         = f.submit "Simpan", :class => "btn btn-primary"

@@ -20,11 +20,26 @@
       -else
         %th{:style=>"width:10%"} No
         %th{'data-class' => 'expand', :style => 'width:20%'} Nama
-        %th{:style=>'width:30%'} Asal sekolah
+        
         %th{:style=>'width:10%'} Dinilai oleh
-        %th{:style=>'width:10%'} Poin
-        %th{:style=>'width:15%'} Komentar
+        %th{:style=>'width:5%'} Organisasi
+        %th{:style=>'width:5%'} Kepanitiaan
+        %th{:style=>'width:5%'} Wawasan
+        %th{:style=>'width:5%'} Kelengkapan
+        %th{:style=>'width:5%'} Total CV
+
+        %th{:style=>'width:5%'} Reliability
+        %th{:style=>'width:5%'} Willingness
+        %th{:style=>'width:5%'} Total Motivasi
+        
+        %th{:style=>'width:5%'} Grand Total
+
+        %th{:style=>'width:15%'} Domisili khusus
+        %th{:style=>'width:15%'} Karakter khusus
+        
         %th{:style=>'width:5%'} Ubah
+
+        %th{'data-hide' => 'all'} Sekolah
         %th{'data-hide' => 'all'} Provinsi
         %th{'data-hide' => 'all'} Surat rekomendasi
         %th{'data-hide' => 'all'} Biodata singkat
@@ -61,20 +76,33 @@
           - if profile.photo? && (full_column || profile.is_photo_visible_to_public)
             = link_to(profile.photo) do
               = image_tag(profile.photo, :style => 'width:40px; height:40px')
-        %td
-          - if !full_column
-            = profile.is_visible_to_public ? profile.fullname : "[Tidak ditampilkan]"
-          - else
-            = profile.fullname
-          
-        %td= profile.school
-        -if !full_column
+        
+        - if !full_column
+          %td= profile.is_visible_to_public ? profile.fullname : "[Tidak ditampilkan]"
+          %td= profile.school
           %td= profile.biodata
         -else
+          %td= profile.fullname
           %td= !profile.marked_by.nil? ? profile.marked_by.email : ""
-          %td= profile.point
-          %td= profile.comment
+          
+          %td= profile.organization_point
+          %td= profile.committee_point
+          %td= profile.personal_knowledge_point
+          %td= profile.document_completeness_point
+          %td= profile.cv_total_point
+          
+          %td= profile.reliability_point
+          %td= profile.willingness_point
+          %td= profile.motivation_total_point
+          
+          %td= profile.total_point
+          
+          %td= profile.special_location_comment
+          %td= profile.special_character_comment
+          
           %td= link_to("Ubah", edit_profile_candidate_path(profile))
+          
+          %td= profile.school
           %td= profile.province
           %td= link_to('Download', profile.recommendation_letter)
           %td= profile.biodata
