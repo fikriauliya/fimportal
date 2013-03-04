@@ -81,7 +81,7 @@ class ProfileCandidatesController < ApplicationController
   end
   
   def index
-    @profiles = ProfileCandidate.where(:status => 'SUBMITTED').paginate(:page => params[:page],:per_page => 20)
+    @profiles = ProfileCandidate.where(:status => 'SUBMITTED').order("submitted_at ASC").paginate(:page => params[:page],:per_page => 20)
     if user_signed_in?
       @profile = ProfileCandidate.find_by_user_id(current_user.id)
     end
@@ -158,7 +158,7 @@ class ProfileCandidatesController < ApplicationController
   
   def submit_confirmation
     @profile = current_user.profile_candidate
-    if params[:confirmation] && params[:confirmation] == "1" && @profile.update_attribute(:status, 'SUBMITTED')
+    if params[:confirmation] && params[:confirmation] == "1" && @profile.update_attributes({:status => 'SUBMITTED', :submitted_at => Time.now})
       redirect_to profile_candidates_path, notice: 'Data Anda sudah kami terima. Terimakasih'
     else
       redirect_to step5_profile_candidates_path, :alert => 'Anda harus mencentang persetujuan di bawah'

@@ -54,7 +54,7 @@
         if (!isGeoCoded) {
           event.preventDefault();
 
-          if (geocoder) {
+          if (!(typeof geocoder === "undefined")) {
             var address = $("#profile_candidate_location").val();
             console.log("Looking for location...: ");
             console.log(address);
@@ -70,6 +70,9 @@
               
               $("#profile_form").submit();
             });
+          } else {
+            isGeoCoded = true;
+            $("#profile_form").submit();
           }
         }
       });

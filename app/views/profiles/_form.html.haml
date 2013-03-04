@@ -24,7 +24,7 @@
         if (!isGeoCoded) {
           event.preventDefault();
 
-          if (geocoder) {
+          if (!(typeof geocoder === "undefined")) {
             var address = $("#profile_location").val();
                         
             geocoder.geocode({'address': address}, function(results, status) {
@@ -36,6 +36,9 @@
               
               $("#profile_form").submit();
             });
+          } else {
+            isGeoCoded = true;
+            $("#profile_form").submit();
           }
         }
       });

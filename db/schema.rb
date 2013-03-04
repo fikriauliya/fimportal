@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304005741) do
+ActiveRecord::Schema.define(:version => 20130304100636) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20130304005741) do
     t.string   "comment"
     t.float    "point"
     t.integer  "marked_by_id"
+    t.datetime "submitted_at"
   end
 
   create_table "profiles", :force => true do |t|
