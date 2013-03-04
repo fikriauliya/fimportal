@@ -1,7 +1,7 @@
 .span8
   .well
     = s3_uploader_form post: upload_recommendation_letter_profile_candidates_path, as: "profile_candidate[recommendation_letter]", 
-      id: "myS3Uploader", max_file_size: 400.kilobytes do
+      id: "myS3Uploader", max_file_size: 2.megabytes do
       - if @profile.recommendation_letter?
         .controls
           = link_to "Surat rekomendasi [#{@profile.fullname}]", @profile.recommendation_letter
