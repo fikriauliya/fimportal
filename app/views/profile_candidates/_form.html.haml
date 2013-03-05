@@ -18,17 +18,17 @@
     isGeoCoded = false;
     
     function updateInspiringStoryWordCount() {
-      var words = $('#profile_candidate_inspiring_story').val().split(' ').filter( function(word) { return word.length > 0});
+      var words = $('#profile_candidate_inspiring_story').val().match(/\S+/g);
       $("#remaining_inspiring_story_words").text("Sisa kata: " + (500 - words.length));
     }
         
     function updateMotivationWordCount() {
-      var words = $('#profile_candidate_motivation').val().split(' ').filter( function(word) { return word.length > 0});
+      var words = $('#profile_candidate_motivation').val().match(/\S+/g);
       $("#remaining_motivation_words").text("Sisa kata: " + (200 - words.length));
     }
 
     function updateCollaborationWordCount() {
-      var words = $('#profile_candidate_collaboration').val().split(' ').filter( function(word) { return word.length > 0});
+      var words = $('#profile_candidate_collaboration').val().match(/\S+/g);
       $("#remaining_collaboration_words").text("Sisa kata: " + (200 - words.length));
     }
         
