@@ -5,7 +5,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
-    elsif user.has_role? :recruiter
+    elsif user.has_role?(:recruiter_coordinator) || user.has_role?(:recruiter)
       can :manage, ProfileCandidate
     end
     # Define abilities for the passed in user here. For example:
