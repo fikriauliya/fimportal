@@ -13,7 +13,7 @@
         %tr
           %td= link_to user.email, user
           %td= user.created_at.to_date
-          %td= user.roles.first.name.titleize unless user.roles.first.nil?
+          %td= user.roles.collect{|r| r.name}.join(', ').titleize unless user.roles.first.nil?
           %td
             %a.btn.btn-mini{"data-toggle" => "modal", :href => "#role-options-#{user.id}", :type => "button"} Change role
             = render user
