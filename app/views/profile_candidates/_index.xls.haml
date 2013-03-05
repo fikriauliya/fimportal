@@ -1,7 +1,23 @@
 %table
   %thead
     %tr
+      %th No
       %th Nama
+      %th Dinilai oleh
+      %th Organisasi
+      %th Kepanitiaan
+      %th Wawasan
+      %th Kelengkapan
+      %th Total CV
+
+      %th Reliability
+      %th Willingness
+      %th Total Motivasi
+      
+      %th Grand Total
+
+      %th Domisili khusus
+      %th Karakter khusus
       %th Asal sekolah
       %th Provinsi
       %th Surat rekomendasi
@@ -30,9 +46,26 @@
       %th Twitter
       %th Email
   %tbody
-    - profiles.each do |profile|
+    - profiles.each_with_index do |profile, index|
       %tr
+        %td= index+1
         %td= link_to(profile.fullname, profile.photo)
+        %td= !profile.marked_by.nil? ? profile.marked_by.email : ""
+          
+        %td= ProfileCandidate.to_alphabet(profile.organization_point)
+        %td= ProfileCandidate.to_alphabet(profile.committee_point)
+        %td= ProfileCandidate.to_alphabet(profile.personal_knowledge_point)
+        %td= ProfileCandidate.to_alphabet(profile.document_completeness_point)
+        %td= profile.cv_total_point
+        
+        %td= ProfileCandidate.to_alphabet(profile.reliability_point)
+        %td= ProfileCandidate.to_alphabet(profile.willingness_point)
+        %td= profile.motivation_total_point
+        
+        %td= profile.total_point
+        
+        %td= profile.special_location_comment
+        %td= profile.special_character_comment
         %td= profile.school
         %td= profile.province
         %td= link_to('Download', profile.recommendation_letter)
