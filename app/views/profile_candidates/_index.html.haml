@@ -87,14 +87,14 @@
           %td= profile.fullname
           %td= !profile.marked_by.nil? ? profile.marked_by.email : ""
           
-          %td= profile.organization_point
-          %td= profile.committee_point
-          %td= profile.personal_knowledge_point
-          %td= profile.document_completeness_point
+          %td= ProfileCandidate.to_alphabet(profile.organization_point)
+          %td= ProfileCandidate.to_alphabet(profile.committee_point)
+          %td= ProfileCandidate.to_alphabet(profile.personal_knowledge_point)
+          %td= ProfileCandidate.to_alphabet(profile.document_completeness_point)
           %td= profile.cv_total_point
           
-          %td= profile.reliability_point
-          %td= profile.willingness_point
+          %td= ProfileCandidate.to_alphabet(profile.reliability_point)
+          %td= ProfileCandidate.to_alphabet(profile.willingness_point)
           %td= profile.motivation_total_point
           
           %td= profile.total_point

@@ -81,4 +81,19 @@ class ProfileCandidate < ActiveRecord::Base
   def total_point
     ((65 * cv_total_point + 35 * motivation_total_point)/100.0).round(2)
   end
+  
+  def self.to_alphabet(point)
+    case point
+    when 0
+      'E'
+    when 1
+      'D'
+    when 2
+      'C'
+    when 3
+      'B'
+    when 4
+      'A'
+    end
+  end
 end
