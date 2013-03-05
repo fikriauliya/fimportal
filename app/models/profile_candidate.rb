@@ -3,7 +3,9 @@ class ProfileCandidate < ActiveRecord::Base
     :hobby, :information_from, :location, :motivation, :non_formal_education, :organization, 
     :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
     :latitude, :longitude, :agreement, :photo, :recommendation_letter, :collaboration, 
-    :inspiring_story, :province, :status, :submitted_at
+    :inspiring_story, :province
+    
+  attr_accessible :status, :submitted_at, :as => :confirmation_step
   
   attr_accessible :biodata, :is_photo_visible_to_public, :is_visible_to_public,
    :facebook, :twitter, :is_email_displayed, :as => :additional_fields
@@ -21,10 +23,10 @@ class ProfileCandidate < ActiveRecord::Base
     :information_from, :location, :motivation, :phone, :place_of_birth, :religion, 
     :school, :agreement, :inspiring_story, :collaboration, :province, :presence => true
     
-  validates_length_of :motivation, :maximum => 200, :tokenizer => lambda {|str| str.scan(/\w+/) }
-  validates_length_of :inspiring_story, :maximum => 500, :tokenizer => lambda {|str| str.scan(/\w+/) }
-  validates_length_of :collaboration, :maximum => 200, :tokenizer => lambda {|str| str.scan(/\w+/) }
-  validates_length_of :biodata, :maximum => 160
+  validates_length_of :motivation, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\w+/) }
+  validates_length_of :inspiring_story, :maximum => 500, :too_long => "Terlalu panjang, melebihi 500 kata", :tokenizer => lambda {|str| str.scan(/\w+/) }
+  validates_length_of :collaboration, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\w+/) }
+  validates_length_of :biodata, :too_long => 'Terlalu panjang, melebihi 160 karakter', :maximum => 160
   
   validates_format_of :agreement, :with => lambda {|me|
      /\s*Saya,\s*\[?\s*#{me.fullname}\s*\]? \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013\s*/i

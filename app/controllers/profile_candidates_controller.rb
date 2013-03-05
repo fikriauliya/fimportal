@@ -158,7 +158,7 @@ class ProfileCandidatesController < ApplicationController
   
   def submit_confirmation
     @profile = current_user.profile_candidate
-    if params[:confirmation] && params[:confirmation] == "1" && @profile.update_attributes({:status => 'SUBMITTED', :submitted_at => Time.now})
+    if params[:confirmation] && params[:confirmation] == "1" && @profile.update_attributes({:status => 'SUBMITTED', :submitted_at => Time.now}, :as => :confirmation_step)
       redirect_to profile_candidates_path, notice: 'Data Anda sudah kami terima. Terimakasih'
     else
       redirect_to step5_profile_candidates_path, :alert => 'Anda harus mencentang persetujuan di bawah'
