@@ -47,7 +47,7 @@
     %h4 Rekapitulasi pendaftar FIM 14
     #map_canvas{:style => "width:650px; height:300px"}
 .row
-  .span6.service-item
+  .span7.service-item
     %h4
       %i.icon-file>
       FIM 14
@@ -56,9 +56,21 @@
     =link_to profile_candidates_path do
       %button.btn.btn-primary{:type => "submit"} Calon Peserta FIM 14
     %br
-      Jika Anda memakai Internet Explorer (IE) 8, mohon upgrade ke IE 9+ atau
+    %br
+      Jika Anda memakai 
+      %b
+        Internet Explorer (IE) 8,
+      mohon upgrade ke
+      %a{href: 'http://windows.microsoft.com/en-us/internet-explorer/download-ie'} 
+        IE 9+, 
+      %a{href: 'https://www.google.com/intl/en/chrome/browser/'}
+        Chrome
+      ,
+      %a{href: 'http://www.apple.com/safari/'}
+        Safari
+      , atau
       %a{href: 'http://portableapps.com/apps/internet/firefox_portable'}
-        Portable Firefox
+        Firefox
     %hr
     %br
     .fb-like{"data-href" => "http://portal.forumindonesiamuda.org", "data-send" => "true", "data-show-faces" => "true", "data-width" => "450"}
@@ -66,7 +78,7 @@
     %br
     .fb-comments{"data-href" => "http://portal.forumindonesiamuda.org", "data-num-posts" => "15", "data-width" => "600"}
     
-  .span4.offset1
+  .span4
     %a.twitter-timeline{"data-widget-id" => "308020397293568000", :href => "https://twitter.com/fimnews"} Tweets by @fimnews
     :javascript
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
