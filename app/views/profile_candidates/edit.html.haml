@@ -16,13 +16,13 @@
 
       .form-inputs
         = f.input :id, :as => :hidden
-        = f.input :organization_point
-        = f.input :committee_point
-        = f.input :personal_knowledge_point
-        = f.input :document_completeness_point
-        = f.input :reliability_point
-        = f.input :willingness_point
-        = f.input :special_location_comment
-        = f.input :special_character_comment
+        = f.input :organization_point, :label => "Pengalaman organisasi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]]
+        = f.input :committee_point, :label => "Pengalaman kepanitiaan", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]]
+        = f.input :personal_knowledge_point, :label => "Keterampilan dan wawasan pribadi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]]
+        = f.input :document_completeness_point, :label => "Kelengkapan berkas", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]]
+        = f.input :reliability_point, :label => "Reliability", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]]
+        = f.input :willingness_point, :label => "Willingness", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]]
+        = f.input :special_location_comment, :label => "Domisili khusus"
+        = f.input :special_character_comment, :label => "Karakteristik khusus"
       .form-actions
         = f.submit "Simpan", :class => "btn btn-primary"
