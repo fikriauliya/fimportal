@@ -11,6 +11,7 @@ class RecruiterController < ApplicationController
       end
     else
       @profiles = ProfileCandidate.where(:status => 'SUBMITTED').order("submitted_at ASC").paginate(:page => params[:page],:per_page => 20)
+      @recruiter = current_user      
       
       respond_to do |format|
         format.html # index.html.erb

@@ -200,4 +200,13 @@ class ProfileCandidatesController < ApplicationController
       end
     end
   end
+  
+  def update_marked_by
+    authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
+    
+    logger.info "recruiter => #{params[:recruiter]}"
+    logger.info "profile candidate => #{params[:profile_candidate_ids]}"
+    ProfileCandidate.update_all({marked_by_id: params[:recruiter][:id]}, {id: params[:profile_candidate_ids]})
+    redirect_to recruiter_index_path
+  end
 end

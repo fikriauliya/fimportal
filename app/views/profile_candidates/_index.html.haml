@@ -40,6 +40,8 @@
         %th{:style=>'width:15%'} Karakter khusus
         
         %th{:style=>'width:5%'} Ubah
+        - if current_user.has_role? "recruiter_coordinator"
+          %th{:style=>'width:5%'}
 
         %th{'data-hide' => 'all'} Sekolah
         %th{'data-hide' => 'all'} Provinsi
@@ -103,6 +105,8 @@
           %td= profile.special_character_comment
           
           %td= link_to("Ubah", edit_profile_candidate_path(profile))
+          - if current_user.has_role? "recruiter_coordinator"
+            %td= check_box_tag "profile_candidate_ids[]", profile.id
           
           %td= profile.school
           %td= profile.province
