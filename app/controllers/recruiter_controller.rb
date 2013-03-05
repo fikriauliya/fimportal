@@ -10,7 +10,12 @@ class RecruiterController < ApplicationController
         format.xls
       end
     else
-      @profiles = ProfileCandidate.where(:status => 'SUBMITTED').order("submitted_at ASC").paginate(:page => params[:page],:per_page => 20)
+      if current_user.has_role? "recruiter_coordinator"
+        @profiles = ProfileCandidate.where(:status => 'SUBMITTED').order("submitted_at ASC").paginate(:page => params[:page],:per_page => 20)
+      else
+        @profiles = ProfileCandidate.where(:status => 'SUBMITTED', :marked_by_id => current_user.id).order("submitted_at ASC").paginate(:page => params[:page],:per_page => 20)
+      end
+              
       @recruiter = current_user      
       
       respond_to do |format|
