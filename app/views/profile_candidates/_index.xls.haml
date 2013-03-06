@@ -79,13 +79,13 @@
         %td= profile.hobby
         %td= profile.blood_type
         %td= profile.batch
-        %td= raw(simple_format(profile.non_formal_education).gsub(/<br \/>/, '<br style="mso-data-placement:same-cell;"/>'))
-        %td= raw(simple_format(profile.organization).gsub(/<br \/>/, '<br style="mso-data-placement:same-cell;"/>'))
-        %td= raw(simple_format(profile.committee).gsub(/<br \/>/, '<br style="mso-data-placement:same-cell;"/>'))
-        %td= raw(simple_format(profile.workshop).gsub(/<br \/>/, '<br style="mso-data-placement:same-cell;"/>'))
-        %td= raw(simple_format(profile.motivation).gsub(/<br \/>/, '<br style="mso-data-placement:same-cell;"/>'))
-        %td= raw(simple_format(profile.collaboration).gsub(/<br \/>/, '<br style="mso-data-placement:same-cell;"/>'))
-        %td= raw(simple_format(profile.inspiring_story).gsub(/<br \/>/, '<br style="mso-data-placement:same-cell;"/>'))
+        %td= raw(profile.non_formal_education.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>'))
+        %td= raw(profile.organization.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>'))
+        %td= raw(profile.committee.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>'))
+        %td= raw(profile.workshop.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>'))
+        %td= raw(profile.motivation.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>'))
+        %td= raw(profile.collaboration.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>'))
+        %td= raw(profile.inspiring_story.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>'))
         %td= profile.information_from
         %td= profile.application_count
         %td= profile.performance_type
