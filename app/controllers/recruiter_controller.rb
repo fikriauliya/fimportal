@@ -5,7 +5,11 @@ class RecruiterController < ApplicationController
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
 
     if params[:format] == "xls"
-      @profiles = ProfileCandidate.where(:status => 'SUBMITTED').order("submitted_at ASC")
+      if current_user.has_role? "recruiter_coordinator"
+        @profiles = ProfileCandidate.where(:status => 'SUBMITTED').order("submitted_at ASC")
+      else
+        @profiles = ProfileCandidate.where(:status => 'SUBMITTED', :marked_by_id => current_user.id).order("submitted_at ASC")
+      end
       respond_to do |format|
         format.xls
       end
