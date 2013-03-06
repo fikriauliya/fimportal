@@ -79,13 +79,13 @@
         %td= profile.hobby
         %td= profile.blood_type
         %td= profile.batch
-        %td= profile.non_formal_education
-        %td= profile.organization
-        %td= profile.committee
-        %td= profile.workshop
-        %td= profile.motivation
-        %td= profile.collaboration
-        %td= profile.inspiring_story
+        %td= simple_format(profile.non_formal_education).gsub(/<br\/>/, '<br style="mso-data-placement:same-cell;"/>')
+        %td= simple_format(profile.organization).gsub(/<br\/>/, '<br style="mso-data-placement:same-cell;"/>')
+        %td= simple_format(profile.committee).gsub(/<br\/>/, '<br style="mso-data-placement:same-cell;"/>')
+        %td= simple_format(profile.workshop).gsub(/<br\/>/, '<br style="mso-data-placement:same-cell;"/>')
+        %td= simple_format(profile.motivation).gsub(/<br\/>/, '<br style="mso-data-placement:same-cell;"/>')
+        %td= simple_format(profile.collaboration).gsub(/<br\/>/, '<br style="mso-data-placement:same-cell;"/>')
+        %td= simple_format(profile.inspiring_story).gsub(/<br\/>/, '<br style="mso-data-placement:same-cell;"/>')
         %td= profile.information_from
         %td= profile.application_count
         %td= profile.performance_type
