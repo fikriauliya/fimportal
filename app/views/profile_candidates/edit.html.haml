@@ -109,6 +109,9 @@
         %td= @profile.twitter? ? link_to(@profile.twitter, "https://twitter.com/#{@profile.twitter}") : "-"
         %td= @profile.user.email
   
+  %br
+  %br
+  
   .well
     = simple_form_for(@profile, :url => update_point_profile_candidates_path, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
       = f.error_notification
