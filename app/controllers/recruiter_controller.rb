@@ -12,8 +12,10 @@ class RecruiterController < ApplicationController
     else
       if current_user.has_role? "recruiter_coordinator"
         @profiles = ProfileCandidate.where(:status => 'SUBMITTED').order("submitted_at ASC").paginate(:page => params[:page],:per_page => 20)
+        @is_recruiter_coordinator = true
       else
         @profiles = ProfileCandidate.where(:status => 'SUBMITTED', :marked_by_id => current_user.id).order("submitted_at ASC").paginate(:page => params[:page],:per_page => 20)
+        @is_recruiter_coordinator = false
       end
               
       @recruiter = current_user      
