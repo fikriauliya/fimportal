@@ -43,9 +43,6 @@ class RecruiterController < ApplicationController
     file = params[:file]
     @profiles = []
     CSV.foreach(file.path, headers: true) do |row|
-      logger.info "row :"
-      logger.info row.inspect
-
       profile = ProfileCandidate.find_by_id(row["Id"])
       if profile.marked_by == current_user
         profile.organization_point = ProfileCandidate.from_alphabet(row["Organisasi"])
