@@ -96,6 +96,25 @@ class ProfileCandidate < ActiveRecord::Base
       'B'
     when 4
       'A'
+    else
+      'E'
+    end
+  end
+  
+  def self.from_alphabet(alp)
+    case alp
+    when 'E'
+      0
+    when 'D'
+      1
+    when 'C'
+      2
+    when 'B'
+      3
+    when 'A'
+      4
+    else
+      0
     end
   end
 end

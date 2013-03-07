@@ -1,7 +1,11 @@
 .row
   .span12
     %h3 Daftar calon peserta FIM 14
+  .span1
     = link_to('Download', recruiter_index_path(:format => 'xls'), :class => 'btn btn-primary')
+  .span1
+    = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
+    
 .row{:style => 'margin-top: 40px'}
   .span12
     = form_tag update_marked_by_profile_candidates_path, :method => :put do

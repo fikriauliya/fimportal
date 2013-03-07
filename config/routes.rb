@@ -1,5 +1,8 @@
 FimAlumni::Application.routes.draw do
   get "recruiter/index"
+  match 'recruiter/upload' => 'recruiter#new_upload', :via => :get
+  match 'recruiter/upload' => 'recruiter#create_upload', :via => :post
+  match 'recruiter/save_upload' => 'recruiter#save_upload', :via => :post
 
   resources :profile_candidates, :path => 'candidates', :except => [:show] do
     collection do
