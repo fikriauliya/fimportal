@@ -1,4 +1,6 @@
 FimAlumni::Application.routes.draw do
+  get "statistics/index"
+
   get "recruiter/index"
   match 'recruiter/upload' => 'recruiter#new_upload', :via => :get
   match 'recruiter/upload' => 'recruiter#create_upload', :via => :post

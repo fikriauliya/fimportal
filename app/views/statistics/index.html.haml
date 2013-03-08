@@ -1,0 +1,18 @@
+%h3 Statistics
+
+%table.table.table-striped
+  %tr
+    %td Total users
+    %td= User.count
+  %tr
+    %td Filled biodata
+    %td= ProfileCandidate.count
+  %tr
+    %td Uploaded photo
+    %td= ProfileCandidate.where('photo is not null').count
+  %tr
+    %td Uploaded recommendation letter
+    %td= ProfileCandidate.where('recommendation_letter is not null').count
+  %tr
+    %td Submitted
+    %td= ProfileCandidate.where("status = 'SUBMITTED'").count
