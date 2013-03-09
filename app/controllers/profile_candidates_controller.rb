@@ -85,8 +85,8 @@ class ProfileCandidatesController < ApplicationController
     if user_signed_in?
       @profile = ProfileCandidate.find_by_user_id(current_user.id)
     end
-    
-    initialize_latitudes_longitudes(ProfileCandidate.submitted.where(:is_visible_to_public => true).select([:latitude, :longitude]))
+        
+    (@latitudes, @longitudes) = get_profile_candidates_latitudes_longitudes
     
     respond_to do |format|
       format.html # index.html.erb
@@ -159,6 +159,7 @@ class ProfileCandidatesController < ApplicationController
   def submit_confirmation
     @profile = current_user.profile_candidate
     if params[:confirmation] && params[:confirmation] == "1" && @profile.update_attributes({:status => 'SUBMITTED', :submitted_at => Time.now}, :as => :confirmation_step)
+      Rails.cache.delete('profile_candidates_latitudes_longitudes')
       redirect_to profile_candidates_path, notice: 'Data Anda sudah kami terima. Terimakasih'
     else
       redirect_to step5_profile_candidates_path, :alert => 'Anda harus mencentang persetujuan di bawah'

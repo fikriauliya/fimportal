@@ -22,15 +22,23 @@ class ApplicationController < ActionController::Base
   
   private
   
-  def initialize_latitudes_longitudes(profiles)
-    @latitudes = []
-    @longitudes = []
+  def get_latitudes_longitudes(profiles)
+    latitudes = []
+    longitudes = []
    
     profiles.each do |p|
       unless p.latitude.nil? or p.longitude.nil?
-        @latitudes << p.latitude
-        @longitudes << p.longitude
+        latitudes << p.latitude
+        longitudes << p.longitude
       end
     end
+    [latitudes, longitudes]
+  end
+  
+  def get_profile_candidates_latitudes_longitudes
+    Rails.cache.fetch('profile_candidates_latitudes_longitudes') {
+      profiles = ProfileCandidate.submitted.where(:is_visible_to_public => true).select([:latitude, :longitude])
+      get_latitudes_longitudes(profiles)
+    }
   end
 end

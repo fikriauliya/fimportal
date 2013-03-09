@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @profiles = ProfileCandidate.submitted.where(:is_visible_to_public => true).select([:latitude, :longitude])
-    initialize_latitudes_longitudes(@profiles)
+    (@latitudes, @longitudes) = get_profile_candidates_latitudes_longitudes
   end
 end
