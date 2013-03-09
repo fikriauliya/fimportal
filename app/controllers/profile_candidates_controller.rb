@@ -81,7 +81,7 @@ class ProfileCandidatesController < ApplicationController
   end
   
   def index
-    @profiles = ProfileCandidate.where(:status => 'SUBMITTED').order("submitted_at ASC").paginate(:page => params[:page],:per_page => 20)
+    @profiles = ProfileCandidate.submitted.paginate(:page => params[:page],:per_page => 20)
     if user_signed_in?
       @profile = ProfileCandidate.find_by_user_id(current_user.id)
     end

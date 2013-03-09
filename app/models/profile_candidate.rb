@@ -32,6 +32,10 @@ class ProfileCandidate < ActiveRecord::Base
      /\s*Saya,\s*\[?\s*#{me.fullname}\s*\]? \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013\s*/i
    }, :message => "Tidak sama dengan contoh di atas. Coba periksa apakah [Nama Anda] terisi dengan benar (sama dengan nama lengkap yang Anda cantumkan di atas). Untuk mengurangi kemungkinan kesalahejaan, Anda bisa menggunakan fitur copy-paste"
    
+  def self.submitted
+    where(:status => 'SUBMITTED').order("submitted_at ASC")
+  end
+    
   def self.all_school
     ['Institut Manajemen Telkom', 'Institut Pertanian Bogor', 'Institut Teknologi Bandung', 
       'Institut Teknologi Sepuluh Nopember', 'Institut Teknologi Telkom', 'Sampoerna School of Education', 
