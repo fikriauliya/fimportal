@@ -39,3 +39,4 @@ gem "binding_of_caller", ">= 0.6.9", :group => :development
 gem 'will_paginate', '> 3.0'
 gem 'newrelic_rpm'
 gem 's3_direct_upload'
+gem 'dalli'
