@@ -86,7 +86,7 @@ class ProfileCandidatesController < ApplicationController
       @profile = ProfileCandidate.find_by_user_id(current_user.id)
     end
     
-    initialize_latitudes_longitudes(ProfileCandidate.where(:status => 'SUBMITTED', :is_visible_to_public => true).select([:latitude, :longitude]))
+    initialize_latitudes_longitudes(ProfileCandidate.submitted.where(:is_visible_to_public => true).select([:latitude, :longitude]))
     
     respond_to do |format|
       format.html # index.html.erb
