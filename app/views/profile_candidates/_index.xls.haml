@@ -21,7 +21,6 @@
       %th Asal sekolah
       %th Provinsi
       %th Surat rekomendasi
-      %th Biodata singkat
       %th Tanggal lahir
       %th Tempat lahir
       %th Alamat
@@ -69,7 +68,6 @@
         %td= profile.school
         %td= profile.province
         %td= link_to('Download', profile.recommendation_letter)
-        %td= profile.biodata
         %td= profile.dob.strftime("%d %B, %Y")
         %td= profile.place_of_birth
         %td= profile.location
