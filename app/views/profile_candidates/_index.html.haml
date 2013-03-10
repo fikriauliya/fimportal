@@ -38,6 +38,7 @@
 
         %th{:style=>'width:15%'} Domisili khusus
         %th{:style=>'width:15%'} Karakter khusus
+        %th{:style=>'width:5%'} Pernah daftar
         
         %th{:style=>'width:5%'} Ubah
         - if @is_recruiter_coordinator
@@ -64,7 +65,6 @@
         %th{'data-hide' => 'all'} Kolaborasi yang ditawarkan
         %th{'data-hide' => 'all'} Kisah yang menginspirasi
         %th{'data-hide' => 'all'} Info dari
-        %th{'data-hide' => 'all'} Daftar ke
         %th{'data-hide' => 'all'} Pertunjukan
         %th{'data-hide' => 'all'} Direkomendasikan
         
@@ -104,7 +104,7 @@
             
             %td= profile.special_location_comment
             %td= profile.special_character_comment
-            
+            %td= profile.application_count > 0 ? profile.application_count : ''
             %td= link_to("Ubah", edit_profile_candidate_path(profile))
             - if @is_recruiter_coordinator
               %td= check_box_tag "profile_candidate_ids[]", profile.id
@@ -130,7 +130,6 @@
             %td= simple_format(profile.collaboration)
             %td= simple_format(profile.inspiring_story)
             %td= profile.information_from
-            %td= profile.application_count
             %td= profile.performance_type
             %td= profile.referal
           %td= profile.facebook_url
