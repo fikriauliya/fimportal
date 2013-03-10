@@ -36,7 +36,7 @@ module ApplicationHelper
         new google.maps.Size(20, 20)
       );
       
-      var mcOptions = {gridSize: 10, maxZoom: 15};
+      var mcOptions = {gridSize: 15, maxZoom: 15};
       var markers = [];
       for (var i = 0; i < varLat.length; i++) {
         var newLatLng = new google.maps.LatLng(varLat[i], varLng[i]);
