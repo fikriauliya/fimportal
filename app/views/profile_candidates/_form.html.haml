@@ -15,7 +15,7 @@
     
     window.onload = loadScript;
     
-    isGeoCoded = false;
+    var isGeoCoded = false;
     
     function updateInspiringStoryWordCount() {
       var words = $('#profile_candidate_inspiring_story').val().match(/\S+/g);
@@ -73,27 +73,49 @@
             var address = $("#profile_candidate_location").val();
             var province = $("#profile_candidate_province").val() + ", Indonesia";
             
+            var selectedIndex = $("#profile_candidate_province").prop('selectedIndex')-1
+            
+            var provinceLatitude = "";
+            var provinceLongitude = ""
+            if (selectedIndex > 0) {
+              provinceLatitude = latitudes[selectedIndex];
+              provinceLongitude = longitudes[selectedIndex];
+            }
+                
             console.log("Looking for location by address...: ");
             console.log(address);
             
             geocoder.geocode({'address': address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                latitude.val(results[0].geometry.location.lat());
-                longitude.val(results[0].geometry.location.lng());
-                
+                if (provinceLatitude != "" && provinceLongitude != "") {
+                  var deltaLatitude = Math.abs(results[0].geometry.location.lat() - provinceLatitude);
+                  var deltaLongitude = Math.abs(results[0].geometry.location.lng() - provinceLongitude);
+                  
+                  console.log("Delta Latitude:");
+                  console.log(deltaLatitude);
+                  console.log("Delta Longitude:");
+                  console.log(deltaLongitude);
+                  
+                  if (deltaLatitude > 10 || deltaLongitude > 10)
+                  {
+                    latitude.val(provinceLatitude);
+                    longitude.val(provinceLongitude);
+                    isGeoCoded = true;
+                  }
+                }
+              
+                if (!isGeoCoded) {
+                  latitude.val(results[0].geometry.location.lat());
+                  longitude.val(results[0].geometry.location.lng());
+                }
                 console.log("Found location: " + latitude.val() + ", " + longitude.val());
               } else {
                 console.log("Looking for location by province...: ");
                 console.log(province);
                 
-                selectedIndex = $("#profile_candidate_province").prop('selectedIndex')-1
-                if (selectedIndex > 0) {
-                  latitude.val(latitudes[selectedIndex]);
-                  longitude.val(longitudes[selectedIndex]);
-                } else {
-                  latitude.val('');
-                  longitude.val('');
-                }
+                latitude.val(provinceLatitude);
+                longitude.val(provinceLongitude);
+
                 console.log("Found location: " + latitude.val() + ", " + longitude.val());
               }
               isGeoCoded = true;
