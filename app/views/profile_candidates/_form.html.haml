@@ -53,6 +53,15 @@
         updateCollaborationWordCount();
       });
       
+      var latitudes = ['', '4.69513', '-8.40952', '-6.40582', '-3.80065', '0.55251', '-6.21154', '-1.48518', '-7.09091', '-7.15097', 
+        '-7.53606', '-0.27878', '-3.09264', '-1.68149', '1.64063', '0.56033', '-2.74105', '3.94565', '-4.55858', '-3.23846',
+        '1.57100', '-8.65738', '-8.65293', '-4.35450', '-1.33612', '0.29335', '-2.84414', '-3.66880', '-1.43003', '-4.14491',
+        '0.62469', '-0.73994', '-3.31944', '2.11535', '-7.79722']
+      var longitudes = ['', '96.74940', '115.18892', '106.06402', '102.25620', '123.06550', '106.84517', '102.43806', '107.66889', '110.14026', 
+        '112.23840', '111.47529', '115.28376', '113.38235', '116.41939', '123.05539', '106.44059', '108.14287', '105.40681', '130.14527',
+        '127.80877', '121.07937', '117.36165', '139.36531', '133.17472', '101.70683', '119.23208', '119.97405', '121.44562', '122.17460',
+        '123.97500', '100.80001', '103.91440', '99.54510', '110.36880']
+      
       $("#profile_form").submit(function (event) {
         var latitude = $("#profile_candidate_latitude");
         var longitude = $("#profile_candidate_longitude");
@@ -62,7 +71,9 @@
 
           if (!(typeof geocoder === "undefined")) {
             var address = $("#profile_candidate_location").val();
-            console.log("Looking for location...: ");
+            var province = $("#profile_candidate_province").val() + ", Indonesia";
+            
+            console.log("Looking for location by address...: ");
             console.log(address);
             
             geocoder.geocode({'address': address}, function(results, status) {
@@ -70,6 +81,19 @@
                 latitude.val(results[0].geometry.location.lat());
                 longitude.val(results[0].geometry.location.lng());
                 
+                console.log("Found location: " + latitude.val() + ", " + longitude.val());
+              } else {
+                console.log("Looking for location by province...: ");
+                console.log(province);
+                
+                selectedIndex = $("#profile_candidate_province").prop('selectedIndex')-1
+                if (selectedIndex > 0) {
+                  latitude.val(latitudes[selectedIndex]);
+                  longitude.val(longitudes[selectedIndex]);
+                } else {
+                  latitude.val('');
+                  longitude.val('');
+                }
                 console.log("Found location: " + latitude.val() + ", " + longitude.val());
               }
               isGeoCoded = true;
