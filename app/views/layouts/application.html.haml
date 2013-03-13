@@ -23,6 +23,11 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+      
+    /[if lt IE 9]
+      :javascript
+        alert("Anda memakai Internet Explorer (IE) 8, mohon upgrade ke IE 9+, Chrome , Safari , atau Firefox");
+          
     %header.navbar.navbar-fixed-top
       %nav.navbar-inner
         .container
