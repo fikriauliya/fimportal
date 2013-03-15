@@ -16,3 +16,17 @@
   %tr
     %td Submitted
     %td= ProfileCandidate.where("status = 'SUBMITTED'").count
+
+%hr
+
+%table.table.table-striped{:style => 'width:250px'}
+  %tr
+    %th{:style => 'width:200px'} Province
+    %th Count
+  -@provinces_count.each do |province|
+    %tr
+      %td= province[0]
+      %td= province[1]
+  
+%b Provinsi yang belum ada:
+=@unexist_provinces.join(", ")
