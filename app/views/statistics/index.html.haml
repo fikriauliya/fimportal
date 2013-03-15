@@ -19,14 +19,26 @@
 
 %hr
 
-%table.table.table-striped{:style => 'width:250px'}
-  %tr
-    %th{:style => 'width:200px'} Province
-    %th Count
-  -@provinces_count.each do |province|
-    %tr
-      %td= province[0]
-      %td= province[1]
-  
-%b Provinsi yang belum ada:
-=@unexist_provinces.join(", ")
+.row
+  .span3
+    %table.table.table-striped
+      %tr
+        %th{:style => 'width:70%'} Province
+        %th Count
+      -@provinces_count.each do |province|
+        %tr
+          %td= province[0]
+          %td= province[1]
+         
+    %b Provinsi yang belum ada:
+    =@unexist_provinces.join(", ")
+
+  .span7
+   %table.table.table-striped
+      %tr
+        %th{:style => 'width:70%'} School
+        %th Count
+      -@schools_count.each do |school|
+        %tr
+          %td= school[0]
+          %td= school[1]
