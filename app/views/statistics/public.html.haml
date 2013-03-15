@@ -1,0 +1,35 @@
+%h3 Statistik Sementara Pendaftar FIM 14
+
+%p 
+  Jumlah akun yang melakukan registrasi:
+  %b= User.count 
+%p
+  Jumlah aplikasi lengkap:
+  %b= ProfileCandidate.where("status = 'SUBMITTED'").count
+
+%hr
+
+.row
+  .span4
+    %h4 Distribusi per provinsi:
+    %br
+    %table.table.table-striped
+      %tr
+        %th{:style => 'width:70%'} Provinsi
+        %th Jumlah
+      -@provinces_count.each do |province|
+        %tr
+          %td= province[0]
+          %td= province[1]
+         
+  .span8
+    %h4 Distribusi per sekolah:
+    %br
+    %table.table.table-striped
+      %tr
+        %th{:style => 'width:70%'} Nama Sekolah
+        %th Jumlah
+      -@schools_count.each do |school|
+        %tr
+          %td= school[0]
+          %td= school[1]

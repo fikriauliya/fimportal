@@ -1,5 +1,6 @@
 FimAlumni::Application.routes.draw do
-  get "statistics/index"
+  get "statistics/complete"
+  match "statistics/" => 'statistics#public', :via => :get, :as => 'statistics_public'
 
   get "recruiter/index"
   match 'recruiter/upload' => 'recruiter#new_upload', :via => :get
