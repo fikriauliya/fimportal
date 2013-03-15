@@ -2,6 +2,8 @@ class StatisticsController < ApplicationController
   before_filter :authenticate_user!
   skip_before_filter :authenticate_user!, :only => [:public]
   
+  caches_action :public, :expires_in => 2.minutes
+  
   def complete
     authorize! :index, User, :message => 'Not authorized as an administrator.'
     @provinces_count = ProfileCandidate.count(:all, :group => :province, :order => 'count_all DESC')
