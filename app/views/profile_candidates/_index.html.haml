@@ -3,7 +3,20 @@
     $(function() {
       $('.footable').footable();
     });
-    
+  -if full_column
+    :javascript
+      $(function() {
+        var checkbox = $('input[name="profile_candidate_ids[]"]');
+        var autoChecking = false
+        checkbox.change(function() {
+          if (this.checked && !autoChecking) {
+            autoChecking = true;
+            $(this).parents('tr').first().nextAll('tr').slice(0, 4).find(':checkbox').prop('checked', true)
+            autoChecking = false;
+          }
+        });
+      });
+      
 
 
 %div{:style => "text-align:center"}
