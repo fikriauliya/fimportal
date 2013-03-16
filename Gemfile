@@ -40,3 +40,5 @@ gem 'newrelic_rpm'
 gem 's3_direct_upload'
 gem 'dalli'
 gem 'memcachier'
+gem 'unicorn'
+gem "rack-timeout"
