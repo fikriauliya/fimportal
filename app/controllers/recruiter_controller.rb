@@ -16,9 +16,13 @@ class RecruiterController < ApplicationController
     else
       if current_user.has_role? "recruiter_coordinator"
         @profiles = ProfileCandidate.includes(:user).submitted.paginate(:page => params[:page],:per_page => 20)
+        @marked_count = ProfileCandidate.where(:status => 'MARKED').count
+        @submitted_count = ProfileCandidate.where(:status => 'SUBMITTED').count
         @is_recruiter_coordinator = true
       else
         @profiles = ProfileCandidate.includes(:user).submitted.where(:marked_by_id => current_user.id).paginate(:page => params[:page],:per_page => 20)
+        @marked_count = ProfileCandidate.where(:status => 'MARKED', :marked_by_id => current_user.id).count
+        @submitted_count = ProfileCandidate.where(:status => 'SUBMITTED', :marked_by_id => current_user.id).count
         @is_recruiter_coordinator = false
       end
               

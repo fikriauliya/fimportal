@@ -5,6 +5,12 @@
     = link_to('Download', recruiter_index_path(:format => 'xls'), :class => 'btn btn-primary')
   .span1
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
+  .span2
+    %p
+      Dinilai:
+      %b= @marked_count
+      | Sisa:
+      %b= @submitted_count
     
 .row{:style => 'margin-top: 40px'}
   .span12
