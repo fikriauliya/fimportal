@@ -67,7 +67,7 @@ class RecruiterController < ApplicationController
     profiles.each do |p|
       profile = ProfileCandidate.find_by_id(p[:id])
       if profile.marked_by == current_user
-        p.status = 'MARKED'
+        p[:status] = 'MARKED'
         profile.update_attributes!(p, :as => :recruiter)
       end
     end
