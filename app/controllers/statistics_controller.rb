@@ -12,7 +12,7 @@ class StatisticsController < ApplicationController
   end
   
   def public
-    @provinces_count = ProfileCandidate.where(:status => 'SUBMITTED').count(:all, :group => :province, :order => 'count_all DESC')
-    @schools_count = ProfileCandidate.where(:status => 'SUBMITTED').count(:all, :group => :school, :order => 'count_all DESC')
+    @provinces_count = ProfileCandidate.submitted.count(:all, :group => :province, :order => 'count_all DESC')
+    @schools_count = ProfileCandidate.submitted.count(:all, :group => :school, :order => 'count_all DESC')
   end
 end

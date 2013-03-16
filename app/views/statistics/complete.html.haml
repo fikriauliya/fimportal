@@ -15,7 +15,7 @@
     %td= ProfileCandidate.where('recommendation_letter is not null').count
   %tr
     %td Submitted
-    %td= ProfileCandidate.where("status = 'SUBMITTED'").count
+    %td= ProfileCandidate.submitted.count
 
 %hr
 

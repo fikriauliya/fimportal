@@ -5,7 +5,7 @@ class ProfileCandidatesController < ApplicationController
   
   def check_submission_status!
     @profile = current_user.profile_candidate
-    if !@profile.nil? && @profile.status == "SUBMITTED"
+    if !@profile.nil? && (@profile.status == "SUBMITTED" || @profile.status == "MARKED")
       redirect_to profile_candidates_path, :notice => "Data Anda sudah kami terima. Terimakasih"
     end
   end
@@ -192,7 +192,7 @@ class ProfileCandidatesController < ApplicationController
     
     respond_to do |format|
       if @profile.update_attributes(params[:profile_candidate], :as => :recruiter)
-        @profile.update_attribute(:marked_by, current_user)
+        @profile.update_attributes({:marked_by => current_user, :status => 'MARKED'}, :as => :recruiter)
         format.html { redirect_to recruiter_index_path, :notice => "Data telah disimpan" }
         format.json { head :no_content }
       else

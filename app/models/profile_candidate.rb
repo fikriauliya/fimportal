@@ -13,7 +13,7 @@ class ProfileCandidate < ActiveRecord::Base
   attr_accessible :marked_by, 
     :organization_point, :committee_point, :personal_knowledge_point, :document_completeness_point,
     :reliability_point, :willingness_point, 
-    :special_location_comment, :special_character_comment,
+    :special_location_comment, :special_character_comment, :status,
     :as => :recruiter
   
   belongs_to :user
@@ -33,7 +33,7 @@ class ProfileCandidate < ActiveRecord::Base
    }, :message => "Tidak sama dengan contoh di atas. Coba periksa apakah [Nama Anda] terisi dengan benar (sama dengan nama lengkap yang Anda cantumkan di atas). Untuk mengurangi kemungkinan kesalahejaan, Anda bisa menggunakan fitur copy-paste"
    
   def self.submitted
-    where(:status => 'SUBMITTED').order("submitted_at ASC")
+    where("status = 'SUBMITTED' or status = 'MARKED'").order("submitted_at ASC")
   end
     
   def self.all_school

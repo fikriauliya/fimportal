@@ -98,7 +98,7 @@
           %td= profile.school
           %td= profile.biodata
         -else
-          %td= profile.fullname
+          %td{:style => profile.status == 'MARKED' ? 'font-weight:bold; text-decoration:underline' : ''}= profile.fullname
           %td= !profile.marked_by.nil? ? profile.marked_by.email : ""
           
           %td= ProfileCandidate.to_alphabet(profile.organization_point)

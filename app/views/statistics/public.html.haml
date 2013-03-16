@@ -5,7 +5,7 @@
   %b= User.count 
 %p
   Jumlah aplikasi lengkap:
-  %b= ProfileCandidate.where("status = 'SUBMITTED'").count
+  %b= ProfileCandidate.submitted.count
 
 %hr
 
