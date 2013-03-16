@@ -206,6 +206,7 @@ class ProfileCandidatesController < ApplicationController
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
     
     ProfileCandidate.update_all({marked_by_id: params[:recruiter][:id]}, {id: params[:profile_candidate_ids]})
-    redirect_to recruiter_index_path
+    index_param = if params[:page] then {:page => params[:page]} end
+    redirect_to recruiter_index_path(index_param)
   end
 end
