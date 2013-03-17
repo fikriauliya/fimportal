@@ -18,7 +18,7 @@ class RecruiterController < ApplicationController
       end
     else
       if current_user.has_role? "recruiter_coordinator"
-        @profiles = ProfileCandidate.includes(:user).submitted
+        @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted
         if params[:marked_by_id]
           @profiles = @profiles.where(:marked_by_id => params[:marked_by_id])
         end
@@ -32,7 +32,7 @@ class RecruiterController < ApplicationController
         }
         @is_recruiter_coordinator = true
       else
-        @profiles = ProfileCandidate.includes(:user).submitted.where(:marked_by_id => current_user.id).paginate(:page => params[:page],:per_page => 20)
+        @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted.where(:marked_by_id => current_user.id).paginate(:page => params[:page],:per_page => 20)
         
         @marked_count = Rails.cache.fetch('marked_count_' + current_user.id.to_s, :expires_in => 5.minutes) {
           ProfileCandidate.where(:status => 'MARKED', :marked_by_id => current_user.id).count
