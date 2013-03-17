@@ -5,13 +5,13 @@
     = link_to('Download', recruiter_index_path(:format => 'xls'), :class => 'btn btn-primary')
   .span1
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
-  .span7
+  .span6
     -if @is_recruiter_coordinator
       -if params[:marked_by_id]
         =link_to("Lihat semua", recruiter_index_path, :class => 'btn')
       -else 
         =link_to("Lihat penugasan saya", recruiter_index_path(:marked_by_id => current_user.id), :class => 'btn')
-  .span3
+  .span4
     %p
       Dinilai:
       %b= @marked_count
