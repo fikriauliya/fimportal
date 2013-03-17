@@ -14,7 +14,7 @@
       %b{:style => "font-size:20px"}
         #{"- atau -"}
   .span3
-    %h4 Log in
+    %h4 Log in (jika pernah Registrasi)
     .well
       = simple_form_for(user, :url => session_path(user), :html => {:class => 'form-vertical' }) do |f|
         = f.input :email
