@@ -5,17 +5,24 @@
     = link_to('Download', recruiter_index_path(:format => 'xls'), :class => 'btn btn-primary')
   .span1
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
-  .span2
+  .span7
+    -if @is_recruiter_coordinator
+      -if params[:marked_by_id]
+        =link_to("Lihat semua", recruiter_index_path, :class => 'btn')
+      -else 
+        =link_to("Lihat penugasan saya", recruiter_index_path(:marked_by_id => current_user.id), :class => 'btn')
+  .span3
     %p
       Dinilai:
       %b= @marked_count
       | Sisa:
       %b= @submitted_count
-    
-.row{:style => 'margin-top: 40px'}
+      (Diupdate tiap 5 menit)
+
+.row{:style => 'margin-top: 20px'}
   .span12
     = form_tag update_marked_by_profile_candidates_path, :method => :put do
-      - if current_user.has_role? "recruiter_coordinator"
+      - if @is_recruiter_coordinator
         = select("recruiter", "id", Role.includes(:users).find_by_name('recruiter').users.collect{|u| [ u.email, u.id]})
         - if params[:page]
           = hidden_field_tag("page", params[:page]) 
