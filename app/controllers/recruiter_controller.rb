@@ -7,6 +7,9 @@ class RecruiterController < ApplicationController
     if params[:format] == "xls"
       if current_user.has_role? "recruiter_coordinator"
         @profiles = ProfileCandidate.includes(:user).submitted
+        if params[:marked_by_id]
+          @profiles = @profiles.where(:marked_by_id => params[:marked_by_id])
+        end
       else
         @profiles = ProfileCandidate.includes(:user).submitted.where(:marked_by_id => current_user.id)
       end
@@ -15,7 +18,12 @@ class RecruiterController < ApplicationController
       end
     else
       if current_user.has_role? "recruiter_coordinator"
-        @profiles = ProfileCandidate.includes(:user).submitted.paginate(:page => params[:page],:per_page => 20)
+        @profiles = ProfileCandidate.includes(:user).submitted
+        if params[:marked_by_id]
+          @profiles = @profiles.where(:marked_by_id => params[:marked_by_id])
+        end
+        @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)
+        
         @marked_count = ProfileCandidate.where(:status => 'MARKED').count
         @submitted_count = ProfileCandidate.where(:status => 'SUBMITTED').count
         @is_recruiter_coordinator = true
