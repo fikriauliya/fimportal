@@ -27,12 +27,20 @@ module RecruiterHelper
     if recruiter_id == :all
       Rails.cache.fetch('all_average_point', :expires_in => 10.minutes) {
         profiles = ProfileCandidate.where(:status => 'MARKED')
-        (profiles.inject(0.0){|sum, el| sum + el.total_point}/profiles.length).round(2)
+        if profiles.length == 0
+          nil
+        else
+          (profiles.inject(0.0){|sum, el| sum + el.total_point}/profiles.length).round(2)
+        end
       }
     else
       Rails.cache.fetch('average_point_' + recruiter_id.to_s, :expires_in => 10.minutes) {
         profiles = ProfileCandidate.where(:status => 'MARKED', :marked_by_id => recruiter_id)
-        (profiles.inject(0.0){|sum, el| sum + el.total_point}/profiles.length).round(2)
+        if profiles.length == 0
+          nil
+        else
+          (profiles.inject(0.0){|sum, el| sum + el.total_point}/profiles.length).round(2)
+        end
       }
     end
   end
