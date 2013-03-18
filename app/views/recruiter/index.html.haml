@@ -5,19 +5,51 @@
     = link_to('Download', recruiter_index_path(:format => 'xls'), :class => 'btn btn-primary')
   .span1
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
-  .span7
+  .span4
     -if @is_recruiter_coordinator
       -if params[:marked_by_id]
         =link_to("Lihat semua", recruiter_index_path, :class => 'btn')
       -else 
         =link_to("Lihat penugasan saya", recruiter_index_path(:marked_by_id => current_user.id), :class => 'btn')
-  .span3
+  .span6
     %p
       Dinilai:
-      %b= @marked_count
+      %b= count_marked(current_user.id)
       | Sisa:
-      %b= @submitted_count
-      (Update per 5 menit)
+      %b= count_submitted(current_user.id)
+      (Update per 10 menit)
+      - if @is_recruiter_coordinator
+        %table.table.table-condensed.table-striped
+          %thead
+            %tr
+              %th Email
+              %th Dinilai
+              %th Sisa
+              %th Avg
+              %th Max
+              %th Min
+          %tbody
+            - Role.includes(:users).find_by_name('recruiter').users.each do |r|
+              %tr
+                %td= r.email
+                %td= count_marked(r.id)
+                %td= count_submitted(r.id)
+                %td= average_point(r.id)
+                %td= max_point(r.id)
+                %td= min_point(r.id)
+            %tr
+              %td
+                %b Global
+              %td
+                %b= count_marked(:all)
+              %td
+                %b= count_submitted(:all)
+              %td
+                %b= average_point(:all)
+              %td
+                %b= max_point(:all)
+              %td
+                %b= min_point(:all)
 
 .row{:style => 'margin-top: 20px'}
   .span12

@@ -23,28 +23,12 @@ class RecruiterController < ApplicationController
           @profiles = @profiles.where(:marked_by_id => params[:marked_by_id])
         end
         @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)
-        
-        @marked_count = Rails.cache.fetch('all_marked_count', :expires_in => 5.minutes) {
-          ProfileCandidate.where(:status => 'MARKED').count
-        }
-        @submitted_count = Rails.cache.fetch('all_submitted_count', :expires_in => 5.minutes) {
-          ProfileCandidate.where(:status => 'SUBMITTED').count
-        }
         @is_recruiter_coordinator = true
       else
         @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted.where(:marked_by_id => current_user.id).paginate(:page => params[:page],:per_page => 20)
-        
-        @marked_count = Rails.cache.fetch('marked_count_' + current_user.id.to_s, :expires_in => 5.minutes) {
-          ProfileCandidate.where(:status => 'MARKED', :marked_by_id => current_user.id).count
-        }
-        @submitted_count = Rails.cache.fetch('submitted_count_' + current_user.id.to_s, :expires_in => 5.minutes) {
-          ProfileCandidate.where(:status => 'SUBMITTED', :marked_by_id => current_user.id).count
-        }
         @is_recruiter_coordinator = false
       end
               
-      @recruiter = current_user      
-      
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @profiles }
