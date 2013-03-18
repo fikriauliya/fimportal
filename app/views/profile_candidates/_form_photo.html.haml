@@ -1,7 +1,7 @@
 .span8
   .well
     = s3_uploader_form post: upload_photo_profile_candidates_path, as: "profile_candidate[photo]", 
-      id: "myS3Uploader", max_file_size: 300.kilobytes do
+      id: "myS3Uploader", max_file_size: 400.kilobytes do
       - if @profile.photo?
         .controls
           = link_to @profile.photo do
