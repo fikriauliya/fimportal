@@ -42,18 +42,18 @@
           %th Email
           %th Dinilai
           %th Sisa
-          %th Avg
-          %th Max
           %th Min
+          %th Max
+          %th Avg
       %tbody
         - Role.includes(:users).find_by_name('recruiter').users.each do |r|
           %tr
             %td= r.email
             %td= count_marked(r.id)
             %td= count_submitted(r.id)
-            %td= average_point(r.id)
-            %td= max_point(r.id)
             %td= min_point(r.id)
+            %td= max_point(r.id)
+            %td= average_point(r.id)
         %tr
           %td
             %b Global
@@ -62,8 +62,8 @@
           %td
             %b= count_submitted(:all)
           %td
-            %b= average_point(:all)
+            %b= min_point(:all)
           %td
             %b= max_point(:all)
           %td
-            %b= min_point(:all)
+            %b= average_point(:all)

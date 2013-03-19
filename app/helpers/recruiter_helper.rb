@@ -26,7 +26,9 @@ module RecruiterHelper
   def average_point(recruiter_id=:all)
     if recruiter_id == :all
       Rails.cache.fetch('all_average_point', :expires_in => 10.minutes) {
-        profiles = ProfileCandidate.where(:status => 'MARKED')
+        profiles = ProfileCandidate.where(:status => 'MARKED').select([:organization_point, :committee_point, 
+          :personal_knowledge_point, :document_completeness_point,
+          :reliability_point, :willingness_point])
         if profiles.length == 0
           nil
         else
@@ -35,7 +37,9 @@ module RecruiterHelper
       }
     else
       Rails.cache.fetch('average_point_' + recruiter_id.to_s, :expires_in => 10.minutes) {
-        profiles = ProfileCandidate.where(:status => 'MARKED', :marked_by_id => recruiter_id)
+        profiles = ProfileCandidate.where(:status => 'MARKED', :marked_by_id => recruiter_id).select([:organization_point, :committee_point, 
+          :personal_knowledge_point, :document_completeness_point,
+          :reliability_point, :willingness_point])
         if profiles.length == 0
           nil
         else
@@ -48,12 +52,16 @@ module RecruiterHelper
   def min_point(recruiter_id=:all)
     if recruiter_id == :all
       Rails.cache.fetch('all_min_point', :expires_in => 10.minutes) {
-        profiles = ProfileCandidate.where(:status => 'MARKED')
+        profiles = ProfileCandidate.where(:status => 'MARKED').select([:organization_point, :committee_point, 
+          :personal_knowledge_point, :document_completeness_point,
+          :reliability_point, :willingness_point])
         profiles.collect{|p| p.total_point}.min
       }
     else
       Rails.cache.fetch('min_point_' + recruiter_id.to_s, :expires_in => 10.minutes) {
-        profiles = ProfileCandidate.where(:status => 'MARKED', :marked_by_id => recruiter_id)
+        profiles = ProfileCandidate.where(:status => 'MARKED', :marked_by_id => recruiter_id).select([:organization_point, :committee_point, 
+          :personal_knowledge_point, :document_completeness_point,
+          :reliability_point, :willingness_point])
         profiles.collect{|p| p.total_point}.min
       }
     end
@@ -62,12 +70,16 @@ module RecruiterHelper
   def max_point(recruiter_id=:all)
     if recruiter_id == :all
       Rails.cache.fetch('all_max_point', :expires_in => 10.minutes) {
-        profiles = ProfileCandidate.where(:status => 'MARKED')
+        profiles = ProfileCandidate.where(:status => 'MARKED').select([:organization_point, :committee_point, 
+          :personal_knowledge_point, :document_completeness_point,
+          :reliability_point, :willingness_point])
         max_profile = profiles.collect{|p| p.total_point}.max
       }
     else
       Rails.cache.fetch('max_point_' + recruiter_id.to_s, :expires_in => 10.minutes) {
-        profiles = ProfileCandidate.where(:status => 'MARKED', :marked_by_id => recruiter_id)
+        profiles = ProfileCandidate.where(:status => 'MARKED', :marked_by_id => recruiter_id).select([:organization_point, :committee_point, 
+          :personal_knowledge_point, :document_completeness_point,
+          :reliability_point, :willingness_point])
         max_profile = profiles.collect{|p| p.total_point}.max
       }
     end
