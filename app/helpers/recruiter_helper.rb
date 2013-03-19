@@ -19,7 +19,7 @@ module RecruiterHelper
     ProfileCandidate.where("status = 'SUBMITTED' AND marked_by_id IS NULL").count
   end
   
-  def average_point(recruiter_id=:all)
+  def average_point(recruiter_id=:all, criteria=:total_point)
     if recruiter_id == :all
       profiles = ProfileCandidate.where(:status => 'MARKED').select([:organization_point, :committee_point, 
         :personal_knowledge_point, :document_completeness_point,
@@ -27,7 +27,7 @@ module RecruiterHelper
       if profiles.length == 0
         nil
       else
-        (profiles.inject(0.0){|sum, el| sum + el.total_point}/profiles.length).round(2)
+        (profiles.inject(0.0){|sum, el| sum + el.send(criteria)}/profiles.length).round(2)
       end
     else
       profiles = ProfileCandidate.where(:status => 'MARKED', :marked_by_id => recruiter_id).select([:organization_point, :committee_point, 
@@ -36,7 +36,7 @@ module RecruiterHelper
       if profiles.length == 0
         nil
       else
-        (profiles.inject(0.0){|sum, el| sum + el.total_point}/profiles.length).round(2)
+        (profiles.inject(0.0){|sum, el| sum + el.send(criteria)}/profiles.length).round(2)
       end
     end
   end
