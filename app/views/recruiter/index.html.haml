@@ -11,13 +11,14 @@
         =link_to("Lihat semua", recruiter_index_path, :class => 'btn')
       -else 
         =link_to("Lihat penugasan saya", recruiter_index_path(:marked_by_id => current_user.id), :class => 'btn')
-  .span4
-    %p
-      Dinilai:
-      %b= count_marked(current_user.id)
-      | Sisa:
-      %b= count_submitted(current_user.id)
-      (Update per 10 menit)
+  - cache('recruiter_progress_' + current_user.id.to_s, :expires_in => 10.minutes) do
+    .span4
+      %p
+        Dinilai:
+        %b= count_marked(current_user.id)
+        | Sisa:
+        %b= count_submitted(current_user.id)
+        (Update per 10 menit)
 
 .row{:style => 'margin-top: 20px'}
   .span12
@@ -33,37 +34,38 @@
         %br
       = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles, :full_column => true}
 
-.row{:style => 'margin-top: 20px'}
-  .span5
-    %h4 Statistik penilaian (Update per 10 menit)
-    %table.table.table-condensed.table-striped
-      %thead
-        %tr
-          %th Email
-          %th Dinilai
-          %th Sisa
-          %th Min
-          %th Max
-          %th Avg
-      %tbody
-        - Role.includes(:users).find_by_name('recruiter').users.each do |r|
+- cache('recruiters_statistics', :expires_in => 10.minutes) do
+  .row{:style => 'margin-top: 20px'}
+    .span5
+      %h4 Statistik penilaian (Update per 10 menit)
+      %table.table.table-condensed.table-striped
+        %thead
           %tr
-            %td= r.email
-            %td= count_marked(r.id)
-            %td= count_submitted(r.id)
-            %td= min_point(r.id)
-            %td= max_point(r.id)
-            %td= average_point(r.id)
-        %tr
-          %td
-            %b Global
-          %td
-            %b= count_marked(:all)
-          %td
-            %b= count_submitted(:all)
-          %td
-            %b= min_point(:all)
-          %td
-            %b= max_point(:all)
-          %td
-            %b= average_point(:all)
+            %th Email
+            %th Dinilai
+            %th Sisa
+            %th Min
+            %th Max
+            %th Avg
+        %tbody
+          - Role.includes(:users).find_by_name('recruiter').users.each do |r|
+            %tr
+              %td= r.email
+              %td= count_marked(r.id)
+              %td= count_submitted(r.id)
+              %td= min_point(r.id)
+              %td= max_point(r.id)
+              %td= average_point(r.id)
+          %tr
+            %td
+              %b Global
+            %td
+              %b= count_marked(:all)
+            %td
+              %b= count_submitted(:all)
+            %td
+              %b= min_point(:all)
+            %td
+              %b= max_point(:all)
+            %td
+              %b= average_point(:all)
