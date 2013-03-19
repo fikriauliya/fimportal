@@ -1,25 +1,17 @@
 module RecruiterHelper
   def count_marked(recruiter_id=:all)
     if recruiter_id == :all
-      Rails.cache.fetch('all_marked_count', :expires_in => 10.minutes) {
-        ProfileCandidate.where(:status => 'MARKED').count
-      }
+      ProfileCandidate.where(:status => 'MARKED').count
     else
-      Rails.cache.fetch('marked_count_' + recruiter_id.to_s, :expires_in => 10.minutes) {
-        ProfileCandidate.where(:status => 'MARKED', :marked_by_id => recruiter_id).count
-      }
+      ProfileCandidate.where(:status => 'MARKED', :marked_by_id => recruiter_id).count
     end
   end
   
   def count_submitted(recruiter_id=:all)
     if recruiter_id == :all
-      Rails.cache.fetch('all_submitted_count', :expires_in => 10.minutes) {
-        ProfileCandidate.where(:status => 'SUBMITTED').count
-      }
+      ProfileCandidate.where(:status => 'SUBMITTED').count
     else
-      Rails.cache.fetch('submitted_count_' + recruiter_id.to_s, :expires_in => 10.minutes) {
-        ProfileCandidate.where(:status => 'SUBMITTED', :marked_by_id => recruiter_id).count
-      }
+      ProfileCandidate.where(:status => 'SUBMITTED', :marked_by_id => recruiter_id).count
     end
   end
   
