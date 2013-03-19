@@ -15,4 +15,10 @@ class StatisticsController < ApplicationController
     @provinces_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :province, :order => 'count_all DESC')
     @schools_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :school, :order => 'count_all DESC')
   end
+  
+  def not_submitted_emails
+    authorize! :index, User, :message => 'Not authorized as an administrator.'
+    emails = User.joins("LEFT OUTER JOIN profile_candidates ON users.id = profile_candidates.user_id WHERE profile_candidates.status = 'NOT SUBMITTED' OR profile_candidates.status IS NULL").select(:email).collect{|e| e.email}
+    render :text => emails.join(';')
+  end
 end

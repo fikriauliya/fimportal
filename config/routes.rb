@@ -2,7 +2,8 @@ FimAlumni::Application.routes.draw do
   # get "statistics/complete"
   match "statistics/" => 'statistics#public', :via => :get, :as => 'statistics_public'
   match "statistics/lengkapkapkap" => 'statistics#complete', :via => :get, :as => 'statistics_complete'
-
+  match "statistics/not_submitted_emails" =>  'statistics#not_submitted_emails', :via => :get
+  
   get "recruiter/index"
   match 'recruiter/upload' => 'recruiter#new_upload', :via => :get
   match 'recruiter/upload' => 'recruiter#create_upload', :via => :post
