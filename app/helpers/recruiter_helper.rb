@@ -15,6 +15,10 @@ module RecruiterHelper
     end
   end
   
+  def count_unassigned
+    ProfileCandidate.where("status = 'SUBMITTED' AND marked_by_id IS NULL").count
+  end
+  
   def average_point(recruiter_id=:all)
     if recruiter_id == :all
       profiles = ProfileCandidate.where(:status => 'MARKED').select([:organization_point, :committee_point, 
