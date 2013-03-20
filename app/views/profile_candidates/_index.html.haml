@@ -49,12 +49,11 @@
         
         %th{:style=>'width:5%'} Total
 
-        %th{:style=>'width:10%'} Domisili khusus
-        %th{:style=>'width:10%'} Karakter khusus
+        %th{:style=>'width:12%'} Domisili khusus
+        %th{:style=>'width:12%'} Karakter khusus
         %th{:style=>'width:10%'} Direkomendasikan
         %th{:style=>'width:5%'} Pernah daftar
         
-        %th{:style=>'width:5%'} Ubah
         - if @is_recruiter_coordinator
           %th{:style=>'width:5%'}
 
@@ -98,7 +97,7 @@
           %td= profile.school
           %td= profile.biodata
         -else
-          %td{:style => profile.status == 'MARKED' ? 'background-color:yellow;' : ''}= profile.fullname
+          %td{:style => profile.status == 'MARKED' ? 'background-color:yellow;' : ''}= link_to edit_profile_candidate_path(profile.fullname, profile)
           %td= !profile.marked_by.nil? ? profile.marked_by.email : ""
           
           %td= ProfileCandidate.to_alphabet(profile.organization_point)
@@ -117,7 +116,6 @@
           %td= profile.special_character_comment
           %td= profile.referal
           %td= profile.application_count > 0 ? profile.application_count : ''
-          %td= link_to("Ubah", edit_profile_candidate_path(profile))
           - if @is_recruiter_coordinator
             %td= check_box_tag "profile_candidate_ids[]", profile.id
           
