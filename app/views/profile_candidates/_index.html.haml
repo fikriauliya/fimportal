@@ -99,7 +99,7 @@
         -else
           %td{:style => profile.status == 'MARKED' ? 'background-color:yellow;' : ''}
             =link_to(profile.fullname, edit_profile_candidate_path(profile))
-          %td{:style=>'word-wrap:break-word;'}= !profile.marked_by.nil? ? profile.marked_by.email : ""
+          %td{:style=>'word-wrap:break-word;width:150px'}= !profile.marked_by.nil? ? profile.marked_by.email : ""
           
           %td= ProfileCandidate.to_alphabet(profile.organization_point)
           %td= ProfileCandidate.to_alphabet(profile.committee_point)
