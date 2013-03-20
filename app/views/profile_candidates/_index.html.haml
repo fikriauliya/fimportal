@@ -97,7 +97,8 @@
           %td= profile.school
           %td= profile.biodata
         -else
-          %td{:style => profile.status == 'MARKED' ? 'background-color:yellow;' : ''}= link_to (profile.fullname, edit_profile_candidate_path(profile))
+          %td{:style => profile.status == 'MARKED' ? 'background-color:yellow;' : ''}
+            =link_to(profile.fullname, edit_profile_candidate_path(profile))
           %td= !profile.marked_by.nil? ? profile.marked_by.email : ""
           
           %td= ProfileCandidate.to_alphabet(profile.organization_point)
