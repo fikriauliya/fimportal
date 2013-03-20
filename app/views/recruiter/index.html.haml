@@ -21,17 +21,18 @@
         (Update per 10 menit)
 
 .row{:style => 'margin-top: 20px'}
-  = form_tag update_marked_by_profile_candidates_path, :method => :put do
-    - if @is_recruiter_coordinator
-      - cache('recruiters_select', :expires_in => 1.hour) do
-        = select("recruiter", "id", Role.includes(:users).find_by_name('recruiter').users.collect{|u| [ u.email, u.id]})
-        - if params[:page]
-          = hidden_field_tag("page", params[:page]) 
-      %br
-      = submit_tag("Assign checked candidates", :class => 'btn btn-primary')
-      %br
-      %br
-    = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles, :full_column => true}
+  .span12
+    = form_tag update_marked_by_profile_candidates_path, :method => :put do
+      - if @is_recruiter_coordinator
+        - cache('recruiters_select', :expires_in => 1.hour) do
+          = select("recruiter", "id", Role.includes(:users).find_by_name('recruiter').users.collect{|u| [ u.email, u.id]})
+          - if params[:page]
+            = hidden_field_tag("page", params[:page]) 
+        %br
+        = submit_tag("Assign checked candidates", :class => 'btn btn-primary')
+        %br
+        %br
+      = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles, :full_column => true}
 
 - cache('recruiters_statistics', :expires_in => 10.minutes) do
   .row{:style => 'margin-top: 20px'}
