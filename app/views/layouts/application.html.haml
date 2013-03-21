@@ -160,8 +160,9 @@
         browserOk = true;
       }
       if (!browserOk) {
-        alert("Anda memakai browser lama. Untuk menggunakan website ini dengan lancar, mohon upgrade ke IE 9+, Chrome, Safari, atau Firefox 7+.\n\nAnda akan kami redirect ke website Firefox Portable. Firefox Portable dapat diinstall tanpa mengharuskan Anda menjadi Administrator (bisa diinstall komputer umum seperti di warnet, perpustakaan)");
-        window.open('http://portableapps.com/apps/internet/firefox_portable');
+        if (confirm("Anda memakai browser lama. Untuk menggunakan website ini dengan lancar, mohon upgrade ke IE 9+, Chrome, Safari, atau Firefox 7+.\n\nAnda akan kami redirect ke website Firefox Portable. Firefox Portable dapat diinstall tanpa mengharuskan Anda menjadi Administrator (bisa diinstall di komputer umum seperti di warnet atau perpustakaan)")) {
+          window.open('http://portableapps.com/apps/internet/firefox_portable');
+        }
       }
           
     %header.navbar.navbar-fixed-top
