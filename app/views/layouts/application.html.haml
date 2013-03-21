@@ -149,16 +149,19 @@
       };
       BrowserDetect.init();
 
-      if (BrowserDetect.browser == 'Explorer' && BrowserDetect.version < 9) {
-        displayBrowserError();
-      } else if (BrowserDetect.browser == 'Firefox' && BrowserDetect.version < 7) {
-        displayBrowserError();
-      } else if (BrowserDetect.browser == 'Opera') {
-        displayBrowserError();
+      var browserOk = false;
+      if (BrowserDetect.browser == 'Explorer' && BrowserDetect.version >= 9) {
+        browserOk = true;
+      } else if (BrowserDetect.browser == 'Firefox' && BrowserDetect.version >= 7) {
+        browserOk = true;
+      } else if (BrowserDetect.browser == 'Chrome') {
+        browserOk = true;
+      } else if (BrowserDetect.browser == 'Safari' && BrowserDetect.version >= 5) {
+        browserOk = true;
       }
-            
-      function displayBrowserError() {
-        alert("Anda memakai browser lama. Untuk menggunakan website ini dengan lancar, mohon upgrade ke IE 9+, Chrome, Safari, atau Firefox 7+");
+      if (!browserOk) {
+        alert("Anda memakai browser lama. Untuk menggunakan website ini dengan lancar, mohon upgrade ke IE 9+, Chrome, Safari, atau Firefox 7+.\n\nAnda akan kami redirect ke website Firefox Portable. Firefox Portable dapat diinstall tanpa mengharuskan Anda menjadi Administrator (bisa diinstall komputer umum seperti di warnet, perpustakaan)");
+        window.open('http://portableapps.com/apps/internet/firefox_portable');
       }
           
     %header.navbar.navbar-fixed-top
