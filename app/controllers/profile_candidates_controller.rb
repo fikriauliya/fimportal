@@ -24,6 +24,8 @@ class ProfileCandidatesController < ApplicationController
     
     if @profile.nil?
       @profile = ProfileCandidate.new
+    else
+      @is_announcement_displayed = check_announcement(@profile)
     end
 
     respond_to do |format|
@@ -42,6 +44,7 @@ class ProfileCandidatesController < ApplicationController
       else
         flash[:notice] = nil
       end
+      @is_announcement_displayed = check_announcement(@profile)
       
       respond_to do |format|
         format.html 
@@ -60,7 +63,8 @@ class ProfileCandidatesController < ApplicationController
       else
         flash[:notice] = nil
       end
-
+      @is_announcement_displayed = check_announcement(@profile)
+      
       respond_to do |format|
         format.html 
         format.json { render json: @profile }
@@ -73,6 +77,8 @@ class ProfileCandidatesController < ApplicationController
     if @profile.nil? or !@profile.recommendation_letter?
       redirect_to step4_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
     else
+      @is_announcement_displayed = check_announcement(@profile)
+      
       respond_to do |format|
         format.html 
         format.json { render json: @profile }
@@ -208,5 +214,14 @@ class ProfileCandidatesController < ApplicationController
     ProfileCandidate.update_all({marked_by_id: params[:recruiter][:id]}, {id: params[:profile_candidate_ids]})
     index_param = if params[:page] then {:page => params[:page]} end
     redirect_to recruiter_index_path(index_param)
+  end
+  
+  def check_announcement(profile)
+    is_announcement_displayed = profile.is_announcement_displayed
+    if is_announcement_displayed
+      profile.is_announcement_displayed = false
+      profile.save
+    end
+    is_announcement_displayed
   end
 end

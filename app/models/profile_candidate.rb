@@ -3,7 +3,7 @@ class ProfileCandidate < ActiveRecord::Base
     :hobby, :information_from, :location, :motivation, :non_formal_education, :organization, 
     :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
     :latitude, :longitude, :agreement, :photo, :recommendation_letter, :collaboration, 
-    :inspiring_story, :province
+    :inspiring_story, :province, :is_announcement_displayed, :is_update_allowed
     
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
