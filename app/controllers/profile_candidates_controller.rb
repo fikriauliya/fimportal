@@ -203,7 +203,7 @@ class ProfileCandidatesController < ApplicationController
   def update_workshop
     @profile = current_user.profile_candidate
     if params[:changed] == 'true'
-      if @profile.is_update_allowed && @profile.update_attributes({:workshop => params[:profile_candidate][:workshop], :is_update_allowed => false})
+      if @profile.is_update_allowed && @profile.update_attributes({:workshop => params[:profile_candidate][:workshop], :is_update_allowed => false, :status => 'SUBMITTED'})
         redirect_to profile_candidates_path, :notice => "Data Anda telah diupdate dan akan diproses oleh tim seleksi. Terimakasih" 
       else
         render "edit_workshop"
