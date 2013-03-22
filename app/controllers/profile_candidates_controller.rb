@@ -187,6 +187,28 @@ class ProfileCandidatesController < ApplicationController
     end
   end
   
+  def edit_workshop
+    @profile = current_user.profile_candidate
+    logger.info @profile.workshop
+    if !@profile.is_update_allowed
+      redirect_to root_path, :alert => "Data Anda sudah dikumpulkan, tidak bisa diganti lagi"
+    end
+  end
+  
+  def update_workshop
+    @profile = current_user.profile_candidate
+    if params[:changed] == 'true'
+      if @profile.is_update_allowed && @profile.update_attributes({:workshop => params[:profile_candidate][:workshop], :is_update_allowed => false})
+        redirect_to profile_candidates_path, :notice => "Data Anda telah diupdate dan akan diproses oleh tim seleksi. Terimakasih" 
+      else
+        render "edit_workshop"
+      end
+    else
+      @profile.update_attribute(:is_update_allowed, false)
+      redirect_to profile_candidates_path, :notice => "Tidak ada perubahan. Data Anda akan diproses oleh tim seleksi. Terimakasih"
+    end
+  end
+  
   def edit
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
     @profile = ProfileCandidate.find(params[:id])

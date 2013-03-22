@@ -24,6 +24,9 @@ FimAlumni::Application.routes.draw do
       match 'submit_confirmation' => 'profile_candidates#submit_confirmation', :via => :post
       
       match 'update_marked_by' => 'profile_candidates#update_marked_by', :via => :put
+      
+      match 'edit_workshop' => 'profile_candidates#edit_workshop', :via => :get
+      match 'update_workshop/:changed' => 'profile_candidates#update_workshop', :via => :put, :as => 'update_workshop'
     end
   end
   
