@@ -3,7 +3,7 @@ class ProfileCandidate < ActiveRecord::Base
     :hobby, :information_from, :location, :motivation, :non_formal_education, :organization, 
     :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
     :latitude, :longitude, :agreement, :photo, :recommendation_letter, :collaboration, 
-    :inspiring_story, :province, :is_announcement_displayed, :is_update_allowed
+    :inspiring_story, :province, :is_announcement_displayed
     
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
@@ -15,6 +15,8 @@ class ProfileCandidate < ActiveRecord::Base
     :reliability_point, :willingness_point, 
     :special_location_comment, :special_character_comment, :status,
     :as => :recruiter
+    
+  attr_accessible :workshop, :is_update_allowed, :status, :as => :update_workshop
   
   belongs_to :user
   belongs_to :marked_by, :class_name => "User"
