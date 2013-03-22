@@ -1,6 +1,6 @@
 class ProfileCandidatesController < ApplicationController
   before_filter :authenticate_user!
-  skip_before_filter :authenticate_user!, :only => [:new, :step1, :index]
+  skip_before_filter :authenticate_user!, :only => [:new, :step1, :index, :edit_workshop]
   before_filter :check_submission_status!, :only => [:step2, :step3, :step4]
   
   def check_submission_status!
@@ -188,10 +188,15 @@ class ProfileCandidatesController < ApplicationController
   end
   
   def edit_workshop
-    @profile = current_user.profile_candidate
-    logger.info @profile.workshop
-    if !@profile.is_update_allowed
-      redirect_to root_path, :alert => "Data Anda sudah dikumpulkan, tidak bisa diganti lagi"
+    if user_signed_in?
+      @profile = current_user.profile_candidate
+      logger.info @profile.workshop
+      if !@profile.is_update_allowed
+        redirect_to root_path, :alert => "Data Anda sudah dikumpulkan, tidak bisa diganti lagi"
+      end
+    else
+      session[:after_sign_in_path_for] = edit_workshop_profile_candidates_path
+      authenticate_user!
     end
   end
   
