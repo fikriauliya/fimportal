@@ -147,7 +147,7 @@
         = f.input :location, :label => "Alamat lengkap (contoh: Jalan Kaliurang Km 10, Wonorejo, Ngaglik, Sleman, Yogyakarta, Indonesia)", :as => :text, :input_html => {:rows => 5, :class => "span4"}
         = f.input :province, :label => "Provinsi domisili saat ini", :collection => ["Luar negeri"] + ProfileCandidate.all_province
         = f.input :phone, :label => "Nomor telepon"
-        = f.input :hobby, :label => "Hobi"
+        = f.input :hobby, :label => "Hobi", :as => :string
         = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"]
         = f.input :school, :label => "Nama institusi pendidikan terakhir/yang sedang dijalani. Contoh: Universitas Indonesia", :input_html => {"data-provide" => "typeahead", "data-source" => all_school_json}
         = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2013)
@@ -185,7 +185,7 @@
                 Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013
         = f.input :agreement, :label => false, :input_html => {:rows => 3, :class => "span5"}
         
-        = f.input :referal, :label => "Jika ada, tuliskan nama alumni FIM yang merekomendasikan Anda untuk menjadi peserta FIM 14"
+        = f.input :referal, :label => "Jika ada, tuliskan nama alumni FIM yang merekomendasikan Anda untuk menjadi peserta FIM 14", :as => :string
         = f.hidden_field :latitude
         = f.hidden_field :longitude
   

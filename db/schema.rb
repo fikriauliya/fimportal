@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321231213) do
+ActiveRecord::Schema.define(:version => 20130324155637) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
     t.date     "dob"
     t.string   "place_of_birth"
-    t.string   "location"
+    t.text     "location"
     t.binary   "gender"
     t.string   "religion"
     t.string   "phone"
-    t.string   "hobby"
+    t.text     "hobby"
     t.string   "blood_type"
     t.string   "school"
     t.integer  "batch"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20130321231213) do
     t.text     "motivation"
     t.string   "information_from"
     t.integer  "application_count"
-    t.string   "performance_type"
-    t.string   "referal"
+    t.text     "performance_type"
+    t.text     "referal"
     t.datetime "created_at",                                               :null => false
     t.datetime "updated_at",                                               :null => false
     t.float    "latitude"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(:version => 20130321231213) do
     t.integer  "document_completeness_point", :default => 0
     t.integer  "reliability_point",           :default => 0
     t.integer  "willingness_point",           :default => 0
-    t.string   "special_location_comment"
-    t.string   "special_character_comment"
+    t.text     "special_location_comment"
+    t.text     "special_character_comment"
     t.boolean  "is_announcement_displayed",   :default => false
     t.boolean  "is_update_allowed",           :default => false
   end
