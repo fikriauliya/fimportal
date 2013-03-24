@@ -142,7 +142,7 @@ class ProfileCandidatesController < ApplicationController
   
   def upload_photo
     @profile = current_user.profile_candidate
-    if params[:filetype].match(/image/i) && !params[:profile_candidate].nil? && @profile.update_attribute(:photo, params[:profile_candidate][:photo])
+    if !params[:profile_candidate].nil? && @profile.update_attribute(:photo, params[:profile_candidate][:photo])
       @success = true
       render "upload_photo_response", :layout => false
     else
