@@ -181,7 +181,7 @@ class ProfileCandidatesController < ApplicationController
         format.html { redirect_to profile_candidates_path, notice: 'Data Anda telah diupdate' }
         format.json { head :no_content }
       else
-        format.html { redirect_to profile_candidates_path, alert: 'Data Anda tidak valid' }
+        format.html { redirect_to profile_candidates_path, alert: 'Data Anda tidak valid. Pastikan jumlah karakter tidak melebihi 160 karakter' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
