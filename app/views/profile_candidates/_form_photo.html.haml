@@ -15,22 +15,18 @@
           Jika tidak ingin mengganti, silakan klik Next
 
       = file_field_tag :file, multiple: true
-      
+      %script{id:"template-upload", type:"text/x-tmpl"}
+        %div{id:"file-{%=o.unique_id%}", :class=>"upload"}
+          {%=o.name%}
+          .progress
+            .bar{style:"width: 0%"}      
+
       %br
       %br
       = link_to "< Back", step2_profile_candidates_path, :class => 'btn btn-danger'
       = link_to "Next >", step4_profile_candidates_path, :class => 'btn btn-primary'
 
-      %br
-      %br
-      
-%script{id:"template-upload", type:"text/x-tmpl"}
-  %div{id:"file-{%=o.unique_id%}", :class=>"upload"}
-    {%=o.name%}
-    .progress
-      .bar{style:"width: 0%"}
-      
-.span8{:style => "margin-top:20px"}
+.span8
   %p
     %b Hanya jika 
     Anda mengalami kesulitan teknis ketika mengunggah melalui sistem di atas, Anda bisa mengunggah foto dan/atau surat rekomendasi melalui sistem alternatif kami di:
