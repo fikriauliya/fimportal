@@ -22,6 +22,12 @@ class StatisticsController < ApplicationController
     render :text => emails.join(', ')
   end
   
+  def not_submitted_phones
+    authorize! :index, User, :message => 'Not authorized as an administrator.'
+    phones = ProfileCandidate.where("status = 'NOT SUBMITTED'").select(:phone).collect{|e| e.phone}
+    render :text => phones.join(', ')
+  end
+  
   def is_update_allowed_emails
     authorize! :index, User, :message => 'Not authorized as an administrator.'
     emails = User.joins("LEFT OUTER JOIN profile_candidates ON users.id = profile_candidates.user_id WHERE profile_candidates.is_update_allowed = true").select(:email).collect{|e| e.email}
