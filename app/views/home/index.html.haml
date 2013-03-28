@@ -58,12 +58,9 @@
     %h4
       %i.icon-file>
       FIM 14
-    =link_to new_profile_candidate_path do
-      %button.btn.btn-primary{:type => "button"} Pendaftaran
-    =link_to profile_candidates_path do
-      %button.btn.btn-primary{:type => "submit"} Calon Peserta FIM 14
-    =link_to statistics_public_path do
-      %button.btn.btn-danger{:type => "submit"} Statistik Pendaftar
+    =link_to "Pendaftaran", new_profile_candidate_path, 'class' => 'btn.btn-primary'
+    =link_to "Calon Peserta FIM 14", profile_candidates_path, 'class' => 'btn.btn-danger'
+    =link_to "Statistik Pendaftar", statistics_public_path, 'class' => 'btn.btn-warning'
     %br
     %br
       Jika Anda memakai 
