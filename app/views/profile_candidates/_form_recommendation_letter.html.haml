@@ -1,7 +1,7 @@
 .span8
   .well
     = s3_uploader_form post: upload_recommendation_letter_profile_candidates_path, as: "profile_candidate[recommendation_letter]", 
-      id: "myS3Uploader", max_file_size: 3.megabytes do
+      id: "myS3Uploader", max_file_size: 15.megabytes do
       - if @profile.recommendation_letter?
         .controls
           = link_to "Surat rekomendasi [#{@profile.fullname}]", @profile.recommendation_letter
@@ -24,3 +24,30 @@
       %br
       = link_to "< Back", step3_profile_candidates_path, :class => 'btn btn-danger'
       = link_to "Next >", step5_profile_candidates_path, :class => 'btn btn-primary'
+
+.span8
+  %p
+    %b Hanya jika 
+    Anda mengalami kesulitan teknis ketika mengunggah melalui sistem di atas, Anda bisa mengunggah foto dan/atau surat rekomendasi melalui sistem alternatif kami di:
+    = link_to "http://www.dropitto.me/fim14", "http://www.dropitto.me/fim14"
+    , dengan password: daftarfim14
+  
+  %p
+    Namai file Anda sebagai berikut:
+    %ul
+      %li Foto => [Email Anda]_Foto
+      %li Surat rekomendasi => [Email Anda]_Rekomendasi
+    [Email Anda] harus sama dengan email yang digunakan untuk registrasi di sistem ini
+  
+  %p
+    Contoh (email saya: agus.widodo@gmail.com):
+    %ul
+      %li Foto => agus.widodo@gmail.com_Foto
+      %li Surat rekomendasi => agus.widodo@gmail.com_Rekomendasi
+  
+  %p
+    %b Perhatian: file yang tidak dinamakan sesuai format di atas TIDAK akan kami proses
+    Jika ada lebih dari satu surat rekomendasi, mohon disatukan surat-surat rekomendasinya dengan format ZIP. Foto tetap diupload terpisah.
+  
+  %p
+    Dokumen Anda akan kami periksa secara manual (memakan waktu 1-2 hari). Setelah diproses, Anda akan diinformasikan via email untuk melanjutkan langkah-langkah berikutnya. Mohon secara rutin periksa email Anda.

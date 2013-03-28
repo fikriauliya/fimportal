@@ -1,7 +1,7 @@
 .span8
   .well
     = s3_uploader_form post: upload_photo_profile_candidates_path, as: "profile_candidate[photo]", 
-      id: "myS3Uploader", max_file_size: 400.kilobytes do
+      id: "myS3Uploader", max_file_size: 2.megabytes do
       - if @profile.photo?
         .controls
           = link_to @profile.photo do
@@ -15,14 +15,39 @@
           Jika tidak ingin mengganti, silakan klik Next
 
       = file_field_tag :file, multiple: true
-      
+      %script{id:"template-upload", type:"text/x-tmpl"}
+        %div{id:"file-{%=o.unique_id%}", :class=>"upload"}
+          {%=o.name%}
+          .progress
+            .bar{style:"width: 0%"}      
+
       %br
       %br
       = link_to "< Back", step2_profile_candidates_path, :class => 'btn btn-danger'
       = link_to "Next >", step4_profile_candidates_path, :class => 'btn btn-primary'
 
-%script{id:"template-upload", type:"text/x-tmpl"}
-  %div{id:"file-{%=o.unique_id%}", :class=>"upload"}
-    {%=o.name%}
-    .progress
-      .bar{style:"width: 0%"}
+.span8
+  %p
+    %b Hanya jika 
+    Anda mengalami kesulitan teknis ketika mengunggah melalui sistem di atas, Anda bisa mengunggah foto dan/atau surat rekomendasi melalui sistem alternatif kami di:
+    = link_to "http://www.dropitto.me/fim14", "http://www.dropitto.me/fim14"
+    , dengan password: daftarfim14
+  
+  %p
+    Namai file Anda sebagai berikut:
+    %ul
+      %li Foto => [Email Anda]_Foto
+      %li Surat rekomendasi => [Email Anda]_Rekomendasi
+    [Email Anda] harus sama dengan email yang digunakan untuk registrasi di sistem ini
+  
+  %p
+    Contoh (email saya: agus.widodo@gmail.com):
+    %ul
+      %li Foto => agus.widodo@gmail.com_Foto
+      %li Surat rekomendasi => agus.widodo@gmail.com_Rekomendasi
+  %p
+    %b Perhatian: file yang tidak dinamakan sesuai format di atas TIDAK akan kami proses.
+    Jika ada lebih dari satu surat rekomendasi, mohon disatukan surat-surat rekomendasinya dengan format ZIP. Foto tetap diupload terpisah.
+    
+  %p
+    Dokumen Anda akan kami periksa secara manual (memakan waktu 1-2 hari). Setelah diproses, Anda akan diinformasikan via email untuk melanjutkan langkah-langkah berikutnya. Mohon secara rutin periksa email Anda.

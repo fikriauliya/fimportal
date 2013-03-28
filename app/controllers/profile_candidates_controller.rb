@@ -181,7 +181,7 @@ class ProfileCandidatesController < ApplicationController
         format.html { redirect_to profile_candidates_path, notice: 'Data Anda telah diupdate' }
         format.json { head :no_content }
       else
-        format.html { redirect_to profile_candidates_path, alert: 'Data Anda tidak valid' }
+        format.html { redirect_to profile_candidates_path, alert: 'Data Anda tidak valid. Pastikan jumlah karakter tidak melebihi 160 karakter' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
@@ -190,9 +190,12 @@ class ProfileCandidatesController < ApplicationController
   def edit_workshop
     if user_signed_in?
       @profile = current_user.profile_candidate
-      logger.info @profile.workshop
-      if !@profile.is_update_allowed
-        redirect_to root_path, :alert => "Data Anda sudah dikumpulkan, tidak bisa diganti lagi"
+      if @profile.nil? 
+        redirect_to root_path, :alert => "Anda belum mengumpulkan biodata, silakan diisi melalui sistem registrasi"
+      else
+        if !@profile.is_update_allowed
+          redirect_to root_path, :alert => "Data Anda sudah dikumpulkan, tidak bisa diganti lagi"
+        end
       end
     else
       session[:after_sign_in_path_for] = edit_workshop_profile_candidates_path
