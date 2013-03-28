@@ -12,7 +12,7 @@
   %hr
   %p
     %ul
-      %li Jika Anda ingin mengubah isian Anda, silakan mengisi kotak isian di bawah ini dan klik "Ubah".
+      %li Jika Anda ingin mengubah isian Anda, silakan update kotak isian di bawah ini dan klik "Simpan".
       %li Jika Anda tidak ingin mengubah isian Anda, silakan klik "Tidak ada perubahan".
   
   %p
@@ -34,5 +34,5 @@
         = f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti. Format: [tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]", 
           :input_html => {:rows => 8, :class => "span5"}
       .form-actions
-        = f.submit "Ubah", :class => "btn btn-primary"
+        = f.submit "Simpan", :class => "btn btn-primary"
         = link_to "Tidak ada perubahan", update_workshop_profile_candidates_path(:changed => 'false'), :method => 'put', :class => "btn btn-danger"
