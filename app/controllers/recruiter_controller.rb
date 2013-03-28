@@ -10,6 +10,9 @@ class RecruiterController < ApplicationController
         if params[:marked_by_id]
           @profiles = @profiles.where(:marked_by_id => params[:marked_by_id])
         end
+        if params[:province]
+          @profiles = @profiles.where(:province => params[:province])
+        end
       else
         @profiles = ProfileCandidate.includes(:user).submitted.where(:marked_by_id => current_user.id)
       end
@@ -17,10 +20,14 @@ class RecruiterController < ApplicationController
         format.xls
       end
     else
+      @provinces_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :province, :order => 'count_all DESC')
       if current_user.has_role? "recruiter_coordinator"
         @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted
         if params[:marked_by_id]
           @profiles = @profiles.where(:marked_by_id => params[:marked_by_id])
+        end
+        if params[:province]
+          @profiles = @profiles.where(:province => params[:province])
         end
         @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)
         @is_recruiter_coordinator = true
