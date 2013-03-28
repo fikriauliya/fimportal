@@ -7,7 +7,7 @@
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
   .span6
     -if @is_recruiter_coordinator
-      -if params[:marked_by_id]
+      -if params[:marked_by_id] || params[:province]
         =link_to("Lihat semua", recruiter_index_path, :class => 'btn')
       -else 
         =link_to("Lihat penugasan saya", recruiter_index_path(:marked_by_id => current_user.id), :class => 'btn')
