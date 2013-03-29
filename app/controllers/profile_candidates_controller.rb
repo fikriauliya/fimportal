@@ -90,7 +90,7 @@ class ProfileCandidatesController < ApplicationController
     @profiles = ProfileCandidate.submitted
     
     if params[:fullname]
-      @profiles = @profiles.where("lower(fullname) like lower('%?%')", params[:fullname])
+      @profiles = @profiles.where("lower(fullname) like lower('%' || ? || '%')", params[:fullname])
     end
     @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)
     
