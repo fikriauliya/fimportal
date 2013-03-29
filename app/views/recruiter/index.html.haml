@@ -8,9 +8,7 @@
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
   .span6
     -if @is_recruiter_coordinator
-      -if params[:marked_by_id] || params[:province]
-        =link_to("Lihat semua", recruiter_index_path, :class => 'btn')
-      -else 
+      -unless (params[:marked_by_id])
         =link_to("Lihat penugasan saya", recruiter_index_path(:marked_by_id => current_user.id), :class => 'btn')
   - cache('recruiter_progress_' + current_user.id.to_s, :expires_in => 10.minutes) do
     .span4
@@ -24,11 +22,10 @@
 .row{:style => 'margin-top: 20px'}
   .span5
     = form_tag recruiter_index_path, :method => :get do
-      = search_field_tag(:fullname, '', :placeholder => 'Masukkan nama di sini')
+      = search_field_tag(:fullname, params[:fullname], :placeholder => 'Masukkan nama di sini')
       = submit_tag("Cari", :class => 'btn btn-primary')
-      -if params[:fullname]
-        = link_to('Tampilkan semua', recruiter_index_path, :class => 'btn')
-
+      -if params[:marked_by_id] || params[:province] || params[:fullname]
+        =link_to("Tampilkan semua", recruiter_index_path, :class => 'btn btn-danger')
 .row
   .span12
     = form_tag update_marked_by_profile_candidates_path, :method => :put do
