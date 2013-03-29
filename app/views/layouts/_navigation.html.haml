@@ -11,6 +11,8 @@
         =link_to('Admin', users_path)
       %li
         =link_to('Statistics', statistics_complete_path)
+      %li
+        =link_to('Uploader', uploader_edit_profile_candidate_path)
     - if current_user.has_role?(:admin) || current_user.has_role?(:recruiter)
       %li
         =link_to('Recruiter', recruiter_index_path)
