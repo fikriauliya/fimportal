@@ -2,7 +2,8 @@
   .span12
     %h3 Daftar calon peserta FIM 14
   .span1
-    = link_to('Download', recruiter_index_path(:format => 'xls'), :class => 'btn btn-primary')
+    = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province]), 
+      :class => 'btn btn-primary')
   .span1
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
   .span6
@@ -21,6 +22,14 @@
         (Update per 10 menit)
 
 .row{:style => 'margin-top: 20px'}
+  .span5
+    = form_tag recruiter_index_path, :method => :get do
+      = search_field_tag(:fullname, '', :placeholder => 'Masukkan nama di sini')
+      = submit_tag("Cari", :class => 'btn btn-primary')
+      -if params[:fullname]
+        = link_to('Tampilkan semua', recruiter_index_path, :class => 'btn')
+
+.row
   .span12
     = form_tag update_marked_by_profile_candidates_path, :method => :put do
       - if @is_recruiter_coordinator
