@@ -87,7 +87,13 @@ class ProfileCandidatesController < ApplicationController
   end
   
   def index
-    @profiles = ProfileCandidate.submitted.paginate(:page => params[:page],:per_page => 20)
+    @profiles = ProfileCandidate.submitted
+    
+    if params[:fullname]
+      @profiles = @profiles.where("lower(fullname) like lower('%?%')", params[:fullname])
+    end
+    @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)
+    
     if user_signed_in?
       @profile = ProfileCandidate.find_by_user_id(current_user.id)
     end
