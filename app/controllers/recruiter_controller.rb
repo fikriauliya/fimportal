@@ -6,7 +6,7 @@ class RecruiterController < ApplicationController
 
     if params[:format] == "xls"
       if current_user.has_role? "recruiter_coordinator"
-        @profiles = ProfileCandidate.includes(:user).submitted
+        @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted
         if params[:marked_by_id]
           @profiles = @profiles.where(:marked_by_id => params[:marked_by_id])
         end
@@ -17,7 +17,7 @@ class RecruiterController < ApplicationController
           @profiles = @profiles.where("lower(fullname) like lower('%' || ? || '%')", params[:fullname])
         end
       else
-        @profiles = ProfileCandidate.includes(:user).submitted.where(:marked_by_id => current_user.id)
+        @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted.where(:marked_by_id => current_user.id)
       end
       respond_to do |format|
         format.xls
