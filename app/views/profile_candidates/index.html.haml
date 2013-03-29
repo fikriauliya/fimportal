@@ -70,6 +70,11 @@
     .span9
       %h3 Daftar calon peserta FIM 14
       %small *Nama, foto, dan email bisa di-hide
+      = form_tag profile_candidates_path, :method => :get do
+        = search_field_tag(:fullname, '', :placeholder => 'Masukkan nama di sini')
+        = submit_tag("Cari", :class => 'btn btn-primary')
+        -if params[:fullname]
+          = link_to('Tampilkan semua', profile_candidates_path, :class => 'btn')
       = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles, :full_column => false}
   -else
     .span12
