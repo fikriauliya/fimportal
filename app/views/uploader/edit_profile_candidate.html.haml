@@ -1,0 +1,11 @@
+.row
+  .span8
+    .well
+      = s3_uploader_form post: uploader_upload_profile_candidate_path, 
+        id: "myS3Uploader", max_file_size: 2.megabytes do
+        = file_field_tag :file, multiple: true
+        %script{id:"template-upload", type:"text/x-tmpl"}
+          %div{id:"file-{%=o.unique_id%}", :class=>"upload"}
+            {%=o.name%}
+            .progress
+              .bar{style:"width: 0%"}      
