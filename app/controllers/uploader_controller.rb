@@ -23,7 +23,7 @@ class UploaderController < ApplicationController
       
       unless user.nil?
         profile_candidate = user.profile_candidate
-        if !profile_candidate.nil? && profile_candidate.photo?
+        if !profile_candidate.nil? && !profile_candidate.photo?
           profile_candidate.photo = params[:file]
           profile_candidate.save!
           logger.info "Photo => #{params[:file]}\\n"
@@ -45,7 +45,7 @@ class UploaderController < ApplicationController
       
       unless user.nil?
         profile_candidate = user.profile_candidate
-        if !profile_candidate.nil? && !profile_candidate.photo? && profile_candidate.recommendation_letter?
+        if !profile_candidate.nil? && profile_candidate.photo? && !profile_candidate.recommendation_letter?
           profile_candidate.recommendation_letter = params[:file]
           profile_candidate.save!
           logger.info "Recommendation letter => #{params[:file]}\\n"
