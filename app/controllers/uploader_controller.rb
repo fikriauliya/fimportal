@@ -28,6 +28,8 @@ class UploaderController < ApplicationController
           profile_candidate.save!
           logger.info "Photo => #{params[:file]}\\n"
           @message << "#{email} = #{params[:file]}\\n"
+          
+          UploaderMailer.photo_uploaded(email).deliver
         else
           logger.info "#{email} already have photo\\n"
           @message << "#{email} already have photo\\n"
@@ -50,6 +52,8 @@ class UploaderController < ApplicationController
           profile_candidate.save!
           logger.info "Recommendation letter => #{params[:file]}\\n"
           @message << "#{email} = #{params[:file]}\\n"
+          
+          UploaderMailer.recommendation_letter_uploaded(email).deliver
         else
           logger.info "#{email} already have recommendation letter\\n"
           @message << "#{email} already have recommendation letter\\n"
