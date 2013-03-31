@@ -260,4 +260,20 @@ class ProfileCandidatesController < ApplicationController
     end
     is_announcement_displayed
   end
+  
+  def progress_status
+    email = params[:email]
+    unless email.nil?
+      user = User.find_by_email(email)
+      unless user.nil?
+        profile_candidate = user.profile_candidate
+        @is_biodata_filled = !profile_candidate.nil?
+        if @is_biodata_filled
+          @is_photo_uploaded = profile_candidate.photo?
+          @is_recommendation_letter_uploaded = profile_candidate.recommendation_letter?
+          @is_submitted = profile_candidate.status != 'NOT SUBMITTED' 
+        end
+      end
+    end
+  end
 end
