@@ -2,6 +2,7 @@
   .span5
     %h3 Cek status pendaftaran saya
     = form_tag progress_status_profile_candidates_path, :method => :get do
+      Email:
       = search_field_tag(:email, params[:email], :placeholder => 'Masukkan email Anda di sini')
       %br
       = submit_tag("Cek", :class => 'btn btn-primary')
