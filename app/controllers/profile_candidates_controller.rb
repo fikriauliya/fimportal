@@ -264,7 +264,7 @@ class ProfileCandidatesController < ApplicationController
   def progress_status
     email = params[:email]
     unless email.nil?
-      user = User.find_by_email(email.strip)
+      user = User.where("lower(email) like lower(?)", email.strip).first
       unless user.nil?
         profile_candidate = user.profile_candidate
         @is_biodata_filled = !profile_candidate.nil?
