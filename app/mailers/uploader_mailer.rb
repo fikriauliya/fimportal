@@ -18,4 +18,8 @@ class UploaderMailer < ActionMailer::Base
   def recommendation_letter_uploaded(receiver_email)
     mail to: receiver_email, subject: "[FIM] Pemberitahuan: Surat rekomendasi sudah diunggah"
   end
+  
+  def completed_notification(receiver_email)
+    mail to: receiver_email, subject: "[FIM] Pemberitahuan: Dokumen sudah lengkap"
+  end
 end

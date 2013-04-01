@@ -33,6 +33,12 @@ class UploaderController < ApplicationController
         else
           logger.info "#{email} already have photo\\n"
           @message << "#{email} already have photo\\n"
+          
+          if profile_candidate.status == 'NOT SUBMITTED'
+            UploaderMailer.photo_uploaded(email).deliver
+          else
+            UploaderMailer.completed_notification(email).deliver
+          end
         end
       else
         @message << "No user = #{email}\\n"
@@ -57,6 +63,12 @@ class UploaderController < ApplicationController
         else
           logger.info "#{email} already have recommendation letter\\n"
           @message << "#{email} already have recommendation letter\\n"
+          
+          if profile_candidate.status == 'NOT SUBMITTED'
+            UploaderMailer.recommendation_letter_uploaded(email).deliver
+          else
+            UploaderMailer.completed_notification(email).deliver
+          end
         end
       else
         @message << "No user = #{email}\\n"
