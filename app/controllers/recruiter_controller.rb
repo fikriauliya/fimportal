@@ -35,10 +35,10 @@ class RecruiterController < ApplicationController
         if params[:fullname]
           @profiles = @profiles.where("lower(fullname) like lower('%' || ? || '%')", params[:fullname])
         end
-        @profiles = @profiles.paginate(:page => params[:page],:per_page => 2)
+        @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)
         @is_recruiter_coordinator = true
       else
-        @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted.where(:marked_by_id => current_user.id).paginate(:page => params[:page],:per_page => 10)
+        @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted.where(:marked_by_id => current_user.id).paginate(:page => params[:page],:per_page => 20)
         @is_recruiter_coordinator = false
       end
               
