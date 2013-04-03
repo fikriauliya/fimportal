@@ -32,19 +32,30 @@
     %p
       %h4 === Yang tertulis di bawah ini hanya berlaku jika Anda mengalami kesulitan teknis ===
     %p
-      Jika setelah berkali-kali mencoba mengunggah melalui sistem di atas tetap tidak berhasil, Anda bisa mengunggah foto dan/atau surat rekomendasi melalui sistem alternatif kami di:
+      Jika setelah 
+      %b berkali-kali 
+      mencoba mengunggah melalui sistem di atas tetap tidak berhasil, Anda bisa mengunggah foto dan/atau surat rekomendasi melalui sistem alternatif kami di:
       = link_to "http://www.dropitto.me/fim14", "http://www.dropitto.me/fim14"
       , dengan password: daftarfim14
     
     %p
       Namai file Anda sebagai berikut:
       %ul
-        %li= "Foto => #{current_user.email}_Foto"
-        %li= "Surat rekomendasi => #{current_user.email}_Rekomendasi"
+        %li Foto: 
+          %b= "#{current_user.email}_Foto"
+        %li Surat rekomendasi: 
+          %b= "#{current_user.email}_Rekomendasi"
     
     %p
-      %b Perhatian: file yang tidak dinamai sesuai format di atas TIDAK akan kami proses.
-      Jika ada lebih dari satu surat rekomendasi, mohon disatukan surat-surat rekomendasinya dengan format ZIP. Foto dan surat rekomendasi diupload terpisah (tidak disatukan dalam ZIP).
+      %b Perhatian: file yang tidak dinamai sesuai format penamaan di atas TIDAK akan kami proses.
+      Mohon ketelitiannya, kami tidak memproses nama-nama seperti 
+      "Surat_rekomendasi_agus@yahoo.com", "IMG_00012", 
+      "FIM", atau "agus@yahoo.com_Surat_Rekomendasi_1".
+      
+    %p
+      Jika ada lebih dari satu surat rekomendasi, mohon 
+      %b disatukan 
+      surat-surat rekomendasinya dengan format ZIP. Foto dan surat rekomendasi diupload terpisah (tidak disatukan dalam ZIP).
       
     %p
       Dokumen Anda akan kami periksa secara manual (memakan waktu maksimum 1 hari). Setelah diproses, Anda akan diinformasikan via email untuk melanjutkan langkah-langkah berikutnya. Mohon secara rutin periksa email Anda.
