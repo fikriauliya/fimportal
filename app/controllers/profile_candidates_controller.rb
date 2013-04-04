@@ -92,7 +92,7 @@ class ProfileCandidatesController < ApplicationController
     if params[:fullname]
       @profiles = @profiles.where("lower(fullname) like lower('%' || ? || '%')", params[:fullname])
     end
-    @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)
+    @profiles = @profiles.paginate(:page => params[:page],:per_page => 50)
     
     if user_signed_in?
       @profile = ProfileCandidate.find_by_user_id(current_user.id)
