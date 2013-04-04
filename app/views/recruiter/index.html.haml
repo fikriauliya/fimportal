@@ -40,7 +40,7 @@
         %br
       = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles, :full_column => true}
 
-- cache('recruiters_statistics_' + (@is_recuiter_coordinator ? "coordinator" : "recruiter"), :expires_in => 10.minutes) do
+- cache('recruiters_statistics_' + (@is_recruiter_coordinator ? "coordinator" : "recruiter"), :expires_in => 10.minutes) do
   .row{:style => 'margin-top: 20px'}
     .span9
       %h4 Statistik penilaian (Update per 10 menit)
