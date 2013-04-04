@@ -11,7 +11,7 @@
         checkbox.change(function() {
           if (this.checked && !autoChecking) {
             autoChecking = true;
-            $(this).parents('tr').first().nextAll('tr').has(':checkbox').slice(0, 4).find(':checkbox').prop('checked', true)
+            $(this).parents('tr').first().nextAll('tr').has(':checkbox').slice(0, 19).find(':checkbox').prop('checked', true)
             autoChecking = false;
           }
         });
