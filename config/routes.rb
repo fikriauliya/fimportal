@@ -16,17 +16,17 @@ FimAlumni::Application.routes.draw do
 
   resources :profile_candidates, :path => 'candidates', :except => [:show] do
     collection do
-      # get 'step1'
-      # get 'step2'
-      # get 'step3'
-      # get 'step4'
-      # get 'step5'
-#       
-      # match 'upload_photo' => 'profile_candidates#upload_photo', :via => :post
-      # match 'upload_recommendation_letter' => 'profile_candidates#upload_recommendation_letter', :via => :post
-      # match 'edit_workshop' => 'profile_candidates#edit_workshop', :via => :get
-      # match 'update_workshop/:changed' => 'profile_candidates#update_workshop', :via => :put, :as => 'update_workshop'
-      # match 'submit_confirmation' => 'profile_candidates#submit_confirmation', :via => :post
+      match 'step1' => 'home#closed', :via => :get
+      match 'step2' => 'home#closed', :via => :get
+      match 'step3' => 'home#closed', :via => :get
+      match 'step4' => 'home#closed', :via => :get
+      match 'step5' => 'home#closed', :via => :get
+      
+      match 'upload_photo' => 'home#closed', :via => :post
+      match 'upload_recommendation_letter' => 'home#closed', :via => :post
+      match 'edit_workshop' => 'home#closed', :via => :get
+      match 'update_workshop/:changed' => 'home#closed', :via => :put, :as => 'update_workshop'
+      match 'submit_confirmation' => 'home#closed', :via => :post
       
       match 'update_biodata' => 'profile_candidates#update_biodata', :via => :put
       match 'update_point' => 'profile_candidates#update_point', :via => :put
