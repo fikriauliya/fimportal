@@ -10,38 +10,50 @@ class RecruiterController < ApplicationController
         if params[:marked_by_id]
           @profiles = @profiles.where(:marked_by_id => params[:marked_by_id])
         end
-        if params[:province]
-          @profiles = @profiles.where(:province => params[:province])
-        end
-        if params[:fullname]
-          @profiles = @profiles.where("lower(fullname) like lower('%' || ? || '%')", params[:fullname])
-        end
       else
         @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted.where(:marked_by_id => current_user.id)
       end
+      
+      if params[:province]
+        @profiles = @profiles.where(:province => params[:province])
+      end
+      if params[:fullname]
+        @profiles = @profiles.where("lower(fullname) like lower('%' || ? || '%')", params[:fullname])
+      end
+      if params[:school]
+        @profiles = @profiles.where(:school => params[:school])
+      end
+      
       respond_to do |format|
         format.xls
       end
     else
       @provinces_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :province, :order => 'count_all DESC')
+      @schools_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :school, :order => 'count_all DESC')
+      
       if current_user.has_role? "recruiter_coordinator"
         @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted
         if params[:marked_by_id]
           @profiles = @profiles.where(:marked_by_id => params[:marked_by_id])
         end
-        if params[:province]
-          @profiles = @profiles.where(:province => params[:province])
-        end
-        if params[:fullname]
-          @profiles = @profiles.where("lower(fullname) like lower('%' || ? || '%')", params[:fullname])
-        end
-        @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)
+        
         @is_recruiter_coordinator = true
       else
-        @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted.where(:marked_by_id => current_user.id).paginate(:page => params[:page],:per_page => 20)
+        @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted.where(:marked_by_id => current_user.id)
         @is_recruiter_coordinator = false
       end
-              
+        
+      if params[:province]
+        @profiles = @profiles.where(:province => params[:province])
+      end
+      if params[:fullname]
+        @profiles = @profiles.where("lower(fullname) like lower('%' || ? || '%')", params[:fullname])
+      end
+      if params[:school]
+        @profiles = @profiles.where(:school => params[:school])
+      end
+      
+      @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)      
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @profiles }
