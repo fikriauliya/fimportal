@@ -19,7 +19,8 @@
         %th Jumlah
       -@provinces_count.each do |province|
         %tr
-          %td= province[0]
+          %td
+            =link_to(province[0], profile_candidates_path(:province => province[0]))
           %td= province[1]
          
   .span8
@@ -31,5 +32,6 @@
         %th Jumlah
       -@schools_count.each do |school|
         %tr
-          %td= school[0]
+          %td
+            =link_to(school[0], profile_candidates_path(:school => school[0]))
           %td= school[1]
