@@ -118,6 +118,8 @@
 
       .form-inputs
         = f.input :id, :as => :hidden
+        - if params[:page]
+          = hidden_field_tag 'page', params[:page]
         = f.input :organization_point, :label => "Pengalaman organisasi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
         = f.input :committee_point, :label => "Pengalaman kepanitiaan", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
         = f.input :personal_knowledge_point, :label => "Keterampilan dan wawasan pribadi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false

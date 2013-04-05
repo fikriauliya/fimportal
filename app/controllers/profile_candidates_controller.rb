@@ -242,7 +242,7 @@ class ProfileCandidatesController < ApplicationController
     respond_to do |format|
       if @profile.update_attributes(params[:profile_candidate], :as => :recruiter)
         @profile.update_attributes({:marked_by => current_user, :status => 'MARKED'}, :as => :recruiter)
-        format.html { redirect_to recruiter_index_path, :notice => "Data telah disimpan" }
+        format.html { redirect_to recruiter_index_path(:page => params[:page]), :notice => "Data telah disimpan" }
         format.json { head :no_content }
       else
         format.html { render "edit" }

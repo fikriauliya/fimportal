@@ -98,7 +98,7 @@
           %td= profile.biodata
         -else
           %td{:style => profile.status == 'MARKED' ? 'background-color:yellow;' : ''}
-            =link_to(profile.fullname, edit_profile_candidate_path(profile))
+            =link_to(profile.fullname, edit_profile_candidate_path(profile, :page => params[:page]))
           %td= truncate(!profile.marked_by.nil? ? profile.marked_by.email : "", :length => 20)
           
           %td= ProfileCandidate.to_alphabet(profile.organization_point)
