@@ -14,6 +14,7 @@ class ProfileCandidate < ActiveRecord::Base
     :organization_point, :committee_point, :personal_knowledge_point, :document_completeness_point,
     :reliability_point, :willingness_point, 
     :special_location_comment, :special_character_comment, :status,
+    :school,
     :as => :recruiter
     
   attr_accessible :workshop, :is_update_allowed, :status, :as => :update_workshop
