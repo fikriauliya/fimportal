@@ -2,7 +2,7 @@
   .span12
     %h3 Daftar calon peserta FIM 14
   .span1
-    = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province]), 
+    = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province], :school => params[:school]), 
       :class => 'btn btn-primary')
   .span1
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
@@ -24,7 +24,7 @@
     = form_tag recruiter_index_path, :method => :get do
       = search_field_tag(:fullname, params[:fullname], :placeholder => 'Masukkan nama di sini')
       = submit_tag("Cari", :class => 'btn btn-primary')
-      -if params[:marked_by_id] || params[:province] || params[:fullname]
+      -if params[:marked_by_id] || params[:province] || params[:fullname] || params[:school]
         =link_to("Tampilkan semua", recruiter_index_path, :class => 'btn btn-danger')
 .row
   .span12
@@ -117,16 +117,31 @@
               %b= average_point(:all, :willingness_point)
             %td
               %b= average_point(:all)
-    .span3
-      %h4 Provinsi (Update per 10 menit)
-      %table.table.table-condensed.table-striped
-        %thead
-          %tr
-            %th{:style => 'width:70%'} Provinsi
-            %th Jumlah
-        %tbody
-          -@provinces_count.each do |province|
+              
+      %h4 Institusi (Update per 1 jam)
+      - cache('school_statistics', :expires_in => 1.hours) do
+        %table.table.table-condensed.table-striped
+          %thead
             %tr
-              %td
-                =link_to(province[0], recruiter_index_path(:province => province[0]))
-              %td= province[1]
+              %th{:style => 'width:70%'} Provinsi
+              %th Jumlah
+          %tbody
+            -@schools_count.each do |school|
+              %tr
+                %td
+                  =link_to(school[0], recruiter_index_path(:school => school[0]))
+                %td= school[1]
+    .span3
+      %h4 Provinsi (Update per 1 jam)
+      - cache('province_statistics', :expires_in => 1.hours) do
+        %table.table.table-condensed.table-striped
+          %thead
+            %tr
+              %th{:style => 'width:70%'} Provinsi
+              %th Jumlah
+          %tbody
+            -@provinces_count.each do |province|
+              %tr
+                %td
+                  =link_to(province[0], recruiter_index_path(:province => province[0]))
+                %td= province[1]
