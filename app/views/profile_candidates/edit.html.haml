@@ -124,7 +124,8 @@
         = f.input :document_completeness_point, :label => "Kelengkapan berkas", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
         = f.input :reliability_point, :label => "Reliability", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
         = f.input :willingness_point, :label => "Willingness", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :special_location_comment, :label => "Domisili khusus"
-        = f.input :special_character_comment, :label => "Karakteristik khusus"
+        = f.input :special_location_comment, :label => "Domisili khusus", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :special_character_comment, :label => "Karakteristik khusus", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :school, :label => "Insitusi (jika perlu ada perbaikan)", :input_html => {:style => 'width:300px', "data-provide" => "typeahead", "data-source" => all_school_json}
       .form-actions
         = f.submit "Simpan", :class => "btn btn-primary"
