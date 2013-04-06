@@ -55,7 +55,7 @@ class ProfileCandidate < ActiveRecord::Base
       'Universitas Multimedia Nusantara', 'Universitas Negeri Gorontalo', 'Universitas Negeri Jakarta', 
       'Universitas Negeri Makassar', 'Universitas Negeri Malang', 'Universitas Negeri Manado', 
       'Universitas Negeri Medan', 'Universitas Negeri Padang', 'Universitas Negeri Papua', 
-      'Universitas Negeri Semarang', 'Universitas Negeri Surabaya', 'Universitas Negeri Surakarta (Sebelas Maret)', 
+      'Universitas Negeri Semarang', 'Universitas Negeri Surabaya', 'Universitas Sebelas Maret Surakarta', 
       'Universitas Negeri Yogyakarta', 'Universitas Nusa Cendana', 'Universitas Padjadjaran', 
       'Universitas Palangka Raya', 'Universitas Paramadina', 'Universitas Pattimura', 'Universitas Pendidikan Ganesha', 
       'Universitas Pendidikan Indonesia', 'Universitas Riau', 'Universitas Sam Ratulangi', 'Universitas Sriwijaya', 
