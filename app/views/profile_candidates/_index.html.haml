@@ -94,7 +94,7 @@
         
         - if !full_column
           %td= profile.is_visible_to_public ? profile.fullname : "[Tidak ditampilkan]"
-          %td= profile.school
+          %td= link_to(profile.school, profile_candidates_path(:school => profile.school))
           %td= profile.biodata
         -else
           %td{:style => profile.status == 'MARKED' ? 'background-color:yellow;' : ''}
