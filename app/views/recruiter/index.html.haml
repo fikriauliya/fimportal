@@ -2,7 +2,7 @@
   .span12
     %h3 Daftar calon peserta FIM 14
   .span1
-    = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province], :school => params[:school], :orderby => params[:orderby]), 
+    = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province], :school => params[:school], :order => params[:order]), 
       :class => 'btn btn-primary')
   .span1
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
@@ -28,11 +28,11 @@
         =link_to("Tampilkan semua", recruiter_index_path, :class => 'btn btn-danger')
 .row
   .span2
-    -if params[:orderby] == 'point'
-      - new_params = if params.nil? then params else params.delete(:orderby); params end
+    -if params[:order] == 'point'
+      - new_params = if params.nil? then params else params.delete(:order); params end
       = link_to('Sort by time', recruiter_index_path(new_params), :class => 'btn btn-warning')
     -else 
-      = link_to('Sort by point', recruiter_index_path({:orderby => :point}.merge(params)), :class => 'btn btn-warning')
+      = link_to('Sort by point', recruiter_index_path({:order => :point}.merge(params)), :class => 'btn btn-warning')
 
 .row{:style => 'margin-top: 20px'}
   .span12
