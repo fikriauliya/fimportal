@@ -29,7 +29,7 @@
 .row
   .span2
     -if params[:order] == 'point'
-      - new_params = if params.nil? then params else params.delete(:order); params end
+      - new_params = if params.nil? then params else params.reject{|k,v| k == :order} end
       = link_to('Sort by time', recruiter_index_path(new_params), :class => 'btn btn-warning')
     -else 
       = link_to('Sort by point', recruiter_index_path({:order => :point}.merge(params)), :class => 'btn btn-warning')
