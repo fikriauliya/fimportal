@@ -2,7 +2,7 @@
   .span12
     %h3 Daftar calon peserta FIM 14
   .span1
-    = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province], :school => params[:school]), 
+    = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province], :school => params[:school], :sort_by => params[:sort_by]), 
       :class => 'btn btn-primary')
   .span1
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
@@ -27,6 +27,14 @@
       -if params[:marked_by_id] || params[:province] || params[:fullname] || params[:school]
         =link_to("Tampilkan semua", recruiter_index_path, :class => 'btn btn-danger')
 .row
+  .span2
+    -if params[:sort_by] == 'point'
+      - new_params = if params.nil? then params else params.delete(:sort_by); params end
+      = link_to('Sort by time', recruiter_index_path(new_params), :class => 'btn btn-warning')
+    -else 
+      = link_to('Sort by point', recruiter_index_path({:sort_by => :point}.merge(params)), :class => 'btn btn-warning')
+
+.row{:style => 'margin-top: 20px'}
   .span12
     = form_tag update_marked_by_profile_candidates_path, :method => :put do
       - if @is_recruiter_coordinator
@@ -39,7 +47,7 @@
         %br
         %br
       = render :partial => 'profile_candidates/index', :locals => {:profiles => @profiles, :full_column => true}
-
+      
 - cache('recruiters_statistics_' + (@is_recruiter_coordinator ? "coordinator" : "recruiter"), :expires_in => 10.minutes) do
   .row{:style => 'margin-top: 20px'}
     .span9

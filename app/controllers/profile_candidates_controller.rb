@@ -87,7 +87,7 @@ class ProfileCandidatesController < ApplicationController
   end
   
   def index
-    @profiles = ProfileCandidate.submitted
+    @profiles = ProfileCandidate.submitted.chronological
     
     if params[:province]
       @profiles = @profiles.where(:province => params[:province])

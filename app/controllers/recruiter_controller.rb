@@ -23,6 +23,13 @@ class RecruiterController < ApplicationController
       if params[:school]
         @profiles = @profiles.where(:school => params[:school])
       end
+      if params[:sort_by] == 'point'
+        logger.debug 'sort_by point'
+        @profiles = @profiles.select('*, 65 * (30 * organization_point + 30 * committee_point + 30 * personal_knowledge_point + 10 * document_completeness_point) + 35 * (50 * reliability_point + 50 * willingness_point) as total_point_sql')
+          .order('total_point_sql DESC')
+      else
+        @profiles = @profiles.chronological
+      end
       
       respond_to do |format|
         format.xls
@@ -51,6 +58,13 @@ class RecruiterController < ApplicationController
       end
       if params[:school]
         @profiles = @profiles.where(:school => params[:school])
+      end
+      if params[:sort_by] == 'point'
+        logger.debug 'sort_by point'
+        @profiles = @profiles.select('*, 65 * (30 * organization_point + 30 * committee_point + 30 * personal_knowledge_point + 10 * document_completeness_point) + 35 * (50 * reliability_point + 50 * willingness_point) as total_point_sql')
+          .order('total_point_sql DESC')
+      else
+        @profiles = @profiles.chronological
       end
       
       @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)      
