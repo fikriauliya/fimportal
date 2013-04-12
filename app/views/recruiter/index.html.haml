@@ -2,7 +2,7 @@
   .span12
     %h3 Daftar calon peserta FIM 14
   .span1
-    = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province], :school => params[:school], :order => params[:order]), 
+    = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province], :school => params[:school], :gender => params[:gender], :religion => params[:religion], :order => params[:order]), 
       :class => 'btn btn-primary')
   .span1
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
@@ -24,7 +24,7 @@
     = form_tag recruiter_index_path, :method => :get do
       = search_field_tag(:fullname, params[:fullname], :placeholder => 'Masukkan nama di sini')
       = submit_tag("Cari", :class => 'btn btn-primary')
-      -if params[:marked_by_id] || params[:province] || params[:fullname] || params[:school]
+      -if params[:marked_by_id] || params[:province] || params[:fullname] || params[:school] || params[:gender] || params[:religion]
         =link_to("Tampilkan semua", recruiter_index_path, :class => 'btn btn-danger')
 .row
   .span2
@@ -153,3 +153,33 @@
                 %td
                   =link_to(province[0], recruiter_index_path(:province => province[0]))
                 %td= province[1]
+                
+      %hr
+      %h4 Gender (Update per 1 jam)
+      - cache('gender_statistics', :expires_in => 1.hours) do
+        %table.table.table-condensed.table-striped
+          %thead
+            %tr
+              %th{:style => 'width:70%'} Gender
+              %th Jumlah
+          %tbody
+            -@genders_count.each do |gender|
+              %tr
+                %td
+                  =link_to(gender[0], recruiter_index_path(:gender => gender[0]))
+                %td= gender[1]
+      
+      %hr
+      %h4 Religion (Update per 1 jam)
+      - cache('religion_statistics', :expires_in => 1.hours) do
+        %table.table.table-condensed.table-striped
+          %thead
+            %tr
+              %th{:style => 'width:70%'} Religion
+              %th Jumlah
+          %tbody
+            -@religions_count.each do |religion|
+              %tr
+                %td
+                  =link_to(religion[0], recruiter_index_path(:religion => religion[0]))
+                %td= religion[1]

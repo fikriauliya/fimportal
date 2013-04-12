@@ -23,6 +23,12 @@ class RecruiterController < ApplicationController
       if params[:school]
         @profiles = @profiles.where(:school => params[:school])
       end
+      if params[:gender]
+        @profiles = @profiles.where(:gender => params[:gender])
+      end
+      if params[:religion]
+        @profiles = @profiles.where(:religion => params[:religion])
+      end
       if params[:order] == 'point'
         @profiles = @profiles.select('*, 65 * (30 * organization_point + 30 * committee_point + 30 * personal_knowledge_point + 10 * document_completeness_point) + 35 * (50 * reliability_point + 50 * willingness_point) as total_point_sql')
           .order('total_point_sql DESC')
@@ -36,6 +42,8 @@ class RecruiterController < ApplicationController
     else
       @provinces_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :province, :order => 'count_all DESC')
       @schools_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :school, :order => 'count_all DESC')
+      @genders_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :gender, :order => 'count_all DESC')
+      @religions_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :religion, :order => 'count_all DESC')
       
       if current_user.has_role? "recruiter_coordinator"
         @profiles = ProfileCandidate.includes([:user, :marked_by]).submitted
@@ -57,6 +65,12 @@ class RecruiterController < ApplicationController
       end
       if params[:school]
         @profiles = @profiles.where(:school => params[:school])
+      end
+      if params[:gender]
+        @profiles = @profiles.where(:gender => params[:gender])
+      end
+      if params[:religion]
+        @profiles = @profiles.where(:religion => params[:religion])
       end
       if params[:order] == 'point'
         @profiles = @profiles.select('*, 65 * (30 * organization_point + 30 * committee_point + 30 * personal_knowledge_point + 10 * document_completeness_point) + 35 * (50 * reliability_point + 50 * willingness_point) as total_point_sql')
