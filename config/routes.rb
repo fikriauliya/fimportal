@@ -43,6 +43,7 @@ FimAlumni::Application.routes.draw do
   # authenticated :user do
     # root :to => 'home#index_authenticated'
   # end
+  match "home/faq" => 'home#faq', :via => :get
   root :to => "home#index"
   devise_for :users
   resources :users

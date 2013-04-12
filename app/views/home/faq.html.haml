@@ -1,0 +1,67 @@
+-content_for :head do  
+  %meta{property: "fb:admins", content: "100003294745679"}
+
+
+#fb-root
+:javascript
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=268730903259240";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+.row
+  .span7
+    %h3 FAQ Pengumuman FIM 14
+    .fb-like{"data-href" => "http://portal.forumindonesiamuda.org/home/faq", "data-send" => "true", "data-show-faces" => "true", "data-width" => "450"}
+    %p
+      %strong 1. Bagaimana penentuan peserta pelatihan FIM 14 gelombang 1 dan 2?
+      %br/
+      A : Panitia memilih 180 calon peserta dari hasil seleksi berkas. Calon peserta nantinya akan mendapatkan penempatan di gelombang 1 atau 2 sesuai konfirmasi yang dilakukan.
+    %p
+      %strong 2. Kenapa tempat pelatihan dibedakan?
+      %br/
+      A: Pelatihan di Bukittinggi adalah pelatihan yang diadakan dalam rangka mengapresiasi animo peserta dan mensyukuri 1 dekade FIM. Pelatihan diadakan di Bukittinggi karena mengambil tema Bung Hatta sebagai Bapak Bangsa.
+    %p Sementara pelatihan di Cibubur adalah pelatihan reguler yang telah dilakukan rutin mengambil tempat di cibubur sejak FIM angkatan ke-2.
+    %p
+      %strong 3. Kenapa jumlah peserta FIM 14 di kedua tempat tersebut berbeda, 120 dan 60?
+      %br/
+      A : 120 adalah jumlah peserta reguler untuk setiap pelatihan FIM selama ini. Pelatihan di Bukittinggi akan diikuti oleh 60 peserta hasil seleksi dan 66 peserta dari Organisasi Kepemudaan (OKP) seluruh provinsi di Indonesia yang dalam hal ini dipilih oleh Kementerian Dalam Negeri RI. Sehingga total peserta pelatihan di Bukittinggi adalah 126 orang.
+    %p
+      %strong 4. Apakah konten acara yang diselenggarakan dikedua tempat tersebut sama?
+      %br/
+      A : Panitia akan memberitahukan lokasi dan deskripsi kegiatan untuk kedua pelatihan pada tanggal 20 april 2013.
+    %p
+      %strong 5. Apakah peserta boleh memilih tempat pelatihan? Atau ditentukan oleh panitia?
+      %br/
+      A : Peserta yang memilih tempat pelatihan, panitia hanya mengatur kuota daerah. Oleh karena itu, lakukan konfirmasi sesegera mungkin.
+    %p
+      %strong 6. Bagaimana sistem pemilihan dari peserta untuk memilih tempat pelatihannya?
+      %br/
+      A : lakukan konfirmasi secepatnya via website. Apabila lokasi yg anda inginkan sudah penuh, anda hanya dapat mengikuti pelatihan pada tempat yg kuotanya masih tersedia.
+    %p
+      %strong 7. Kalau peserta berasal dari Bukittinggi atau wilayah Sumatera boleh memilih untuk mengikuti pelatihan yang di Bukittinggi saja?
+      %br/
+      A : salah satu kelebihan pelatihan yg dilakukan FIM adalah pesertanya yang tersebar dari hampir seluruh provinsi di Indonesia. Dalam rangka tetap mempertahankan hal tersebut, maka sebaran peserta baik untuk pelatihan di Cibubur maupun di Bukittinggi akan diatur dengan kuota asal daerah. Sehingga peserta pelatihan akan tetap variatif dari berbagai provinsi di Indonesia.
+    %p
+      %strong 8. Terkait keberangkatan ke Bukittinggi, apakah peserta diluar Bukittinggi berkumpul terlebih dahulu di satu tempat atau langsung menuju ke tempat pelatihan?
+      %br/
+      A : Panitia akan memberitahukan lokasi dan deskripsi kegiatan untuk kedua pelatihan pada tanggal 20 april 2013.
+    %p
+      %strong 9. Biaya pelatihan ke bukittinggi di tanggung siapa?
+      %br/
+      A : Sama seperti pelatihan di Cibubur dan pelatihan FIM sebelumnya, peserta hanya menanggung transportasi ke- dan dari- tempat pelatihan. Penginapan dan konsumsi peserta ditanggung oleh panitia.
+    %p
+      %strong 10. Kalau saya lolos pelatihan di Bukittinggi namun berhalangan hadir pada tanggal tersebut, bisakah saya mengikuti pelatihan yang di jakarta?
+    %p A : Apabila anda melakukan konfirmasi di Bukittinggi dan terpilih sebagai peserta pelatihan di Bukittinggi, apabila dikemudian hari anda tidak dapat hadir pada saat masa pelatihan berlangsung maka keikutsertaan anda akan gugur/hangus dan tidak dapat dipindahtempatkan. Hal yang sama juga berlaku pada peserta pelatihan di Cibubur.
+    
+    %hr
+    .fb-comments{"data-href" => "http://portal.forumindonesiamuda.org/home/faq", "data-num-posts" => "15", "data-width" => "600"}
+    
+  .span4.offset1
+    %a.twitter-timeline{"data-widget-id" => "308020397293568000", :href => "https://twitter.com/fimnews"} Tweets by @fimnews
+    :javascript
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    

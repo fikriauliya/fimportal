@@ -2,6 +2,8 @@
 %ul.nav
   %li
     = link_to "Tentang FIM 14", 'http://forumindonesiamuda.org/fim-14-character-building-leadership-lifeskill-training/'
+  %li
+    = link_to "FAQ Pengumuman FIM 14", home_faq_path
     
   - if user_signed_in?
     - if current_user.has_role? :admin

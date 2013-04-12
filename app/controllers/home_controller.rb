@@ -7,4 +7,7 @@ class HomeController < ApplicationController
     flash[:alert] = "Pendaftaran FIM 14 telah ditutup. Terimakasih :)"
     redirect_to root_path
   end
+  
+  def faq
+  end
 end
