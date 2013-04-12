@@ -166,7 +166,7 @@
             -@genders_count.each do |gender|
               %tr
                 %td
-                  =link_to(gender[0] == 0 ? 'Laki-laki' : 'Perempuan', recruiter_index_path(:gender => gender[0]))
+                  =link_to(gender[0] == '0' ? 'Laki-laki' : 'Perempuan', recruiter_index_path(:gender => gender[0]))
                 %td= gender[1]
       
       %hr
