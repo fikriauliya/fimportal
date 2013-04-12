@@ -19,6 +19,13 @@
 .row
   .span8
     %h3 Menjelang Pengumuman Peserta FIM 14
+    
+    %p{:style => 'text-align: right'}
+      %b
+        Lihat juga: 
+        =link_to "FAQ Pengumuman FIM 14", home_faq_path
+    
+    %br
     %p 
       %b Halo Pemuda Indonesia!
     %p 
@@ -64,7 +71,7 @@
       Penjelasan mengenai kedua deskripsi kegiatan pelatihan FIM 14 ini, dapat disimak melalui website dan jejaring sosial official FIM mulai tanggal 10 April 2013.
     %p Pantau selalu website dan jejaring sosial official FIM untuk informasi dan pertanyaan lebih lanjut.
     %p Pemuda Indonesia, Aku untuk bangsaku !
-
+      
     %p
       Contact Person: 
       %b
@@ -82,10 +89,6 @@
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 .row
   .span7.service-item
-    %h4
-      %i.icon-file>
-      FIM 14
-    
     =link_to "Calon Peserta FIM 14", profile_candidates_path, 'class' => 'btn btn-danger'
     =link_to "Statistik Pendaftar", statistics_public_path, 'class' => 'btn btn-warning'
     =link_to "Status Pendaftaran Saya", progress_status_profile_candidates_path, 'class' => 'btn btn-info'
