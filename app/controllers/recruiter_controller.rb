@@ -87,6 +87,13 @@ class RecruiterController < ApplicationController
     end
   end
   
+  def index_accepted
+    authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
+    if current_user.has_role? "recruiter_coordinator"
+      @profiles = ProfileCandidate.where(:is_accepted => true)
+    end
+  end
+  
   def new_upload
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
     
