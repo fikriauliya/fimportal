@@ -290,11 +290,39 @@ class ProfileCandidatesController < ApplicationController
   
   def update_accepted_location
     @profile = current_user.profile_candidate
-    if params[:profile_candidate][:accepted_location].empty?
+    location = params[:profile_candidate][:accepted_location]
+    
+    if location.empty?
       @profile.errors[:accepted_location] = "Can't empty"
       render "acceptance_status"
-    elsif @profile.update_attributes({:accepted_location => params[:profile_candidate][:accepted_location]}, :as => :update_accepted_location)
-      redirect_to acceptance_status_profile_candidates_path, :notice => "Data Anda telah diterima" 
+    elsif @profile.accepted_location_choices 
+      location_num = case location
+      when 'Cibubur atau Bukit Tinggi'
+        0
+      when 'Cibubur'
+        1
+      when 'Bukit Tinggi'
+        2
+      when 'Tidak bisa mengikuti'
+        3
+      end
+      
+      allowed = false
+      if @profile.accepted_location_choices == 0 || location_num == 3
+        allowed = true
+      elsif @profile.accepted_location_choices == 1 && (location_num == 0 || location_num == 1)
+        allowed = true
+      elsif @profile.accepted_location_choices == 2 && (location_num == 0 || location_num == 2)
+        allowed = true
+      end
+        
+      if allowed
+        @profile.update_attributes({:accepted_location => location}, :as => :update_accepted_location)
+        redirect_to acceptance_status_profile_candidates_path, :notice => "Data Anda telah diterima"
+      else
+        @profile.errors[:accepted_location] = "Kuota pilihan Anda telah penuh. Silakan pilih pilihan lain"
+        render "acceptance_status"
+      end
     else
       render "acceptance_status"
     end
@@ -311,10 +339,6 @@ class ProfileCandidatesController < ApplicationController
     both = cibuburs & bukittinggis
     only_cibuburs = cibuburs - bukittinggis
     only_bukittinggis = bukittinggis - cibuburs
-    
-    logger.info "both: #{both}"
-    logger.info "cibubur: #{only_cibuburs}"
-    logger.info "bukit tinggi: #{only_bukittinggis}"
     
     ProfileCandidate.update_all({accepted_location_choices: 0}, {id: both})
     ProfileCandidate.update_all({accepted_location_choices: 1}, {id: only_cibuburs})

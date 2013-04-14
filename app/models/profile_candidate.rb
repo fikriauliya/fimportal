@@ -131,4 +131,15 @@ class ProfileCandidate < ActiveRecord::Base
       0
     end
   end
+  
+  def accepted_location_choices_array
+    case self.accepted_location_choices
+    when 0
+      [["Cibubur", "Cibubur"], ["Bukit Tinggi", "Bukit Tinggi"], ["Keduanya bisa (akan dipilihkan salah satu oleh panitia)", "Cibubur atau Bukit Tinggi"], ["Tidak bisa mengikuti FIM 14", "Tidak bisa mengikuti"]]
+    when 1
+      [["Cibubur", "Cibubur"], ["Tidak bisa mengikuti FIM 14", "Tidak bisa mengikuti"]]
+    when 2
+      [["Bukit Tinggi", "Bukit Tinggi"], ["Tidak bisa mengikuti FIM 14", "Tidak bisa mengikuti"]]
+    end
+  end
 end

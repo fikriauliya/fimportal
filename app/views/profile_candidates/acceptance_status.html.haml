@@ -12,11 +12,11 @@
           Selamat Anda diterima :)
       
           .form-inputs
-            = f.input :accepted_location, :label => "Lokasi", :as => :select, :collection => [["Cibubur", "Cibubur"], ["Bukit Tinggi", "Bukit Tinggi"], ["Keduanya bisa (akan dipilihkan salah satu oleh panitia)", "Cibubur atau Bukit Tinggi"]]
+            = f.input :accepted_location, :label => "Lokasi", :as => :select, :collection => @profile.accepted_location_choices_array
           .form-actions
             = f.submit "Submit", :class => "btn btn-primary"
       - else
-        Anda telah memilih untuk mengikuti FIM 14 di 
+        Anda telah memilih: 
         %b
           %u
             = @profile.accepted_location
