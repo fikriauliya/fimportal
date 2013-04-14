@@ -299,4 +299,26 @@ class ProfileCandidatesController < ApplicationController
       render "acceptance_status"
     end
   end
+  
+  def update_accepted_location_choices
+    authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
+    cibuburs = params[:cibuburs]
+    bukittinggis = params[:bukittinggis]
+    
+    cibuburs ||= []
+    bukittinggis ||= []
+    
+    both = cibuburs & bukittinggis
+    only_cibuburs = cibuburs - bukittinggis
+    only_bukittinggis = bukittinggis - cibuburs
+    
+    logger.info "both: #{both}"
+    logger.info "cibubur: #{only_cibuburs}"
+    logger.info "bukit tinggi: #{only_bukittinggis}"
+    
+    ProfileCandidate.update_all({accepted_location_choices: 0}, {id: both})
+    ProfileCandidate.update_all({accepted_location_choices: 1}, {id: only_cibuburs})
+    ProfileCandidate.update_all({accepted_location_choices: 2}, {id: only_bukittinggis})
+    redirect_to recruiter_index_accepted_path, :notice => "Updated"
+  end
 end

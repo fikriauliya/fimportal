@@ -1,32 +1,45 @@
 .row
   .span12
-    %table.table.table-strip.table-condensed
-      %thead
-        %tr
-          %th 
-            =link_to 'No', recruiter_index_accepted_path
-          %th
-            =link_to 'Nama', recruiter_index_accepted_path(:order => 'fullname')
-          %th 
-            =link_to 'Pernah daftar', recruiter_index_accepted_path(:order => 'application_count')
-          %th
-            =link_to 'Institusi', recruiter_index_accepted_path(:order => 'school')
-          %th 
-            =link_to 'Provinsi', recruiter_index_accepted_path(:order => 'province')
-          %th 
-            =link_to 'Gender', recruiter_index_accepted_path(:order => 'gender')
-          %th 
-            =link_to 'Agama', recruiter_index_accepted_path(:order => 'religion')
-          %th 
-            =link_to 'Handphone', recruiter_index_accepted_path(:order => 'phone')
-      %tbody
-        - @profiles.each_with_index do |profile, i|
+    = form_tag update_accepted_location_choices_profile_candidates_path, :method => :put do
+      = submit_tag("Update", :class => 'btn btn-primary')
+      %br
+      %br
+      %table.table.table-strip.table-condensed
+        %thead
           %tr
-            %td= i+1
-            %td= profile.fullname
-            %td= profile.application_count > 0 ? profile.application_count : ''
-            %td= profile.school
-            %td= profile.province
-            %td= profile.gender == "0" ? 'Laki-laki' : 'Perempuan'
-            %td= profile.religion
-            %td= profile.phone
+            %th 
+              =link_to 'No', recruiter_index_accepted_path
+            %th
+              =link_to 'Nama', recruiter_index_accepted_path(:order => 'fullname')
+            %th 
+              =link_to 'Pernah daftar', recruiter_index_accepted_path(:order => 'application_count')
+            %th
+              =link_to 'Institusi', recruiter_index_accepted_path(:order => 'school')
+            %th 
+              =link_to 'Provinsi', recruiter_index_accepted_path(:order => 'province')
+            %th 
+              =link_to 'Gender', recruiter_index_accepted_path(:order => 'gender')
+            %th 
+              =link_to 'Agama', recruiter_index_accepted_path(:order => 'religion')
+            %th 
+              =link_to 'Handphone', recruiter_index_accepted_path(:order => 'phone')
+            %th
+              =link_to 'Pilihan lokasi', recruiter_index_accepted_path(:order => 'accepted_location')
+            %th
+              Cibubur
+            %th
+              Bukit Tinggi  
+        %tbody
+          - @profiles.each_with_index do |profile, i|
+            %tr
+              %td= i+1
+              %td= profile.fullname
+              %td= profile.application_count > 0 ? profile.application_count : ''
+              %td= profile.school
+              %td= profile.province
+              %td= profile.gender == "0" ? 'Laki-laki' : 'Perempuan'
+              %td= profile.religion
+              %td= profile.phone
+              %td= profile.accepted_location
+              %td= check_box_tag 'cibuburs[]', profile.id, (profile.accepted_location_choices == 0) || (profile.accepted_location_choices == 1) 
+              %td= check_box_tag 'bukittinggis[]', profile.id, (profile.accepted_location_choices == 0) || (profile.accepted_location_choices == 2)

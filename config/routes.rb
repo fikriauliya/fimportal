@@ -38,6 +38,7 @@ FimAlumni::Application.routes.draw do
       match 'progress_status' => 'profile_candidates#progress_status', :via => :get
       match 'acceptance_status' => 'profile_candidates#acceptance_status', :via => :get
       match 'update_accepted_location' => 'profile_candidates#update_accepted_location', :via => :put, :as => 'update_accepted_location'
+      match 'update_accepted_location_choices' => 'profile_candidates#update_accepted_location_choices', :via => :put, :as => 'update_accepted_location_choices'
     end
   end
   
