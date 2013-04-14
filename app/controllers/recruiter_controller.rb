@@ -91,6 +91,23 @@ class RecruiterController < ApplicationController
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
     if current_user.has_role? "recruiter_coordinator"
       @profiles = ProfileCandidate.where(:is_accepted => true)
+      
+      @provinces_count_cibubur = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Cibubur'").count(:all, :group => :province, :order => 'count_all DESC')
+      @schools_count_cibubur = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Cibubur'").count(:all, :group => :school, :order => 'count_all DESC')
+      @genders_count_cibubur = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Cibubur'").count(:all, :group => :gender, :order => 'count_all DESC')
+      
+      @provinces_count_bukittinggi = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Bukit Tinggi'").count(:all, :group => :province, :order => 'count_all DESC')
+      @schools_count_bukittinggi = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Bukit Tinggi'").count(:all, :group => :school, :order => 'count_all DESC')
+      @genders_count_bukittinggi = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Bukit Tinggi'").count(:all, :group => :gender, :order => 'count_all DESC')
+      
+      @provinces_count_both = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Cibubur atau Bukit Tinggi'").count(:all, :group => :province, :order => 'count_all DESC')
+      @schools_count_both = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Cibubur atau Bukit Tinggi'").count(:all, :group => :school, :order => 'count_all DESC')
+      @genders_count_both = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Cibubur atau Bukit Tinggi'").count(:all, :group => :gender, :order => 'count_all DESC')
+      
+      @provinces_count_none = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Tidak bisa mengikuti'").count(:all, :group => :province, :order => 'count_all DESC')
+      @schools_count_none = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Tidak bisa mengikuti'").count(:all, :group => :school, :order => 'count_all DESC')
+      @genders_count_none = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Tidak bisa mengikuti'").count(:all, :group => :gender, :order => 'count_all DESC')
+
       if params[:order]
         @profiles = @profiles.order(params[:order])
       else

@@ -1,5 +1,160 @@
 .row
   .span12
+    %h4 Cibubur
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead
+        %tr
+          %th{:style => 'width:70%'} Gender
+          %th Jumlah
+      %tbody
+        -@genders_count_cibubur.each do |gender|
+          %tr
+            %td= gender[0] == '0' ? 'Laki-laki' : 'Perempuan'
+            %td= gender[1]
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead  
+        %tr
+          %th{:style => 'width:70%'} Provinsi
+          %th Jumlah
+      %tbody
+        -@schools_count_cibubur.each do |school|
+          %tr
+            %td
+              =link_to(school[0], recruiter_index_path(:school => school[0]))
+            %td= school[1]
+    
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead
+        %tr
+          %th{:style => 'width:70%'} Provinsi
+          %th Jumlah
+      %tbody
+        -@provinces_count_cibubur.each do |province|
+          %tr
+            %td= province[0]
+            %td= province[1]
+            
+.row
+  .span12
+    %h4 Bukit Tinggi
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead
+        %tr
+          %th{:style => 'width:70%'} Gender
+          %th Jumlah
+      %tbody
+        -@genders_count_bukittinggi.each do |gender|
+          %tr
+            %td= gender[0] == '0' ? 'Laki-laki' : 'Perempuan'
+            %td= gender[1]
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead  
+        %tr
+          %th{:style => 'width:70%'} Provinsi
+          %th Jumlah
+      %tbody
+        -@schools_count_bukittinggi.each do |school|
+          %tr
+            %td
+              =link_to(school[0], recruiter_index_path(:school => school[0]))
+            %td= school[1]
+    
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead
+        %tr
+          %th{:style => 'width:70%'} Provinsi
+          %th Jumlah
+      %tbody
+        -@provinces_count_bukittinggi.each do |province|
+          %tr
+            %td= province[0]
+            %td= province[1]
+            
+.row
+  .span12
+    %h4 Cibubur atau Bukit Tinggi
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead
+        %tr
+          %th{:style => 'width:70%'} Gender
+          %th Jumlah
+      %tbody
+        -@genders_count_both.each do |gender|
+          %tr
+            %td= gender[0] == '0' ? 'Laki-laki' : 'Perempuan'
+            %td= gender[1]
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead  
+        %tr
+          %th{:style => 'width:70%'} Provinsi
+          %th Jumlah
+      %tbody
+        -@schools_count_both.each do |school|
+          %tr
+            %td
+              =link_to(school[0], recruiter_index_path(:school => school[0]))
+            %td= school[1]
+    
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead
+        %tr
+          %th{:style => 'width:70%'} Provinsi
+          %th Jumlah
+      %tbody
+        -@provinces_count_both.each do |province|
+          %tr
+            %td= province[0]
+            %td= province[1]
+            
+.row
+  .span12
+    %h4 Tidak bisa
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead
+        %tr
+          %th{:style => 'width:70%'} Gender
+          %th Jumlah
+      %tbody
+        -@genders_count_none.each do |gender|
+          %tr
+            %td= gender[0] == '0' ? 'Laki-laki' : 'Perempuan'
+            %td= gender[1]
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead  
+        %tr
+          %th{:style => 'width:70%'} Provinsi
+          %th Jumlah
+      %tbody
+        -@schools_count_none.each do |school|
+          %tr
+            %td
+              =link_to(school[0], recruiter_index_path(:school => school[0]))
+            %td= school[1]
+    
+  .span4
+    %table.table.table-condensed.table-striped
+      %thead
+        %tr
+          %th{:style => 'width:70%'} Provinsi
+          %th Jumlah
+      %tbody
+        -@provinces_count_none.each do |province|
+          %tr
+            %td= province[0]
+            %td= province[1]
+.row
+  .span12
     = form_tag update_accepted_location_choices_profile_candidates_path, :method => :put do
       = submit_tag("Update", :class => 'btn btn-primary')
       %br
