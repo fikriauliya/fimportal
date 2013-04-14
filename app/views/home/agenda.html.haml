@@ -1,0 +1,71 @@
+-content_for :head do  
+  %meta{property: "fb:admins", content: "100003294745679"}
+-content_for :title, "Agenda FIM 14"
+-content_for :description, "Detail Agenda FIM 14"
+
+#fb-root
+:javascript
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=268730903259240";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+.row
+  .span8
+    %h4
+      FIM 14.C
+    
+    %p
+      %b Keynote Speech : 
+      Pentingnya Berkarya Untuk Indonesia
+      %br
+      %b Studium Generale: 
+      Membangun Indonesia
+    
+    %ol
+      %li Mengenal diri
+      %li Keadilan & Integritas
+      %li Bersahaja dan keteladanan
+      %li Solidaritas, Totalitas, Cinta Kasih
+      %li Talkshow “Kolaborasi Karya”
+      %li Training : “Finding Your Passion”
+      %li Workshop Collaboration
+      %li Youth & Social Problem
+    
+    %h4
+      FIM 14.B
+    
+    %p
+      %b Seminar
+    %ol
+      %li “Bung Hatta, Tokoh teladan perekat bangsa"
+      %li Peranan budaya dan pendidikan dalam pembentukan karakter generasi muda
+      %li Pengaruh globalisasi media terhadap generasi muda
+      %li Peran generasi muda sebagai benteng NKRI
+    
+    %p
+      %b Pelatihan Leadership & Character Building
+   
+    %ol
+      %li Character Building on Leadership Lifeskill Training
+      %li Mengenal Diri
+      %li Proposal Hidup
+      %li Integritas dan Adil
+      %li Keteladanan dan Bersahaja
+      %li Cinta Kasih
+      %li Totalitas
+      %li Contemplation
+      %li Objek Wisata di Sumatera Barat
+      %li Tour Wisata
+    
+  .span4
+    %br
+    .fb-like{"data-href" => "http://portal.forumindonesiamuda.org/home/agenda", "data-send" => "true", "data-show-faces" => "true", "data-width" => "450"}
+    %br
+    %br
+    %a.twitter-timeline{"data-widget-id" => "308020397293568000", :href => "https://twitter.com/fimnews"} Tweets by @fimnews
+    :javascript
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");

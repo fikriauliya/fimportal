@@ -1,10 +1,12 @@
 = link_to "Portal FIM", root_path, :class => 'brand'
 %ul.nav
   %li
-    = link_to "Tentang FIM 14", 'http://forumindonesiamuda.org/fim-14-character-building-leadership-lifeskill-training/'
+    = link_to "Tentang FIM", 'http://forumindonesiamuda.org/fim-14-character-building-leadership-lifeskill-training/'
   %li
     = link_to "FAQ Pengumuman FIM 14", home_faq_path
-    
+  %li
+    = link_to "Agenda FIM 14", home_agenda_path
+      
   - if user_signed_in?
     - if current_user.has_role? :admin
       %li

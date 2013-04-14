@@ -45,6 +45,7 @@ FimAlumni::Application.routes.draw do
     # root :to => 'home#index_authenticated'
   # end
   match "home/faq" => 'home#faq', :via => :get
+  match "home/agenda" => 'home#agenda', :via => :get
   root :to => "home#index"
   devise_for :users
   resources :users
