@@ -16,7 +16,7 @@
     %table.table.table-condensed.table-striped
       %thead  
         %tr
-          %th{:style => 'width:70%'} Provinsi
+          %th{:style => 'width:70%'} Institusi
           %th Jumlah
       %tbody
         -@schools_count_cibubur.each do |school|
@@ -55,7 +55,7 @@
     %table.table.table-condensed.table-striped
       %thead  
         %tr
-          %th{:style => 'width:70%'} Provinsi
+          %th{:style => 'width:70%'} Institusi
           %th Jumlah
       %tbody
         -@schools_count_bukittinggi.each do |school|
@@ -94,7 +94,7 @@
     %table.table.table-condensed.table-striped
       %thead  
         %tr
-          %th{:style => 'width:70%'} Provinsi
+          %th{:style => 'width:70%'} Institusi
           %th Jumlah
       %tbody
         -@schools_count_both.each do |school|
@@ -117,7 +117,7 @@
             
 .row
   .span12
-    %h4 Tidak bisa
+    %h4 Tidak bisa mengikuti
   .span4
     %table.table.table-condensed.table-striped
       %thead
@@ -133,13 +133,12 @@
     %table.table.table-condensed.table-striped
       %thead  
         %tr
-          %th{:style => 'width:70%'} Provinsi
+          %th{:style => 'width:70%'} Institusi
           %th Jumlah
       %tbody
         -@schools_count_none.each do |school|
           %tr
-            %td
-              =link_to(school[0], recruiter_index_path(:school => school[0]))
+            %td=school[0]
             %td= school[1]
     
   .span4
@@ -153,12 +152,11 @@
           %tr
             %td= province[0]
             %td= province[1]
+
+%hr
 .row
   .span12
     = form_tag update_accepted_location_choices_profile_candidates_path, :method => :put do
-      = submit_tag("Update", :class => 'btn btn-primary')
-      %br
-      %br
       %table.table.table-strip.table-condensed
         %thead
           %tr
@@ -198,3 +196,5 @@
               %td= profile.accepted_location
               %td= check_box_tag 'cibuburs[]', profile.id, (profile.accepted_location_choices == 0) || (profile.accepted_location_choices == 1) 
               %td= check_box_tag 'bukittinggis[]', profile.id, (profile.accepted_location_choices == 0) || (profile.accepted_location_choices == 2)
+              
+      = submit_tag("Update", :class => 'btn btn-primary')
