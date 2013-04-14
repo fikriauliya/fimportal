@@ -283,4 +283,20 @@ class ProfileCandidatesController < ApplicationController
       end
     end
   end
+  
+  def acceptance_status
+    @profile = current_user.profile_candidate
+  end
+  
+  def update_accepted_location
+    @profile = current_user.profile_candidate
+    if params[:profile_candidate][:accepted_location].empty?
+      @profile.errors[:accepted_location] = "Can't empty"
+      render "acceptance_status"
+    elsif @profile.update_attributes({:accepted_location => params[:profile_candidate][:accepted_location]}, :as => :update_accepted_location)
+      redirect_to acceptance_status_profile_candidates_path, :notice => "Data Anda telah diterima" 
+    else
+      render "acceptance_status"
+    end
+  end
 end

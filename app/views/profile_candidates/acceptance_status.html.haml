@@ -1,0 +1,22 @@
+.row
+  .span8
+    %h3 Status penerimaan saya
+    - if @profile.nil? || !@profile.is_accepted
+      Maaf Anda tidak diterima
+    - else
+      - if @profile.accepted_location.nil?
+        = simple_form_for(@profile, :url => update_accepted_location_profile_candidates_path, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
+          = f.error_notification
+          = display_base_errors @profile
+          
+          Selamat Anda diterima :)
+      
+          .form-inputs
+            = f.input :accepted_location, :label => "Lokasi", :as => :select, :collection => [["Cibubur", "Cibubur"], ["Bukit Tinggi", "Bukit Tinggi"], ["Keduanya bisa (akan dipilihkan salah satu oleh panitia)", "Cibubur atau Bukit Tinggi"]]
+          .form-actions
+            = f.submit "Submit", :class => "btn btn-primary"
+      - else
+        Anda telah memilih untuk mengikuti FIM 14 di 
+        %b
+          %u
+            = @profile.accepted_location
