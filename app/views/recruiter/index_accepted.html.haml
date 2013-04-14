@@ -3,15 +3,24 @@
     %table.table.table-strip
       %thead
         %tr
-          %th No
-          %th Nama
-          %th Pernah daftar
-          %th Institusi
-          %th Provinsi
-          %th Gender
-          %th Agama
-          %th Handphone
-          %th Rekomendasi
+          %th 
+            =link_to 'No', recruiter_index_accepted_path
+          %th
+            =link_to 'Nama', recruiter_index_accepted_path(:order => 'fullname')
+          %th 
+            =link_to 'Pernah daftar', recruiter_index_accepted_path(:order => 'application_count')
+          %th
+            =link_to 'Institusi', recruiter_index_accepted_path(:order => 'school')
+          %th 
+            =link_to 'Provinsi', recruiter_index_accepted_path(:order => 'province')
+          %th 
+            =link_to 'Gender', recruiter_index_accepted_path(:order => 'gender')
+          %th 
+            =link_to 'Agama', recruiter_index_accepted_path(:order => 'religion')
+          %th 
+            =link_to 'Handphone', recruiter_index_accepted_path(:order => 'phone')
+          %th 
+            =link_to 'Rekomendasi', recruiter_index_accepted_path(:order => 'referal')
       %tbody
         - @profiles.each_with_index do |profile, i|
           %tr

@@ -91,6 +91,11 @@ class RecruiterController < ApplicationController
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
     if current_user.has_role? "recruiter_coordinator"
       @profiles = ProfileCandidate.where(:is_accepted => true)
+      if params[:order]
+        @profiles = @profiles.order(['?', params[:order]])
+      else
+        @profiles = @profiles.order('fullname ASC')
+      end
     end
   end
   
