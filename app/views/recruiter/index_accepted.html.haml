@@ -21,8 +21,7 @@
       %tbody
         -@schools_count_cibubur.each do |school|
           %tr
-            %td
-              =link_to(school[0], recruiter_index_path(:school => school[0]))
+            %td= school[0]
             %td= school[1]
     
   .span4
@@ -60,8 +59,7 @@
       %tbody
         -@schools_count_bukittinggi.each do |school|
           %tr
-            %td
-              =link_to(school[0], recruiter_index_path(:school => school[0]))
+            %td= school[0]
             %td= school[1]
     
   .span4
@@ -99,8 +97,7 @@
       %tbody
         -@schools_count_both.each do |school|
           %tr
-            %td
-              =link_to(school[0], recruiter_index_path(:school => school[0]))
+            %td= school[0]
             %td= school[1]
     
   .span4
@@ -138,7 +135,7 @@
       %tbody
         -@schools_count_none.each do |school|
           %tr
-            %td=school[0]
+            %td= school[0]
             %td= school[1]
     
   .span4
