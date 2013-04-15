@@ -1,31 +1,18 @@
 .row
   .span12
-    %h4 Recently added:
+    %h4 5 Recently changed:
     %table.table.table-strip.table-condensed
       %thead
         %tr
-          %th 
-            =link_to 'No', recruiter_index_accepted_path
-          %th
-            =link_to 'Nama', recruiter_index_accepted_path(:order => 'fullname')
-          %th 
-            =link_to 'Pernah daftar', recruiter_index_accepted_path(:order => 'application_count')
-          %th
-            =link_to 'Institusi', recruiter_index_accepted_path(:order => 'school')
-          %th 
-            =link_to 'Provinsi', recruiter_index_accepted_path(:order => 'province')
-          %th 
-            =link_to 'Gender', recruiter_index_accepted_path(:order => 'gender')
-          %th 
-            =link_to 'Agama', recruiter_index_accepted_path(:order => 'religion')
-          %th 
-            =link_to 'Handphone', recruiter_index_accepted_path(:order => 'phone')
-          %th
-            =link_to 'Pilihan lokasi', recruiter_index_accepted_path(:order => 'accepted_location')
-          %th
-            Cibubur
-          %th
-            Bukit Tinggi  
+          %th No
+          %th Nama
+          %th Pernah daftar
+          %th Insitusi
+          %th Provinsi
+          %th Gender
+          %th Agama
+          %th Handhine
+          %th Pilihan Lokasi
       %tbody
         - @recently_added_profiles.each_with_index do |profile, i|
           %tr
