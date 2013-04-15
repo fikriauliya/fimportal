@@ -2,21 +2,65 @@
   .span8
     %h3 Status penerimaan saya
     - if @profile.nil? || !@profile.is_accepted
-      Maaf Anda tidak diterima
+      %p
+        Terima kasih atas partisipasi Anda dalam mengikuti proses pendaftaran Pelatihan Forum Indonesia Muda 14.
+
+      %p
+        Menyeleksi 4995 calon peserta membuat tim seleksi benar-benar harus bekerja ekstra untuk menentukan calon 
+        pemimpin bangsa yang ingin mengembangkan dirinya melalui pelatihan FIM 14. Dengan berat hati kami harus 
+        menyampaikan bahwa Anda belum berkesempatan untuk menjadi peserta pelatihan FIM 14.
+        
+      %p
+        Kami percaya Anda memiliki potensi yang sangat besar untuk mengembangkan diri dan negeri yang kita banggakan. 
+        Yakinlah peluang untuk maju dan berkembang sangat luas. Tetap semangat mengolaborasikan karya dimanapun Anda berada. 
+        Selamat berkarya dan berjuang! 
+
+      %p
+        Salam pemuda Indonesia! 
+
+      %p
+        Forum Indonesia Muda 
+
     - else
+      %p 
+        Terima kasih atas partisipasi Anda dalam mengikuti proses pendaftaran Pelatihan Forum Indonesia Muda 14.
+
+      %p 
+        Menyeleksi 4995 calon peserta membuat tim seleksi benar-benar harus bekerja ekstra untuk menentukan 
+        calon pemimpin bangsa yang ingin mengembangkan dirinya melalui pelatihan FIM 14. 
+        Kami ucapkan SELAMAT karena Anda telah terpilih menjadi calon peserta Pelatihan FIM 14!
+
       - if @profile.accepted_location.nil?
+        %p 
+          Selanjutnya, silakan untuk segera melakukan konfirmasi keikutsertaan dan kesediaan memilih lokasi pelatihan berikut:
+          
         = simple_form_for(@profile, :url => update_accepted_location_profile_candidates_path, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
           = f.error_notification
           = display_base_errors @profile
-          
-          Selamat Anda diterima :)
-      
+
           .form-inputs
             = f.input :accepted_location, :label => "Lokasi", :as => :select, :collection => @profile.accepted_location_choices_array
           .form-actions
             = f.submit "Submit", :class => "btn btn-primary"
+            
+
+        %p 
+          Dengan ini, Anda menyatakan kesediaan menjadi peserta FIM 14 dan akan mengikuti seluruh kegiatan FIM 14 
+          secara penuh tanpa terkecuali. Namun bila Anda tidak bersedia, maka status kesertaan Anda sebagai peserta 
+          pelatihan FIM 14 akan dicabut.
+
+        %p 
+          Kami yakin Anda dapat memanfaatkan kesempatan ini dengan sebaik-baiknya. Jadilah satu dari 180 peserta terpilih 
+          pelatihan Forum Indonesia Muda 14! 
+
+        %p Salam pemuda Indonesia! 
+
+        %p Forum Indonesia Muda
       - else
-        Anda telah memilih: 
-        %b
-          %u
-            = @profile.accepted_location
+        %p
+          Anda telah memilih: 
+          %b
+            %u
+              = @profile.accepted_location
+        %p Salam pemuda Indonesia! 
+        %p Forum Indonesia Muda
