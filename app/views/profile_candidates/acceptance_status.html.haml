@@ -1,7 +1,9 @@
 .row
   .span8
-    %h3 Status penerimaan saya
     - if @profile.nil? || !@profile.is_accepted
+      %p
+        Halo 
+        %b= @profile.nil? ? current_user.email : @profile.fullname 
       %p
         Terima kasih atas partisipasi Anda dalam mengikuti proses pendaftaran Pelatihan Forum Indonesia Muda 14.
 
@@ -22,6 +24,9 @@
         Forum Indonesia Muda 
 
     - else
+      %p
+        Halo 
+        %b= @profile.nil? ? current_user.email : @profile.fullname 
       %p 
         Terima kasih atas partisipasi Anda dalam mengikuti proses pendaftaran Pelatihan Forum Indonesia Muda 14.
 
