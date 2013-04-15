@@ -1,5 +1,45 @@
 .row
   .span12
+    %h4 Recently added:
+    %table.table.table-strip.table-condensed
+      %thead
+        %tr
+          %th 
+            =link_to 'No', recruiter_index_accepted_path
+          %th
+            =link_to 'Nama', recruiter_index_accepted_path(:order => 'fullname')
+          %th 
+            =link_to 'Pernah daftar', recruiter_index_accepted_path(:order => 'application_count')
+          %th
+            =link_to 'Institusi', recruiter_index_accepted_path(:order => 'school')
+          %th 
+            =link_to 'Provinsi', recruiter_index_accepted_path(:order => 'province')
+          %th 
+            =link_to 'Gender', recruiter_index_accepted_path(:order => 'gender')
+          %th 
+            =link_to 'Agama', recruiter_index_accepted_path(:order => 'religion')
+          %th 
+            =link_to 'Handphone', recruiter_index_accepted_path(:order => 'phone')
+          %th
+            =link_to 'Pilihan lokasi', recruiter_index_accepted_path(:order => 'accepted_location')
+          %th
+            Cibubur
+          %th
+            Bukit Tinggi  
+      %tbody
+        - @recently_added_profiles.each_with_index do |profile, i|
+          %tr
+            %td= i+1
+            %td= profile.fullname
+            %td= profile.application_count > 0 ? profile.application_count : ''
+            %td= profile.school
+            %td= profile.province
+            %td= profile.gender == "0" ? 'Laki-laki' : 'Perempuan'
+            %td= profile.religion
+            %td= profile.phone
+            %td= profile.accepted_location
+.row
+  .span12
     %h4 Cibubur
   .span4
     %table.table.table-condensed.table-striped
