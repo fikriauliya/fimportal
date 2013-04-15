@@ -54,7 +54,7 @@ class ProfileCandidate < ActiveRecord::Base
         institute.save
         
         if institute.quota_for_cibubur == 0
-          ProfileCandidate.update_all('accepted_location_choices = 2', ['is_accepted = ? and accepted_location IS NULL and accepted_location_choices = 0 and province = ?', true, self.province])
+          ProfileCandidate.update_all('accepted_location_choices = 2', ['is_accepted = ? and accepted_location IS NULL and accepted_location_choices = 0 and school = ?', true, self.school])
         end
       end
     end
