@@ -37,7 +37,7 @@
 
       - if @profile.accepted_location.nil?
         %p 
-          Selanjutnya, silakan untuk segera melakukan konfirmasi keikutsertaan dan kesediaan memilih lokasi pelatihan berikut:
+          Selanjutnya, silakan untuk segera melakukan konfirmasi keikutsertaan dan kesediaan memilih lokasi pelatihan berikut (Anda hanya bisa submit satu kali):
           
         = simple_form_for(@profile, :url => update_accepted_location_profile_candidates_path, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
           = f.error_notification
