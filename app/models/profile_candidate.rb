@@ -34,32 +34,6 @@ class ProfileCandidate < ActiveRecord::Base
   
   validates_length_of :fullname, :place_of_birth, :religion, :phone, :blood_type, :school, :information_from, :photo, :recommendation_letter, :status, :province, :facebook, :twitter, :maximum => 255
   
-  after_update :decrease_quota
-  
-  def decrease_quota
-    if self.accepted_location == 'Cibubur' && self.accepted_location_changed?
-      province = ProvinceQuota.find_by_province_name(self.province)
-      unless province.nil?
-        province.quota_for_cibubur -= 1;
-        province.save
-        
-        if province.quota_for_cibubur == 0
-          ProfileCandidate.update_all('accepted_location_choices = 2', ['is_accepted = ? and accepted_location IS NULL and accepted_location_choices = 0 and province = ?', true, self.province])
-        end
-      end
-      
-      institute = InstituteQuota.find_by_institute_name(self.school)
-      unless institute.nil?
-        institute.quota_for_cibubur -= 1;
-        institute.save
-        
-        if institute.quota_for_cibubur == 0
-          ProfileCandidate.update_all('accepted_location_choices = 2', ['is_accepted = ? and accepted_location IS NULL and accepted_location_choices = 0 and school = ?', true, self.school])
-        end
-      end
-    end
-  end
-  
   # validates_format_of :agreement, :with => lambda {|me|
      # /\s*Saya,\s*\[?\s*#{me.fullname.nil? ? '' : me.fullname.strip}\s*\]? \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013\s*/i
    # }, :message => "<p>Tidak sama dengan contoh di atas. Coba periksa apakah [Nama Anda] terisi dengan benar (sama dengan nama lengkap yang Anda cantumkan di atas). Untuk mengurangi kemungkinan kesalahejaan, Anda bisa menggunakan fitur copy-paste dan mengubah [Nama Anda] dengan nama lengkap Anda.</p><p>Contoh:</p><p>Saya, <b>Agus Widodo</b> menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 14 pada tanggal 2-5 Mei 2013"
