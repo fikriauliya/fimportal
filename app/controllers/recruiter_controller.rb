@@ -108,7 +108,7 @@ class RecruiterController < ApplicationController
       @schools_count_none = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Tidak bisa mengikuti'").count(:all, :group => :school, :order => 'school')
       @genders_count_none = @profiles.where("accepted_location IS NOT NULL and accepted_location = 'Tidak bisa mengikuti'").count(:all, :group => :gender, :order => 'gender')
 
-      @recently_added_profiles = @profiles.order('updated_at DESC').limit(5)
+      @recently_added_profiles = @profiles.order('updated_at DESC').limit(10)
       
       if params[:order]
         @profiles = @profiles.order(params[:order])
