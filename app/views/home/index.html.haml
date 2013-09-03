@@ -116,7 +116,7 @@
     %p 
       Selamat datang di Portal Pendaftaran FIM 15!
     %p
-      Agar selalu mendapatkan informasi terbaru mengenai FIM 15, kami rekomendasikan untuk like Facebook 
+      Agar selalu mendapatkan informasi terbaru tentang FIM 15, kami rekomendasikan untuk like Facebook 
       %b Forum Indonesia Muda
       atau follow Twitter
       %b @fimnews
@@ -129,7 +129,7 @@
   .modal-footer
     %button.btn.btn-primary{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
 
--unless session[:hide_like_suggestion]
-  -session[:hide_like_suggestion] = true
+-unless cookies[:hide_like_suggestion]
+  -cookies[:hide_like_suggestion] = {value: true, expires: 3.day.from_now}
   :javascript
     $('#myModal').modal('show')
