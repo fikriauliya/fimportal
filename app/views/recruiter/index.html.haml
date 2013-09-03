@@ -1,6 +1,6 @@
 .row
   .span12
-    %h3 Daftar calon peserta FIM 14
+    %h3 Daftar calon peserta FIM
   .span1
     = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province], :school => params[:school], :gender => params[:gender], :religion => params[:religion], :order => params[:order]), 
       :class => 'btn btn-primary')
