@@ -3,8 +3,7 @@
   %script{type: "text/javascript", src: 'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js'}
   %meta{property: "fb:admins", content: "100003294745679"}
   :javascript
-    #{map_loader(@latitudes, @longitudes)}  
-
+    #{map_loader(@latitudes, @longitudes)}
 
 #fb-root
 :javascript
@@ -107,4 +106,31 @@
     %a.twitter-timeline{"data-widget-id" => "308020397293568000", :href => "https://twitter.com/fimnews"} Tweets by @fimnews
     :javascript
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-    
+
+/ Modal
+#myModal.modal.hide.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", "data-dismiss" => "modal", :type => "button"} ×
+    %h4#myModalLabel Portal Pendafataran FIM 15
+  .modal-body
+    %p 
+      Selamat datang di Portal Pendaftaran FIM 15!
+    %p
+      Untuk mendapatkan informasi terbaru mengenai FIM 15, kami rekomendasikan untuk like Facebook 
+      %b Forum Indonesia Muda
+      atau follow Twitter
+      %b @fimnews
+    %hr
+    .fb-like{"data-href" => "http://portal.forumindonesiamuda.org", "data-send" => "false", "data-show-faces" => "true", "data-width" => "200"} 
+    %br
+    %a.twitter-follow-button{"data-lang" => "id", "data-show-count" => "true", "data-size" => "large", :href => "https://twitter.com/fimnews"} Ikuti @fimnews
+    :javascript
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    %button.btn.btn-primary Save changes
+
+-unless session[:hide_like_suggestion]
+  -session[:hide_like_suggestion] = true
+  :javascript
+    $('#myModal').modal('show')
