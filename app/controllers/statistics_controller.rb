@@ -42,7 +42,7 @@ class StatisticsController < ApplicationController
 
   def old_user_emails
     authorize! :index, User, :message => 'Not authorized as an administrator.'
-    emails = User.where("created_at < '09-01-2013'").select{|s| s.email}.collect{|e| e.email}
+    emails = User.joins("INNER JOIN profile_candidates ON users.id = profile_candidates.user_id WHERE users.created_at < '09-01-2013'").select{|s| s.email}.collect{|e| e.email}
     render :text => emails.join(', ')
   end
 end
