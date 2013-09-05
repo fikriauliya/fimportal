@@ -15,6 +15,28 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
+/ Modal
+#myModal.modal.hide.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", "data-dismiss" => "modal", :type => "button"} ×
+    %h4#myModalLabel Portal Pendafataran FIM 15
+  .modal-body
+    %p 
+      Selamat datang di Portal Pendaftaran FIM 15!
+    %p
+      Agar selalu mendapatkan informasi terbaru tentang FIM 15, kami rekomendasikan untuk like Facebook 
+      %b Forum Indonesia Muda
+      atau follow Twitter
+      %b @fimnews
+    %hr
+    .fb-like-box{"data-header" => "false", "data-href" => "https://www.facebook.com/pages/Forum-Indonesia-Muda/125650577511664", "data-show-border" => "false", "data-show-faces" => "true", "data-stream" => "false", "data-width" => "292"}
+    %br
+    %a.twitter-follow-button{"data-lang" => "id", "data-show-count" => "true", "data-size" => "large", :href => "https://twitter.com/fimnews"} Ikuti @fimnews
+    :javascript
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  .modal-footer
+    %button.btn.btn-primary{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    
 /
   .row
     .span12
@@ -106,28 +128,6 @@
     %a.twitter-timeline{"data-widget-id" => "308020397293568000", :href => "https://twitter.com/fimnews"} Tweets by @fimnews
     :javascript
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-
-/ Modal
-#myModal.modal.hide.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
-  .modal-header
-    %button.close{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", "data-dismiss" => "modal", :type => "button"} ×
-    %h4#myModalLabel Portal Pendafataran FIM 15
-  .modal-body
-    %p 
-      Selamat datang di Portal Pendaftaran FIM 15!
-    %p
-      Agar selalu mendapatkan informasi terbaru tentang FIM 15, kami rekomendasikan untuk like Facebook 
-      %b Forum Indonesia Muda
-      atau follow Twitter
-      %b @fimnews
-    %hr
-    .fb-like-box{"data-header" => "false", "data-href" => "https://www.facebook.com/pages/Forum-Indonesia-Muda/125650577511664", "data-show-border" => "false", "data-show-faces" => "true", "data-stream" => "false", "data-width" => "292"}
-    %br
-    %a.twitter-follow-button{"data-lang" => "id", "data-show-count" => "true", "data-size" => "large", :href => "https://twitter.com/fimnews"} Ikuti @fimnews
-    :javascript
-      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-  .modal-footer
-    %button.btn.btn-primary{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
 
 -unless cookies[:hide_like_suggestion]
   -cookies[:hide_like_suggestion] = {value: true, expires: 3.day.from_now}
