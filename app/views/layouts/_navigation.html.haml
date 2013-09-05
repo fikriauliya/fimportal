@@ -32,6 +32,6 @@
       = f.submit "Sign in", :class => 'btn btn-primary', :style => 'margin-top:10px; margin-bottom:-10px;'
 
 -unless cookies[:hide_faq_suggestion]
-  -cookies[:hide_faq_suggestion] = {value: true, expires: 3.day.from_now}
+  -cookies[:hide_faq_suggestion] = {value: true, expires: 1.day.from_now}
   :javascript
     $('#faq_tooltip').tooltip('show');
