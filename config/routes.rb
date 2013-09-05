@@ -16,6 +16,8 @@ FimAlumni::Application.routes.draw do
   match 'recruiter/upload' => 'recruiter#create_upload', :via => :post
   match 'recruiter/save_upload' => 'recruiter#save_upload', :via => :post
 
+  get 'home/faq' 
+
   resources :profile_candidates, :path => 'candidates', :except => [:show] do
     collection do
       get 'step1'
