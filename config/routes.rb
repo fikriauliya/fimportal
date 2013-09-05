@@ -9,6 +9,7 @@ FimAlumni::Application.routes.draw do
   match "statistics/submitted_emails" =>  'statistics#submitted_emails', :via => :get
   match "statistics/not_submitted_phones" =>  'statistics#not_submitted_phones', :via => :get
   match "statistics/is_update_allowed_emails" => 'statistics#is_update_allowed_emails', :via => :get
+  match "statistics/old_user_emails" => 'statistics#old_user_emails', :via => :get
   
   get "recruiter/index"
   match 'recruiter/upload' => 'recruiter#new_upload', :via => :get
