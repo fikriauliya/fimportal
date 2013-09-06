@@ -73,7 +73,13 @@
     %p
       Jawaban pertanyaan yang sering ditanyakan bisa dibaca di 
       %b
-        = link_to "FAQ", home_faq_path
+        = link_to "FAQ.", home_faq_path
+      Jika pertanyaan Anda tidak ada di FAQ, silakan mengajukannya di 
+      %b
+        %a{href: "http://diskusi.forumindonesiamuda.org"}
+          Forum tanya jawab
+      %span.label.label-success{style: "font-size:10px"}
+        New
 
     %p
       Contact Person: 
@@ -134,3 +140,10 @@
   -cookies[:hide_like_suggestion] = {value: true, expires: 3.day.from_now}
   :javascript
     $('#myModal').modal('show')
+
+
+#ask.label.label-warning{style:"position: fixed; bottom:0; right:0; width: 230px; height: 15px; font-size:16px; padding:10px"}
+  %a{href: 'http://diskusi.forumindonesiamuda.org', style: 'color:white'}
+    ? | Forum Tanya Jawab 
+    .label.label-success
+      (New!)
