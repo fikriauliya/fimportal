@@ -6,14 +6,14 @@ class StatisticsController < ApplicationController
   
   def complete
     # authorize! :index, User, :message => 'Not authorized as an administrator.'
-    @provinces_count = ProfileCandidate.count(:all, :group => :province, :order => 'count_all DESC')
+    @provinces_count = ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013'").count(:all, :group => 'profile_candidates.province', :order => 'count_all DESC')
     @unexist_provinces = ProfileCandidate.all_province - @provinces_count.collect{|p| p[0]} 
-    @schools_count = ProfileCandidate.count(:all, :group => :school, :order => 'count_all DESC')
+    @schools_count = ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013'").count(:all, :group => 'profile_candidates.school', :order => 'count_all DESC')
   end
   
   def public
-    @provinces_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :province, :order => 'count_all DESC')
-    @schools_count = ProfileCandidate.where("status = 'SUBMITTED' or status = 'MARKED'").count(:all, :group => :school, :order => 'count_all DESC')
+    @provinces_count = ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013' WHERE profile_candidates.status = 'SUBMITTED' or profile_candidates.status = 'MARKED'").count(:all, :group => 'profile_candidates.province', :order => 'count_all DESC')
+    @schools_count = ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013' WHERE profile_candidates.status = 'SUBMITTED' or profile_candidates.status = 'MARKED'").count(:all, :group => 'profile_candidates.school', :order => 'count_all DESC')
   end
   
   def not_submitted_emails
