@@ -2,17 +2,20 @@
 
 %table.table.table-striped
   %tr
+    %td Total new users
+    %td= User.where("created_at >= '09-01-2013'").count
+  %tr
     %td Total users
-    %td= User.count
+    %td= User.where("current_sign_in_at >= '09-01-2013'").count
   %tr
     %td Filled in biodata
-    %td= ProfileCandidate.count
+    %td= ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013'").count
   %tr
     %td Uploaded photo
-    %td= ProfileCandidate.where('photo is not null').count
+    %td= ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013' WHERE profile_candidates.photo is not null").count
   %tr
     %td Uploaded recommendation letter
-    %td= ProfileCandidate.where('recommendation_letter is not null').count
+    %td= ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013' WHERE profile_candidates.recommendation_letter is not null").count
   %tr
     %td Submitted
     %td= ProfileCandidate.submitted.count
