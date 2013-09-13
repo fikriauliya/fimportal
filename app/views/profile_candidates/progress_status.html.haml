@@ -21,3 +21,5 @@
           %tr
             %td Sudah mengkonfirmasi pengumpulan?
             %td= @is_submitted ? "Ya" : "Belum"
+      -unless @is_submitted
+        =link_to "Lengkapi dokumen saya", new_profile_candidate_path, 'class' => 'btn btn-danger'
