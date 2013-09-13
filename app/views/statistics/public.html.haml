@@ -1,9 +1,8 @@
 %h3 Statistik Sementara Pendaftar FIM (diperbarui tiap 2 menit)
 
-/
-  %p 
-    Jumlah aplikasi:
-    %b= User.count 
+%p 
+  Jumlah aplikasi:
+  %b= User.where("current_sign_in_at >= '09-01-2013'").count
 %p
   Jumlah aplikasi lengkap:
   %b= ProfileCandidate.submitted.count
