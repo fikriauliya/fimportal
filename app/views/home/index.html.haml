@@ -89,7 +89,13 @@
       %b
         Putri (085694631155)
   .span7
-    %h4 Rekapitulasi pendaftar FIM 15 (estimasi lokasi)
+    - cache('brief_statistics', :expires_in => 10.minutes) do
+      %h4 
+        Pendaftar FIM 15
+        ="(#{User.where("current_sign_in_at >= '09-01-2013'").count}"
+        pendaftar,
+        =ProfileCandidate.submitted.count
+        aplikasi lengkap)
     #map_canvas{:style => "width:650px; height:350px"}
 .row
   .span7.service-item
