@@ -36,6 +36,25 @@
     %b Provinsi yang belum ada:
     =@unexist_provinces.join(", ")
 
+    %hr
+    %table.table.table-striped
+      %tr
+        %th{:style => 'width:70%'} New registration
+        %th Count
+      -@new_profile_candidates.each do |new_profile_candidate|
+        %tr
+          %td= new_profile_candidate[0]
+          %td= new_profile_candidate[1]
+    %hr
+    %table.table.table-striped
+      %tr
+        %th{:style => 'width:70%'} Submission
+        %th Count
+      -@new_submissions.each do |new_submission|
+        %tr
+          %td= new_submission[0]
+          %td= new_submission[1]
+
   .span7
     %table.table.table-striped
       %tr
