@@ -10,6 +10,7 @@ class StatisticsController < ApplicationController
     @unexist_provinces = ProfileCandidate.all_province - @provinces_count.collect{|p| p[0]} 
     @schools_count = ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013'").count(:all, :group => 'profile_candidates.school', :order => 'count_all DESC')
 
+    @new_users = User.where("current_sign_in_at >= '09-01-2013'").count(:all, :group => 'date(created_at)', :order => 'date(created_at) ASC')
     @new_profile_candidates = ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013'").count(:all, :group => 'date(profile_candidates.created_at)', :order => 'date(profile_candidates.created_at) ASC')
     @new_submissions = ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013'").count(:all, :group => 'date(profile_candidates.submitted_at)', :order => 'date(profile_candidates.submitted_at) ASC')
   end

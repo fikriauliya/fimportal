@@ -39,7 +39,16 @@
     %hr
     %table.table.table-striped
       %tr
-        %th{:style => 'width:70%'} New registration
+        %th{:style => 'width:70%'} New user
+        %th Count
+      -@new_users.each do |new_users|
+        %tr
+          %td= new_user[0]
+          %td= new_user[1]
+    %hr
+    %table.table.table-striped
+      %tr
+        %th{:style => 'width:70%'} New biodata
         %th Count
       -@new_profile_candidates.each do |new_profile_candidate|
         %tr
