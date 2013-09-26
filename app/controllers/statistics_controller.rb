@@ -22,7 +22,7 @@ class StatisticsController < ApplicationController
   
   def not_submitted_emails
     authorize! :index, User, :message => 'Not authorized as an administrator.'
-    emails = User.joins("LEFT OUTER JOIN profile_candidates ON users.id = profile_candidates.user_id WHERE profile_candidates.status = 'NOT SUBMITTED' OR profile_candidates.status IS NULL AND users.current_sign_in_at >= '09-01-2013'").select(:email).collect{|e| e.email}
+    emails = User.joins("LEFT OUTER JOIN profile_candidates ON users.id = profile_candidates.user_id WHERE (profile_candidates.status = 'NOT SUBMITTED' OR profile_candidates.status IS NULL) AND users.current_sign_in_at >= '09-01-2013'").select(:email).collect{|e| e.email}
     render :text => emails.join(', ')
   end
   
