@@ -90,7 +90,7 @@
             %td
               %b Unassigned
             %td
-            %td= count_unassigned
+            %td= link_to(count_unassigned, recruiter_index_path(:unassigned => true))
             %td
             %td
             %td

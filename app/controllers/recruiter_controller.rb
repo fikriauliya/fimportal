@@ -35,6 +35,9 @@ class RecruiterController < ApplicationController
       else
         @profiles = @profiles.chronological
       end
+      if params[:unassigned]
+        @profiles = @profiles.where(:status => "SUBMITTED")
+      end
       
       respond_to do |format|
         format.xls
