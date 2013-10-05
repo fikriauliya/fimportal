@@ -85,8 +85,8 @@
               %td= average_point(r.id, :document_completeness_point)
               %td= average_point(r.id, :reliability_point)
               %td= average_point(r.id, :willingness_point)
-              %td= 
-                %b average_point(r.id)
+              %td
+                %b= average_point(r.id)
           %tr
             %td
               %b Unassigned
