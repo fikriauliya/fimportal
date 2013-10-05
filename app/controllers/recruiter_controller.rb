@@ -35,9 +35,6 @@ class RecruiterController < ApplicationController
       else
         @profiles = @profiles.chronological
       end
-      if params[:unassigned]
-        @profiles = @profiles.where(:status => "SUBMITTED")
-      end
       
       respond_to do |format|
         format.xls
@@ -81,7 +78,10 @@ class RecruiterController < ApplicationController
       else
         @profiles = @profiles.chronological
       end
-      
+      if params[:unassigned]
+        @profiles = @profiles.where(:status => "SUBMITTED AND marked_by_id IS NULL")
+      end
+
       @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)      
       respond_to do |format|
         format.html # index.html.erb
