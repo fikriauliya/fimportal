@@ -37,6 +37,9 @@ FimAlumni::Application.routes.draw do
       match 'edit_workshop' => 'profile_candidates#edit_workshop', :via => :get
       match 'update_workshop/:changed' => 'profile_candidates#update_workshop', :via => :put, :as => 'update_workshop'
       match 'progress_status' => 'profile_candidates#progress_status', :via => :get
+
+      match 'acceptance_status' => 'profile_candidates#acceptance_status', :via => :get
+      match 'update_acceptance_status' => 'profile_candidates#update_acceptance_status', :via => :put
     end
   end
   

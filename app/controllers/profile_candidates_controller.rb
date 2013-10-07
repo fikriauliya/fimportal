@@ -283,4 +283,17 @@ class ProfileCandidatesController < ApplicationController
       end
     end
   end
+
+  def acceptance_status
+    @profile = current_user.profile_candidate
+  end
+  
+  def update_acceptance_status
+    @profile = current_user.profile_candidate
+    past_fims_applied = params[:profile_candidate][:past_fims_applied]
+    is_candidate_accept_offer = params[:profile_candidate][:is_candidate_accept_offer]
+    
+    @profile.update_attributes({:past_fims_applied => past_fims_applied, :is_candidate_accept_offer => is_candidate_accept_offer}, :as => :update_acceptance)
+    redirect_to acceptance_status_profile_candidates_path, :notice => "Pilihan Anda telah diterima"
+  end
 end

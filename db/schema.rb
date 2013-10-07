@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324155637) do
+ActiveRecord::Schema.define(:version => 20131007014300) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(:version => 20130324155637) do
     t.text     "special_character_comment"
     t.boolean  "is_announcement_displayed",   :default => false
     t.boolean  "is_update_allowed",           :default => false
+    t.boolean  "is_accepted",                 :default => false
+    t.string   "past_fims_applied"
+    t.boolean  "is_candidate_accept_offer"
   end
 
   add_index "profile_candidates", ["user_id"], :name => "index_profile_candidates_on_user_id", :unique => true

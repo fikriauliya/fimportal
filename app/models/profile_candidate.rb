@@ -18,6 +18,7 @@ class ProfileCandidate < ActiveRecord::Base
     :as => :recruiter
     
   attr_accessible :workshop, :is_update_allowed, :status, :as => :update_workshop
+  attr_accessible :is_candidate_accept_offer, :past_fims_applied, :as => :update_acceptance
   
   belongs_to :user
   belongs_to :marked_by, :class_name => "User"
