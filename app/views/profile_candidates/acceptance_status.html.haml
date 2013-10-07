@@ -38,7 +38,8 @@
       - if @profile.is_candidate_accept_offer.nil?
         %hr
         %p 
-          Selanjutnya, silakan untuk segera melakukan konfirmasi keikutsertaan berikut (paling lambat tanggal 9 Oktober 2013 pukul 23.59):
+          Selanjutnya, silakan untuk segera melakukan konfirmasi keikutsertaan berikut 
+          %b (paling lambat tanggal 9 Oktober 2013 pukul 23.59):
           
         = simple_form_for(@profile, :url => update_acceptance_status_profile_candidates_path, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
           = f.error_notification
