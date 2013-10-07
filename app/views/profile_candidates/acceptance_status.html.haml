@@ -45,7 +45,7 @@
           = display_base_errors @profile
 
           .form-inputs
-            = f.input :past_fims_applied, :label => "FIM sebelumnya yang pernah diikuti (kosongkan jika tidak pernah). Pisahkan dengan koma jika lebih dari satu (misal: 12, 13)" 
+            = f.input :past_fims_applied, :label => "FIM sebelumnya yang pernah Anda daftar (kosongkan jika tidak ada). Pisahkan dengan koma jika lebih dari satu (misal: 12, 13)" 
             = f.input :is_candidate_accept_offer, :label => "Bersedia mengikut FIM 15 secara penuh (centang jika iya)", :as => :boolean
           .form-actions
             = f.submit "Submit", :class => "btn btn-primary"
