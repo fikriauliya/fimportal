@@ -1,14 +1,14 @@
 .row
   .span12
-  	%h3 Not confirmed
-		%ol
-			@not_confirmeds.each do |a|
-				%li= a
-  	%h3 Confirmed
-		%ol
-			@confirmeds.each do |a|
-				%li= a
-  	%h3 Rejected
-  	%ol
-  		@rejecteds.each do |a|
-  			%li= a
+    %h3 Not confirmed
+    %ol
+      -@not_confirmeds.each do |a|
+        %li= a
+    %h3 Confirmed
+    %ol
+      -@confirmeds.each do |a|
+        %li= a
+    %h3 Rejected
+    %ol
+      -@rejecteds.each do |a|
+        %li= a
