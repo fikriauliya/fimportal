@@ -1,5 +1,6 @@
 class RecruiterController < ApplicationController
   before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, :only => [:index_accepted]
 
   def index
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
@@ -135,8 +136,6 @@ class RecruiterController < ApplicationController
   end
 
   def index_accepted
-    authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
-    
     @not_confirmeds = ProfileCandidate.where("is_accepted = true and is_candidate_accept_offer is NULL").collect{|s| s.fullname}
     @confirmeds = ProfileCandidate.where(:is_candidate_accept_offer => true).collect{|s| s.fullname}
     @rejecteds = ProfileCandidate.where(:is_candidate_accept_offer => false).collect{|s| s.fullname}
