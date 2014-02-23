@@ -19,12 +19,12 @@
 #myModal.modal.hide.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
   .modal-header
     %button.close{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", "data-dismiss" => "modal", :type => "button"} ×
-    %h4#myModalLabel Portal Pendafataran FIM 15
+    %h4#myModalLabel Portal Pendafataran FIM 16
   .modal-body
     %p 
-      Selamat datang di Portal Pendaftaran FIM 15!
+      Selamat datang di Portal Pendaftaran FIM 16!
     %p
-      Agar selalu mendapatkan informasi terbaru tentang FIM 15, kami rekomendasikan untuk like Facebook 
+      Agar selalu mendapatkan informasi terbaru tentang FIM 16, kami rekomendasikan untuk like Facebook 
       %b Forum Indonesia Muda
       atau follow Twitter
       %b @fimnews
@@ -52,14 +52,14 @@
         FIM (Forum Indonesia Muda)
       adalah sebuah forum independen yang beranggotakan pemuda dan mahasiswa dari berbagai perguruan tinggi maupun organisasi kepemudaan di Indonesia, dari Aceh sampai Papua, bahkan yang sedang berada di luar negeri.
     %p
-      Setelah sukses menyelenggarakan Leadership & Life Skill Training selama 1 dekade, tahun ini FIM kembali mengadakan pelatihan untuk angkatan ke-16.
-      %b FIM 15 
-      akan diselenggarakan pada tanggal 27 Oktober – 3 November 2013 di Jakarta.
+      Setelah sukses menyelenggarakan Leadership & Life Skill Training selama 1 dekade, tahun ini FIM kembali mengadakan pelatihan untuk angkatan ke-17.
+      %b FIM 16
+      akan diselenggarakan pada tanggal 30 April - 4 Mei 2014 di Jakarta.
 
     %p
-      Pendaftaran dibuka antara tanggal 4 September – 2 Oktober 2013 (23.59 WIB). Berkas peserta akan diseleksi sesuai prosedur, untuk memenuhi kapasitas peserta FIM 15 sebanyak 120 orang, dengan batas usia 
+      Pendaftaran dibuka antara tanggal 1 Maret – 30 Maret 2014 (23.59 WIB). Berkas peserta akan diseleksi sesuai prosedur, untuk memenuhi kapasitas peserta FIM 16 sebanyak 120 orang, dengan batas usia 
       %b 18-30
-      tahun. Peserta terpilih akan diumumkan pada tanggal 7 Oktober 2013.
+      tahun. Peserta terpilih akan diumumkan pada tanggal 7 April 2014.
     %p
       Informasi lebih lanjut soal FIM dapat dilihat di 
       %a{href: "http://www.forumindonesiamuda.org"}
@@ -87,11 +87,11 @@
         Dito (085694098664) 
       dan 
       %b
-        Putri (085694631155)
+        Ilma (085775573529)
   .span7
     - cache('brief_statistics', :expires_in => 10.minutes) do
       %h4 
-        Pendaftar FIM 15
+        Pendaftar FIM 16
         ="(#{User.where("current_sign_in_at >= '09-01-2013'").count}"
         pendaftar,
         =ProfileCandidate.submitted.count
@@ -128,7 +128,7 @@
     .fb-comments{"data-href" => "http://portal.forumindonesiamuda.org", "data-num-posts" => "15", "data-width" => "600"}
     
   .span4
-    %h4 Penutupan Pendaftaran FIM 15
+    %h4 Penutupan Pendaftaran FIM 16
     %div{:style => "background:#000;width:350px; height:174px;font:0px sans-serif;text-align:left;"}
       %object#cdtw{:classid => "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000", :height => "154", :style => "outline:none", :width => "350"}
         %param{:name => "movie", :value => "http://countingdownto.com/c/w.swf"}/
