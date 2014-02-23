@@ -20,6 +20,7 @@ class ProfileCandidatesController < ApplicationController
   end
   
   def step2
+    # current_user is the currently signed in user
     @profile = current_user.profile_candidate
     
     if @profile.nil?
@@ -31,6 +32,23 @@ class ProfileCandidatesController < ApplicationController
     respond_to do |format|
       format.html 
       format.json { render json: @profile }
+    end
+  end
+
+  def step2a
+    # current_user is the currently signed in user
+    @profile = current_user.profile_candidate
+    @strategic_leader_profile = current_user.strategic_leader_profile
+    
+    if @strategic_leader_profile.nil?
+      @strategic_leader_profile = StrategicLeaderProfile.new
+    else
+      @is_announcement_displayed = check_announcement(@profile)
+    end
+
+    respond_to do |format|
+      format.html 
+      format.json { render json: @strategic_leader_profile }
     end
   end
   
@@ -121,14 +139,14 @@ class ProfileCandidatesController < ApplicationController
   #step2 post
   def create
     if !current_user.profile_candidate.nil?
-      redirect_to step3_profile_candidates_path
+      redirect_to step2a_profile_candidates_path
     else
       @profile = ProfileCandidate.new(params[:profile_candidate])
       @profile.user_id = current_user.id
       
       respond_to do |format|
         if @profile.save
-          format.html { redirect_to step3_profile_candidates_path }
+          format.html { redirect_to step2a_profile_candidates_path }
           format.json { render json: @profile, status: :created, location: @profile }
         else
           format.html { render action: "step2" }
@@ -144,7 +162,7 @@ class ProfileCandidatesController < ApplicationController
     
     respond_to do |format|
       if @profile.update_attributes(params[:profile_candidate])
-        format.html { redirect_to step3_profile_candidates_path, notice: 'Data Anda telah diupdate' }
+        format.html { redirect_to step2a_profile_candidates_path, notice: 'Data Anda telah diupdate' }
         format.json { head :no_content }
       else
         format.html { render action: "step2" }
@@ -153,6 +171,22 @@ class ProfileCandidatesController < ApplicationController
     end
   end
   
+
+  def create_strategic_leader_profiles
+    @strategic_leader_profile = StrategicLeaderProfile.new(params[:strategic_leader_profile])
+    @strategic_leader_profile.user_id = current_user.id
+    
+    respond_to do |format|
+      if @strategic_leader_profile.save
+        format.html { redirect_to step3_profile_candidates_path }
+        format.json { render json: @strategic_leader_profile, status: :created, location: @strategic_leader_profile }
+      else
+        format.html { render action: "step2a" }
+        format.json { render json: @strategic_leader_profile.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def upload_photo
     @profile = current_user.profile_candidate
     if !params[:profile_candidate].nil? && @profile.update_attribute(:photo, params[:profile_candidate][:photo])
