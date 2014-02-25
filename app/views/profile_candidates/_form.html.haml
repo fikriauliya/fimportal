@@ -172,9 +172,8 @@
             //Sisa kata: 500
         
         = f.input :information_from, :label => "Sumber informasi FIM", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut", "Lainnya"]
-        = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM. <br/><b>Format</b>:<i>[FIM ke-][Tahun]</i>", :collection => [["Belum pernah", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], [">5", 6]]
-        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 16. Contoh: Tari Pendet, main biola, monolog, dll",
-            :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM. <br/><b>Format</b>:<i>[FIM ke-][Tahun]</i>", :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 16. Contoh: Tari Pendet, main biola, monolog, dll", :input_html => {:rows => 4, :class => "span5"}, :as => :text
         
         .controls
           %label
