@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140225142940) do
+ActiveRecord::Schema.define(:version => 20140225151209) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(:version => 20140225142940) do
     t.text     "workshop"
     t.text     "motivation"
     t.string   "information_from"
-    t.integer  "application_count"
     t.text     "performance_type"
     t.text     "referal"
     t.datetime "created_at",                                               :null => false
@@ -66,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20140225142940) do
     t.boolean  "is_update_allowed",           :default => false
     t.string   "choose_type"
     t.text     "food_except"
+    t.text     "application_count"
   end
 
   add_index "profile_candidates", ["user_id"], :name => "index_profile_candidates_on_user_id", :unique => true
