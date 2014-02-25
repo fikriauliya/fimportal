@@ -156,24 +156,24 @@
         = f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
         = f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
 
-        = f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
+        /= f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
           %label#remaining_motivation_words
-            Sisa kata: 200  
+            //Sisa kata: 200  
         
-        = f.input :collaboration, :label => 'Apa kolaborasi yang Anda tawarkan untuk bisa dikerjakan bersama-sama rekan-rekan FIM jika terpilih ikut FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
+        //= f.input :collaboration, :label => 'Apa kolaborasi yang Anda tawarkan untuk bisa dikerjakan bersama-sama rekan-rekan FIM jika terpilih ikut FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
           %label#remaining_collaboration_words
-            Sisa kata: 200
+            //Sisa kata: 200
         
-        = f.input :inspiring_story, :label => "Uraikan pengalaman sukses dan gagal yang paling berkesan dalam hidupmu (maks 500 kata)", :input_html => {:rows => 8, :class => "span5"}
+        //= f.input :inspiring_story, :label => "Uraikan pengalaman sukses dan gagal yang paling berkesan dalam hidupmu (maks 500 kata)", :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
           %label#remaining_inspiring_story_words
-            Sisa kata: 500
+            //Sisa kata: 500
         
         = f.input :information_from, :label => "Sumber informasi FIM", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut", "Lainnya"]
         = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM. <br/><b>Format</b>:<i>[FIM ke-][Tahun]</i>", :collection => [["Belum pernah", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], [">5", 6]]
-        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 15. Contoh: Tari Pendet, main biola, monolog, dll",
+        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 16. Contoh: Tari Pendet, main biola, monolog, dll",
             :input_html => {:rows => 4, :class => "span5"}, :as => :text
         
         .controls
