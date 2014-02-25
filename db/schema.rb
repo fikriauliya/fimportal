@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140225155827) do
+ActiveRecord::Schema.define(:version => 20140225160632) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20140225155827) do
     t.string   "information_from"
     t.text     "performance_type"
     t.text     "referal"
-    t.datetime "created_at",                                               :null => false
-    t.datetime "updated_at",                                               :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "user_id"
@@ -42,33 +42,43 @@ ActiveRecord::Schema.define(:version => 20140225155827) do
     t.text     "biodata"
     t.string   "photo"
     t.string   "recommendation_letter"
-    t.string   "status",                      :default => "NOT SUBMITTED"
+    t.string   "status",                         :default => "NOT SUBMITTED"
     t.text     "inspiring_story"
     t.text     "collaboration"
     t.string   "province"
-    t.boolean  "is_photo_visible_to_public",  :default => false
-    t.boolean  "is_visible_to_public",        :default => true
+    t.boolean  "is_photo_visible_to_public",     :default => false
+    t.boolean  "is_visible_to_public",           :default => true
     t.string   "facebook"
     t.string   "twitter"
-    t.boolean  "is_email_displayed",          :default => false
+    t.boolean  "is_email_displayed",             :default => false
     t.integer  "marked_by_id"
     t.datetime "submitted_at"
-    t.integer  "organization_point",          :default => 0
-    t.integer  "committee_point",             :default => 0
-    t.integer  "personal_knowledge_point",    :default => 0
-    t.integer  "document_completeness_point", :default => 0
-    t.integer  "reliability_point",           :default => 0
-    t.integer  "willingness_point",           :default => 0
+    t.integer  "organization_point",             :default => 0
+    t.integer  "committee_point",                :default => 0
+    t.integer  "personal_knowledge_point",       :default => 0
+    t.integer  "document_completeness_point",    :default => 0
+    t.integer  "reliability_point",              :default => 0
+    t.integer  "willingness_point",              :default => 0
     t.text     "special_location_comment"
     t.text     "special_character_comment"
-    t.boolean  "is_announcement_displayed",   :default => false
-    t.boolean  "is_update_allowed",           :default => false
+    t.boolean  "is_announcement_displayed",      :default => false
+    t.boolean  "is_update_allowed",              :default => false
     t.string   "choose_type"
     t.text     "food_except"
     t.text     "application_count"
     t.boolean  "commit_fim_pusat"
     t.boolean  "commit_fim_regional"
     t.boolean  "commit_organisasi"
+    t.integer  "diskusi_ekonomipembangunan"
+    t.integer  "diskusi_kebijakanpublik"
+    t.integer  "diskusi_energidanlingkungan"
+    t.integer  "diskusi_pendidikandanparenting"
+    t.integer  "diskusi_medialiterasi"
+    t.integer  "diskusi_socialentre"
+    t.integer  "diskusi_pangangizikesehatan"
+    t.integer  "diskusi_travel"
+    t.string   "diskusi_liberalarts"
+    t.integer  "diskusi_peopledev"
   end
 
   add_index "profile_candidates", ["user_id"], :name => "index_profile_candidates_on_user_id", :unique => true
