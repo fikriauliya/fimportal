@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140226165638) do
+ActiveRecord::Schema.define(:version => 20140226222714) do
+
+  create_table "activist_profiles", :force => true do |t|
+    t.text     "activity1_information"
+    t.text     "activity1_reason"
+    t.text     "activity2_information"
+    t.text     "activity2_reason"
+    t.text     "activity3_information"
+    t.text     "activity3_reason"
+    t.text     "activity4_information"
+    t.text     "activity4_reason"
+    t.text     "activity5_information"
+    t.text     "activity5_reason"
+    t.text     "essay_about_pasca_training"
+    t.integer  "tipografi"
+    t.integer  "user_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
 
   create_table "local_leader_profiles", :force => true do |t|
     t.text     "organization_information"
