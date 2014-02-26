@@ -610,7 +610,7 @@
         %blockquote
           %div
             Aktivis pemuda dari berbagai bidang yang ingin berkarya dan berjejaring bersama-sama dengan FIM
-        = f.input :choose_type, :label => "Pilihan Anda", :as => :select, :collection => [["Strategic Leader", 0], ["Local Leader", 1], ["Activist Based on Character", 2]]
+        = f.input :choose_type, :label => "Pilihan Anda", :as => :radio_buttons, :collection => [["Strategic Leader", 0], ["Local Leader", 1], ["Activist Based on Character", 2]]
         //= f.input :referal, :label => "Jika ada, tuliskan nama alumni FIM yang merekomendasikan Anda untuk menjadi peserta FIM 15", :as => :string
         = f.hidden_field :latitude
         = f.hidden_field :longitude
