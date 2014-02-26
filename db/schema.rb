@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140226061044) do
+ActiveRecord::Schema.define(:version => 20140226133734) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -76,9 +76,9 @@ ActiveRecord::Schema.define(:version => 20140226061044) do
     t.integer  "diskusi_peopledev"
     t.integer  "diskusi_liberalarts"
     t.text     "commit_agreement"
-    t.integer  "commit_organisasi"
-    t.integer  "commit_fim_regional"
     t.integer  "commit_fim_pusat"
+    t.integer  "commit_fim_regional"
+    t.integer  "commit_organisasi"
     t.integer  "choose_type"
   end
 
