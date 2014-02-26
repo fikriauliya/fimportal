@@ -24,12 +24,14 @@ class ProfileCandidate < ActiveRecord::Base
   belongs_to :marked_by, :class_name => "User"
   
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
-    :information_from, :location, :motivation, :phone, :place_of_birth, :religion, 
-    :school, :agreement, :inspiring_story, :collaboration, :province, :presence => true
+    :information_from, :location, :phone, :place_of_birth, :religion, 
+    :school, :agreement, :province, :presence => true
+
+    #Temporarily not checked :inspiring_story,  :motivation, :collaboration
     
-  validates_length_of :motivation, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
-  validates_length_of :inspiring_story, :maximum => 500, :too_long => "Terlalu panjang, melebihi 500 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
-  validates_length_of :collaboration, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
+  # validates_length_of :motivation, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
+  # validates_length_of :inspiring_story, :maximum => 500, :too_long => "Terlalu panjang, melebihi 500 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
+  # validates_length_of :collaboration, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
   validates_length_of :biodata, :too_long => 'Terlalu panjang, melebihi 160 karakter', :maximum => 160
   
   validates_length_of :fullname, :place_of_birth, :religion, :phone, :blood_type, :school, :information_from, :photo, :recommendation_letter, :status, :province, :facebook, :twitter, :maximum => 255
