@@ -386,43 +386,173 @@
         = f.input :organization, :label => "Pengalaman organisasi.<br/><b>Format</b>:<i>[tahun mulai]-[tahun selesai];[nama organisasi];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
         = f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
         = f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
-
-        %select#list.mutually_exclusive_select_lists
-          %option
-          %option{:value => "1"} One
-          %option{:value => "1"} Two
-          %option{:value => "1"} Three
-          %option{:value => "1"} Four
-          %option{:value => "1"} Five
-        %select#list2.mutually_exclusive_select_lists
-          %option
-          %option{:value => "1"} One
-          %option{:value => "1"} Two
-          %option{:value => "1"} Three
-          %option{:value => "1"} Four
-          %option{:value => "1"} Five
-        %select#list3.mutually_exclusive_select_lists
-          %option
-          %option{:value => "1"} One
-          %option{:value => "1"} Two
-          %option{:value => "1"} Three
-          %option{:value => "1"} Four
-          %option{:value => "1"} Five
-        %select#list4.mutually_exclusive_select_lists
-          %option
-          %option{:value => "1"} One
-          %option{:value => "1"} Two
-          %option{:value => "1"} Three
-          %option{:value => "1"} Four
-          %option{:value => "1"} Five
-        %select#list5.mutually_exclusive_select_lists
-          %option
-          %option{:value => "1"} One
-          %option{:value => "1"} Two
-          %option{:value => "1"} Three
-          %option{:value => "1"} Four
-          %option{:value => "1"} Five
-
+        %hr{:noshade => "", :size => "1", :width => "33%"}/
+        %h4 Peminatan Diskusi
+        %blockquote
+          %div
+            Berikut ini adalah daftar topik FIM Club (kelompok diskusi FIM lintas generasi dengan platform Whatsapp). Mohon berikan peringkat 1 (paling berminat) – 10 (paling tidak berminat), pada topik-topik berikut : 
+        %table
+          %tr
+            %td 1
+            %td Ekonomi Pembangunan
+            %td
+              %select#list.mutually_exclusive_select_lists
+                %option
+                %option{:value => "1"} 1
+                %option{:value => "2"} 2
+                %option{:value => "3"} 3
+                %option{:value => "4"} 4
+                %option{:value => "5"} 5
+                %option{:value => "6"} 6
+                %option{:value => "7"} 7
+                %option{:value => "8"} 8
+                %option{:value => "9"} 9
+                %option{:value => "10"} 10
+          %tr
+            %td 2
+            %td Kebijakan Publik
+            %td
+              %select#list2.mutually_exclusive_select_lists
+                %option
+                %option{:value => "1"} 1
+                %option{:value => "2"} 2
+                %option{:value => "3"} 3
+                %option{:value => "4"} 4
+                %option{:value => "5"} 5
+                %option{:value => "6"} 6
+                %option{:value => "7"} 7
+                %option{:value => "8"} 8
+                %option{:value => "9"} 9
+                %option{:value => "10"} 10
+          %tr
+            %td 3
+            %td Energi dan Lingkungan
+            %td
+              %select#list3.mutually_exclusive_select_lists
+                %option
+                %option{:value => "1"} 1
+                %option{:value => "2"} 2
+                %option{:value => "3"} 3
+                %option{:value => "4"} 4
+                %option{:value => "5"} 5
+                %option{:value => "6"} 6
+                %option{:value => "7"} 7
+                %option{:value => "8"} 8
+                %option{:value => "9"} 9
+                %option{:value => "10"} 10
+          %tr
+            %td 4
+            %td Pendidikan dan Parenting
+            %td
+              %select#list4.mutually_exclusive_select_lists
+                %option
+                %option{:value => "1"} 1
+                %option{:value => "2"} 2
+                %option{:value => "3"} 3
+                %option{:value => "4"} 4
+                %option{:value => "5"} 5
+                %option{:value => "6"} 6
+                %option{:value => "7"} 7
+                %option{:value => "8"} 8
+                %option{:value => "9"} 9
+                %option{:value => "10"} 10
+          %tr
+            %td 5
+            %td Media Literasi
+            %td
+              %select#list5.mutually_exclusive_select_lists
+                %option
+                %option{:value => "1"} 1
+                %option{:value => "2"} 2
+                %option{:value => "3"} 3
+                %option{:value => "4"} 4
+                %option{:value => "5"} 5
+                %option{:value => "6"} 6
+                %option{:value => "7"} 7
+                %option{:value => "8"} 8
+                %option{:value => "9"} 9
+                %option{:value => "10"} 10
+          %tr
+            %td 6
+            %td Social Entrepreneurship
+            %td
+              %select#list6.mutually_exclusive_select_lists
+                %option
+                %option{:value => "1"} 1
+                %option{:value => "2"} 2
+                %option{:value => "3"} 3
+                %option{:value => "4"} 4
+                %option{:value => "5"} 5
+                %option{:value => "6"} 6
+                %option{:value => "7"} 7
+                %option{:value => "8"} 8
+                %option{:value => "9"} 9
+                %option{:value => "10"} 10
+          %tr
+            %td 7
+            %td Pangan Gizi Kesehatan
+            %td
+              %select#list7.mutually_exclusive_select_lists
+                %option
+                %option{:value => "1"} 1
+                %option{:value => "2"} 2
+                %option{:value => "3"} 3
+                %option{:value => "4"} 4
+                %option{:value => "5"} 5
+                %option{:value => "6"} 6
+                %option{:value => "7"} 7
+                %option{:value => "8"} 8
+                %option{:value => "9"} 9
+                %option{:value => "10"} 10
+          %tr
+            %td 8
+            %td Travel & Adventure
+            %td
+              %select#list8.mutually_exclusive_select_lists
+                %option
+                %option{:value => "1"} 1
+                %option{:value => "2"} 2
+                %option{:value => "3"} 3
+                %option{:value => "4"} 4
+                %option{:value => "5"} 5
+                %option{:value => "6"} 6
+                %option{:value => "7"} 7
+                %option{:value => "8"} 8
+                %option{:value => "9"} 9
+                %option{:value => "10"} 10
+          %tr
+            %td 9
+            %td Liberal Arts
+            %td
+              %select#list9.mutually_exclusive_select_lists
+                %option
+                %option{:value => "1"} 1
+                %option{:value => "2"} 2
+                %option{:value => "3"} 3
+                %option{:value => "4"} 4
+                %option{:value => "5"} 5
+                %option{:value => "6"} 6
+                %option{:value => "7"} 7
+                %option{:value => "8"} 8
+                %option{:value => "9"} 9
+                %option{:value => "10"} 10
+          %tr
+            %td 10
+            %td People Development
+            %td
+              %select#list10.mutually_exclusive_select_lists
+                %option
+                %option{:value => "1"} 1
+                %option{:value => "2"} 2
+                %option{:value => "3"} 3
+                %option{:value => "4"} 4
+                %option{:value => "5"} 5
+                %option{:value => "6"} 6
+                %option{:value => "7"} 7
+                %option{:value => "8"} 8
+                %option{:value => "9"} 9
+                %option{:value => "10"} 10
+        %hr{:noshade => "", :size => "1", :width => "33%"}/
         /= f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
           %label#remaining_motivation_words
