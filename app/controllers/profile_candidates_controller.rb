@@ -202,7 +202,19 @@ class ProfileCandidatesController < ApplicationController
   end
 
   def activist
-    # TODO implement
+    @profile = current_user.profile_candidate
+    @activist_profile = current_user.activist_profile
+    
+    if @local_leader_profile.nil?
+      @activist_profile = ActivistProfile.new
+    else
+      @is_announcement_displayed = check_announcement(@profile)
+    end
+
+    respond_to do |format|
+      format.html { render action: 'activist' }
+      format.json { render json: @activist_profile }
+    end
   end
 
   def create_strategic_leader_profile
@@ -214,7 +226,7 @@ class ProfileCandidatesController < ApplicationController
         format.html { redirect_to step3_profile_candidates_path }
         format.json { render json: @strategic_leader_profile, status: :created, location: @strategic_leader_profile }
       else
-        format.html { render action: "step2_strategic_leader" }
+        format.html { render action: "strategic_leader" }
         format.json { render json: @strategic_leader_profile.errors, status: :unprocessable_entity }
       end
     end
@@ -229,14 +241,25 @@ class ProfileCandidatesController < ApplicationController
         format.html { redirect_to step3_profile_candidates_path }
         format.json { render json: @local_leader_profile, status: :created, location: @local_leader_profile }
       else
-        format.html { render action: "step2_local_leader" }
+        format.html { render action: "local_leader" }
         format.json { render json: @local_leader_profile.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def create_activist_profile
-    # TODO implement
+    @activist_profile = ActivistProfile.new(params[:activist_profile])
+    @activist_profile.user_id = current_user.id
+    
+    respond_to do |format|
+      if @activist_profile.save
+        format.html { redirect_to step3_profile_candidates_path }
+        format.json { render json: @local_leader_profile, status: :created, location: @activist_profile }
+      else
+        format.html { render action: "activist" }
+        format.json { render json: @activist_profile.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def upload_photo
