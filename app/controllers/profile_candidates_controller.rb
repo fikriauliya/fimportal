@@ -35,20 +35,17 @@ class ProfileCandidatesController < ApplicationController
     end
   end
 
-  def step2a
+  def step2_branching
     # current_user is the currently signed in user
     @profile = current_user.profile_candidate
-    @strategic_leader_profile = current_user.strategic_leader_profile
-    
-    if @strategic_leader_profile.nil?
-      @strategic_leader_profile = StrategicLeaderProfile.new
-    else
-      @is_announcement_displayed = check_announcement(@profile)
-    end
 
-    respond_to do |format|
-      format.html 
-      format.json { render json: @strategic_leader_profile }
+    case @profile.choose_type
+      when 0
+        return strategic_leader
+      when 1
+        return local_leader
+      when 2
+        return activist
     end
   end
   
@@ -146,7 +143,7 @@ class ProfileCandidatesController < ApplicationController
       
       respond_to do |format|
         if @profile.save
-          format.html { redirect_to step2a_profile_candidates_path }
+          format.html { redirect_to step2_branching_profile_candidates_path }
           format.json { render json: @profile, status: :created, location: @profile }
         else
           format.html { render action: "step2" }
@@ -162,7 +159,7 @@ class ProfileCandidatesController < ApplicationController
     
     respond_to do |format|
       if @profile.update_attributes(params[:profile_candidate])
-        format.html { redirect_to step2a_profile_candidates_path, notice: 'Data Anda telah diupdate' }
+        format.html { redirect_to step2_branching_profile_candidates_path, notice: 'Data Anda telah diupdate' }
         format.json { head :no_content }
       else
         format.html { render action: "step2" }
@@ -172,7 +169,31 @@ class ProfileCandidatesController < ApplicationController
   end
   
 
-  def create_strategic_leader_profiles
+  def strategic_leader
+    @profile = current_user.profile_candidate
+    @strategic_leader_profile = current_user.strategic_leader_profile
+    
+    if @strategic_leader_profile.nil?
+      @strategic_leader_profile = StrategicLeaderProfile.new
+    else
+      @is_announcement_displayed = check_announcement(@profile)
+    end
+
+    respond_to do |format|
+      format.html { render action: 'strategic_leader' }
+      format.json { render json: @strategic_leader_profile }
+    end
+  end
+
+  def local_leader
+    # TODO implement
+  end
+
+  def activist
+    # TODO implement
+  end
+
+  def create_strategic_leader_profile
     @strategic_leader_profile = StrategicLeaderProfile.new(params[:strategic_leader_profile])
     @strategic_leader_profile.user_id = current_user.id
     
@@ -181,10 +202,18 @@ class ProfileCandidatesController < ApplicationController
         format.html { redirect_to step3_profile_candidates_path }
         format.json { render json: @strategic_leader_profile, status: :created, location: @strategic_leader_profile }
       else
-        format.html { render action: "step2a" }
+        format.html { render action: "step2_strategic_leader" }
         format.json { render json: @strategic_leader_profile.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_local_leader_profile
+    # TODO implement
+  end
+
+  def create_activist_profile
+    # TODO implement
   end
 
   def upload_photo
