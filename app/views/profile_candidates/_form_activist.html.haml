@@ -1,0 +1,61 @@
+-content_for :head do
+  %meta{name: "viewport", content: "initial-scale=1.0, user-scalable=no"}
+
+.span8
+  .well
+    = simple_form_for(@activist_profile, :url => activist_profile_candidates_path, :html => {:class => 'form-horizontal'}) do |f|
+      = f.error_notification
+      = display_base_errors @activist_profile
+
+      .form-inputs
+        %h4 Aktivitas dan Pencapaian
+        %blockquote
+          %div
+            Sebutkan dan jelaskan 5 aktivitas dan/atau pencapaian terbaik yang telah Anda raih. Aktivitas dan pencapaian disini diartikan dalam arti yang luas, bisa jadi berupa pengalaman organisasi, pengalaman kepanitiaan, pengalaman mendirikan organisasi, menjuarai kompetisi, partisipasi dalam suatu konferensi, penulisan ilmiah, dll.
+        = f.input :activity1_information, :label => 'Aktivitas/Pencapaian 1', :input_html => {:rows => 1, :class => "span5"}
+        = f.input :activity1_reason, :label => 'Alasan mengapa Aktivitas/Pencapaian 1 ini merupakan yang terbaik bagi Anda (maks 350 kata)', :input_html => {:rows => 8, :class => "span5"}
+        = f.input :activity2_information, :label => 'Aktivitas/Pencapaian 2', :input_html => {:rows => 1, :class => "span5"}
+        = f.input :activity2_reason, :label => 'Alasan mengapa Aktivitas/Pencapaian 2 ini merupakan yang terbaik bagi Anda (maks 350 kata)', :input_html => {:rows => 8, :class => "span5"}
+        = f.input :activity3_information, :label => 'Aktivitas/Pencapaian 3', :input_html => {:rows => 1, :class => "span5"}
+        = f.input :activity3_reason, :label => 'Alasan mengapa Aktivitas/Pencapaian 3 ini merupakan yang terbaik bagi Anda (maks 350 kata)', :input_html => {:rows => 8, :class => "span5"}
+        = f.input :activity4_information, :label => 'Aktivitas/Pencapaian 4', :input_html => {:rows => 1, :class => "span5"}
+        = f.input :activity4_reason, :label => 'Alasan mengapa Aktivitas/Pencapaian 4 ini merupakan yang terbaik bagi Anda (maks 350 kata)', :input_html => {:rows => 8, :class => "span5"}
+        = f.input :activity5_information, :label => 'Aktivitas/Pencapaian 5', :input_html => {:rows => 1, :class => "span5"}
+        = f.input :activity5_reason, :label => 'Alasan mengapa Aktivitas/Pencapaian 5 ini merupakan yang terbaik bagi Anda (maks 350 kata)', :input_html => {:rows => 8, :class => "span5"}
+        %h4 Essai tentang action plan pasca Pelatihan FIM
+        %blockquote
+          %div
+            Jelaskan tentang action plan anda (di FIM) pasca pelatihan dalam maksimal 1000 kata. Adapun action plan tersebut memuat beberapa hal berikut:
+            %ul
+              %li Konsep
+              %li Outcome
+              %li Rencana Operasionalisasi/teknis
+        = f.input :essay_about_pasca_training, :label => "Essai (Maksimal 1000 kata", :input_html => {:rows => 8, :class => "span5"}
+        %h2 Tipografi
+        %h4 Konseptor
+        %blockquote
+          %div
+            Tipe individu yang memiliki gagasan strategis atau rancangan konsep yang jelas
+        %h4 Organizer
+        %blockquote
+          %div
+            Tipe individu yang memiliki kemampuan untuk mengorganisir sumber daya organisasi dengan baik, serta mampu mengoperasionalisasikan konsep menjadi rancangan yang lebih teknis
+        %h4 Eksekutor
+        %blockquote
+          %div
+            Tipe individu yang memiliki kemampuan baik untuk mengeksekusi sebuah pekerjaan, program atau gerakan
+        %h4 Kontroler
+        %blockquote
+          %div
+            Tipe individu yang memiliki kemampuan untuk mengawasi pelaksanaan suatu program. Individu ini masih berada dalam satu sistem organisasi
+        = f.input :tipografi, :label => "Pilihan Anda", :as => :radio_buttons, :collection => [["Konseptor", 0], ["Organizer", 1], ["Eksekutor", 2], ["Kontroler", 3]]
+        %h4 Download Template Surat Rekomendasi
+        %blockquote
+          %div
+            Gunakan Template Surat ini untuk diisi oleh perekomendasi anda, lalu anda anda upload documen tersebut (sudah di isi, di tanda tangani, dan discan) pada step berikutnya, Template bisa di download 
+            %a{href: "https://docs.google.com/uc?authuser=0&id=0B-0b597R8sL6MFhEOFQ1elkycnc&export=download"}
+              disini
+       
+
+      .form-actions
+        = f.submit "Next >", :class => "btn btn-primary"
