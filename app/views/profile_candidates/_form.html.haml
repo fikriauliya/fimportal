@@ -37,7 +37,238 @@
         $("#remaining_collaboration_words").text("Sisa kata: " + (200 - words.length));
       }
     }
-        
+
+    $(document).ready(function () {
+
+                //reset the dropdowns to the first entry, which is a blank
+                $('select.mutually_exclusive_select_lists').prop('selectedIndex', 0);
+                //all initial entries of first dropdown; all entries are the same for all dropdownlists
+                var $allEntries = $('select').first();
+                //count the number of dropdownlist
+                var $countSelects = $('select').length;
+                //putting entries into array; hardcoded id (change later on)
+                var $allEntries = $('#list').find('option');
+
+                //monitor changes to the select list
+                $('select.mutually_exclusive_select_lists').change(function () {
+                    //the focused dropdown
+                    var $focusedDropdown = $(this);
+                    //the focused dropdown list id
+                    var selectedListId = $(this).attr("id");
+                    //the selected option of the focused dropdownlist
+                    var $optionSelected = $.trim($('#' + selectedListId + ' option:selected').text());
+                    //other options that were not selected for the focused dropdownlist
+                    var $otherOptions = $('#' + selectedListId + ' option:selected').siblings('option');
+                    //the focused list object converted into an array
+                    var listItems = [];
+                    $otherOptions.each(function () {
+                        listItems.push($.trim($(this).text()));
+                    });
+                    var lengthListItems = listItems.length;
+                    //siblings are the dropdownlist that are not in focus
+                    //find all siblings that are dropdownlist
+                    var $allsiblings = $(this).siblings('select');
+                    //preserve the $allEntries variable by making a copy to $originalEntries
+                    var $originalEntries = $allEntries;
+                    //array for storing entries that are visible for other dropdownlists
+                    var validListItems = [];
+                    //empty array for storing entries that weren't selected in any of the dropdownlist
+                    var newListItems = [];
+                    //entries that should be taken out and should not appear on the other dropdownlists
+                    var avoidListItems = [];
+                    //array in array
+                    var arrayInArray = [];
+                    var indexArray = [];
+                    //count the original number of dropdowns
+                    var countAllDropdownEntries = -1;
+                    var furtherIndexArray = [];
+                    //the original list items in array form
+                    $originalEntries.each(function () {
+                        countAllDropdownEntries += 1;
+                        oneOfThem = $.trim($(this).text().replace(/\s+/g, " "));
+                        arrayInArray.push(oneOfThem);
+                        arrayInArray.push(countAllDropdownEntries);
+                        indexArray.push(arrayInArray);
+                        validListItems.push(oneOfThem);
+                        arrayInArray = [];
+                    });
+                    var lengthOriginalEntries = $originalEntries.length;
+
+                    //all of the currently selected values of all the dropdownlists        
+                    $('select.mutually_exclusive_select_lists').each(function () {
+                        //all of the selected entries for the dropdownlists
+                        var currentid = '#' + $(this).attr('id');
+                        var entrySelected = $.trim($(currentid).find('option:selected').text());
+
+                        //selected values in all of the list that are not blank
+                        avoidListItems.push(entrySelected);
+                        //search within the index array for the item that was pushed into the avoidListItems
+                        for (var b = 0; b < indexArray.length; b++) {
+                            if (indexArray[b][0] == entrySelected) {
+                                furtherIndexArray.push(indexArray[b]);
+                            }
+                        }
+                    });
+
+                    //getting the selected entries off the dropdownlists
+                    for (var i = 0; i < avoidListItems.length; i++) {
+                        //validListitem is the original list
+                        for (var j = 0; j < validListItems.length; j++) {
+                            //match between avoidListItem and validListItems
+                            if (avoidListItems[i] == validListItems[j]) {
+                                //make a copy of validListItems
+                                newListItems = validListItems;
+                                //splice the newListItems for entries that should show
+                                newListItems.splice(j, 1);
+                                j = validListItems.length;
+                            }
+                        }
+                    }
+
+                    //getting the indexes for the validListItems from the origlist
+                    //going through all of the dropdownlists
+                    $('select.mutually_exclusive_select_lists').each(function () {
+                        //variable to reference the entry
+                        $listAdd = $(this);
+                        //the id of the entry
+                        var currentid = '#' + $(this).attr('id');
+                        var $selectList = $(currentid + " option");
+                        var $selectedFromList = $.trim($(currentid + " option:selected").text());
+                        //siblings are the dropdownlist that are not in focus
+
+                        //for dropdownlist that have nothing selected                        
+                        if ($selectedFromList == "") {
+                            $selectList.remove();
+                            for (var m = 0; m < validListItems.length; m++) {
+                                if (m == 0) {
+                                    $listAdd.append('<option> </option>')
+                                }
+                                $listAdd.append('<option>' + validListItems[m] + '</option>');
+                            }
+                        } else {
+                            var countInvalid = 0;
+                            //case where muliple dropdownlist don't have a blank focused item
+                            $selectList.each(function () {
+                                //entries to replace the current dropdownlist entries
+                                //removal process to rid of entries that are already selected in the dropdownlists
+                                for (var q = 0; q < validListItems.length; q++) {
+                                    var entryFromList = $(this);
+                                    //entry that was not selected and that is not empty
+                                    if ($.trim($(this).text()).length !== 0 && $.trim($(this).text()) !== $selectedFromList) {
+                                        //entries that did not match up to the validListItems
+                                        if (validListItems[q] !== $.trim($(this).text())) {
+                                            countInvalid += 1;
+                                            if (q == validListItems.length - 1) {
+                                                //all comparison lead to invalid; remove 
+                                                if (countInvalid == validListItems.length) {
+                                                    $(this).remove();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                //clear out the count
+                                countInvalid = 0;
+                            });
+                        }
+                    });
+                    //index for the validListItems
+                    var validListItemsIndex = [];
+
+                    for (var a = 0; a < validListItems.length; a++) {
+                        //the indexArray is the orig dropdownlist entries
+                        for (var b = 0; b < indexArray.length; b++) {
+                            if (validListItems[a] == indexArray[b][0]) {
+                                validListItemsIndex.push(indexArray[b][1]);
+                            }
+                        }
+                    }
+
+                    var siblingEntries = [];
+                    var validSiblingIndex = [];
+                    var siblingEntriesTemp = [];
+
+                    //for siblings with something selected to add in the missing valid entries                    
+                    $allsiblings.each(function () {
+                        $optionsSibling = $allsiblings.find('option:selected');
+                        var currentIdSibling = '#' + $(this).attr('id');
+                        var entrySelectedSibling = $.trim($(currentIdSibling).find('option:selected').text());
+                        if (entrySelectedSibling.length !== 0) {
+                            siblingEntriesTemp.push(currentIdSibling);
+                            //add index and using temp array
+                            for (var b = 0; b < indexArray.length; b++) {
+                                if (entrySelectedSibling == indexArray[b][0]) {
+                                    siblingEntriesTemp.push(indexArray[b][1]);
+                                }
+                            };
+                            siblingEntries.push(siblingEntriesTemp);
+                            siblingEntriesTemp = [];
+                        }
+                    })
+
+                    //for storing the validlistItems and the selected entry index
+                    var combinedIndex = [];
+
+                    //adding onto the entries of siblings with selected entries
+                    for (var z = 0; z < siblingEntries.length; z++) {
+                        combinedIndex = [];
+                        var siblingIDEntry = siblingEntries[z][0];
+                        var optionsSibling = $(siblingIDEntry + "").find('option');
+                        var optionsSiblingSelected = $(siblingIDEntry + "").find('option:selected');
+                        var siblingIdEntryIndex = siblingEntries[z][1];
+
+                        //entries of validList into the combined index
+                        for (var a = 0; a < validListItemsIndex.length; a++) {
+                            combinedIndex.push(validListItemsIndex[a]);
+                        }
+                        combinedIndex.push(siblingIdEntryIndex);
+                        combinedIndex.sort();
+
+                        var siblingRestore = [];
+
+                        //adding the options back into the sibling
+                        for (var c = 0; c < indexArray.length; c++) {
+                            for (var d = 0; d < combinedIndex.length; d++) {
+                                if (indexArray[c][1] == combinedIndex[d]) {
+                                    siblingRestore.push(indexArray[c][0]);
+                                }
+                                if ((d == combinedIndex.length - 1)) {
+                                    if (c == indexArray.length - 1) {
+                                        optionsSibling.remove();
+                                        for (var n = 0; n < combinedIndex.length; n++) {
+                                            for (var m = 0; m < indexArray.length; m++) {
+                                                if (n == 0 && m == 0) {
+                                                    $(siblingIDEntry + "").append('<option></option>');
+                                                }
+                                                if (combinedIndex[n] == indexArray[m][1]) {
+                                                    $(siblingIDEntry + "").append('<option>' + indexArray[m][0] + '</option>');
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        //for reselecting the original entry in the sibling dropdown
+                        for (var m = 0; m < indexArray.length; m++) {
+                            if (indexArray[m][1] == siblingIdEntryIndex) {
+                                var stringToSelect = indexArray[m][0];
+                                var index = $(siblingIDEntry + " option:contains(" + stringToSelect + ")").index();
+                                $(siblingIDEntry + "").prop('selectedIndex', index);
+                                var siblingsAllOptions = $(siblingIDEntry + " option");
+                                if (siblingsAllOptions.eq(0).text() == siblingsAllOptions.eq(1).text()) {
+                                    siblingsAllOptions.eq(0).remove();
+                                }
+                            }
+                        }
+
+                        //reset the index for the next sibling
+                        siblingIdEntryIndex = [];
+                    }
+                });
+            });
+
     $(document).ready(function() {
       updateMotivationWordCount();
       updateInspiringStoryWordCount();
@@ -155,6 +386,35 @@
         = f.input :organization, :label => "Pengalaman organisasi.<br/><b>Format</b>:<i>[tahun mulai]-[tahun selesai];[nama organisasi];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
         = f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
         = f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
+
+        %select#list.mutually_exclusive_select_lists
+          %option
+          %option One
+          %option Two
+          %option Three
+          %option Four
+          %option Five
+        %select#list2.mutually_exclusive_select_lists
+          %option
+          %option One
+          %option Two
+          %option Three
+          %option Four
+          %option Five
+        %select#list3.mutually_exclusive_select_lists
+          %option
+          %option One
+          %option Two
+          %option Three
+          %option Four
+          %option Five
+        %select#list4.mutually_exclusive_select_lists
+          %option
+          %option One
+          %option Two
+          %option Three
+          %option Four
+          %option Five
 
         /= f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
