@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140226093841) do
+ActiveRecord::Schema.define(:version => 20140226133734) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -79,6 +79,10 @@ ActiveRecord::Schema.define(:version => 20140226093841) do
     t.integer  "commit_fim_pusat"
     t.integer  "commit_fim_regional"
     t.integer  "commit_organisasi"
+<<<<<<< HEAD
+=======
+    t.integer  "choose_type"
+>>>>>>> d3dba7a5a8530545907b13598937d61129b029cf
   end
 
   add_index "profile_candidates", ["user_id"], :name => "index_profile_candidates_on_user_id", :unique => true
