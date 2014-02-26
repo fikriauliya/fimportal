@@ -25,7 +25,7 @@ class ProfileCandidate < ActiveRecord::Base
   
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
     :information_from, :location, :phone, :place_of_birth, :religion, 
-    :school, :agreement, :province, :presence => true
+    :school, :agreement, :province, :choose_type, :presence => true
 
     #Temporarily not checked :inspiring_story,  :motivation, :collaboration
     
