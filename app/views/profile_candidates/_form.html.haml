@@ -389,32 +389,39 @@
 
         %select#list.mutually_exclusive_select_lists
           %option
-          %option One
-          %option Two
-          %option Three
-          %option Four
-          %option Five
+          %option{:value => "1"} One
+          %option{:value => "1"} Two
+          %option{:value => "1"} Three
+          %option{:value => "1"} Four
+          %option{:value => "1"} Five
         %select#list2.mutually_exclusive_select_lists
           %option
-          %option One
-          %option Two
-          %option Three
-          %option Four
-          %option Five
+          %option{:value => "1"} One
+          %option{:value => "1"} Two
+          %option{:value => "1"} Three
+          %option{:value => "1"} Four
+          %option{:value => "1"} Five
         %select#list3.mutually_exclusive_select_lists
           %option
-          %option One
-          %option Two
-          %option Three
-          %option Four
-          %option Five
+          %option{:value => "1"} One
+          %option{:value => "1"} Two
+          %option{:value => "1"} Three
+          %option{:value => "1"} Four
+          %option{:value => "1"} Five
         %select#list4.mutually_exclusive_select_lists
           %option
-          %option One
-          %option Two
-          %option Three
-          %option Four
-          %option Five
+          %option{:value => "1"} One
+          %option{:value => "1"} Two
+          %option{:value => "1"} Three
+          %option{:value => "1"} Four
+          %option{:value => "1"} Five
+        %select#list5.mutually_exclusive_select_lists
+          %option
+          %option{:value => "1"} One
+          %option{:value => "1"} Two
+          %option{:value => "1"} Three
+          %option{:value => "1"} Four
+          %option{:value => "1"} Five
 
         /= f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
