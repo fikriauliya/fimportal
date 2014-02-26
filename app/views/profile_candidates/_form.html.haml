@@ -593,9 +593,9 @@
         = f.input :commit_agreement,
           :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.commit_agreement? || @profile.commit_agreement.empty?) ? 'Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM, apabila saya diterima sebagai peserta FIM 16. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah (Dapat memilih lebih dari 1)' : @profile.commit_agreement)}
 
-        = f.collection_check_boxes :commit_fim_pusat, [[1, 'FIM Pusat']], :first, :last
-        = f.collection_check_boxes :commit_fim_regional, [[1, 'FIM Regional']], :first, :last
-        = f.collection_check_boxes :commit_organisasi, [[1, 'Saya akan kembali aktif ke dalam organisasi sendiri dan akan membuka jejaring dengan FIM dalam minimal 1 kegiatan bersama']], :first, :last
+        = f.input :is_committed_to_central_fim, :label => "Saya akan komitmen pada FIM Pusat"
+        = f.input :is_committed_to_regional_fim, :label => "Saya akan komitmen pada FIM regional"
+        = f.input :is_committed_to_own_organization, :label => "Saya akan kembali aktif ke dalam organisasi sendiri dan akan membuka jejaring dengan FIM dalam minimal 1 kegiatan bersama"
         %br
         %h2 Pilihan Jalur Peserta
         %h4 Strategic Leader

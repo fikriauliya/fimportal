@@ -3,7 +3,8 @@ class ProfileCandidate < ActiveRecord::Base
     :hobby, :information_from, :location, :motivation, :non_formal_education, :organization, 
     :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
     :latitude, :longitude, :agreement, :photo, :recommendation_letter, :collaboration, 
-    :inspiring_story, :province, :is_announcement_displayed, :commit_agreement, :commit_fim_pusat, :commit_fim_regional, :commit_organisasi, :choose_type, :food_except
+    :inspiring_story, :province, :is_announcement_displayed, :commit_agreement, 
+    :is_committed_to_central_fim, :is_committed_to_regional_fim, :is_committed_to_own_organization, :choose_type, :food_except
     
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
