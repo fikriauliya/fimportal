@@ -4,8 +4,10 @@ class ProfileCandidate < ActiveRecord::Base
     :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
     :latitude, :longitude, :agreement, :photo, :recommendation_letter, :collaboration, 
     :inspiring_story, :province, :is_announcement_displayed, :commit_agreement, 
-    :is_committed_to_central_fim, :is_committed_to_regional_fim, :is_committed_to_own_organization, :choose_type, :food_except
-    
+    :is_committed_to_central_fim, :is_committed_to_regional_fim, :is_committed_to_own_organization, :choose_type, :food_except,
+    :diskusi_ekonomipembangunan, :diskusi_kebijakanpublik, :diskusi_energidanlingkungan, :diskusi_pendidikandanparenting, 
+    :diskusi_medialiterasi, :diskusi_socialentre, :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev, :diskusi_liberalarts
+
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
   attr_accessible :biodata, :is_photo_visible_to_public, :is_visible_to_public,
@@ -25,7 +27,10 @@ class ProfileCandidate < ActiveRecord::Base
   
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
     :information_from, :location, :phone, :place_of_birth, :religion, 
-    :school, :agreement, :province, :choose_type, :presence => true
+    :school, :agreement, :province, :choose_type, 
+    :diskusi_ekonomipembangunan, :diskusi_kebijakanpublik, :diskusi_energidanlingkungan, :diskusi_pendidikandanparenting, 
+    :diskusi_medialiterasi, :diskusi_socialentre, :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev, :diskusi_liberalarts,
+    :presence => true
 
     #Temporarily not checked :inspiring_story,  :motivation, :collaboration
     
