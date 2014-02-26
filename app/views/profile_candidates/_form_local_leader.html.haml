@@ -1,0 +1,35 @@
+-content_for :head do
+  %meta{name: "viewport", content: "initial-scale=1.0, user-scalable=no"}
+
+.span8
+  .well
+    = simple_form_for(@local_leader_profile, :url => local_leader_profile_candidates_path, :html => {:class => 'form-horizontal'}) do |f|
+      = f.error_notification
+      = display_base_errors @local_leader_profile
+
+      .form-inputs
+        %h4 Data komunitas
+        %blockquote
+          %div
+            Isilah dengan data komunitas anda dengan format:[Nama komunitas][Tahun Berdiri][Bidang komunitas (contoh: Sosial, Pendidikan, Budaya, Pertanian,dll)][Kegiatan yang telah berlangsung][Jumlah Anggota][Tujuan Pendirian komunitas][Prestasi komunitas (Jika ada)][Kontak komunitas (Web,Facebook,Twitter,Alamat,Telpon Narahubung)][Jaringan komunitas (Sebutkan komunitas/organisasi lain/badan pemerintahan yang pernah bekerja sama dengan komunitas anda)]
+        = f.input :organization_information, :label => 'Informasi komunitas', :input_html => {:rows => 8, :class => "span5"}
+        %h4 Essai tentang calon peserta di komunitas:
+        %blockquote
+          %div
+            Mohon ceritakan mengenai kegiatan dan rencana pengembangan Komunitas Anda, beserta bagaimana peran Anda selama ini selama turut serta dalam komunitas. Adapun poin-poin yang diharapkan tercantum dalam essay tersebut adalah :
+            %ul
+              %li Overview kegiatan Komunitas
+              %li Peran Anda dan sejak kapan Anda bergabung dengan komunitas tersebut?
+              %li Mengapa Anda ingin bergabung dengan komunitas tersebut?
+              %li Jelaskan apa saja manfaat langsung yang telah Anda rasakan setelah berpartisipasi dalam kegiatan komunitas tersebut, bagi diri Anda sendiri, serta bagi daerah Anda?
+              %li Rencana strategis pengembangan komunitas ke depannya, bagaimana peran Anda dalam rencana tersebut?
+        = f.input :essay_about_organization, :label => "Essai (Maksimal 1000 kata", :input_html => {:rows => 8, :class => "span5"}
+        %h4 Download Template Surat Rekomendasi
+        %blockquote
+          %div
+            Gunakan Template Surat ini untuk diisi oleh perekomendasi anda, lalu anda anda upload documen tersebut (sudah di isi, di tanda tangani, dan discan) pada step berikutnya, Template bisa di download 
+            %a{href: "https://docs.google.com/uc?authuser=0&id=0B-0b597R8sL6eHVhaXBwdkFNVUU&export=download"}
+              disini
+
+      .form-actions
+        = f.submit "Next >", :class => "btn btn-primary"

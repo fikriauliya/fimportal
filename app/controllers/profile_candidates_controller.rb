@@ -186,7 +186,19 @@ class ProfileCandidatesController < ApplicationController
   end
 
   def local_leader
-    # TODO implement
+    @profile = current_user.profile_candidate
+    @local_leader_profile = current_user.local_leader_profile
+    
+    if @local_leader_profile.nil?
+      @local_leader_profile = LocalLeaderProfile.new
+    else
+      @is_announcement_displayed = check_announcement(@profile)
+    end
+
+    respond_to do |format|
+      format.html { render action: 'local_leader' }
+      format.json { render json: @local_leader_profile }
+    end
   end
 
   def activist
@@ -209,7 +221,18 @@ class ProfileCandidatesController < ApplicationController
   end
 
   def create_local_leader_profile
-    # TODO implement
+    @local_leader_profile = LocalLeaderProfile.new(params[:local_leader_profile])
+    @local_leader_profile.user_id = current_user.id
+    
+    respond_to do |format|
+      if @local_leader_profile.save
+        format.html { redirect_to step3_profile_candidates_path }
+        format.json { render json: @local_leader_profile, status: :created, location: @local_leader_profile }
+      else
+        format.html { render action: "step2_local_leader" }
+        format.json { render json: @local_leader_profile.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def create_activist_profile
