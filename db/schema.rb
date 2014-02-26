@@ -75,10 +75,10 @@ ActiveRecord::Schema.define(:version => 20140226061044) do
     t.integer  "diskusi_travel"
     t.integer  "diskusi_peopledev"
     t.integer  "diskusi_liberalarts"
-    t.integer  "commit_fim_pusat",               :default => 0
-    t.integer  "commit_fim_regional",            :default => 0
-    t.integer  "commit_organisasi",              :default => 0
     t.text     "commit_agreement"
+    t.integer  "commit_organisasi"
+    t.integer  "commit_fim_regional"
+    t.integer  "commit_fim_pusat"
     t.integer  "choose_type"
   end
 
