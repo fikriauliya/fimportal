@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140226050243) do
+ActiveRecord::Schema.define(:version => 20140226061044) do
 
   create_table "profile_candidates", :force => true do |t|
     t.string   "fullname"
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(:version => 20140226050243) do
     t.text     "special_character_comment"
     t.boolean  "is_announcement_displayed",      :default => false
     t.boolean  "is_update_allowed",              :default => false
-    t.string   "choose_type"
     t.text     "food_except"
     t.text     "application_count"
     t.integer  "diskusi_ekonomipembangunan"
@@ -80,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20140226050243) do
     t.integer  "commit_fim_regional",            :default => 0
     t.integer  "commit_organisasi",              :default => 0
     t.text     "commit_agreement"
+    t.integer  "choose_type"
   end
 
   add_index "profile_candidates", ["user_id"], :name => "index_profile_candidates_on_user_id", :unique => true
