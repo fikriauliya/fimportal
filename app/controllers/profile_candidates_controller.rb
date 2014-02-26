@@ -141,8 +141,6 @@ class ProfileCandidatesController < ApplicationController
     if !current_user.profile_candidate.nil?
       redirect_to step2a_profile_candidates_path
     else
-      logger.info("create")
-      logger.info(params[:profile_candidate])
       @profile = ProfileCandidate.new(params[:profile_candidate])
       @profile.user_id = current_user.id
       
