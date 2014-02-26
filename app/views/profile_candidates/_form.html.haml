@@ -185,17 +185,35 @@
                 Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 16 pada tanggal 30 April - 4 Mei 2014
         = f.input :agreement,
           :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.agreement? || @profile.agreement.empty?) ? 'Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 16 pada tanggal 30 April - 4 Mei 2014' : @profile.agreement)}
-
+        %br
         .controls
           %label
             %blockquote
               %p
-                Salin dan Lengkapi Pernyataan Dibawah ini
+                Salin Pernyataan Dibawah ini
               %small
                 Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM, apabila saya diterima sebagai peserta FIM 16. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah (Dapat memilih lebih dari 1)
         = f.input :commit_agreement,
           :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.commit_agreement? || @profile.commit_agreement.empty?) ? 'Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM, apabila saya diterima sebagai peserta FIM 16. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah (Dapat memilih lebih dari 1)' : @profile.commit_agreement)}
-      
+
+        = f.collection_check_boxes :commit_fim_pusat, [[1, 'FIM Pusat']], :first, :last
+        = f.collection_check_boxes :commit_fim_regional, [[1, 'FIM Regional']], :first, :last
+        = f.collection_check_boxes :commit_organisasi, [[1, 'Saya akan kembali aktif ke dalam organisasi sendiri dan akan membuka jejaring dengan FIM dalam minimal 1 kegiatan bersama']], :first, :last
+        %br
+        %h2 Pilihan Jalur Peserta
+        %h4 Strategic Leader
+        %blockquote
+          %div
+            Pemimpin atau calon pemimpin organisasi kepemudaan ekstra kampus atau organisasi kepemimpinan strategis lainnya
+        %h4 Local Leader
+        %blockquote
+          %div
+            Aktivis di tiap provinsi yang telah menggerakkan komunitas  sehingga menciptakan perubahan lokal di daerahnya 
+        %h4 Activist Based on Character
+        %blockquote
+          %div
+            Aktivis pemuda dari berbagai bidang yang ingin berkarya dan berjejaring bersama-sama dengan FIM
+        = f.collection_radio_buttons :choose_type, [[1, 'Strategic Leader'], [2, 'Local Leader'], [3, 'Activist Based on Character']], :first, :last
         //= f.input :referal, :label => "Jika ada, tuliskan nama alumni FIM yang merekomendasikan Anda untuk menjadi peserta FIM 15", :as => :string
         = f.hidden_field :latitude
         = f.hidden_field :longitude
