@@ -8,11 +8,40 @@
       = display_base_errors @strategic_leader_profile
 
       .form-inputs
-        = f.input :activity_name
-        = f.input :activity_duration
-        = f.input :activity_scope
-        = f.input :activity_role
-        = f.input :activity_leader_phone
-        = f.input :activity_reason
+        %h4 Aktivitas dan Pencapaian
+        %blockquote
+          %div
+            Sebutkan dan jelaskan 5 aktivitas dan/atau pencapaian terbaik yang telah Anda raih. Aktivitas dan pencapaian disini diartikan dalam arti yang luas, bisa jadi berupa pengalaman organisasi, pengalaman kepanitiaan, pengalaman mendirikan organisasi, menjuarai kompetisi, partisipasi dalam suatu konferensi, penulisan ilmiah, dll.
+        = f.input :activity1_information, :label => 'Aktivitas/Pencapaian 1', :input_html => {:rows => 1, :class => "span5"}
+        = f.input :activity1_reason, :label => 'Alasan mengapa Aktivitas/Pencapaian 1 ini merupakan yang terbaik bagi Anda (maks 350 kata)', :input_html => {:rows => 8, :class => "span5"}
+        = f.input :activity2_information, :label => 'Aktivitas/Pencapaian 2', :input_html => {:rows => 1, :class => "span5"}
+        = f.input :activity2_reason, :label => 'Alasan mengapa Aktivitas/Pencapaian 2 ini merupakan yang terbaik bagi Anda (maks 350 kata)', :input_html => {:rows => 8, :class => "span5"}
+        = f.input :activity3_information, :label => 'Aktivitas/Pencapaian 3', :input_html => {:rows => 1, :class => "span5"}
+        = f.input :activity3_reason, :label => 'Alasan mengapa Aktivitas/Pencapaian 3 ini merupakan yang terbaik bagi Anda (maks 350 kata)', :input_html => {:rows => 8, :class => "span5"}
+        = f.input :activity4_information, :label => 'Aktivitas/Pencapaian 4', :input_html => {:rows => 1, :class => "span5"}
+        = f.input :activity4_reason, :label => 'Alasan mengapa Aktivitas/Pencapaian 4 ini merupakan yang terbaik bagi Anda (maks 350 kata)', :input_html => {:rows => 8, :class => "span5"}
+        = f.input :activity5_information, :label => 'Aktivitas/Pencapaian 5', :input_html => {:rows => 1, :class => "span5"}
+        = f.input :activity5_reason, :label => 'Alasan mengapa Aktivitas/Pencapaian 5 ini merupakan yang terbaik bagi Anda (maks 350 kata)', :input_html => {:rows => 8, :class => "span5"}
+        %h4 Data Organisasi
+        %blockquote
+          %div
+            Isilah dengan data organisasi anda dengan format:[Nama Organisasi][Tahun Berdiri][Bidang Organisasi (contoh: Politik, Sosial,dll)][Kegiatan yang telah berlangsung][Jumlah Anggota][Tujuan Pendirian Organisasi][Prestasi Organisasi (Jika ada)][Kontak Organisasi (Web,Facebook,Twitter,Alamat,Telpon Narahubung)][Jaringan Organisasi (Sebutkan organisasi lain/badan pemerintahan yang pernah bekerja sama dengan organisasi anda)]
+        = f.input :organization_information, :label => 'Informasi Organisasi', :input_html => {:rows => 8, :class => "span5"}
+        %h4 Essai tentang "Indonesia yang lebih baik" menurut calon peserta:
+        %blockquote
+          %div
+            Mohon ceritakan mengenai harapan anda tentang Indonesia, beserta bagaimana peran anda selama ini selama turut serta berkontribusi untuk Indonesia yang lebih baik, serta rencana anda ke depannya. Adapun poin-poin yang diharapkan tercantum dalam essai tersebut adalah :
+            %ul
+              %li Overview tentang Indonesia yang Ideal menurut anda
+              %li Peran anda selama ini untuk Indonesia yang lebih baik?
+              %li Apa saja yang menurut anda dapat pemimpin rencanakan untuk mencapai Indonesia yang Ideal dimasa yang akan datang, bagaimana peran yang dapat anda lakukan dalam rencana tersebut ?
+        = f.input :essay_about_indonesia, :label => "Essai (Maksimal 1000 kata", :input_html => {:rows => 8, :class => "span5"}
+        %h4 Download Template Surat Rekomendasi
+        %blockquote
+          %div
+            Gunakan Template Surat ini untuk diisi oleh perekomendasi anda, lalu anda anda upload documen tersebut (sudah di isi, di tanda tangani, dan discan) pada step berikutnya, Template bisa di download 
+            %a{href: "https://docs.google.com/uc?authuser=0&id=0B-0b597R8sL6eHVhaXBwdkFNVUU&export=download"}
+              disini
+
       .form-actions
         = f.submit "Next >", :class => "btn btn-primary"

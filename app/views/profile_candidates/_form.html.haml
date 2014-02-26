@@ -392,17 +392,16 @@
           %div
             Berikut ini adalah daftar topik FIM Club (kelompok diskusi FIM lintas generasi dengan platform Whatsapp). Mohon berikan peringkat 1 (paling berminat) – 10 (paling tidak berminat), pada topik-topik berikut : 
         
-        = f.input :diskusi_ekonomipembangunan, :label => "Ekonomi Pembangunan", :collection => (1..10), :input_html => {:class => "mutually_exclusive_select_lists", :id =>"list1"}
-        = f.input :diskusi_kebijakanpublik, :label => "Kebijakan Publik", :collection => (1..10), :input_html => {:class => "mutually_exclusive_select_lists", :id =>"list2"}
-        = f.input :diskusi_energidanlingkungan, :label => "Energi dan Lingkungan", :collection => (1..10), :input_html => {:class => "mutually_exclusive_select_lists", :id =>"list3"}
-        = f.input :diskusi_pendidikandanparenting, :label => "Pendidikan dan Parenting", :collection => (1..10), :input_html => {:class => "mutually_exclusive_select_lists", :id =>"list4"}
-        = f.input :diskusi_medialiterasi, :label => "Media Literasi", :collection => (1..10), :input_html => {:class => "mutually_exclusive_select_lists", :id =>"list5"}
-        = f.input :diskusi_socialentre, :label => "Sosial Enterpreneurship", :collection => (1..10), :input_html => {:class => "mutually_exclusive_select_lists", :id =>"list6"}
-        = f.input :diskusi_pangangizikesehatan, :label => "Pangan, Gizi, dan Kesehatan", :collection => (1..10), :input_html => {:class => "mutually_exclusive_select_lists", :id =>"list7"}
-        = f.input :diskusi_travel, :label => "Travel", :collection => (1..10), :input_html => {:class => "mutually_exclusive_select_lists", :id =>"list8"}
-        = f.input :diskusi_peopledev, :label => "People Development", :collection => (1..10), :input_html => {:class => "mutually_exclusive_select_lists", :id =>"list9"}
-        = f.input :diskusi_liberalarts, :label => "Liberal Arts", :collection => (1..10), :input_html => {:class => "mutually_exclusive_select_lists", :id =>"list10"}
-
+        = f.input :diskusi_ekonomipembangunan, :label => "Ekonomi Pembangunan", :collection => (1..10)
+        = f.input :diskusi_kebijakanpublik, :label => "Kebijakan Publik", :collection => (1..10)
+        = f.input :diskusi_energidanlingkungan, :label => "Energi dan Lingkungan", :collection => (1..10)
+        = f.input :diskusi_pendidikandanparenting, :label => "Pendidikan dan Parenting", :collection => (1..10)
+        = f.input :diskusi_medialiterasi, :label => "Media Literasi", :collection => (1..10)
+        = f.input :diskusi_socialentre, :label => "Sosial Enterpreneurship", :collection => (1..10)
+        = f.input :diskusi_pangangizikesehatan, :label => "Pangan, Gizi, dan Kesehatan", :collection => (1..10)
+        = f.input :diskusi_travel, :label => "Travel", :collection => (1..10)
+        = f.input :diskusi_peopledev, :label => "People Development", :collection => (1..10)
+        = f.input :diskusi_liberalarts, :label => "Liberal Arts", :collection => (1..10)
         %hr{:noshade => "", :size => "3"}/
         /= f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
