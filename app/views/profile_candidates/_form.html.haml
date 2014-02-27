@@ -443,8 +443,13 @@
         = f.input :commit_agreement,
           :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.commit_agreement? || @profile.commit_agreement.empty?) ? 'Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM, apabila saya diterima sebagai peserta FIM 16. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah (Dapat memilih lebih dari 1)' : @profile.commit_agreement)}
 
-        = f.input :is_committed_to_central_fim, :label => "Saya akan komitmen pada FIM Pusat"
+        = f.input :is_committed_to_central_fim, :label => "Saya akan komitmen pada FIM Pusat (Media, Program, Fundraising, Kesekretariatan"
         = f.input :is_committed_to_regional_fim, :label => "Saya akan komitmen pada FIM regional"
+        %blockquote
+          %div
+            List FIM Regional bisa dilihat
+            %a{href: "http://forumindonesiamuda.org/#!jaringan-fim"}
+              disini
         = f.input :is_committed_to_own_organization, :label => "Saya akan kembali aktif ke dalam organisasi sendiri dan akan membuka jejaring dengan FIM dalam minimal 1 kegiatan bersama"
         %br
         %h2 Pilihan Jalur Peserta
