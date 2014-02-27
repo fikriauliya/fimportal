@@ -31,14 +31,17 @@ class ProfileCandidatesController < ApplicationController
   def step2_branching
     # current_user is the currently signed in user
     @profile = current_user.profile_candidate
-
-    case @profile.choose_type
-      when 0
-        redirect_to new_strategic_leader_profile_path
-      when 1
-        redirect_to new_local_leader_profile_path
-      when 2
-        redirect_to new_activist_profile_path
+    if @profile.nil?
+      redirect_to step2_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
+    else
+      case @profile.choose_type
+        when 0
+          redirect_to new_strategic_leader_profile_path
+        when 1
+          redirect_to new_local_leader_profile_path
+        when 2
+          redirect_to new_activist_profile_path
+      end
     end
   end
   
@@ -98,7 +101,7 @@ class ProfileCandidatesController < ApplicationController
     @profiles = ProfileCandidate.submitted.chronological
     
     if params[:province]
-      @profiles = @profiles.where(:province => params[:province])
+      @profiles = @profiles.where(:province => params[:povince])
     end
     if params[:fullname]
       @profiles = @profiles.where("lower(fullname) like lower('%' || ? || '%')", params[:fullname])
