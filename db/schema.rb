@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140226222714) do
+ActiveRecord::Schema.define(:version => 20140227153409) do
 
   create_table "activist_profiles", :force => true do |t|
     t.text     "activity1_information"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20140226222714) do
     t.boolean  "is_committed_to_central_fim"
     t.boolean  "is_committed_to_regional_fim"
     t.boolean  "is_committed_to_own_organization"
+    t.string   "identification_card"
   end
 
   add_index "profile_candidates", ["user_id"], :name => "index_profile_candidates_on_user_id", :unique => true
