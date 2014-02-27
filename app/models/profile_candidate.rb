@@ -6,7 +6,7 @@ class ProfileCandidate < ActiveRecord::Base
     :inspiring_story, :province, :is_announcement_displayed, :commit_agreement, 
     :is_committed_to_central_fim, :is_committed_to_regional_fim, :is_committed_to_own_organization, :choose_type, :food_except,
     :diskusi_ekonomipembangunan, :diskusi_kebijakanpublik, :diskusi_energidanlingkungan, :diskusi_pendidikandanparenting, 
-    :diskusi_medialiterasi, :diskusi_socialentre, :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev, :diskusi_liberalarts
+    :diskusi_medialiterasi, :diskusi_socialentre, :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev, :diskusi_liberalarts, :identification_card
 
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
@@ -37,7 +37,7 @@ class ProfileCandidate < ActiveRecord::Base
   # validates_length_of :collaboration, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
   validates_length_of :biodata, :too_long => 'Terlalu panjang, melebihi 160 karakter', :maximum => 160
   
-  validates_length_of :fullname, :place_of_birth, :religion, :phone, :blood_type, :school, :information_from, :photo, :recommendation_letter, :status, :province, :facebook, :twitter, :maximum => 255
+  validates_length_of :fullname, :place_of_birth, :religion, :phone, :blood_type, :school, :information_from, :photo, :identification_card, :recommendation_letter, :status, :province, :facebook, :twitter, :maximum => 255
   
   # validates_format_of :agreement, :with => lambda {|me|
      # /\s*Saya,\s*\[?\s*#{me.fullname.nil? ? '' : me.fullname.strip}\s*\]? \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 15 pada tanggal 27 Oktober - 3 November 2013\s*/i

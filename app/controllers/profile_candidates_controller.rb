@@ -64,10 +64,29 @@ class ProfileCandidatesController < ApplicationController
     end
   end 
   
-  def step4
+  def step3a
     @profile = current_user.profile_candidate
     if @profile.nil? or !@profile.photo?
       redirect_to step3_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
+    else
+      if params[:uploaded]
+        flash[:notice] = "KTP Anda sudah diupload. Jika tidak ingin menganti, silakan klik Next"
+      else
+        flash[:notice] = nil
+      end
+      @is_announcement_displayed = check_announcement(@profile)
+      
+      respond_to do |format|
+        format.html 
+        format.json { render json: @profile }
+      end
+    end
+  end
+
+  def step4
+    @profile = current_user.profile_candidate
+    if @profile.nil? or !@profile.identification_card?
+      redirect_to step3a_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
     else
       if params[:uploaded]
         flash[:notice] = "Surat rekomendasi Anda sudah diupload. Jika tidak ingin mengganti, silakan klik Next"
@@ -172,6 +191,17 @@ class ProfileCandidatesController < ApplicationController
     else
       @success = false
       render "upload_photo_response", :layout => false
+    end
+  end
+
+  def upload_identification_card
+    @profile = current_user.profile_candidate
+    if !params[:profile_candidate].nil? && @profile.update_attribute(:identification_card, params[:profile_candidate][:identification_card])
+      @success = true
+      render "upload_identification_card_response", :layout => false
+    else
+      @success = false
+      render "upload_identification_card_response", :layout => false
     end
   end
   

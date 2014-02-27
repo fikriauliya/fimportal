@@ -1,14 +1,14 @@
 .row
   .span8
     .well
-      = s3_uploader_form post: upload_photo_profile_candidates_path, as: "profile_candidate[photo]", 
+      = s3_uploader_form post: upload_identification_card_profile_candidates_path, as: "profile_candidate[identification_card]", 
         id: "myS3Uploader", max_file_size: 10.megabytes do
-        - if @profile.photo?
+        - if @profile.identification_card?
           .controls
-            = link_to @profile.photo do
-              = image_tag(@profile.photo, :style => 'width:100px; height:100px')
+            = link_to @profile.identification_card do
+              = image_tag(@profile.identification_card, :style => 'width:100px; height:100px')
       
-        -if @profile.photo?
+        -if @profile.identification_card?
           %br
           %p 
             Untuk mengganti foto, silakan unggah foto baru Anda.
@@ -24,8 +24,8 @@
   
         %br
         %br
-        = link_to "< Back", step2_branching_profile_candidates_path, :class => 'btn btn-danger'
-        = link_to "Next >", step3a_profile_candidates_path, :class => 'btn btn-primary'
+        = link_to "< Back", step3_profile_candidates_path, :class => 'btn btn-danger'
+        = link_to "Next >", step4_profile_candidates_path, :class => 'btn btn-primary'
 
 .row
   .span8
