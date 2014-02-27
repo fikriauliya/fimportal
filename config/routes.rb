@@ -47,7 +47,7 @@ FimAlumni::Application.routes.draw do
     end
   end
 
-  resources :strategic_leaders, :except => [:show, :destroy, :edit, :index]
+  resources :strategic_leader_profiles, :except => [:show, :destroy, :edit, :index]
   resources :local_leader_profiles, :except => [:show, :destroy, :edit, :index]
   
   # resource :profile, :path => 'alumni'

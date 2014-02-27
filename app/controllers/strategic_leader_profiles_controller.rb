@@ -1,4 +1,4 @@
-class StrategicLeadersController < ApplicationController
+class StrategicLeaderProfilesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :check_submission_status!
 
@@ -37,7 +37,7 @@ class StrategicLeadersController < ApplicationController
     @profile = current_user.profile_candidate
     
     respond_to do |format|
-      if @profile.update_attributes(params[:strategic_leader_candidate])
+      if @profile.update_attributes(params[:strategic_leader_profile])
         format.html { redirect_to step3_branching_profile_candidates_path, notice: 'Data Anda telah diupdate' }
         format.json { head :no_content }
       else

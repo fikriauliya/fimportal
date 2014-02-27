@@ -34,7 +34,7 @@ class ProfileCandidatesController < ApplicationController
 
     case @profile.choose_type
       when 0
-        redirect_to new_strategic_leader_path
+        redirect_to new_strategic_leader_profile_path
       when 1
         redirect_to new_local_leader_profile_path
       when 2

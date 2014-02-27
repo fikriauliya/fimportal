@@ -3,7 +3,7 @@
 
 .span8
   .well
-    = simple_form_for(@strategic_leader_profile, :url => strategic_leader_profile_candidates_path, :html => {:class => 'form-horizontal'}) do |f|
+    = simple_form_for(@strategic_leader_profile, :html => {:class => 'form-horizontal'}) do |f|
       = f.error_notification
       = display_base_errors @strategic_leader_profile
 
