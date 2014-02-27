@@ -38,7 +38,7 @@ class ActivistProfilesController < ApplicationController
     @activist_profile = current_user.activist_profile
     
     respond_to do |format|
-      if @activist_profile.update_attributes(params[:activist_activist_profile])
+      if @activist_profile.update_attributes(params[:activist_profile])
         format.html { redirect_to step3_profile_candidates_path, notice: 'Data Anda telah diupdate' }
         format.json { head :no_content }
       else
