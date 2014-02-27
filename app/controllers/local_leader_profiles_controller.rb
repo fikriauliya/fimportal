@@ -27,7 +27,7 @@ class LocalLeaderProfilesController < ApplicationController
         format.html { redirect_to step3_profile_candidates_path }
         format.json { render json: @local_leader_profile, status: :created, location: @local_leader_profile }
       else
-        format.html
+        format.html { render action: "new" }
         format.json { render json: @local_leader_profile.errors, status: :unprocessable_entity }
       end
     end

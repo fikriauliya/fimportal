@@ -27,7 +27,7 @@ class ActivistProfilesController < ApplicationController
         format.html { redirect_to step3_profile_candidates_path }
         format.json { render json: @activist_profile, status: :created, location: @activist_profile }
       else
-        format.html
+        format.html { render action: "new" }
         format.json { render json: @activist_profile.errors, status: :unprocessable_entity }
       end
     end
