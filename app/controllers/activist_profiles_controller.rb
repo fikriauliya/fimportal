@@ -35,14 +35,15 @@ class ActivistProfilesController < ApplicationController
 
   def update
     @profile = current_user.profile_candidate
+    @activist_profile = current_user.activist_profile
     
     respond_to do |format|
-      if @profile.update_attributes(params[:activist_profile])
-        format.html { redirect_to step3_branching_profile_candidates_path, notice: 'Data Anda telah diupdate' }
+      if @activist_profile.update_attributes(params[:activist_activist_profile])
+        format.html { redirect_to step3_profile_candidates_path, notice: 'Data Anda telah diupdate' }
         format.json { head :no_content }
       else
         format.html { render action: "new" }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
+        format.json { render json: @activist_profile.errors, status: :unprocessable_entity }
       end
     end
   end
