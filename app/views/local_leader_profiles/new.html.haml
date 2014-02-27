@@ -1,5 +1,5 @@
-= render :partial => 'step_navigator', :locals => {:step => 2}
-= render :partial => 'announcement_popup', :locals => {:is_announcement_displayed => @is_announcement_displayed}
+= render :partial => 'layouts/step_navigator', :locals => {:step => 2}
+= render :partial => 'layouts/announcement_popup', :locals => {:is_announcement_displayed => @is_announcement_displayed}
     
 %h2 Pendaftaran FIM
 %ul
@@ -22,4 +22,4 @@
     %b "< Prev"
 
 
-= render 'form_local_leader'
+= render 'form'

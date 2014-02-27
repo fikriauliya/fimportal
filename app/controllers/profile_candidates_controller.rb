@@ -36,7 +36,7 @@ class ProfileCandidatesController < ApplicationController
       when 0
         redirect_to new_strategic_leader_path
       when 1
-        return local_leader
+        redirect_to new_local_leader_profile_path
       when 2
         return activist
     end
@@ -161,22 +161,6 @@ class ProfileCandidatesController < ApplicationController
     end
   end
 
-  def local_leader
-    @profile = current_user.profile_candidate
-    @local_leader_profile = current_user.local_leader_profile
-    
-    if @local_leader_profile.nil?
-      @local_leader_profile = LocalLeaderProfile.new
-    else
-      @is_announcement_displayed = check_announcement(@profile)
-    end
-
-    respond_to do |format|
-      format.html { render action: 'local_leader' }
-      format.json { render json: @local_leader_profile }
-    end
-  end
-
   def activist
     @profile = current_user.profile_candidate
     @activist_profile = current_user.activist_profile
@@ -190,21 +174,6 @@ class ProfileCandidatesController < ApplicationController
     respond_to do |format|
       format.html { render action: 'activist' }
       format.json { render json: @activist_profile }
-    end
-  end
-
-  def create_local_leader_profile
-    @local_leader_profile = LocalLeaderProfile.new(params[:local_leader_profile])
-    @local_leader_profile.user_id = current_user.id
-    
-    respond_to do |format|
-      if @local_leader_profile.save
-        format.html { redirect_to step3_profile_candidates_path }
-        format.json { render json: @local_leader_profile, status: :created, location: @local_leader_profile }
-      else
-        format.html { render action: "local_leader" }
-        format.json { render json: @local_leader_profile.errors, status: :unprocessable_entity }
-      end
     end
   end
 
