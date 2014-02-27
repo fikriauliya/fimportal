@@ -262,6 +262,20 @@ class ProfileCandidatesController < ApplicationController
     end
   end
 
+  def update_strategic_leader
+    @profile = current_user.profile_candidate
+    
+    respond_to do |format|
+      if @profile.update_attributes(params[:strategic_leader_candidate])
+        format.html { redirect_to step3_branching_profile_candidates_path, notice: 'Data Anda telah diupdate' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "strategic_leader" }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def upload_photo
     @profile = current_user.profile_candidate
     if !params[:profile_candidate].nil? && @profile.update_attribute(:photo, params[:profile_candidate][:photo])
