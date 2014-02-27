@@ -23,18 +23,11 @@ FimAlumni::Application.routes.draw do
       get 'step1'
       get 'step2'
       get 'step2_branching'
-      get 'strategic_leader'
-      get 'local_leader'
-      get 'activist'
 
       get 'step3'
       get 'step4'
       get 'step5'
       
-      match "strategic_leader" => "profile_candidates#create_strategic_leader_profile", :via => [:put, :post]
-      match "local_leader" => "profile_candidates#create_local_leader_profile", :via => [:put, :post]
-      match "activist" => "profile_candidates#create_activist_profile", :via => [:put, :post]
-
       match 'upload_photo' => 'profile_candidates#upload_photo', :via => :post
       match 'upload_recommendation_letter' => 'profile_candidates#upload_recommendation_letter', :via => :post
       match 'update_biodata' => 'profile_candidates#update_biodata', :via => :put
