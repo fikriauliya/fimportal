@@ -3,13 +3,6 @@ class ProfileCandidatesController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:new, :step1, :index, :progress_status]
   before_filter :check_submission_status!, :only => [:step2, :step3, :step4]
   
-  def check_submission_status!
-    @profile = current_user.profile_candidate
-    if !@profile.nil? && (@profile.status == "SUBMITTED" || @profile.status == "MARKED")
-      redirect_to profile_candidates_path, :notice => "Data Anda sudah kami terima. Terimakasih"
-    end
-  end
-  
   def step1
     @user = User.new
     if user_signed_in?
@@ -41,7 +34,7 @@ class ProfileCandidatesController < ApplicationController
 
     case @profile.choose_type
       when 0
-        return strategic_leader
+        redirect_to new_strategic_leader_path
       when 1
         return local_leader
       when 2
@@ -167,23 +160,6 @@ class ProfileCandidatesController < ApplicationController
       end
     end
   end
-  
-
-  def strategic_leader
-    @profile = current_user.profile_candidate
-    @strategic_leader_profile = current_user.strategic_leader_profile
-    
-    if @strategic_leader_profile.nil?
-      @strategic_leader_profile = StrategicLeaderProfile.new
-    else
-      @is_announcement_displayed = check_announcement(@profile)
-    end
-
-    respond_to do |format|
-      format.html { render action: 'strategic_leader' }
-      format.json { render json: @strategic_leader_profile }
-    end
-  end
 
   def local_leader
     @profile = current_user.profile_candidate
@@ -217,21 +193,6 @@ class ProfileCandidatesController < ApplicationController
     end
   end
 
-  def create_strategic_leader_profile
-    @strategic_leader_profile = StrategicLeaderProfile.new(params[:strategic_leader_profile])
-    @strategic_leader_profile.user_id = current_user.id
-    
-    respond_to do |format|
-      if @strategic_leader_profile.save
-        format.html { redirect_to step3_profile_candidates_path }
-        format.json { render json: @strategic_leader_profile, status: :created, location: @strategic_leader_profile }
-      else
-        format.html { render action: "strategic_leader" }
-        format.json { render json: @strategic_leader_profile.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def create_local_leader_profile
     @local_leader_profile = LocalLeaderProfile.new(params[:local_leader_profile])
     @local_leader_profile.user_id = current_user.id
@@ -258,20 +219,6 @@ class ProfileCandidatesController < ApplicationController
       else
         format.html { render action: "activist" }
         format.json { render json: @activist_profile.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update_strategic_leader
-    @profile = current_user.profile_candidate
-    
-    respond_to do |format|
-      if @profile.update_attributes(params[:strategic_leader_candidate])
-        format.html { redirect_to step3_branching_profile_candidates_path, notice: 'Data Anda telah diupdate' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "strategic_leader" }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -350,15 +297,6 @@ class ProfileCandidatesController < ApplicationController
     ProfileCandidate.update_all({marked_by_id: params[:recruiter][:id]}, {id: params[:profile_candidate_ids]})
     index_param = if params[:page] then {:page => params[:page]} end
     redirect_to recruiter_index_path(index_param)
-  end
-  
-  def check_announcement(profile)
-    is_announcement_displayed = profile.is_announcement_displayed
-    if is_announcement_displayed
-      profile.is_announcement_displayed = false
-      profile.save
-    end
-    is_announcement_displayed
   end
   
   def progress_status

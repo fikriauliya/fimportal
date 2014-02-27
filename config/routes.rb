@@ -46,6 +46,8 @@ FimAlumni::Application.routes.draw do
       match 'progress_status' => 'profile_candidates#progress_status', :via => :get
     end
   end
+
+  resources :strategic_leaders, :except => [:show, :destroy, :edit, :index]
   
   # resource :profile, :path => 'alumni'
   # resources :profiles, :path => 'alumnis', :except => [:show]
