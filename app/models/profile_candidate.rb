@@ -19,8 +19,6 @@ class ProfileCandidate < ActiveRecord::Base
     :special_location_comment, :special_character_comment, :status,
     :school,
     :as => :recruiter
-    
-  attr_accessible :workshop, :is_update_allowed, :status, :as => :update_workshop
   
   belongs_to :user
   belongs_to :marked_by, :class_name => "User"

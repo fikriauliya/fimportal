@@ -1,6 +1,6 @@
 class ProfileCandidatesController < ApplicationController
   before_filter :authenticate_user!
-  skip_before_filter :authenticate_user!, :only => [:new, :step1, :index, :edit_workshop, :progress_status]
+  skip_before_filter :authenticate_user!, :only => [:new, :step1, :index, :progress_status]
   before_filter :check_submission_status!, :only => [:step2, :step3, :step4]
   
   def check_submission_status!
@@ -320,36 +320,6 @@ class ProfileCandidatesController < ApplicationController
         format.html { redirect_to profile_candidates_path, alert: 'Data Anda tidak valid. Pastikan jumlah karakter tidak melebihi 160 karakter' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
-    end
-  end
-  
-  def edit_workshop
-    if user_signed_in?
-      @profile = current_user.profile_candidate
-      if @profile.nil? 
-        redirect_to root_path, :alert => "Anda belum mengumpulkan biodata, silakan diisi melalui sistem registrasi"
-      else
-        if !@profile.is_update_allowed
-          redirect_to root_path, :alert => "Data Anda sudah dikumpulkan, tidak bisa diganti lagi"
-        end
-      end
-    else
-      session[:after_sign_in_path_for] = edit_workshop_profile_candidates_path
-      authenticate_user!
-    end
-  end
-  
-  def update_workshop
-    @profile = current_user.profile_candidate
-    if params[:changed] == 'true'
-      if @profile.is_update_allowed && @profile.update_attributes({:workshop => params[:profile_candidate][:workshop], :is_update_allowed => false, :status => 'SUBMITTED'}, :as => :update_workshop)
-        redirect_to profile_candidates_path, :notice => "Data Anda telah diupdate dan akan diproses oleh tim seleksi. Terimakasih" 
-      else
-        render "edit_workshop"
-      end
-    else
-      @profile.update_attribute(:is_update_allowed, false)
-      redirect_to profile_candidates_path, :notice => "Tidak ada perubahan. Data Anda akan diproses oleh tim seleksi. Terimakasih"
     end
   end
   
