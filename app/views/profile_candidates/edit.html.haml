@@ -80,7 +80,7 @@
         
         %td= @profile.special_location_comment
         %td= @profile.special_character_comment
-        %td= @profile.application_count > 0 ? @profile.application_count : ''
+        %td= @profile.application_count ? @profile.application_count : ''
         %td= @profile.school
         %td= @profile.province
         %td= link_to('Download', @profile.recommendation_letter)
