@@ -78,6 +78,7 @@
         %th{'data-hide' => 'all'} Kisah yang menginspirasi
         %th{'data-hide' => 'all'} Info dari
         %th{'data-hide' => 'all'} Pertunjukan
+        %th{'data-hide' => 'all'} Pilihan Jalur
         
       %th{'data-hide'=>'all'} Facebook
       %th{'data-hide'=>'all'} Twitter
@@ -141,6 +142,7 @@
           %td= simple_format(profile.inspiring_story)
           %td= profile.information_from
           %td= profile.performance_type
+          %td= profile.choose_type
         %td= profile.facebook_url
         %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
         %td= (full_column || profile.is_email_displayed) ? profile.user.email : "-"
