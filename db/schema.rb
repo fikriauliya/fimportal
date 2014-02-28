@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140227153409) do
+ActiveRecord::Schema.define(:version => 20140228040700) do
 
   create_table "activist_profiles", :force => true do |t|
     t.text     "activity1_information"
@@ -35,8 +35,17 @@ ActiveRecord::Schema.define(:version => 20140227153409) do
     t.text     "organization_information"
     t.text     "essay_about_organization"
     t.integer  "user_id"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "organization_name"
+    t.integer  "organization_year"
+    t.string   "organization_category"
+    t.text     "organization_activity"
+    t.integer  "organization_count_member"
+    t.text     "organization_goal"
+    t.text     "organization_achievement"
+    t.text     "organization_contact"
+    t.text     "organization_network"
   end
 
   create_table "profile_candidates", :force => true do |t|
