@@ -26,8 +26,10 @@ class ProfileCandidate < ActiveRecord::Base
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
     :information_from, :location, :phone, :place_of_birth, :religion, 
     :school, :agreement, :province, :choose_type, 
-    :diskusi_ekonomipembangunan, :diskusi_kebijakanpublik, :diskusi_energidanlingkungan, :diskusi_pendidikandanparenting, 
-    :diskusi_medialiterasi, :identification_card, :diskusi_socialentre, :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev, :diskusi_liberalarts,
+    :diskusi_ekonomipembangunan, :diskusi_kebijakanpublik, 
+    :diskusi_energidanlingkungan, :diskusi_pendidikandanparenting, 
+    :diskusi_medialiterasi, :diskusi_socialentre, 
+    :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev, :diskusi_liberalarts,
     :presence => true
 
     #Temporarily not checked :inspiring_story,  :motivation, :collaboration
