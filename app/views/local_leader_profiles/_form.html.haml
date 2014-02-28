@@ -9,6 +9,9 @@
 
       .form-inputs
         %h4 Data komunitas
+        %blockquote
+          %div
+            Isilah dengan data komunitas anda
         = f.input :organization_name, :label => "Nama Organisasi"
         = f.input :organization_year, :label => "Tahun Berdiri", :collection => (1900..2014)
         = f.input :organization_category, :label => "Bidang Organisasi (Contoh : Politik, Sosial, dll)"
@@ -18,10 +21,6 @@
         = f.input :organization_achievement, :label => "Prestasi Organisasi (jika ada)" , :input_html => {:rows => 5, :class => "span4"}
         = f.input :organization_contact, :label => "Kontak Organisasi <b>FORMAT</b> [Web][Facebook][Twitter][Alamat][Telp Narahubung]" , :input_html => {:rows => 5, :class => "span4"}
         = f.input :organization_network, :label => "Jaringan Organisasi (Sebutkan organisasi lain/badan pemerintahan yang pernah bekerja sama dengan organisasi anda)" , :input_html => {:rows => 5, :class => "span4"}
-        %blockquote
-          %div
-            Isilah dengan data komunitas anda dengan format:[Nama komunitas][Tahun Berdiri][Bidang komunitas (contoh: Sosial, Pendidikan, Budaya, Pertanian,dll)][Kegiatan yang telah berlangsung][Jumlah Anggota][Tujuan Pendirian komunitas][Prestasi komunitas (Jika ada)][Kontak komunitas (Web,Facebook,Twitter,Alamat,Telpon Narahubung)][Jaringan komunitas (Sebutkan komunitas/organisasi lain/badan pemerintahan yang pernah bekerja sama dengan komunitas anda)]
-        = f.input :organization_information, :label => 'Informasi komunitas', :input_html => {:rows => 8, :class => "span5"}
         %h4 Essai tentang calon peserta di komunitas:
         %blockquote
           %div

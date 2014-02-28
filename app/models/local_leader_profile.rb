@@ -6,7 +6,9 @@ class LocalLeaderProfile < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :essay_about_organization, :organization_information, :organization_name,
+  #not check validates :organization_information
+  
+  validates :essay_about_organization, :organization_name,
    :organization_year, :organization_category, :organization_activity, 
    :organization_count_member, :organization_goal, 
    :organization_contact, :organization_network, :presence => true
