@@ -18,7 +18,7 @@ class StrategicLeaderProfile < ActiveRecord::Base
   	:activity3_reason, :activity4_information, :activity4_reason, :activity5_information, 
   	:activity5_reason, :essay_about_indonesia, 
   	:organization_name, :organization_year, :organization_category, :organization_activity, 
-    :organization_count_member, :organization_goal, :organization_achievement,
+    :organization_count_member, :organization_goal,
     :organization_contact, :organization_network, :presence => true
 
   validates_length_of :activity1_reason, :activity2_reason, :activity3_reason, :activity4_reason, 
