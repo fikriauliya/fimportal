@@ -14,6 +14,9 @@
     %td Uploaded photo
     %td= ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013' WHERE profile_candidates.photo is not null").count
   %tr
+    %td Uploaded KTP
+    %td= ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013' WHERE profile_candidates.identification_card is not null").count
+  %tr
     %td Uploaded recommendation letter
     %td= ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013' WHERE profile_candidates.recommendation_letter is not null").count
   %tr
