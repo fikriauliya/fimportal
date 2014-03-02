@@ -26,32 +26,6 @@
       Format file bisa .pdf, .doc, .png, atau lainnya yang penting bisa terbaca dengan mudah.
       %br
       Template surat bisa di download saat mengisi isian pendaftaran
-%p
-  Jika surat rekomendasi ada lebih dari satu, mohon diarsipkan menjadi satu (format ZIP atau RAR) sebelum dikirimkan.
-  %br
-  Anda bisa menggunakan program seperti 
-  = link_to '7 Zip', 'http://www.7-zip.org/'
-  , 
-  = link_to 'WinRAR', 'http://www.rarlab.com/'
-  ,
-  = link_to 'WinZip', 'http://www.winzip.com'
-  , atau fitur bawaan
-  = link_to 'Windows', 'http://www.pcworld.com/article/228109/Files.html'
 
-.row
-  .span8
-    .well
-      %p{:style => 'color:blue'}
-      Bila pada pendaftaran FIM sebelumnya Anda sudah pernah registrasi, silakan 
-      %b Log in 
-      di kolom kanan. 
-      %br
-      Isian Anda yang lama akan otomatis terisi sehingga proses registrasi bisa lebih cepat.
-      %br
-      Namun demikian, sangat disarankan untuk memperbaharui isian dengan data pribadi Anda yang lebih baru.
-      %br
-      %b 
-        Khusus untuk surat rekomendasi, harus diperbarui dengan surat rekomendasi untuk 
-        %u FIM 16.
 
 = render :partial => 'devise/shared/register_or_sign_in', :locals => {:user => @user}
