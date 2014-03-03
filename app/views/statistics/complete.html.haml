@@ -30,6 +30,20 @@
     %table.table.table-striped
       %tr
         %th{:style => 'width:70%'} Jalur
+        %th Berkas Submitted
+        %tr
+          %td Strategic Leader
+          %td=ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013' WHERE profile_candidates.recommendation_letter is not null AND profile_candidates.choose_type= 0").count
+        %tr
+          %td Local Leader
+          %td=ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013' WHERE profile_candidates.recommendation_letter is not null AND profile_candidates.choose_type= 1").count
+        %tr
+          %td Activist Based On Character
+          %td=ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013' WHERE profile_candidates.recommendation_letter is not null AND profile_candidates.choose_type= 2").count
+    %hr
+    %table.table.table-striped
+      %tr
+        %th{:style => 'width:70%'} Jalur
         %th Count
         %tr
           %td Strategic Leader
