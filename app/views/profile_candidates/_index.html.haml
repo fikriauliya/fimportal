@@ -49,7 +49,7 @@
         
         %th{:style=>'width:5%'} Total
 
-        %th{:style=>'width:12%'} Domisili khusus
+        %th{:style=>'width:12%'} Pilihan Jalur
         %th{:style=>'width:12%'} Karakter khusus
         %th{:style=>'width:10%'} Rekomendasi
         %th{:style=>'width:5%'} Pernah daftar
@@ -120,7 +120,7 @@
           
           %td= profile.total_point
           
-          %td= profile.special_location_comment
+          %td= profile.choose_type
           %td= profile.special_character_comment
           %td= profile.referal
           %td= profile.application_count ? profile.application_count : ''
