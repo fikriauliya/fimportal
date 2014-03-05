@@ -74,12 +74,10 @@
         %th{'data-hide' => 'all'} Komitmen ke FIM Pusat
         %th{'data-hide' => 'all'} Komitmen ke FIM Regional
         %th{'data-hide' => 'all'} Komitmen ke Organisasi Awal untuk FIM
-        %th{'data-hide' => 'all'} Kolaborasi yang ditawarkan
-        %th{'data-hide' => 'all'} Kisah yang menginspirasi
         %th{'data-hide' => 'all'} Info dari
         %th{'data-hide' => 'all'} Pertunjukan
         %th{'data-hide' => 'all'} Pilihan Jalur
-        
+
       - profiles.each_with_index do |profile, i|
         - if profile.choose_type == 2
           %th{'data-hide' => 'all'} Informasi Aktivitas 1
@@ -154,8 +152,6 @@
           %td= profile.is_committed_to_central_fim == true ? 'Iya' : 'Tidak'
           %td= profile.is_committed_to_regional_fim == true ? 'Iya' : 'Tidak'
           %td= profile.is_committed_to_own_organization == true ? 'Iya' : 'Tidak'
-          %td= simple_format(profile.collaboration)
-          %td= simple_format(profile.inspiring_story)
           %td= profile.information_from
           %td= profile.performance_type
           %td= profile.choose_type
