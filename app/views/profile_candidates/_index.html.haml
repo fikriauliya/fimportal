@@ -79,11 +79,21 @@
         %th{'data-hide' => 'all'} Info dari
         %th{'data-hide' => 'all'} Pertunjukan
         %th{'data-hide' => 'all'} Pilihan Jalur
-        %th{'data-hide' => 'all'} Informasi Aktivitas 1
-        %th{'data-hide' => 'all'} Informasi Aktivitas 2
-        %th{'data-hide' => 'all'} Informasi Aktivitas 3
-        %th{'data-hide' => 'all'} Informasi Aktivitas 4
-        %th{'data-hide' => 'all'} Informasi Aktivitas 5
+        
+      - profiles.each_with_index do |profile, i|
+        - if profile.choose_type == 2
+          %th{'data-hide' => 'all'} Informasi Aktivitas 1
+          %th{'data-hide' => 'all'} Alasan Aktivitas 1
+          %th{'data-hide' => 'all'} Informasi Aktivitas 2
+          %th{'data-hide' => 'all'} Alasan Aktivitas 2
+          %th{'data-hide' => 'all'} Informasi Aktivitas 3
+          %th{'data-hide' => 'all'} Alasan Aktivitas 3
+          %th{'data-hide' => 'all'} Informasi Aktivitas 4
+          %th{'data-hide' => 'all'} Alasan Aktivitas 4
+          %th{'data-hide' => 'all'} Informasi Aktivitas 5
+          %th{'data-hide' => 'all'} Alasan Aktivitas 5
+          %th{'data-hide' => 'all'} Essai Pasca Training
+          %th{'data-hide' => 'all'} Tipografi
 
         
       %th{'data-hide'=>'all'} Facebook
@@ -152,10 +162,19 @@
 
           - if profile.choose_type == 2
             %td= profile.user.activist_profile.activity1_information
+            %td= simple_format(profile.user.activist_profile.activity1_reason)
             %td= profile.user.activist_profile.activity2_information
+            %td= simple_format(profile.user.activist_profile.activity2_reason)
             %td= profile.user.activist_profile.activity3_information
+            %td= simple_format(profile.user.activist_profile.activity3_reason)
             %td= profile.user.activist_profile.activity4_information
+            %td= simple_format(profile.user.activist_profile.activity4_reason)
             %td= profile.user.activist_profile.activity5_information
+            %td= simple_format(profile.user.activist_profile.activity5_reason)
+            %td= simple_format(profile.user.activist_profile.essay_about_pasca_training)
+            %td= profile.user.activist_profile.tipografi
+            
+            
 
         %td= profile.facebook_url
         %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
