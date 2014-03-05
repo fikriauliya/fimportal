@@ -395,7 +395,7 @@
             //Sisa kata: 500
         
         = f.input :information_from, :label => "Sumber informasi FIM", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut", "Lainnya"]
-        = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM. <br/><b>Format</b>:<i>[FIM ke-][Tahun]</i> contoh : [FIM ke13][2012][FIM ke 14c][2013][FIM ke 15][2013]", :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM. <br/><b>Format</b>:<i>[FIM ke- berapa mendaftar ][Tahun]</i> contoh : [FIM ke 1][2012][FIM ke 2][2012][FIM ke 3][2013]", :input_html => {:rows => 4, :class => "span5"}, :as => :text
         = f.input :food_except, :label => "Apakah anda mempunyai alergi terhadap makanan atau hal lain ? jika Iya, sebutkan", :input_html => {:rows => 4, :class => "span5"}, :as => :text
         = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 16. Contoh: Tari Pendet, main biola, monolog, dll", :input_html => {:rows => 4, :class => "span5"}, :as => :text
         
