@@ -69,11 +69,11 @@
         %th{'data-hide' => 'all'} Hobi
         %th{'data-hide' => 'all'} Gol darah
         %th{'data-hide' => 'all'} Angkatan
-        %th{'data-hide' => 'all'} Pendidikan non-formal
-        %th{'data-hide' => 'all'} Organisasi
-        %th{'data-hide' => 'all'} Kepanitiaan
-        %th{'data-hide' => 'all'} Pelatihan / Seminar / Konferensi / Kompetisi
-        %th{'data-hide' => 'all'} Motivasi
+        %th{'data-hide' => 'all'} Pantangan Makanan
+        %th{'data-hide' => 'all'} Commit Agreement
+        %th{'data-hide' => 'all'} Komitmen ke FIM Pusat
+        %th{'data-hide' => 'all'} Komitmen ke FIM Regional
+        %th{'data-hide' => 'all'} Komitmen ke Organisasi Awal untuk FIM
         %th{'data-hide' => 'all'} Kolaborasi yang ditawarkan
         %th{'data-hide' => 'all'} Kisah yang menginspirasi
         %th{'data-hide' => 'all'} Info dari
@@ -133,11 +133,11 @@
           %td= profile.hobby
           %td= profile.blood_type
           %td= profile.batch
-          %td= simple_format(profile.non_formal_education)
-          %td= simple_format(profile.organization)
-          %td= simple_format(profile.committee)
-          %td= simple_format(profile.workshop)
-          %td= simple_format(profile.motivation)
+          %td= simple_format(profile.food_except)
+          %td= simple_format(profile.commit_agreement)
+          %td= profile.is_committed_to_central_fim == true ? 'Iya' : 'Tidak'
+          %td= profile.is_committed_to_regional_fim == true ? 'Iya' : 'Tidak'
+          %td= profile.is_committed_to_own_organization == true ? 'Iya' : 'Tidak'
           %td= simple_format(profile.collaboration)
           %td= simple_format(profile.inspiring_story)
           %td= profile.information_from
