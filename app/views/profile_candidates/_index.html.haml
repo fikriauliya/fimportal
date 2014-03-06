@@ -79,7 +79,7 @@
         %th{'data-hide' => 'all'} Pilihan Jalur
 
       - profiles.each_with_index do |profile, i|
-        - if profile.choose_type == 2
+        - if profile.choose_type == 2 then
           %th{'data-hide' => 'all'} Informasi Aktivitas 1
           %th{'data-hide' => 'all'} Alasan Aktivitas 1
           %th{'data-hide' => 'all'} Informasi Aktivitas 2
@@ -92,6 +92,27 @@
           %th{'data-hide' => 'all'} Alasan Aktivitas 5
           %th{'data-hide' => 'all'} Essai Pasca Training
           %th{'data-hide' => 'all'} Tipografi
+
+        - elsif profile.choose_type == 0 then
+          %th{'data-hide' => 'all'} Informasi Aktivitas 1
+          %th{'data-hide' => 'all'} Alasan Aktivitas 1
+          %th{'data-hide' => 'all'} Informasi Aktivitas 2
+          %th{'data-hide' => 'all'} Alasan Aktivitas 2
+          %th{'data-hide' => 'all'} Informasi Aktivitas 3
+          %th{'data-hide' => 'all'} Alasan Aktivitas 3
+          %th{'data-hide' => 'all'} Informasi Aktivitas 4
+          %th{'data-hide' => 'all'} Alasan Aktivitas 4
+          %th{'data-hide' => 'all'} Informasi Aktivitas 5
+          %th{'data-hide' => 'all'} Alasan Aktivitas 5
+          %th{'data-hide' => 'all'} Nama Organisasi
+          %th{'data-hide' => 'all'} Tahun Berdiri Organisasi
+          %th{'data-hide' => 'all'} Kategori Organisasi
+          %th{'data-hide' => 'all'} Aktivitas Organisasi
+          %th{'data-hide' => 'all'} Jumlah Anggota Organisasi
+          %th{'data-hide' => 'all'} Tujuan Organisasi
+          %th{'data-hide' => 'all'} Prestasi Organisasi
+          %th{'data-hide' => 'all'} Kontak Organisasi
+          %th{'data-hide' => 'all'} Jaringan Organisasi
 
         
       %th{'data-hide'=>'all'} Facebook
@@ -156,7 +177,7 @@
           %td= profile.performance_type
           %td= profile.choose_type
 
-          - if profile.choose_type == 2
+          - if profile.choose_type == 2 then
             %td= profile.user.activist_profile.activity1_information
             %td= simple_format(profile.user.activist_profile.activity1_reason)
             %td= profile.user.activist_profile.activity2_information
@@ -169,6 +190,36 @@
             %td= simple_format(profile.user.activist_profile.activity5_reason)
             %td= simple_format(profile.user.activist_profile.essay_about_pasca_training)
             %td= profile.user.activist_profile.tipografi
+
+          - elsif profile.choose_type == 0 then
+            %td= profile.user.strategic_leader_profile.activity1_information
+            %td= simple_format(profile.user.strategic_leader_profile.activity1_reason)
+            %td= profile.user.strategic_leader_profile.activity2_information
+            %td= simple_format(profile.user.strategic_leader_profile.activity2_reason)
+            %td= profile.user.strategic_leader_profile.activity3_information
+            %td= simple_format(profile.user.strategic_leader_profile.activity3_reason)
+            %td= profile.user.strategic_leader_profile.activity4_information
+            %td= simple_format(profile.user.strategic_leader_profile.activity4_reason)
+            %td= profile.user.strategic_leader_profile.activity5_information
+            %td= simple_format(profile.user.strategic_leader_profile.activity5_reason)
+            %td= profile.user.strategic_leader_profile.organization_name
+            %td= profile.user.strategic_leader_profile.organization_year
+            %td= profile.user.strategic_leader_profile.organization_category
+            %td= simple_format(profile.user.strategic_leader_profile.organization_activity)
+            %td= profile.user.strategic_leader_profile.organization_count_member
+            %td= simple_format(profile.user.strategic_leader_profile.organization_goal)
+            %td= simple_format(profile.user.strategic_leader_profile.organization_achievement)
+            %td= simple_format(profile.user.strategic_leader_profile.organization_contact)
+            %td= simple_format(profile.user.strategic_leader_profile.organization_network)
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
 
