@@ -114,6 +114,17 @@
           %th{'data-hide' => 'all'} Kontak Organisasi
           %th{'data-hide' => 'all'} Jaringan Organisasi
 
+        - elsif profile.choose_type == 1 then
+          %th{'data-hide' => 'all'} Nama Organisasi
+          %th{'data-hide' => 'all'} Tahun Berdiri Organisasi
+          %th{'data-hide' => 'all'} Kategori Organisasi
+          %th{'data-hide' => 'all'} Aktivitas Organisasi
+          %th{'data-hide' => 'all'} Jumlah Anggota Organisasi
+          %th{'data-hide' => 'all'} Tujuan Organisasi
+          %th{'data-hide' => 'all'} Prestasi Organisasi
+          %th{'data-hide' => 'all'} Kontak Organisasi
+          %th{'data-hide' => 'all'} Jaringan Organisasi
+          %th{'data-hide' => 'all'} Essai Organisasi
         
       %th{'data-hide'=>'all'} Facebook
       %th{'data-hide'=>'all'} Twitter
@@ -211,6 +222,18 @@
             %td= simple_format(profile.user.strategic_leader_profile.organization_achievement)
             %td= simple_format(profile.user.strategic_leader_profile.organization_contact)
             %td= simple_format(profile.user.strategic_leader_profile.organization_network)
+
+          - elsif profile.choose_type == 1 && !profile.user.local_leader_profile.nil? then
+            %td= profile.user.local_leader_profile.organization_name
+            %td= profile.user.local_leader_profile.organization_year
+            %td= profile.user.local_leader_profile.organization_category
+            %td= simple_format(profile.user.local_leader_profile.organization_activity)
+            %td= profile.user.local_leader_profile.organization_count_member
+            %td= simple_format(profile.user.local_leader_profile.organization_goal)
+            %td= simple_format(profile.user.local_leader_profile.organization_achievement)
+            %td= simple_format(profile.user.local_leader_profile.organization_contact)
+            %td= simple_format(profile.user.local_leader_profile.organization_network)
+            %td= simple_format(profile.user.local_leader_profile.essay_about_organization)
             
             
             
