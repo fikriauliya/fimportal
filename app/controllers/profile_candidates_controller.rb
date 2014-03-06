@@ -36,19 +36,24 @@ class ProfileCandidatesController < ApplicationController
     else
       case @profile.choose_type
         when 0
-          redirect_to new_strategic_leader_profile_path
+          redirect_to new_strategic_leader_profile_path, :alert => flash[:alert]
         when 1
-          redirect_to new_local_leader_profile_path
+          redirect_to new_local_leader_profile_path, :alert => flash[:alert]
         when 2
-          redirect_to new_activist_profile_path
+          redirect_to new_activist_profile_path, :alert => flash[:alert]
       end
     end
   end
   
   def step3
     @profile = current_user.profile_candidate
+    @profileactivist = current_user.activist_profile
+    @profilelocal = current_user.local_leader_profile
+    @profilestrategic = current_user.strategic_leader_profile
     if @profile.nil?
       redirect_to step2_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
+    elsif @profilestrategic.nil? and @profilelocal.nil? and @profileactivist.nil?
+      redirect_to step2_branching_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu (Bagian Khusus)'
     else
       if params[:uploaded]
         flash[:notice] = "Foto Anda sudah diupload. Jika tidak ingin menganti, silakan klik Next"
@@ -104,8 +109,13 @@ class ProfileCandidatesController < ApplicationController
   
   def step5
     @profile = current_user.profile_candidate
+    @profileactivist = current_user.activist_profile
+    @profilelocal = current_user.local_leader_profile
+    @profilestrategic = current_user.strategic_leader_profile
     if @profile.nil? or !@profile.recommendation_letter?
       redirect_to step4_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
+    elsif @profilestrategic.nil? and @profilelocal.nil? and @profileactivist.nil?
+      redirect_to step2_branching_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu (Bagian Khusus)'
     else
       @is_announcement_displayed = check_announcement(@profile)
       
