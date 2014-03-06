@@ -13,5 +13,5 @@ class LocalLeaderProfile < ActiveRecord::Base
    :organization_count_member, :organization_goal, 
    :organization_contact, :organization_network, :presence => true
 
-  validates_length_of :essay_about_organization, :too_long => 'Terlalu panjang, melebihi 1000 karakter', :maximum => 1000
+  validates_length_of :essay_about_organization, :too_long => 'Terlalu panjang, melebihi 1000 karakter', :maximum => 10000
 end
