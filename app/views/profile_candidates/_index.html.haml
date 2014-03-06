@@ -177,7 +177,7 @@
           %td= profile.performance_type
           %td= profile.choose_type
 
-          - if profile.choose_type == 2 then
+          - if profile.choose_type == 2 && !profile.user.activist_profile.nil? then
             %td= profile.user.activist_profile.activity1_information
             %td= simple_format(profile.user.activist_profile.activity1_reason)
             %td= profile.user.activist_profile.activity2_information
@@ -191,7 +191,7 @@
             %td= simple_format(profile.user.activist_profile.essay_about_pasca_training)
             %td= profile.user.activist_profile.tipografi
 
-          - elsif profile.choose_type == 0 then
+          - elsif profile.choose_type == 0 && !profile.user.strategic_leader_profile.nil? then
             %td= profile.user.strategic_leader_profile.activity1_information
             %td= simple_format(profile.user.strategic_leader_profile.activity1_reason)
             %td= profile.user.strategic_leader_profile.activity2_information
