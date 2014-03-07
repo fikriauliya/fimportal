@@ -22,7 +22,7 @@ class StrategicLeaderProfile < ActiveRecord::Base
     :organization_contact, :organization_network, :presence => true
 
   validates_length_of :activity1_reason, :activity2_reason, :activity3_reason, :activity4_reason, 
-  	:activity5_reason, :too_long => 'Terlalu panjang, melebihi 350 karakter', :maximum => 350
+  	:activity5_reason, :too_long => 'Terlalu panjang, melebihi 350 karakter', :maximum => 350, :tokenizer => lambda {|str| str.scan(/\S+/) }
 
   validates_length_of :essay_about_indonesia, :too_long => 'Terlalu panjang, melebihi 1000 karakter', :maximum => 1000, :tokenizer => lambda {|str| str.scan(/\S+/) }
 end
