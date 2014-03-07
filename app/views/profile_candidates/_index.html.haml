@@ -118,8 +118,12 @@
           %td= profile.motivation_total_point
           
           %td= profile.total_point
-          
-          %td= profile.choose_type
+          - if profile.choose_type == 0 then
+            %td Strategic Leader
+          - elsif profile.choose_type == 1 then
+            %td Local Leader
+          - elsif profile.choose_type == 2 then
+            %td Activist Based On Character
           %td= profile.special_character_comment
           %td= profile.referal
           %td= profile.application_count ? profile.application_count : ''
