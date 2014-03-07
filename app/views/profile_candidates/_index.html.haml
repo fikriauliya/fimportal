@@ -199,7 +199,47 @@
                     Eksekutor
                   - elsif profile.user.activist_profile.tipografi == 3 then
                     Kontroler
-
+              - elsif profile.choose_type == 1 && !profile.user.local_leader_profile.nil? then
+                %br
+                %b Nama Komunitas
+                %br
+                = profile.user.local_leader_profile.organization_name
+                %br
+                %b Tahun Berdiri Komunitas
+                %br
+                = profile.user.local_leader_profile.organization_year
+                %br
+                %b Kategori Komunitas
+                %br
+                = profile.user.local_leader_profile.organization_category
+                %br
+                %b Kegiatan yang telah berlangsung
+                %br
+                = simple_format(profile.user.local_leader_profile.organization_activity)
+                %br
+                %b Jumlah Anggota Komunitas
+                %br
+                = profile.user.local_leader_profile.organization_count_member
+                %br
+                %b Tujuan Pendirian Komunitas
+                %br
+                = simple_format(profile.user.local_leader_profile.organization_goal)
+                %br
+                %b Pencapaian Komunitas
+                %br
+                = simple_format(profile.user.local_leader_profile.organization_achievement)
+                %br
+                %b Kontak Komunitas
+                %br
+                = simple_format(profile.user.local_leader_profile.organization_contact)
+                %br
+                %b Jaringan Komunitas
+                %br
+                = simple_format(profile.user.local_leader_profile.organization_network)
+                %br
+                %b Essai tentang calon peserta di komunitas
+                %br
+                = simple_format(profile.user.local_leader_profile.essay_about_organization)
               - elsif profile.choose_type == 0 && !profile.user.strategic_leader_profile.nil? then
                 %br
                 %b Aktivitas Pencapaian 1
@@ -281,7 +321,7 @@
                 %b Essai tentang "Indonesia yang lebih baik" menurut calon peserta
                 %br
                 = simple_format(profile.user.strategic_leader_profile.essay_about_indonesia)
-                
+
                   
         %td= profile.facebook_url
         %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
