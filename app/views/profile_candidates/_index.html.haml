@@ -46,8 +46,8 @@
 
         %th{'data-hide' => 'all'} Reliability
         %th{'data-hide' => 'all'} Willingness
-        %th{:style=>'width:5%'} Motiv
-        
+        %th{:style=>'width:5%'} Essai
+        %th{:style=>'width:5%'} Surat Rekomendasi
         %th{:style=>'width:5%'} Total
 
         %th{:style=>'width:12%'} Pilihan Jalur
@@ -120,12 +120,12 @@
           %td= ProfileCandidate.to_alphabet(profile.committee_point)
           %td= ProfileCandidate.to_alphabet(profile.personal_knowledge_point)
           %td= ProfileCandidate.to_alphabet(profile.document_completeness_point)
-          %td= profile.cv_total_point
+          %td= profile.cv_point
           
           %td= ProfileCandidate.to_alphabet(profile.reliability_point)
           %td= ProfileCandidate.to_alphabet(profile.willingness_point)
-          %td= profile.motivation_total_point
-          
+          %td= profile.essay_point
+          %td= profile.recommendation_letter_point
           %td= profile.total_point
           - if profile.choose_type == 0 then
             %td Strategic Leader
