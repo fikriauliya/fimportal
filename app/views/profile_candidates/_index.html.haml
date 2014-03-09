@@ -38,14 +38,11 @@
         %th{'data-class' => 'expand', :style => 'width:20%'} Nama
         
         %th{:style=>'width:10%'} Dinilai oleh
-        %th{'data-hide' => 'all'} Organisasi
-        %th{'data-hide' => 'all'} Kepanitiaan
-        %th{'data-hide' => 'all'} Wawasan
-        %th{'data-hide' => 'all'} Kelengkapan
+        %th{'data-hide' => 'all'} CV
+        %th{'data-hide' => 'all'} Essai
+        %th{'data-hide' => 'all'} Surat Rekomendasi
         %th{:style=>'width:5%'} CV
 
-        %th{'data-hide' => 'all'} Reliability
-        %th{'data-hide' => 'all'} Willingness
         %th{:style=>'width:5%'} Essai
         %th{:style=>'width:5%'} Surat Rekomendasi
         %th{:style=>'width:5%'} Total
@@ -116,14 +113,11 @@
             =link_to(profile.fullname, edit_profile_candidate_path(profile, :page => params[:page]))
           %td= truncate(!profile.marked_by.nil? ? profile.marked_by.email : "", :length => 20)
           
-          %td= ProfileCandidate.to_alphabet(profile.organization_point)
-          %td= ProfileCandidate.to_alphabet(profile.committee_point)
-          %td= ProfileCandidate.to_alphabet(profile.personal_knowledge_point)
-          %td= ProfileCandidate.to_alphabet(profile.document_completeness_point)
+          %td= ProfileCandidate.to_alphabet(profile.cv_point)
+          %td= ProfileCandidate.to_alphabet(profile.essay_point)
+          %td= ProfileCandidate.to_alphabet(profile.recommendation_letter_point)
           %td= profile.cv_point
           
-          %td= ProfileCandidate.to_alphabet(profile.reliability_point)
-          %td= ProfileCandidate.to_alphabet(profile.willingness_point)
           %td= profile.essay_point
           %td= profile.recommendation_letter_point
           %td= profile.total_point
