@@ -9,7 +9,8 @@
   %table.footable
     %thead
       %tr
-        %th{:style=>"width:10%"} 
+        %th{:style=>"width:10%"} Foto
+        %th{:style=>"width:7%"} KTP
         %th{'data-class' => 'expand', :style => 'width:20%'} Nama
         
         %th{:style=>'width:10%'} Dinilai oleh
@@ -32,7 +33,6 @@
         %th{'data-hide' => 'all'} Institusi
         %th{'data-hide' => 'all'} Provinsi
         %th{'data-hide' => 'all'} Surat rekomendasi
-        %th{'data-hide' => 'all'} Biodata singkat
         %th{'data-hide' => 'all'} Tanggal lahir
         %th{'data-hide' => 'all'} Tempat lahir
         %th{'data-hide' => 'all'} Alamat
@@ -42,17 +42,25 @@
         %th{'data-hide' => 'all'} Hobi
         %th{'data-hide' => 'all'} Gol darah
         %th{'data-hide' => 'all'} Angkatan
-        %th{'data-hide' => 'all'} Pendidikan non-formal
-        %th{'data-hide' => 'all'} Organisasi
-        %th{'data-hide' => 'all'} Kepanitiaan
-        %th{'data-hide' => 'all'} Workshop kepemudaan
-        %th{'data-hide' => 'all'} Motivasi
-        %th{'data-hide' => 'all'} Kolaborasi yang ditawarkan
-        %th{'data-hide' => 'all'} Kisah yang menginspirasi
+        %th{'data-hide' => 'all'} Pantangan Makanan
+        %th{'data-hide' => 'all'} Commit Agreement
+        %th{'data-hide' => 'all'} Komitmen ke FIM Pusat
+        %th{'data-hide' => 'all'} Komitmen ke FIM Regional
+        %th{'data-hide' => 'all'} Komitmen ke Organisasi Awal untuk FIM
         %th{'data-hide' => 'all'} Info dari
         %th{'data-hide' => 'all'} Pertunjukan
-        %th{'data-hide' => 'all'} Direkomendasikan
-          
+        %th{'data-hide' => 'all'} Peminatan Diskusi Ekonomi Pembangunan
+        %th{'data-hide' => 'all'} Peminatan Diskusi Kebijakan Publik
+        %th{'data-hide' => 'all'} Peminatan Diskusi Energi dan Lingkungan
+        %th{'data-hide' => 'all'} Peminatan Diskusi Pendidikan dan Parenting
+        %th{'data-hide' => 'all'} Peminatan Diskusi Media Literasi
+        %th{'data-hide' => 'all'} Peminatan Diskusi Social Entrepreneurship
+        %th{'data-hide' => 'all'} Peminatan Diskusi Pangan Gizi Kesehatan
+        %th{'data-hide' => 'all'} Peminatan Diskusi Traventure
+        %th{'data-hide' => 'all'} Peminatan Diskusi People Development
+        %th{'data-hide' => 'all'} Peminatan Diskusi Liberal Arts
+        %th{'data-hide' => 'all'} Pilihan Jalur
+        %th{'data-hide' => 'all'} Info Khusus
         %th{'data-hide'=>'all'} Facebook
         %th{'data-hide'=>'all'} Twitter
         %th{'data-hide'=>'all'} Email
@@ -62,7 +70,10 @@
           - if @profile.photo?
             = link_to(@profile.photo) do
               = image_tag(@profile.photo, :style => 'width:40px; height:40px')
-      
+        %td{:style => 'width:16px'}
+          - if @profile.identification_card?
+            = link_to(@profile.identification_card) do
+              = image_tag(@profile.identification_card, :style => 'width:40px; height:40px')
         %td= @profile.fullname
         %td= !@profile.marked_by.nil? ? @profile.marked_by.email : ""
         
@@ -84,7 +95,6 @@
         %td= @profile.school
         %td= @profile.province
         %td= link_to('Download', @profile.recommendation_letter)
-        %td= @profile.biodata
         %td= @profile.dob
         %td= @profile.place_of_birth
         %td= @profile.location
@@ -94,16 +104,204 @@
         %td= @profile.hobby
         %td= @profile.blood_type
         %td= @profile.batch
-        %td= simple_format(@profile.non_formal_education)
-        %td= simple_format(@profile.organization)
-        %td= simple_format(@profile.committee)
-        %td= simple_format(@profile.workshop)
-        %td= simple_format(@profile.motivation)
-        %td= simple_format(@profile.collaboration)
-        %td= simple_format(@profile.inspiring_story)
+        %td= simple_format(@profile.food_except)
+        %td= simple_format(@profile.commit_agreement)
+        %td= @profile.is_committed_to_central_fim == true ? 'Iya' : 'Tidak'
+        %td= @profile.is_committed_to_regional_fim == true ? 'Iya' : 'Tidak'
+        %td= @profile.is_committed_to_own_organization == true ? 'Iya' : 'Tidak'
         %td= @profile.information_from
         %td= @profile.performance_type
-        %td= @profile.referal
+        %td= @profile.diskusi_ekonomipembangunan
+        %td= @profile.diskusi_kebijakanpublik
+        %td= @profile.diskusi_energidanlingkungan
+        %td= @profile.diskusi_pendidikandanparenting
+        %td= @profile.diskusi_medialiterasi
+        %td= @profile.diskusi_socialentre
+        %td= @profile.diskusi_pangangizikesehatan
+        %td= @profile.diskusi_travel
+        %td= @profile.diskusi_peopledev
+        %td= @profile.diskusi_liberalarts
+        %td= @profile.choose_type
+        %td
+          %div
+            - if @profile.choose_type == 2 && !@profile.user.activist_profile.nil? then
+              %br
+              %b Aktivitas Pencapaian 1
+              %br
+              = @profile.user.activist_profile.activity1_information
+              %br
+              %b Alasan Aktivitas Pencapaian 1
+              %br
+              = simple_format(@profile.user.activist_profile.activity1_reason)
+              %br
+              %b Aktivitas Pencapaian 2
+              %br
+              = @profile.user.activist_profile.activity2_information
+              %br
+              %b Alasan Aktivitas Pencapaian 2
+              %br
+              = simple_format(@profile.user.activist_profile.activity2_reason)
+              %br
+              %b Aktivitas Pencapaian 3
+              %br
+              = @profile.user.activist_profile.activity3_information
+              %br
+              %b Alasan Aktivitas Pencapaian 3
+              %br
+              = simple_format(@profile.user.activist_profile.activity3_reason)
+              %br
+              %b Aktivitas Pencapaian 4
+              %br
+              = @profile.user.activist_profile.activity4_information
+              %br
+              %b Alasan Aktivitas Pencapaian 4
+              %br
+              = simple_format(@profile.user.activist_profile.activity4_reason)
+              %br
+              %b Aktivitas Pencapaian 5
+              %br
+              = @profile.user.activist_profile.activity5_information
+              %br
+              %b Alasan Aktivitas Pencapaian 5
+              %br
+              = simple_format(@profile.user.activist_profile.activity5_reason)
+              %br
+              %b Essai tentang action plan pasca Pelatihan FIM
+              %br
+              = simple_format(@profile.user.activist_profile.essay_about_pasca_training)
+              %br
+              %b Tipografi
+              %br
+                - if @profile.user.activist_profile.tipografi == 0 then
+                  Konseptor
+                - elsif @profile.user.activist_profile.tipografi == 1 then
+                  Organizer
+                - elsif @profile.user.activist_profile.tipografi == 2 then
+                  Eksekutor
+                - elsif @profile.user.activist_profile.tipografi == 3 then
+                  Kontroler
+            - elsif @profile.choose_type == 1 && !@profile.user.local_leader_profile.nil? then
+              %br
+              %b Nama Komunitas
+              %br
+              = @profile.user.local_leader_profile.organization_name
+              %br
+              %b Tahun Berdiri Komunitas
+              %br
+              = @profile.user.local_leader_profile.organization_year
+              %br
+              %b Kategori Komunitas
+              %br
+              = @profile.user.local_leader_profile.organization_category
+              %br
+              %b Kegiatan yang telah berlangsung
+              %br
+              = simple_format(@profile.user.local_leader_profile.organization_activity)
+              %br
+              %b Jumlah Anggota Komunitas
+              %br
+              = @profile.user.local_leader_profile.organization_count_member
+              %br
+              %b Tujuan Pendirian Komunitas
+              %br
+              = simple_format(@profile.user.local_leader_profile.organization_goal)
+              %br
+              %b Pencapaian Komunitas
+              %br
+              = simple_format(@profile.user.local_leader_profile.organization_achievement)
+              %br
+              %b Kontak Komunitas
+              %br
+              = simple_format(@profile.user.local_leader_profile.organization_contact)
+              %br
+              %b Jaringan Komunitas
+              %br
+              = simple_format(@profile.user.local_leader_profile.organization_network)
+              %br
+              %b Essai tentang calon peserta di komunitas
+              %br
+              = simple_format(@profile.user.local_leader_profile.essay_about_organization)
+            - elsif @profile.choose_type == 0 && !@profile.user.strategic_leader_profile.nil? then
+              %br
+              %b Aktivitas Pencapaian 1
+              %br
+              = @profile.user.strategic_leader_profile.activity1_information
+              %br
+              %b Alasan Aktivitas Pencapaian 1
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.activity1_reason)
+              %br
+              %b Aktivitas Pencapaian 2
+              %br
+              = @profile.user.strategic_leader_profile.activity2_information
+              %br
+              %b Alasan Aktivitas Pencapaian 2
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.activity2_reason)
+              %br
+              %b Aktivitas Pencapaian 3
+              %br
+              = @profile.user.strategic_leader_profile.activity3_information
+              %br
+              %b Alasan Aktivitas Pencapaian 3
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.activity3_reason)
+              %br
+              %b Aktivitas Pencapaian 4
+              %br
+              = @profile.user.strategic_leader_profile.activity4_information
+              %br
+              %b Alasan Aktivitas Pencapaian 4
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.activity4_reason)
+              %br
+              %b Aktivitas Pencapaian 5
+              %br
+              = @profile.user.strategic_leader_profile.activity5_information
+              %br
+              %b Alasan Aktivitas Pencapaian 5
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.activity5_reason)
+              %br
+              %b Nama Organisasi
+              %br
+              = @profile.user.strategic_leader_profile.organization_name
+              %br
+              %b Tahun Berdiri Organisasi
+              %br
+              = @profile.user.strategic_leader_profile.organization_year
+              %br
+              %b Kategori Organisasi
+              %br
+              = @profile.user.strategic_leader_profile.organization_category
+              %br
+              %b Kegiatan yang telah berlangsung
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.organization_activity)
+              %br
+              %b Jumlah Anggota Organisasi
+              %br
+              = @profile.user.strategic_leader_profile.organization_count_member
+              %br
+              %b Tujuan Pendirian Organisasi
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.organization_goal)
+              %br
+              %b Pencapaian Organisasi
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.organization_achievement)
+              %br
+              %b Kontak Organisasi
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.organization_contact)
+              %br
+              %b Jaringan Organisasi
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.organization_network)
+              %br
+              %b Essai tentang "Indonesia yang lebih baik" menurut calon peserta
+              %br
+              = simple_format(@profile.user.strategic_leader_profile.essay_about_indonesia)
         %td= @profile.facebook_url
         %td= @profile.twitter? ? link_to(@profile.twitter, "https://twitter.com/#{@profile.twitter}") : "-"
         %td= @profile.user.email
