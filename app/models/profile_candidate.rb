@@ -102,13 +102,7 @@ class ProfileCandidate < ActiveRecord::Base
   end
   
   def total_point
-    if choose_type == 0 then
-      ((40 * essay_point + 55 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
-    elsif choose_type == 1 then
-      ((70 * essay_point + 25 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
-    elsif choose_type == 2 then
-      ((55 * essay_point + 40 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
-      
+    ((65 * cv_total_point + 35 * motivation_total_point)/100.0).round(2)
   end
   
   def self.to_alphabet(point)
