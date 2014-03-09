@@ -93,9 +93,15 @@ class ProfileCandidate < ActiveRecord::Base
     end
   end
   
-  def cv_total_point
-    ((30 * organization_point + 30 * committee_point + 30 * personal_knowledge_point + 10 * document_completeness_point)/100.0).round(2)
-  end
+  def total_point
+   if choose_type == 0 then
+     ((40 * essay_point + 55 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
+   elsif choose_type == 1 then
+     ((70 * essay_point + 25 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
+   elsif choose_type == 2 then
+     ((55 * essay_point + 40 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
+    end
+ end
   
   def motivation_total_point
     ((50 * reliability_point + 50 * willingness_point)/100.0).round(2)
