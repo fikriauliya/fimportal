@@ -14,20 +14,17 @@
         %th{'data-class' => 'expand', :style => 'width:20%'} Nama
         
         %th{:style=>'width:10%'} Dinilai oleh
-        %th{'data-hide' => 'all'} Organisasi
-        %th{'data-hide' => 'all'} Kepanitiaan
-        %th{'data-hide' => 'all'} Wawasan
-        %th{'data-hide' => 'all'} Kelengkapan
+        %th{'data-hide' => 'all'} CV
+        %th{'data-hide' => 'all'} Essai
+        %th{'data-hide' => 'all'} Surat Rekomendasi
         %th{:style=>'width:5%'} CV
 
-        %th{'data-hide' => 'all'} Reliability
-        %th{'data-hide' => 'all'} Willingness
-        %th{:style=>'width:5%'} Motiv
-        
+        %th{:style=>'width:5%'} Essai
+        %th{:style=>'width:5%'} Surat Rekomendasi
         %th{:style=>'width:5%'} Total
 
-        %th{:style=>'width:15%'} Domisili khusus
-        %th{:style=>'width:15%'} Karakter khusus
+        %th{:style=>'width:12%'} Pilihan Jalur
+        %th{:style=>'width:12%'} Karakter khusus
         %th{:style=>'width:5%'} Pernah daftar
 
         %th{'data-hide' => 'all'} Institusi
@@ -77,19 +74,20 @@
         %td= @profile.fullname
         %td= !@profile.marked_by.nil? ? @profile.marked_by.email : ""
         
-        %td= ProfileCandidate.to_alphabet(@profile.organization_point)
-        %td= ProfileCandidate.to_alphabet(@profile.committee_point)
-        %td= ProfileCandidate.to_alphabet(@profile.personal_knowledge_point)
-        %td= ProfileCandidate.to_alphabet(@profile.document_completeness_point)
-        %td= @profile.cv_total_point
-        
-        %td= ProfileCandidate.to_alphabet(@profile.reliability_point)
-        %td= ProfileCandidate.to_alphabet(@profile.willingness_point)
-        %td= @profile.motivation_total_point
-        
+        %td= ProfileCandidate.to_alphabet(@profile.cv_point)
+        %td= ProfileCandidate.to_alphabet(@profile.essay_point)
+        %td= ProfileCandidate.to_alphabet(@profile.recommendation_letter_point)
+        %td= @profile.cv_point
+          
+        %td= @profile.essay_point
+        %td= @profile.recommendation_letter_point
         %td= @profile.total_point
-        
-        %td= @profile.special_location_comment
+        - if @profile.choose_type == 0 then
+          %td Strategic Leader
+        - elsif @profile.choose_type == 1 then
+          %td Local Leader
+        - elsif @profile.choose_type == 2 then
+          %td Activist Based On Character
         %td= @profile.special_character_comment
         %td= @profile.application_count ? @profile.application_count : ''
         %td= @profile.school
@@ -324,6 +322,9 @@
         = f.input :document_completeness_point, :label => "Kelengkapan berkas", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
         = f.input :reliability_point, :label => "Reliability", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
         = f.input :willingness_point, :label => "Willingness", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
+        = f.input :cv_point, :label => "Nilai CV", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 0]], :include_blank => false
+        = f.input :essay_point, :label => "Nilai Essi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 0]], :include_blank => false
+        = f.input :recommendation_letter_point, :label => "Nilai Surat rekomendasi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 0]], :include_blank => false
         = f.input :special_location_comment, :label => "Domisili khusus", :input_html => {:rows => 8, :class => "span5"}
         = f.input :special_character_comment, :label => "Karakteristik khusus", :input_html => {:rows => 8, :class => "span5"}
         = f.input :school, :label => "Insitusi (jika perlu ada perbaikan)", :input_html => {:style => 'width:300px', "data-provide" => "typeahead", "data-source" => all_school_json}

@@ -17,7 +17,7 @@ class ProfileCandidate < ActiveRecord::Base
     :organization_point, :committee_point, :personal_knowledge_point, :document_completeness_point,
     :reliability_point, :willingness_point, 
     :special_location_comment, :special_character_comment, :status,
-    :school,
+    :school,:essay_point, :cv_point, :recommendation_letter_point,
     :as => :recruiter
   
   belongs_to :user
@@ -102,14 +102,18 @@ class ProfileCandidate < ActiveRecord::Base
   end
   
   def total_point
-    ((65 * cv_total_point + 35 * motivation_total_point)/100.0).round(2)
-  end
+    if choose_type.eql?(0) then
+     ((40 * essay_point + 55 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
+    elsif choose_type == 1 then
+     ((70 * essay_point + 25 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
+    elsif choose_type == 2 then
+     ((55 * essay_point + 40 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
+    end
+ end
   
   def self.to_alphabet(point)
     case point
     when 0
-      'E'
-    when 1
       'D'
     when 2
       'C'
@@ -118,16 +122,14 @@ class ProfileCandidate < ActiveRecord::Base
     when 4
       'A'
     else
-      'E'
+      'D'
     end
   end
   
   def self.from_alphabet(alp)
     case alp
-    when 'E'
-      0
     when 'D'
-      1
+      0
     when 'C'
       2
     when 'B'
