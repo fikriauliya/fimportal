@@ -24,7 +24,8 @@
         %th{:style=>'width:5%'} Total
 
         %th{:style=>'width:12%'} Pilihan Jalur
-        %th{:style=>'width:12%'} Karakter khusus
+        %th{:style=>'width:12%'} Tipologi
+        %th{:style=>'width:12%'} Keterangan
         %th{:style=>'width:5%'} Pernah daftar
 
         %th{'data-hide' => 'all'} Institusi
@@ -89,6 +90,7 @@
         - elsif @profile.choose_type == 2 then
           %td Activist Based On Character
         %td= @profile.special_character_comment
+        %td= @profile.special_location_comment
         %td= @profile.application_count ? @profile.application_count : ''
         %td= @profile.school
         %td= @profile.province
@@ -316,17 +318,11 @@
         = f.input :id, :as => :hidden
         - if params[:page]
           = hidden_field_tag 'page', params[:page]
-        = f.input :organization_point, :label => "Pengalaman organisasi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :committee_point, :label => "Pengalaman kepanitiaan", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :personal_knowledge_point, :label => "Keterampilan dan wawasan pribadi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :document_completeness_point, :label => "Kelengkapan berkas", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :reliability_point, :label => "Reliability", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :willingness_point, :label => "Willingness", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
         = f.input :cv_point, :label => "Nilai CV", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 0]], :include_blank => false
         = f.input :essay_point, :label => "Nilai Essi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 0]], :include_blank => false
         = f.input :recommendation_letter_point, :label => "Nilai Surat rekomendasi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 0]], :include_blank => false
-        = f.input :special_location_comment, :label => "Domisili khusus", :input_html => {:rows => 8, :class => "span5"}
-        = f.input :special_character_comment, :label => "Karakteristik khusus", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :special_location_comment, :label => "Keterangan", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :special_character_comment, :label => "Tipologi", :input_html => {:rows => 8, :class => "span5"}
         = f.input :school, :label => "Insitusi (jika perlu ada perbaikan)", :input_html => {:style => 'width:300px', "data-provide" => "typeahead", "data-source" => all_school_json}
       .form-actions
         = f.submit "Simpan", :class => "btn btn-primary"
