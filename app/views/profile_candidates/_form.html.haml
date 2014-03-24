@@ -431,14 +431,20 @@
         %blockquote
           %div
             Pemimpin atau calon pemimpin organisasi kepemudaan ekstra kampus atau organisasi kepemimpinan strategis lainnya
+            %br
+            orang-orang yang aktif di organisasi ekstra-kampus (seperti BEM SI, KAMMI, HMI, GMNI, PMII, KMII, PII, dll) maupun yang aktif di partai politik (kader partai atau aktif di underbow partai seperti di organisasi kepemudaan suatu partai)
         %h4 Local Leader
         %blockquote
           %div
             Aktivis di tiap provinsi yang telah menggerakkan komunitas  sehingga menciptakan perubahan lokal di daerahnya 
+            %br
+            Bidang komunitasnya pun bisa beragam misalnya komunitas pendidikan (seperti Indonesia Mengajar, Komunitas Jendela, dll), komunitas lingkungan (seperti Transformasi Hijau, dll), komunitas sosial (seperti Save Street Child), komunitas kesehatan (seperti Volunteer Doctor, Pencerah Nusantara), atau komunitas yang kamu inisiasi di daerahmu dan membawa manfaat sosial di sana
         %h4 Activist Based on Character
         %blockquote
           %div
             Aktivis pemuda dari berbagai bidang yang ingin berkarya dan berjejaring bersama-sama dengan FIM
+            %br
+            Aktivis berbagai bidang yang dimaksud adalah aktivis BEM (baik tingkat jurusan, fakultas, maupun universitas), mahasiswa pada umumnya yang ingin berkontribusi, maupun aktivis di organisasi intra-kampus ataupun unit kegiatan mahasiswa lainnya
         = f.input :choose_type, :label => "Pilihan Anda", :as => :radio_buttons, :collection => [["Strategic Leader", 0], ["Local Leader", 1], ["Activist Based on Character", 2]]
         //= f.input :referal, :label => "Jika ada, tuliskan nama alumni FIM yang merekomendasikan Anda untuk menjadi peserta FIM 15", :as => :string
         = f.hidden_field :latitude
