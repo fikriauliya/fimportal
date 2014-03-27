@@ -101,9 +101,10 @@
         %th Activity 1 Information
     %tbody
       - profiles.each_with_index do |profile, index|
-        %tr
-          %td= profile.id
-          %td= link_to(profile.fullname, profile.photo)
-          %td= profile.user.strategic_leader_profile.activity1_information
+        - if !profile.user.strategic_leader_profile.nil?
+          %tr
+            %td= profile.id
+            %td= link_to(profile.fullname, profile.photo)
+            %td= profile.user.strategic_leader_profile.activity1_information
 - elsif params[:filter].eql?('local')
 - elsif params[:filter].eql?('activist')
