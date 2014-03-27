@@ -238,6 +238,18 @@
         %th Facebook
         %th Twitter
         %th Email
+        %th Aktivitas Pencapaian 1
+        %th Alasan Pencapaian 1
+        %th Aktivitas Pencapaian 2
+        %th Alasan Pencapaian 2
+        %th Aktivitas Pencapaian 3
+        %th Alasan Pencapaian 3
+        %th Aktivitas Pencapaian 4
+        %th Alasan Pencapaian 4
+        %th Aktivitas Pencapaian 5
+        %th Alasan Pencapaian 5
+        %th Essai action plan pasca pelatihan
+        %th tipografi menurut peserta
     %tbody
       - profiles.each_with_index do |profile, index|
         - if !profile.user.activist_profile.nil?
@@ -255,3 +267,22 @@
             %td= profile.facebook_url
             %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
             %td= profile.user.email
+            %td= profile.user.activist_profile.activity1_information
+            %td= profile.user.activist_profile.activity1_reason
+            %td= profile.user.activist_profile.activity2_information
+            %td= profile.user.activist_profile.activity2_reason
+            %td= profile.user.activist_profile.activity3_information
+            %td= profile.user.activist_profile.activity3_reason
+            %td= profile.user.activist_profile.activity4_information
+            %td= profile.user.activist_profile.activity4_reason
+            %td= profile.user.activist_profile.activity5_information
+            %td= profile.user.activist_profile.activity5_reason
+            %td= profile.user.activist_profile.essay_about_pasca_training
+            - if profile.user.activist_profile.tipografi == 0 then
+              %td Konseptor
+            - elsif profile.user.activist_profile.tipografi == 1 then
+              %td Organizer
+            - elsif profile.user.activist_profile.tipografi == 2 then
+              %td Eksekutor
+            - elsif profile.user.activist_profile.tipografi == 3 then
+              %td Kontroller
