@@ -4,6 +4,9 @@
   .span1
     = link_to('Download', recruiter_index_path(:format => 'xls', :fullname => params[:fullname], :marked_by_id => params[:marked_by_id], :province => params[:province], :school => params[:school], :gender => params[:gender], :religion => params[:religion], :order => params[:order]), 
       :class => 'btn btn-primary')
+  .span2
+    = link_to('Export Email', recruiter_export_path(:format => 'xls'), 
+      :class => 'btn btn-primary')
   .span1
     = link_to('Upload', recruiter_upload_path, :class => 'btn btn-primary')
   .span6

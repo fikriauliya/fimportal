@@ -86,6 +86,11 @@ class RecruiterController < ApplicationController
       end
     end
   end
+
+  def export
+    authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
+    @users = User.joins{profile_candidate}.where{profile_candidate.status.eq('NOT SUBMITTED')}
+  end
   
   def new_upload
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'

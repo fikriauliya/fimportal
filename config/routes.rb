@@ -12,6 +12,7 @@ FimAlumni::Application.routes.draw do
   match "statistics/old_user_emails" => 'statistics#old_user_emails', :via => :get
   
   get "recruiter/index"
+  get "recruiter/export"
   match 'recruiter/upload' => 'recruiter#new_upload', :via => :get
   match 'recruiter/upload' => 'recruiter#create_upload', :via => :post
   match 'recruiter/save_upload' => 'recruiter#save_upload', :via => :post
