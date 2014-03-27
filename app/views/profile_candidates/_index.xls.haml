@@ -99,13 +99,73 @@
       %tr
         %th Id
         %th Nama
-        %th Activity 1 Information
+        %th Dinilai oleh
+        %th Nilai CV
+        %th Nilai Essai
+        %th Nilai Surat Rekomendasi
+        %th Total
+        %th Keterangan
+        %th Tipologi
+        %th Asal Institusi
+        %th Facebook
+        %th Twitter
+        %th Email
+        %th Aktivitas Pencapaian 1
+        %th Alasan Pencapaian 1
+        %th Aktivitas Pencapaian 2
+        %th Alasan Pencapaian 2
+        %th Aktivitas Pencapaian 3
+        %th Alasan Pencapaian 3
+        %th Aktivitas Pencapaian 4
+        %th Alasan Pencapaian 4
+        %th Aktivitas Pencapaian 5
+        %th Alasan Pencapaian 5
+        %th Essai tentang Indonesia
+        %th Nama Organisasi
+        %th Tahun berdiri
+        %th Bidang Organisasi
+        %th Kegiatan yang telah berlangsung
+        %th Jumlah Anggota Organisasi
+        %th Tujuan Pendirian Organisasi
+        %th Capaian Organisasi
+        %th Kontak Organisasi
+        %th Jaringan Organisasi
     %tbody
       - profiles.each_with_index do |profile, index|
         - if !profile.user.strategic_leader_profile.nil?
           %tr
             %td= profile.id
             %td= link_to(profile.fullname, profile.photo)
+            %td= !profile.marked_by.nil? ? profile.marked_by.email : ""          
+            %td= ProfileCandidate.to_alphabet(profile.cv_point)
+            %td= ProfileCandidate.to_alphabet(profile.essay_point)
+            %td= ProfileCandidate.to_alphabet(profile.recommendation_letter_point)  
+            %td= profile.total_point
+            %td= profile.special_location_comment
+            %td= profile.special_character_comment
+            %td= profile.school
+            %td= profile.facebook_url
+            %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
+            %td= profile.user.email
             %td= profile.user.strategic_leader_profile.activity1_information
+            %td= profile.user.strategic_leader_profile.activity1_reason
+            %td= profile.user.strategic_leader_profile.activity2_information
+            %td= profile.user.strategic_leader_profile.activity2_reason
+            %td= profile.user.strategic_leader_profile.activity3_information
+            %td= profile.user.strategic_leader_profile.activity3_reason
+            %td= profile.user.strategic_leader_profile.activity4_information
+            %td= profile.user.strategic_leader_profile.activity4_reason
+            %td= profile.user.strategic_leader_profile.activity5_information
+            %td= profile.user.strategic_leader_profile.activity5_reason
+            %td= profile.user.strategic_leader_profile.essay_about_indonesia
+            %td= profile.user.strategic_leader_profile.organization_name
+            %td= profile.user.strategic_leader_profile.organization_year
+            %td= profile.user.strategic_leader_profile.organization_category
+            %td= profile.user.strategic_leader_profile.organization_activity
+            %td= profile.user.strategic_leader_profile.organization_count_member
+            %td= profile.user.strategic_leader_profile.organization_goal
+            %td= profile.user.strategic_leader_profile.organization_achievement
+            %td= profile.user.strategic_leader_profile.organization_contact
+            %td= profile.user.strategic_leader_profile.organization_network
 - elsif params[:filter].eql?('local')
 - elsif params[:filter].eql?('activist')
