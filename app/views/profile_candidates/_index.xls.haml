@@ -168,4 +168,90 @@
             %td= profile.user.strategic_leader_profile.organization_contact
             %td= profile.user.strategic_leader_profile.organization_network
 - elsif params[:filter].eql?('local')
+  %table
+    %thead
+      %tr
+        %th Id
+        %th Nama
+        %th Dinilai oleh
+        %th Nilai CV
+        %th Nilai Essai
+        %th Nilai Surat Rekomendasi
+        %th Total
+        %th Keterangan
+        %th Tipologi
+        %th Asal Institusi
+        %th Facebook
+        %th Twitter
+        %th Email
+        %th Essai tentang Organisasi
+        %th Nama Organisasi
+        %th Tahun berdiri
+        %th Bidang Organisasi
+        %th Kegiatan yang telah berlangsung
+        %th Jumlah Anggota Organisasi
+        %th Tujuan Pendirian Organisasi
+        %th Capaian Organisasi
+        %th Kontak Organisasi
+        %th Jaringan Organisasi
+    %tbody
+      - profiles.each_with_index do |profile, index|
+        - if !profile.user.local_leader_profile.nil?
+          %tr
+            %td= profile.id
+            %td= link_to(profile.fullname, profile.photo)
+            %td= !profile.marked_by.nil? ? profile.marked_by.email : ""          
+            %td= ProfileCandidate.to_alphabet(profile.cv_point)
+            %td= ProfileCandidate.to_alphabet(profile.essay_point)
+            %td= ProfileCandidate.to_alphabet(profile.recommendation_letter_point)  
+            %td= profile.total_point
+            %td= profile.special_location_comment
+            %td= profile.special_character_comment
+            %td= profile.school
+            %td= profile.facebook_url
+            %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
+            %td= profile.user.email
+            %td= profile.user.local_leader_profile.essay_about_organization
+            %td= profile.user.local_leader_profile.organization_name
+            %td= profile.user.local_leader_profile.organization_year
+            %td= profile.user.local_leader_profile.organization_category
+            %td= profile.user.local_leader_profile.organization_activity
+            %td= profile.user.local_leader_profile.organization_count_member
+            %td= profile.user.local_leader_profile.organization_goal
+            %td= profile.user.local_leader_profile.organization_achievement
+            %td= profile.user.local_leader_profile.organization_contact
+            %td= profile.user.local_leader_profile.organization_network
 - elsif params[:filter].eql?('activist')
+  %table
+    %thead
+      %tr
+        %th Id
+        %th Nama
+        %th Dinilai oleh
+        %th Nilai CV
+        %th Nilai Essai
+        %th Nilai Surat Rekomendasi
+        %th Total
+        %th Keterangan
+        %th Tipologi
+        %th Asal Institusi
+        %th Facebook
+        %th Twitter
+        %th Email
+    %tbody
+      - profiles.each_with_index do |profile, index|
+        - if !profile.user.activist_profile.nil?
+          %tr
+            %td= profile.id
+            %td= link_to(profile.fullname, profile.photo)
+            %td= !profile.marked_by.nil? ? profile.marked_by.email : ""          
+            %td= ProfileCandidate.to_alphabet(profile.cv_point)
+            %td= ProfileCandidate.to_alphabet(profile.essay_point)
+            %td= ProfileCandidate.to_alphabet(profile.recommendation_letter_point)  
+            %td= profile.total_point
+            %td= profile.special_location_comment
+            %td= profile.special_character_comment
+            %td= profile.school
+            %td= profile.facebook_url
+            %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
+            %td= profile.user.email
