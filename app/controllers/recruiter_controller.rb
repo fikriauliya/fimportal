@@ -35,6 +35,14 @@ class RecruiterController < ApplicationController
       else
         @profiles = @profiles.chronological
       end
+
+      if params[:filter].eql?('strategic')
+        @profiles = @profiles.where{choose_type.eq(0)}
+      elsif params[:filter].eql?('local')
+        @profiles = @profiles.where{choose_type.eq(1)}
+      elsif params[:filter].eql?('activist')
+        @profiles = @profiles.where{choose_type.eq(2)}
+      end
       
       respond_to do |format|
         format.xls
