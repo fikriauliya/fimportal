@@ -1,0 +1,136 @@
+.row
+  .span8
+    - if @profile.nil? || !@profile.is_accepted
+      %p
+        Halo 
+        %b= @profile.nil? ? current_user.email : @profile.fullname 
+      %p
+        Terima kasih atas partisipasi Anda dalam mengikuti proses pendaftaran Pelatihan Forum Indonesia Muda 16.
+
+      %p
+        Menyeleksi 1208 calon peserta membuat tim seleksi benar-benar harus bekerja ekstra untuk menentukan calon 
+        pemimpin bangsa yang ingin mengembangkan dirinya melalui pelatihan FIM 16. Dengan berat hati kami harus 
+        menyampaikan bahwa Anda belum berkesempatan untuk menjadi peserta pelatihan FIM 16.
+        
+      %p
+        Kami percaya Anda memiliki potensi yang sangat besar untuk mengembangkan diri dan negeri yang kita banggakan. 
+        Yakinlah peluang untuk maju dan berkembang sangat luas. Tetap semangat mengolaborasikan karya dimanapun Anda berada. 
+        Selamat berkarya dan berjuang! 
+
+      %p
+        Salam pemuda Indonesia! 
+
+      %p
+        Forum Indonesia Muda 
+
+    - else
+      %p
+        Halo 
+        %b= @profile.nil? ? current_user.email : @profile.fullname 
+      %p 
+        Terima kasih atas partisipasi Anda dalam mengikuti proses pendaftaran Pelatihan Forum Indonesia Muda 16.
+
+      %p 
+        Menyeleksi 1208 calon peserta membuat tim seleksi benar-benar harus bekerja ekstra untuk menentukan 
+        calon pemimpin bangsa yang ingin mengembangkan dirinya melalui pelatihan FIM 16. 
+        Kami ucapkan SELAMAT karena Anda telah terpilih menjadi calon peserta Pelatihan FIM 16!
+
+      - if @profile.is_candidate_accept_offer.nil?
+        %hr
+        %p 
+          Selanjutnya, silakan untuk segera melakukan konfirmasi keikutsertaan berikut 
+          %b (paling lambat tanggal 9 Oktober 2013 pukul 23.59):
+          
+        = simple_form_for(@profile, :url => update_acceptance_status_profile_candidates_path, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
+          = f.error_notification
+          = display_base_errors @profile
+
+          .form-inputs
+            = f.input :is_candidate_accept_offer, :label => "Bersedia mengikut FIM 16 secara penuh (centang jika iya)", :as => :boolean
+          .form-actions
+            = f.submit "Submit", :class => "btn btn-primary"
+            
+
+        %p 
+          Dengan ini, Anda menyatakan kesediaan menjadi peserta FIM 16 dan akan mengikuti seluruh kegiatan FIM 16 
+          secara penuh tanpa terkecuali. Namun bila Anda tidak bersedia, maka status kesertaan Anda sebagai peserta 
+          pelatihan FIM 16 akan dicabut.
+
+        %p
+          Kepada peserta terpilih harap membayar uang pengganti training kit sebesar Rp. 140.000 ke  nomor rekening an Forum Indonesia Muda di 0060007150786, Bank Mandiri cabang Pulomas, Jakarta.
+
+        %p
+          Adapun training kit pelatihan terdiri dari:
+
+        %p
+          Name tag, Sertifikat, Topi, CD Pelatihan (Materi, Dokumentasi Pelatihan, Database Peserta), Novel Keydo (Pendidikan Holistik berbasis Agama, Keluarga, Kearifan Lokal)
+
+        %p
+          Peserta dapat melakukan konfirmasi pembayaran kepada narahubung (Dito (085694098664) dan Ilma (081382972438)), dan bukti pembayaran harap dibawa pada saat pelatihan.
+
+        %p 
+          Kami yakin Anda dapat memanfaatkan kesempatan ini dengan sebaik-baiknya.
+
+        %p Salam pemuda Indonesia! 
+
+        %p Forum Indonesia Muda
+      - else
+        
+        .well
+          %p
+            Anda telah memilih: 
+            - if @profile.is_candidate_accept_offer
+              %b mengikuti 
+              Forum Indonesia Muda 16.
+            - else
+              %b TIDAK mengikuti 
+              Forum Indonesia Muda 16. Status kesertaan Anda sebagai peserta pelatihan FIM 16 akan dicabut.
+
+          - if @profile.is_candidate_accept_offer
+            %p
+              Kepada peserta terpilih harap membayar uang pengganti training kit sebesar Rp. 140.000 ke  nomor rekening an Forum Indonesia Muda di 0060007150786, Bank Mandiri cabang Pulomas, Jakarta.
+
+            %p
+              Adapun training kit pelatihan terdiri dari:
+
+            %p
+              Name tag, Sertifikat, Topi, CD Pelatihan (Materi, Dokumentasi Pelatihan, Database Peserta), Novel Keydo (Pendidikan Holistik berbasis Agama, Keluarga, Kearifan Lokal)
+
+            %p
+              Peserta dapat melakukan konfirmasi pembayaran kepada narahubung (Dito (085694098664) dan Ilma (081382972438)), dan bukti pembayaran harap dibawa pada saat pelatihan.
+
+            %h4 Permohonan Surat Izin Pelatihan
+
+            %p
+              Bagi peserta yang membutuhkan surat izin atau proposal untuk menghadiri pelatihan, harap mengikuti alur permohonan surat izin di bawah ini.
+
+            %ol
+              %li 
+                Permohonan surat izin dilakukan pada tanggal 8-13 Oktober 2013 pukul 08.00-18.00. Lewat dari waktu yang ditentukan, pembuatan surat akan dilakukan pada hari berikutnya.
+
+              %li Surat akan dibuat dalam waktu 2 x 24 jam dan akan dikirim ke email peserta.
+
+              %li 
+                Permohonan pembuatan surat dilakukan dengan mengirimkan sms ke Zia (085718223762) dengan format sebagai berikut :
+
+                %ol 
+                  %li 
+                    Tujuan surat (Nama bergelar & jabatan). Bila tujuan surat lebih dari satu, cukup tuliskan dengan:
+                    %br
+                    1.a.
+                    %br
+                    1.b.
+                    %br
+                    dst
+                  %li Nama lengkap, NIM/NPM, Jurusan/Prodi, Fakultas, Universitas/Institusi
+                  %li Alamat email
+              
+                Contoh :
+                %ol
+                  %li Drs. Bambang Hariyadi, M.Kes. - Dekan FKIK
+                  %li Ciska Artika, 123456789, Kesehatan Masyarakat, Kedokteran dan Ilmu-ilmu Kesehatan, Univ. Jenderal Soedirman
+                  %li ciska@yahoo.com
+
+        
+        %p Salam pemuda Indonesia! 
+        %p Forum Indonesia Muda

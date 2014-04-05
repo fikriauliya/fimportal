@@ -47,12 +47,10 @@
 .row
   .span12
     .alert.alert-info
-      %ul
-        %li 
-          %b Pendaftaran FIM 16 telah ditutup. 
-        %li Status pendaftaran Anda bisa dicek dengan menekan tombol 'Status Pendaftaran Saya' di bawah. 
-        %li Tidak ada email konfirmasi pendaftaran yang dikirimkan panitia.
-        %li Jika aplikasi Anda sudah lengkap, nama Anda akan ditampilkan di tombol 'Calon Peserta FIM 16' di bawah.
+      %b Daftar peserta FIM 16 telah diumumkan!
+      %br
+      %br
+      =link_to "Lihat hasil saya", acceptance_status_profile_candidates_path, 'class' => 'btn btn-danger'
   .span5
     %h3 Forum Indonesia Muda
     %p

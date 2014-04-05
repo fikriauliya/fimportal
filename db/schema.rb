@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140309060358) do
+ActiveRecord::Schema.define(:version => 20140405055006) do
 
   create_table "activist_profiles", :force => true do |t|
     t.text     "activity1_information"
@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(:version => 20140309060358) do
     t.integer  "essay_point",                      :default => 0
     t.integer  "cv_point",                         :default => 0
     t.integer  "recommendation_letter_point",      :default => 0
+    t.boolean  "is_candidate_accept_offer"
+    t.boolean  "is_accepted",                      :default => false
   end
 
   add_index "profile_candidates", ["user_id"], :name => "index_profile_candidates_on_user_id", :unique => true

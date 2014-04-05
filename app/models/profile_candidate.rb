@@ -20,6 +20,8 @@ class ProfileCandidate < ActiveRecord::Base
     :school,:essay_point, :cv_point, :recommendation_letter_point,
     :as => :recruiter
   
+  attr_accessible :is_candidate_accept_offer, :as => :update_acceptance
+
   belongs_to :user
   belongs_to :marked_by, :class_name => "User"
   
