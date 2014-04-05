@@ -16,6 +16,7 @@ FimAlumni::Application.routes.draw do
   match 'recruiter/upload' => 'recruiter#new_upload', :via => :get
   match 'recruiter/upload' => 'recruiter#create_upload', :via => :post
   match 'recruiter/save_upload' => 'recruiter#save_upload', :via => :post
+  match 'recruiter/index_accepted' => 'recruiter#index_accepted', :via => :get
 
   get 'home/faq' 
 
