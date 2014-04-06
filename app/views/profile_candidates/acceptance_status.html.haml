@@ -8,7 +8,7 @@
         Terima kasih atas partisipasi Anda dalam mengikuti proses pendaftaran Pelatihan Forum Indonesia Muda 16.
 
       %p
-        Menyeleksi 1208 calon peserta membuat tim seleksi benar-benar harus bekerja ekstra untuk menentukan calon 
+        Menyeleksi ribuaan calon peserta membuat tim seleksi benar-benar harus bekerja ekstra untuk menentukan calon 
         pemimpin bangsa yang ingin mengembangkan dirinya melalui pelatihan FIM 16. Dengan berat hati kami harus 
         menyampaikan bahwa Anda belum berkesempatan untuk menjadi peserta pelatihan FIM 16.
         
@@ -31,7 +31,7 @@
         Terima kasih atas partisipasi Anda dalam mengikuti proses pendaftaran Pelatihan Forum Indonesia Muda 16.
 
       %p 
-        Menyeleksi 1208 calon peserta membuat tim seleksi benar-benar harus bekerja ekstra untuk menentukan 
+        Menyeleksi ribuaan calon peserta membuat tim seleksi benar-benar harus bekerja ekstra untuk menentukan 
         calon pemimpin bangsa yang ingin mengembangkan dirinya melalui pelatihan FIM 16. 
         Kami ucapkan SELAMAT karena Anda telah terpilih menjadi calon peserta Pelatihan FIM 16!
 
@@ -39,7 +39,7 @@
         %hr
         %p 
           Selanjutnya, silakan untuk segera melakukan konfirmasi keikutsertaan berikut 
-          %b (paling lambat tanggal 9 Oktober 2013 pukul 23.59):
+          %b (paling lambat tanggal 9 April 2014 pukul 23.59):
           
         = simple_form_for(@profile, :url => update_acceptance_status_profile_candidates_path, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
           = f.error_notification
@@ -80,10 +80,10 @@
           %p
             Anda telah memilih: 
             - if @profile.is_candidate_accept_offer
-              %b mengikuti 
+              %b Mengikuti 
               Forum Indonesia Muda 16.
             - else
-              %b TIDAK mengikuti 
+              %b TIDAK Mengikuti 
               Forum Indonesia Muda 16. Status kesertaan Anda sebagai peserta pelatihan FIM 16 akan dicabut.
 
           - if @profile.is_candidate_accept_offer
