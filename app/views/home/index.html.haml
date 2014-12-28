@@ -21,10 +21,10 @@
     %button.close{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", "data-dismiss" => "modal", :type => "button"} ×
     %h4#myModalLabel Portal Pendafataran FIM 16
   .modal-body
-    %p 
+    %p
       Selamat datang di Portal Pendaftaran FIM 16!
     %p
-      Agar selalu mendapatkan informasi terbaru tentang FIM 16, kami rekomendasikan untuk like Facebook 
+      Agar selalu mendapatkan informasi terbaru tentang FIM 16, kami rekomendasikan untuk like Facebook
       %b Forum Indonesia Muda
       atau follow Twitter
       %b @fimnews
@@ -36,14 +36,14 @@
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
   .modal-footer
     %button.btn.btn-primary{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-    
+
 /
   .row
     .span12
       .alert.alert-info
         Status pendaftaran Anda bisa dicek dengan menekan tombol 'Status Pendaftaran Saya' di bawah. Tidak ada email konfirmasi pendaftaran yang dikirimkan panitia.
         %br
-      Jika aplikasi Anda sudah lengkap, nama Anda akan ditampilkan di tombol 'Calon Peserta FIM 15' di bawah. 
+      Jika aplikasi Anda sudah lengkap, nama Anda akan ditampilkan di tombol 'Calon Peserta FIM 15' di bawah.
 .row
   .span12
     .alert.alert-info
@@ -59,25 +59,25 @@
       adalah sebuah forum independen yang beranggotakan pemuda dan mahasiswa dari berbagai perguruan tinggi maupun organisasi kepemudaan di Indonesia, dari Aceh sampai Papua, bahkan yang sedang berada di luar negeri.
     %p
       Setelah sukses menyelenggarakan Leadership & Life Skill Training selama 1 dekade
-      %b FIM 16
+      %b FIM 17
       akan diselenggarakan pada tanggal 30 April - 4 Mei 2014 di Jakarta.
 
     %p
-      Pendaftaran dibuka antara tanggal 1 Maret – 31 Maret 2014 (09.00 WIB). Berkas peserta akan diseleksi sesuai prosedur, untuk memenuhi kapasitas peserta FIM 16 sebanyak 120 orang, dengan batas usia 
+      Pendaftaran dibuka antara tanggal 1 Maret – 31 Maret 2014 (09.00 WIB). Berkas peserta akan diseleksi sesuai prosedur, untuk memenuhi kapasitas peserta FIM 16 sebanyak 120 orang, dengan batas usia
       %b 18-30
       tahun. Peserta terpilih akan diumumkan pada tanggal 7 April 2014.
     %p
-      Informasi lebih lanjut soal FIM dapat dilihat di 
+      Informasi lebih lanjut soal FIM dapat dilihat di
       %a{href: "http://www.forumindonesiamuda.org"}
-        forumindonesiamuda.org, 
-      Twitter FIM 
+        forumindonesiamuda.org,
+      Twitter FIM
       %a{href: "http://twitter.com/fimnews"}
         @fimnews
-      , 
+      ,
       %a{href: "https://www.facebook.com/pages/Forum-Indonesia-Muda/125650577511664"}
         Facebook FIM
     %p
-      Jawaban pertanyaan yang sering ditanyakan bisa dibaca di 
+      Jawaban pertanyaan yang sering ditanyakan bisa dibaca di
       %b
         = link_to "FAQ.", home_faq_path
       Jika pertanyaan Anda tidak ada di FAQ, silakan mengajukannya di
@@ -87,15 +87,15 @@
       %span.label.label-success{style: "font-size:10px"}
         New
     %p
-      Contact Person: 
+      Contact Person:
       %b
-        Dito (085694098664) 
-      dan 
+        Dito (085694098664)
+      dan
       %b
         Ilma (081382972438)
   .span7
     - cache('brief_statistics', :expires_in => 10.minutes) do
-      %h4 
+      %h4
         Pendaftar FIM 16
         ="(#{User.where("current_sign_in_at >= '09-01-2013'").count}"
         pendaftar,
@@ -107,15 +107,15 @@
     =link_to "Calon Peserta FIM 16", profile_candidates_path, 'class' => 'btn btn-danger'
     =link_to "Statistik Pendaftar", statistics_public_path, 'class' => 'btn btn-warning'
     =link_to "Status Pendaftaran Saya", progress_status_profile_candidates_path, 'class' => 'btn btn-info'
-    
+
     %br
     %br
-      Jika Anda memakai 
+      Jika Anda memakai
       %b
         Internet Explorer (IE) 8,
       mohon upgrade ke
-      %a{href: 'http://windows.microsoft.com/en-us/internet-explorer/download-ie'} 
-        IE 9+, 
+      %a{href: 'http://windows.microsoft.com/en-us/internet-explorer/download-ie'}
+        IE 9+,
       %a{href: 'https://www.google.com/intl/en/chrome/browser/'}
         Chrome
       ,
@@ -130,7 +130,7 @@
     %br
     %br
     .fb-comments{"data-href" => "http://portal.forumindonesiamuda.org", "data-num-posts" => "15", "data-width" => "600"}
-    
+
   .span4
     %a.twitter-timeline{"data-widget-id" => "308020397293568000", :href => "https://twitter.com/fimnews"} Tweets by @fimnews
     :javascript
