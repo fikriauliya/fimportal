@@ -19,12 +19,12 @@
 #myModal.modal.hide.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
   .modal-header
     %button.close{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", "data-dismiss" => "modal", :type => "button"} ×
-    %h4#myModalLabel Portal Pendafataran FIM 16
+    %h4#myModalLabel Portal Pendafataran FIM 17
   .modal-body
     %p
-      Selamat datang di Portal Pendaftaran FIM 16!
+      Selamat datang di Portal Pendaftaran FIM 17!
     %p
-      Agar selalu mendapatkan informasi terbaru tentang FIM 16, kami rekomendasikan untuk like Facebook
+      Agar selalu mendapatkan informasi terbaru tentang FIM 17, kami rekomendasikan untuk like Facebook
       %b Forum Indonesia Muda
       atau follow Twitter
       %b @fimnews
@@ -45,12 +45,13 @@
         %br
       Jika aplikasi Anda sudah lengkap, nama Anda akan ditampilkan di tombol 'Calon Peserta FIM 15' di bawah.
 .row
-  .span12
-    .alert.alert-info
-      %b Daftar Peserta Pelatihan FIM 16 telah diumumkan!
-      %br
-      %br
-      =link_to "Lihat hasil saya", acceptance_status_profile_candidates_path, 'class' => 'btn btn-danger'
+
+  /.span12
+  /  .alert.alert-info
+  /    %b Daftar Peserta Pelatihan FIM 16 telah diumumkan!
+  /    %br
+  /    %br
+  /    =link_to "Lihat hasil saya", acceptance_status_profile_candidates_path, 'class' => 'btn btn-danger'
   .span5
     %h3 Forum Indonesia Muda
     %p
@@ -63,7 +64,7 @@
       akan diselenggarakan pada tanggal 30 April - 4 Mei 2015 di Jakarta.
 
     %p
-      Pendaftaran dibuka antara tanggal 1 Maret – 31 Maret 2015 (09.00 WIB). Berkas peserta akan diseleksi sesuai prosedur, untuk memenuhi kapasitas peserta FIM 16 sebanyak 120 orang, dengan batas usia
+      Pendaftaran dibuka antara tanggal 1 Maret – 31 Maret 2015 (09.00 WIB). Berkas peserta akan diseleksi sesuai prosedur, untuk memenuhi kapasitas peserta FIM 17 sebanyak 120 orang, dengan batas usia
       %b 18-30
       tahun. Peserta terpilih akan diumumkan pada tanggal 7 April 2014.
     %p
@@ -89,14 +90,14 @@
     %p
       Contact Person:
       %b
-        Dito (085694098664)
+        Ishom (081224959085)
       dan
       %b
         Ilma (081382972438)
   .span7
     - cache('brief_statistics', :expires_in => 10.minutes) do
       %h4
-        Pendaftar FIM 16
+        Pendaftar FIM 17
         ="(#{User.where("current_sign_in_at >= '09-01-2013'").count}"
         pendaftar,
         =ProfileCandidate.submitted.count
@@ -104,7 +105,8 @@
     #map_canvas{:style => "width:650px; height:350px"}
 .row
   .span7.service-item
-    =link_to "Calon Peserta FIM 16", profile_candidates_path, 'class' => 'btn btn-danger'
+    =link_to "Pendaftaran", new_profile_candidate_path, 'class' => 'btn btn-primary'
+    =link_to "Calon Peserta FIM 17", profile_candidates_path, 'class' => 'btn btn-danger'
     =link_to "Statistik Pendaftar", statistics_public_path, 'class' => 'btn btn-warning'
     =link_to "Status Pendaftaran Saya", progress_status_profile_candidates_path, 'class' => 'btn btn-info'
 
