@@ -8,7 +8,8 @@ class ProfileCandidate < ActiveRecord::Base
     :diskusi_ekonomipembangunan, :diskusi_kebijakanpublik, :diskusi_energidanlingkungan, :diskusi_pendidikandanparenting, 
     :diskusi_medialiterasi, :diskusi_socialentre, :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev,
     :diskusi_liberalarts, :identification_card, :is_accepted, :is_candidate_accept_offer,
-    :pararel_room_pendidikan_kebudayaan, :pararel_room_sosial_ekonomi, :pararel_room_politik_hukum, :creation_bung_hatta
+    :pararel_room_pendidikan_kebudayaan, :pararel_room_sosial_ekonomi, :pararel_room_politik_hukum, :creation_bung_hatta,
+    :question_1, :question_2, :question_3, :question_4, :question_5, :question_6
 
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
@@ -35,6 +36,7 @@ class ProfileCandidate < ActiveRecord::Base
     :diskusi_medialiterasi, :diskusi_socialentre, 
     :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev, :diskusi_liberalarts, 
     :pararel_room_pendidikan_kebudayaan, :pararel_room_sosial_ekonomi, :pararel_room_politik_hukum,
+    :question_1, :question_2, :question_3, :question_4, :question_5, :question_6,
     :presence => true
 
     #Temporarily not checked :inspiring_story,  :motivation, :collaboration
