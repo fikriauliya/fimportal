@@ -439,7 +439,7 @@
             Anda dapat menyertakan karya Anda berupa lagu atau pun film pendek yang bertemakan Bung Hatta. Jika ada, silakan tuliskan link nya di bawah ini. (Soundcloud, 4shared, youtube)
         = f.input :creation_bung_hatta, :label => "Link Karya"
         %h4 Kuisioner Bung Hatta
-        //= f.input :question_1, :label => "Dari mana pertama kali mengetahui sosok Bung Hatta?", :collection => ["Sekolah", "keluarga (orang tua/saudara)", "Teman", "Televisi", "Radio", "Lainnya"]
+        = f.input :question_1, :label => "Dari mana pertama kali mengetahui sosok Bung Hatta?", :collection => ["Sekolah", "keluarga (orang tua/saudara)", "Teman", "Televisi", "Radio", "Lainnya"]
         = f.input :question_2, :label => "Hal pertama apa yang anda ketahui tentang Bung Hatta?", :collection => ["Bapak proklamasi", "Wakil presiden RI", "Bapak koperasi", "Pahlawan nasional Indonesia", "Lainnya"]
         = f.input :question_3, :label => "Menurut Anda, Apa karakter yang paling khas dari Bung Hatta? mengapa?", :input_html => {:rows => 4, :class => "span5"}, :as => :text
         = f.input :question_4, :label => "Adakah hal lain yang ingin diketahui tentang bung hatta? (Jika ada sebutkan, jika tidak,tulis 'Tidak ada')", :input_html => {:rows => 4, :class => "span5"}, :as => :text
