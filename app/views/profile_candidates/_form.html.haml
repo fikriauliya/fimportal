@@ -363,6 +363,14 @@
         //= f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
         //= f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
         %hr{:noshade => "", :size => "3"}/
+        %h4 Peminatan Pararel Room
+        %blockquote
+          %div
+            Berikut ini adalah daftar Pararel Room. Mohon berikan peringkat 1 (paling berminat) – 3 (paling tidak berminat), pada topik-topik berikut : 
+        = f.input :pararel_room_pendidikan_kebudayaan, :label => "Ekonomi Pembangunan", :collection => (1..3), :input_html => {:id => "pararel_1", :class => "ekslusif_pararel_room"}
+        = f.input :pararel_room_sosial_ekonomi, :label => "Kebijakan Publik", :collection => (1..3), :input_html => {:id => "pararel_2", :class => "ekslusif_pararel_room"}
+        = f.input :pararel_room_politik_hukum, :label => "Energi dan Lingkungan", :collection => (1..3), :input_html => {:id => "pararel_3", :class => "ekslusif_pararel_room"}
+        %hr{:noshade => "", :size => "3"}/
         %h4 Peminatan Diskusi
         %blockquote
           %div
