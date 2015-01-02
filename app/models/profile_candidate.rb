@@ -8,7 +8,7 @@ class ProfileCandidate < ActiveRecord::Base
     :diskusi_ekonomipembangunan, :diskusi_kebijakanpublik, :diskusi_energidanlingkungan, :diskusi_pendidikandanparenting, 
     :diskusi_medialiterasi, :diskusi_socialentre, :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev,
     :diskusi_liberalarts, :identification_card, :is_accepted, :is_candidate_accept_offer,
-    :pararel_room_pendidikan_kebudayaan, :pararel_room_sosial_ekonomi, :pararel_room_politik_hukum
+    :pararel_room_pendidikan_kebudayaan, :pararel_room_sosial_ekonomi, :pararel_room_politik_hukum, :creation_bung_hatta
 
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150102140556) do
+ActiveRecord::Schema.define(:version => 20150102162839) do
 
   create_table "activist_profiles", :force => true do |t|
     t.text     "activity1_information"
@@ -125,6 +125,12 @@ ActiveRecord::Schema.define(:version => 20150102140556) do
     t.integer  "pararel_room_sosial_ekonomi"
     t.integer  "pararel_room_politik_hukum"
     t.string   "creation_bung_hatta"
+    t.string   "question_1"
+    t.string   "question_2"
+    t.text     "question_3"
+    t.text     "question_4"
+    t.string   "question_5"
+    t.text     "question_6"
   end
 
   add_index "profile_candidates", ["user_id"], :name => "index_profile_candidates_on_user_id", :unique => true
