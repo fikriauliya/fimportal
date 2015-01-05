@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150102162839) do
+ActiveRecord::Schema.define(:version => 20150105083357) do
 
   create_table "activist_profiles", :force => true do |t|
     t.text     "activity1_information"
@@ -100,16 +100,6 @@ ActiveRecord::Schema.define(:version => 20150102162839) do
     t.boolean  "is_update_allowed",                  :default => false
     t.text     "food_except"
     t.text     "application_count"
-    t.integer  "diskusi_ekonomipembangunan"
-    t.integer  "diskusi_kebijakanpublik"
-    t.integer  "diskusi_energidanlingkungan"
-    t.integer  "diskusi_pendidikandanparenting"
-    t.integer  "diskusi_medialiterasi"
-    t.integer  "diskusi_socialentre"
-    t.integer  "diskusi_pangangizikesehatan"
-    t.integer  "diskusi_travel"
-    t.integer  "diskusi_peopledev"
-    t.integer  "diskusi_liberalarts"
     t.text     "commit_agreement"
     t.integer  "choose_type"
     t.boolean  "is_committed_to_central_fim"

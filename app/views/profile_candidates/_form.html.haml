@@ -351,7 +351,7 @@
         = f.input :place_of_birth, :label => "Tempat lahir"
         = f.input :gender, :label => "Jenis kelamin", :as => :select, :collection => [["Laki-laki", 0], ["Perempuan", 1]]
         = f.input :religion, :label => "Agama", :collection => ["Islam", "Katolik", "Protestan", "Hindu", "Budha", "Konghuchu"]
-        = f.input :location, :label => "Alamat lengkap (contoh: Jalan Kaliurang Km 10, Wonorejo, Ngaglik, Sleman, Yogyakarta, Indonesia)", :as => :text, :input_html => {:rows => 5, :class => "span4"}
+        = f.input :location, :label => "Alamat lengkap saat ini (contoh: Jalan Kaliurang Km 10, Wonorejo, Ngaglik, Sleman, Yogyakarta, Indonesia)", :as => :text, :input_html => {:rows => 5, :class => "span4"}
         = f.input :province, :label => "Provinsi domisili saat ini", :collection => ["Luar negeri"] + ProfileCandidate.all_province
         = f.input :phone, :label => "Nomor telepon"
         = f.input :hobby, :label => "Hobi", :as => :string
@@ -363,10 +363,12 @@
         //= f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
         //= f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
         %hr{:noshade => "", :size => "3"}/
-        %h4 Peminatan Pararel Room
+        %h4 
+          %i Peminatan Paral​l​el Room
         %blockquote
           %div
-            Berikut ini adalah daftar Pararel Room. Mohon berikan peringkat 1 (paling berminat) – 3 (paling tidak berminat), pada topik-topik berikut : 
+            %i Parallel room 
+            merupakan ruang diskusi pada saat pelatihan dengan subtema yang lebih spesifik mengenai pemikiran Bung Hatta dari  berbagai bidang
         = f.input :pararel_room_pendidikan_kebudayaan, :label => "Ekonomi Pembangunan", :collection => (1..3), :input_html => {:id => "pararel_1", :class => "ekslusif_pararel_room"}
         = f.input :pararel_room_sosial_ekonomi, :label => "Kebijakan Publik", :collection => (1..3), :input_html => {:id => "pararel_2", :class => "ekslusif_pararel_room"}
         = f.input :pararel_room_politik_hukum, :label => "Energi dan Lingkungan", :collection => (1..3), :input_html => {:id => "pararel_3", :class => "ekslusif_pararel_room"}
@@ -376,16 +378,16 @@
           %div
             Berikut ini adalah daftar topik FIM Club (kelompok diskusi FIM lintas generasi dengan platform Whatsapp). Mohon berikan peringkat 1 (paling berminat) – 10 (paling tidak berminat), pada topik-topik berikut : 
         
-        = f.input :diskusi_ekonomipembangunan, :label => "Ekonomi Pembangunan", :collection => (1..10), :input_html => {:id => "list", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_kebijakanpublik, :label => "Kebijakan Publik", :collection => (1..10), :input_html => {:id => "list2", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_energidanlingkungan, :label => "Energi dan Lingkungan", :collection => (1..10), :input_html => {:id => "list3", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_pendidikandanparenting, :label => "Pendidikan dan Parenting", :collection => (1..10), :input_html => {:id => "list4", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_medialiterasi, :label => "Media Literasi", :collection => (1..10), :input_html => {:id => "list5", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_socialentre, :label => "Sosial Enterpreneurship", :collection => (1..10), :input_html => {:id => "list6", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_pangangizikesehatan, :label => "Pangan, Gizi, dan Kesehatan", :collection => (1..10), :input_html => {:id => "list7", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_travel, :label => "Travel", :collection => (1..10), :input_html => {:id => "list8", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_peopledev, :label => "People Development", :collection => (1..10), :input_html => {:id => "list9", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_liberalarts, :label => "Liberal Arts", :collection => (1..10), :input_html => {:id => "list10", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_ekonomipembangunan, :label => "Ekonomi Pembangunan", :collection => (1..13), :input_html => {:id => "list", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_kebijakanpublik, :label => "Kebijakan Publik", :collection => (1..13), :input_html => {:id => "list2", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_energidanlingkungan, :label => "Energi dan Lingkungan", :collection => (1..13), :input_html => {:id => "list3", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_pendidikandanparenting, :label => "Pendidikan dan Parenting", :collection => (1..13), :input_html => {:id => "list4", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_medialiterasi, :label => "Media Literasi", :collection => (1..13), :input_html => {:id => "list5", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_socialentre, :label => "Sosial Enterpreneurship", :collection => (1..13), :input_html => {:id => "list6", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_pangangizikesehatan, :label => "Pangan, Gizi, dan Kesehatan", :collection => (1..13), :input_html => {:id => "list7", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_travel, :label => "Travel", :collection => (1..13), :input_html => {:id => "list8", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_peopledev, :label => "People Development", :collection => (1..13), :input_html => {:id => "list9", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_liberalarts, :label => "Liberal Arts", :collection => (1..13), :input_html => {:id => "list10", :class => "mutually_exclusive_select_lists"}
         %hr{:noshade => "", :size => "3"}/
         /= f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
@@ -402,10 +404,10 @@
           %label#remaining_inspiring_story_words
             //Sisa kata: 500
         
-        = f.input :information_from, :label => "Sumber informasi FIM", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut", "Lainnya"]
+        = f.input :information_from, :label => "Sumber informasi FIM (darimana Anda mengetahui pendaftaran FIM 17)", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut", "Lainnya"]
         = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM. <br/><b>Format</b>:<i>[FIM ke- berapa mendaftar ][Tahun]</i> contoh : [FIM ke 1][2012][FIM ke 2][2012][FIM ke 3][2013]", :input_html => {:rows => 4, :class => "span5"}, :as => :text
-        = f.input :food_except, :label => "Apakah anda mempunyai alergi terhadap makanan atau hal lain ? jika Iya, sebutkan", :input_html => {:rows => 4, :class => "span5"}, :as => :text
-        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 16. Contoh: Tari Pendet, main biola, monolog, dll", :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :food_except, :label => "Apakah Anda mempunyai alergi terhadap makanan atau hal lain ? Jika Iya, sebutkan", :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 17. Contoh: Tari Pendet, main biola, monolog, dll", :input_html => {:rows => 4, :class => "span5"}, :as => :text
         
         .controls
           %label
@@ -413,8 +415,8 @@
               %p
                 Salin dan Lengkapi Pernyataan Dibawah ini
               %small
-                Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 16 pada tanggal 30 April - 4 Mei 2014
-        = f.input :agreement, :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.agreement? || @profile.agreement.empty?) ? 'Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 16 pada tanggal 30 April - 4 Mei 2014' : @profile.agreement)}
+                Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 17 pada tanggal 29 April - 3 Mei 2015
+        = f.input :agreement, :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.agreement? || @profile.agreement.empty?) ? 'Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 17 pada tanggal 29 April - 3 Mei 2015' : @profile.agreement)}
         %br
         .controls
           %label
@@ -422,8 +424,8 @@
               %p
                 Salin Pernyataan Dibawah ini
               %small
-                Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM, apabila saya diterima sebagai peserta FIM 16. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah (Dapat memilih lebih dari 1)
-        = f.input :commit_agreement, :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.commit_agreement? || @profile.commit_agreement.empty?) ? 'Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM, apabila saya diterima sebagai peserta FIM 16. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah (Dapat memilih lebih dari 1)' : @profile.commit_agreement)}
+                Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM, apabila saya diterima sebagai peserta FIM 17. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah (Dapat memilih lebih dari 1)
+        = f.input :commit_agreement, :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.commit_agreement? || @profile.commit_agreement.empty?) ? 'Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM, apabila saya diterima sebagai peserta FIM 17. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah (Dapat memilih lebih dari 1)' : @profile.commit_agreement)}
 
         = f.input :is_committed_to_central_fim, :label => "Saya akan komitmen pada FIM Pusat (Media, Program, Fundraising, Kesekretariatan"
         = f.input :is_committed_to_regional_fim, :label => "Saya akan komitmen pada FIM regional"
@@ -436,15 +438,15 @@
         %h4 Karya bertemakan Bung Hatta
         %blockquote
           %div
-            Anda dapat menyertakan karya Anda berupa lagu atau pun film pendek yang bertemakan Bung Hatta. Jika ada, silakan tuliskan link nya di bawah ini. (Soundcloud, 4shared, youtube)
+            Karya ini bersifat tidak wajib (optional). Anda dapat menyertakan karya Anda berupa lagu atau film pendek yang bertemakan Bung Hatta. Jika ada, silakan tuliskan link-nya di bawah ini. (Soundcloud, youtube)
         = f.input :creation_bung_hatta, :label => "Link Karya"
-        %h4 Kuisioner Bung Hatta
+        %h4 Kuesioner Bung Hatta
         = f.input :question_1, :label => "Dari mana pertama kali mengetahui sosok Bung Hatta?", :collection => ["Sekolah", "keluarga (orang tua/saudara)", "Teman", "Televisi", "Radio", "Lainnya"]
-        = f.input :question_2, :label => "Hal pertama apa yang anda ketahui tentang Bung Hatta?", :collection => ["Bapak proklamasi", "Wakil presiden RI", "Bapak koperasi", "Pahlawan nasional Indonesia", "Lainnya"]
-        = f.input :question_3, :label => "Menurut Anda, Apa karakter yang paling khas dari Bung Hatta? mengapa?", :input_html => {:rows => 4, :class => "span5"}, :as => :text
-        = f.input :question_4, :label => "Adakah hal lain yang ingin diketahui tentang bung hatta? (Jika ada sebutkan, jika tidak,tulis 'Tidak ada')", :input_html => {:rows => 4, :class => "span5"}, :as => :text
-        = f.input :question_5, :label => "Jika ada film tentang Bung Hatta, sisi kehidupan mana yang mendapat porsi lebih?", :collection => ["Kehidupan masa kecil", "Perjuangan selama di Belanda", "Masa kemerdekaan", "Kehidupan keluarga", "Lainnya"]
-        = f.input :question_6, :label => "Bagaimana menurut Anda strategi baru untuk melahirkan “Hatta Muda”", :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :question_2, :label => "Hal pertama apa yang Anda ketahui tentang Bung Hatta?", :collection => ["Bapak proklamasi", "Wakil presiden RI", "Bapak koperasi", "Pahlawan nasional Indonesia", "Lainnya"]
+        = f.input :question_3, :label => "Menurut Anda, apa karakter yang paling khas dari Bung Hatta? Mengapa?", :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :question_4, :label => "Adakah hal lain yang ingin diketahui tentang Bung Hatta? (Jika ada sebutkan, jika tidak, tulis 'Tidak ada')", :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :question_5, :label => "Jika ada film tentang Bung Hatta, sisi kehidupan mana yang sebaiknya mendapat porsi lebih?", :collection => ["Kehidupan masa kecil", "Perjuangan selama di Belanda", "Masa kemerdekaan", "Kehidupan keluarga", "Lainnya"]
+        = f.input :question_6, :label => "Bagaimana menurut Anda strategi baru untuk melahirkan 'Hatta Muda'?", :input_html => {:rows => 4, :class => "span5"}, :as => :text
         %br
         %h2 Pilihan Jalur Peserta
         %h4 Strategic Leader
