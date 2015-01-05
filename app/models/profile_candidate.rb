@@ -9,7 +9,10 @@ class ProfileCandidate < ActiveRecord::Base
     :diskusi_medialiterasi, :diskusi_socialentre, :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev,
     :diskusi_liberalarts, :identification_card, :is_accepted, :is_candidate_accept_offer,
     :pararel_room_pendidikan_kebudayaan, :pararel_room_sosial_ekonomi, :pararel_room_politik_hukum, :creation_bung_hatta,
-    :question_1, :question_2, :question_3, :question_4, :question_5, :question_6
+    :question_1, :question_2, :question_3, :question_4, :question_5, :question_6,
+    :diskusi_pangan, :diskusi_kebijakan_publik, :diskusi_energi_lingkungan, :diskusi_parenting, :diskusi_media_literasi,
+    :diskusi_sosial_enterpreneurship, :diskusi_kesehatan, :diskusi_travel_adventure, :diskusi_liberal_arts,
+    :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya
 
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
@@ -31,12 +34,11 @@ class ProfileCandidate < ActiveRecord::Base
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
     :information_from, :location, :phone, :place_of_birth, :religion, 
     :school, :agreement, :province, :choose_type, 
-    :diskusi_ekonomipembangunan, :diskusi_kebijakanpublik, 
-    :diskusi_energidanlingkungan, :diskusi_pendidikandanparenting, 
-    :diskusi_medialiterasi, :diskusi_socialentre, 
-    :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev, :diskusi_liberalarts, 
     :pararel_room_pendidikan_kebudayaan, :pararel_room_sosial_ekonomi, :pararel_room_politik_hukum,
     :question_1, :question_2, :question_3, :question_4, :question_5, :question_6,
+    :diskusi_pangan, :diskusi_kebijakan_publik, :diskusi_energi_lingkungan, :diskusi_parenting, :diskusi_media_literasi,
+    :diskusi_sosial_enterpreneurship, :diskusi_kesehatan, :diskusi_travel_adventure, :diskusi_liberal_arts,
+    :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya,
     :presence => true
 
     #Temporarily not checked :inspiring_story,  :motivation, :collaboration
