@@ -8,10 +8,10 @@
       = display_base_errors @local_leader_profile
 
       .form-inputs
-        %h4 Data komunitas
+        %h4 Data Komunitas
         %blockquote
           %div
-            Isilah dengan data komunitas anda
+            Isilah dengan data Komunitas anda
         = f.input :organization_name, :label => "Nama Komunitas"
         = f.input :organization_year, :label => "Tahun Berdiri", :collection => (1900..2014)
         = f.input :organization_category, :label => "Bidang Organisasi (Contoh : Sosial, Pendidikan, Budaya, Pertanian, dll)"
@@ -21,18 +21,18 @@
         = f.input :organization_achievement, :label => "Prestasi Komunitas (jika ada)" , :input_html => {:rows => 5, :class => "span4"}
         = f.input :organization_contact, :label => "Kontak Komunitas <b>FORMAT</b> [Web][Facebook][Twitter][Alamat][Telp Narahubung]" , :input_html => {:rows => 5, :class => "span4"}
         = f.input :organization_network, :label => "Jaringan Komunitas (Sebutkan Komunitas/organisasi lain/badan pemerintahan yang pernah bekerja sama dengan organisasi anda)" , :input_html => {:rows => 5, :class => "span4"}
-        %h4 Essai tentang “Bung Hatta”
+        %h4 Esai tentang “Bung Hatta”
         %blockquote
           %div
-            Ceritakan bagian perjalanan hidup Bung Hatta yang menunjukkan salah satu dari tujuh pilar karakter FIM yang juga cenderung dimilki oleh Anda. Sampaikan pengalaman Anda terkait pilar tersebut.
+            Ceritakan bagian perjalanan hidup Bung Hatta yang menunjukkan salah satu dari tujuh pilar karakter FIM yang juga cenderung dimiliki oleh Anda. Sampaikan pengalaman Anda terkait pilar tersebut.
             Sertakan referensi bacaan (buku/website) yang digunakan dalam esai
         = f.input :essay_about_organization, :label => "Essai (Maksimal 1000 kata", :input_html => {:rows => 8, :class => "span5"}
-        %h4 Download Template Surat Rekomendasi
+        %h4 Unduh Template Surat Rekomendasi
         %blockquote
           %div
-            Gunakan Template Surat ini untuk diisi oleh perekomendasi anda, lalu anda anda upload documen tersebut (sudah di isi, di tanda tangani, dan discan) pada step berikutnya, Template bisa di download 
+            Gunakan Template Surat ini untuk diisi oleh perekomendasi anda, lalu anda anda upload documen tersebut (sudah di isi, di tanda tangani, dan discan) pada step berikutnya, Template bisa di unduh 
             %a{href: "https://docs.google.com/uc?authuser=0&id=0ByAd-hBNx_8kTTd5bjRsVEdzNmc&export=download"}
-              disini
+              di sini
 
       .form-actions
         = f.submit "Next >", :class => "btn btn-primary"
