@@ -12,7 +12,7 @@ class ProfileCandidate < ActiveRecord::Base
     :question_1, :question_2, :question_3, :question_4, :question_5, :question_6,
     :diskusi_pangan, :diskusi_kebijakan_publik, :diskusi_energi_lingkungan, :diskusi_parenting, :diskusi_media_literasi,
     :diskusi_sosial_enterpreneurship, :diskusi_kesehatan, :diskusi_travel_adventure, :diskusi_liberal_arts,
-    :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya
+    :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya, :diskusi_kependidikan
 
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
@@ -38,7 +38,7 @@ class ProfileCandidate < ActiveRecord::Base
     :question_1, :question_2, :question_3, :question_4, :question_5, :question_6,
     :diskusi_pangan, :diskusi_kebijakan_publik, :diskusi_energi_lingkungan, :diskusi_parenting, :diskusi_media_literasi,
     :diskusi_sosial_enterpreneurship, :diskusi_kesehatan, :diskusi_travel_adventure, :diskusi_liberal_arts,
-    :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya,
+    :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya, :diskusi_kependidikan,
     :presence => true
 
     #Temporarily not checked :inspiring_story,  :motivation, :collaboration
