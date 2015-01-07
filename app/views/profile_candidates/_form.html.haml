@@ -369,9 +369,9 @@
           %div
             %i Parallel room 
             merupakan ruang diskusi pada saat pelatihan dengan subtema yang lebih spesifik mengenai pemikiran Bung Hatta dari  berbagai bidang
-        = f.input :pararel_room_pendidikan_kebudayaan, :label => "Ekonomi Pembangunan", :collection => (1..3), :input_html => {:id => "pararel_1", :class => "ekslusif_pararel_room"}
-        = f.input :pararel_room_sosial_ekonomi, :label => "Kebijakan Publik", :collection => (1..3), :input_html => {:id => "pararel_2", :class => "ekslusif_pararel_room"}
-        = f.input :pararel_room_politik_hukum, :label => "Energi dan Lingkungan", :collection => (1..3), :input_html => {:id => "pararel_3", :class => "ekslusif_pararel_room"}
+        = f.input :pararel_room_pendidikan_kebudayaan, :label => "Pendidikan dan Kebudayaan​", :collection => (1..3), :input_html => {:id => "pararel_1", :class => "ekslusif_pararel_room"}
+        = f.input :pararel_room_sosial_ekonomi, :label => "Politik dan Hukum​", :collection => (1..3), :input_html => {:id => "pararel_2", :class => "ekslusif_pararel_room"}
+        = f.input :pararel_room_politik_hukum, :label => "Sosial dan Ekonomi​", :collection => (1..3), :input_html => {:id => "pararel_3", :class => "ekslusif_pararel_room"}
         %hr{:noshade => "", :size => "3"}/
         %h4 Peminatan Diskusi
         %blockquote
@@ -419,7 +419,7 @@
               %p
                 Salin dan Lengkapi Pernyataan Dibawah ini
               %small
-                Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 17 pada tanggal 29 April - 3 Mei 2015
+                Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 17 pada tanggal 29 April - 3 Mei 2015.
         = f.input :agreement, :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.agreement? || @profile.agreement.empty?) ? 'Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 17 pada tanggal 29 April - 3 Mei 2015' : @profile.agreement)}
         %br
         .controls
@@ -442,7 +442,7 @@
         %h4 Karya bertemakan Bung Hatta
         %blockquote
           %div
-            Karya ini bersifat tidak wajib (optional). Anda dapat menyertakan karya Anda berupa lagu atau film pendek yang bertemakan Bung Hatta.Karya yang disertakan merupakan karya orisinal, sebelumnya tidak pernah diikutkan lomba atau dipublikasikan. 
+            Karya ini bersifat tidak wajib (optional). Anda dapat menyertakan karya Anda berupa lagu atau film pendek yang bertemakan Bung Hatta. Karya yang disertakan merupakan karya orisinal, sebelumnya tidak pernah diikutkan lomba atau dipublikasikan. 
             Jika Anda lolos seleksi FIM 17, maka karya Anda akan menjadi hak milik FIM. 
             %br
             Jika ada, silakan tuliskan link-nya di bawah ini. (Soundcloud, youtube)
@@ -459,7 +459,7 @@
           %div
             Ceritakan bagian perjalanan hidup Bung Hatta yang menunjukkan salah satu dari tujuh pilar karakter FIM yang juga cenderung dimiliki oleh Anda. Sampaikan pengalaman Anda terkait pilar tersebut.
             Sertakan referensi bacaan (buku/website) yang digunakan dalam esai
-        = f.input :essay_about_bunghatta, :label => "Essai (Maksimal 1000 kata", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :essay_about_bunghatta, :label => "Esai (Maksimal 1000 kata", :input_html => {:rows => 8, :class => "span5"}
         %br
         %h2 Pilihan Jalur Peserta
         %h4 Strategic Leader
