@@ -12,7 +12,8 @@ class ProfileCandidate < ActiveRecord::Base
     :question_1, :question_2, :question_3, :question_4, :question_5, :question_6,
     :diskusi_pangan, :diskusi_kebijakan_publik, :diskusi_energi_lingkungan, :diskusi_parenting, :diskusi_media_literasi,
     :diskusi_sosial_enterpreneurship, :diskusi_kesehatan, :diskusi_travel_adventure, :diskusi_liberal_arts,
-    :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya, :diskusi_kependidikan
+    :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya, :diskusi_kependidikan,
+    :essay_about_bunghatta
 
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
@@ -39,6 +40,7 @@ class ProfileCandidate < ActiveRecord::Base
     :diskusi_pangan, :diskusi_kebijakan_publik, :diskusi_energi_lingkungan, :diskusi_parenting, :diskusi_media_literasi,
     :diskusi_sosial_enterpreneurship, :diskusi_kesehatan, :diskusi_travel_adventure, :diskusi_liberal_arts,
     :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya, :diskusi_kependidikan,
+    :essay_about_bunghatta,
     :presence => true
 
     #Temporarily not checked :inspiring_story,  :motivation, :collaboration
@@ -49,6 +51,8 @@ class ProfileCandidate < ActiveRecord::Base
   validates_length_of :biodata, :too_long => 'Terlalu panjang, melebihi 160 karakter', :maximum => 160
   
   validates_length_of :fullname, :place_of_birth, :religion, :phone, :blood_type, :school, :information_from, :photo, :identification_card, :recommendation_letter, :status, :province, :facebook, :twitter, :maximum => 255
+  
+  validates_length_of :essay_about_bunghatta, :too_long => 'Terlalu panjang, melebihi 1000 karakter', :maximum => 1000, :tokenizer => lambda {|str| str.scan(/\S+/) }
   
   # validates_format_of :agreement, :with => lambda {|me|
      # /\s*Saya,\s*\[?\s*#{me.fullname.nil? ? '' : me.fullname.strip}\s*\]? \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 15 pada tanggal 27 Oktober - 3 November 2013\s*/i

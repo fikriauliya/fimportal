@@ -451,6 +451,12 @@
         = f.input :question_4, :label => "Adakah hal lain yang ingin diketahui tentang Bung Hatta? (Jika ada sebutkan, jika tidak, tulis 'Tidak ada')", :input_html => {:rows => 4, :class => "span5"}, :as => :text
         = f.input :question_5, :label => "Jika ada film tentang Bung Hatta, sisi kehidupan mana yang sebaiknya mendapat porsi lebih?", :collection => ["Kehidupan masa kecil", "Perjuangan selama di Belanda", "Masa kemerdekaan", "Kehidupan keluarga", "Lainnya"]
         = f.input :question_6, :label => "Bagaimana menurut Anda strategi baru untuk melahirkan 'Hatta Muda'?", :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        %h4 Esai tentang “Bung Hatta”
+        %blockquote
+          %div
+            Ceritakan bagian perjalanan hidup Bung Hatta yang menunjukkan salah satu dari tujuh pilar karakter FIM yang juga cenderung dimiliki oleh Anda. Sampaikan pengalaman Anda terkait pilar tersebut.
+            Sertakan referensi bacaan (buku/website) yang digunakan dalam esai
+        = f.input :essay_about_bunghatta, :label => "Essai (Maksimal 1000 kata", :input_html => {:rows => 8, :class => "span5"}
         %br
         %h2 Pilihan Jalur Peserta
         %h4 Strategic Leader
