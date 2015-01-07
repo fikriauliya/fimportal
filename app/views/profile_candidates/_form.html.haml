@@ -376,7 +376,7 @@
         %h4 Peminatan Diskusi
         %blockquote
           %div
-            Berikut ini adalah daftar topik FIM Club (kelompok diskusi FIM lintas generasi dengan platform Whatsapp). Mohon berikan peringkat 1 (paling berminat) – 10 (paling tidak berminat), pada topik-topik berikut : 
+            Berikut ini adalah daftar topik FIM Club (kelompok diskusi FIM lintas generasi dengan platform Whatsapp). Mohon berikan peringkat 1 (paling berminat) – 14 (paling tidak berminat), pada topik-topik berikut : 
         
         = f.input :diskusi_pangan, :label => "Pangan", :collection => (1..14), :input_html => {:id => "list", :class => "mutually_exclusive_select_lists"}
         = f.input :diskusi_kebijakan_publik, :label => "Kebijakan Publik", :collection => (1..14), :input_html => {:id => "list2", :class => "mutually_exclusive_select_lists"}
@@ -391,7 +391,7 @@
         = f.input :diskusi_masyarakat_ekonomi_ASEAN, :label => "Masyarakat Ekonomi ASEAN", :collection => (1..14), :input_html => {:id => "list11", :class => "mutually_exclusive_select_lists"}
         = f.input :diskusi_sinematografi, :label => "Sinematografi", :collection => (1..14), :input_html => {:id => "list12", :class => "mutually_exclusive_select_lists"}
         = f.input :diskusi_budaya, :label => "Budaya", :collection => (1..14), :input_html => {:id => "list13", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_kependidikan, :label => "Kependidikan", :collection => (1..14), :input_html => {:id => "list13", :class => "mutually_exclusive_select_lists"}
+        = f.input :diskusi_kependidikan, :label => "Kependidikan", :collection => (1..14), :input_html => {:id => "list14", :class => "mutually_exclusive_select_lists"}
         %hr{:noshade => "", :size => "3"}/
         /= f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
