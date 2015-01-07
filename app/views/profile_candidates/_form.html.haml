@@ -357,7 +357,7 @@
         = f.input :hobby, :label => "Hobi", :as => :string
         = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"]
         = f.input :school, :label => "Nama institusi pendidikan terakhir/yang sedang dijalani. Contoh: Universitas Indonesia", :input_html => {"data-provide" => "typeahead", "data-source" => all_school_json}
-        = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2013)
+        = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2014)
         //= f.input :non_formal_education, :label => "Pendidikan non-formal.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama institusi];</i>", :input_html => {:rows => 8, :class => "span5"}
         //= f.input :organization, :label => "Pengalaman organisasi.<br/><b>Format</b>:<i>[tahun mulai]-[tahun selesai];[nama organisasi];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
         //= f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
