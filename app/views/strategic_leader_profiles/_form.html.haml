@@ -35,17 +35,20 @@
         = f.input :organization_achievement, :label => "Prestasi Organisasi (jika ada)" , :input_html => {:rows => 5, :class => "span4"}
         = f.input :organization_contact, :label => "Kontak Organisasi <b>FORMAT</b> [Web][Facebook][Twitter][Alamat][Telp Narahubung]" , :input_html => {:rows => 5, :class => "span4"}
         = f.input :organization_network, :label => "Jaringan Organisasi (Sebutkan organisasi lain/badan pemerintahan yang pernah bekerja sama dengan organisasi Anda)" , :input_html => {:rows => 5, :class => "span4"}
-        %h4 Esai tentang “Bung Hatta”
+        %h4 Esai tentang "Indonesia yang lebih baik" menurut calon peserta:
         %blockquote
           %div
-            Ceritakan bagian perjalanan hidup Bung Hatta yang menunjukkan salah satu dari tujuh pilar karakter FIM yang juga cenderung dimiliki oleh Anda. Sampaikan pengalaman Anda terkait pilar tersebut.
-            Sertakan referensi bacaan (buku/website) yang digunakan dalam esai
-        = f.input :essay_about_indonesia, :label => "Esai (Maksimal 1000 kata", :input_html => {:rows => 8, :class => "span5"}
+            Mohon ceritakan mengenai harapan anda tentang Indonesia, beserta bagaimana peran anda selama ini selama turut serta berkontribusi untuk Indonesia yang lebih baik, serta rencana anda ke depannya. Adapun poin-poin yang diharapkan tercantum dalam essai tersebut adalah :
+            %ul
+              %li Overview tentang Indonesia yang Ideal menurut anda
+              %li Peran anda selama ini untuk Indonesia yang lebih baik?
+              %li Apa saja yang menurut anda dapat pemimpin rencanakan untuk mencapai Indonesia yang Ideal dimasa yang akan datang, bagaimana peran yang dapat anda lakukan dalam rencana tersebut ?
+        = f.input :essay_about_indonesia, :label => "Esai (Maksimal 1000 kata)", :input_html => {:rows => 8, :class => "span5"}
         %h4 Unduh Template Surat Rekomendasi
         %blockquote
           %div
-            Gunakan Template Surat ini untuk diisi oleh perekomendasi Anda, lalu unggah dokumen tersebut (sudah diisi, ditandatangani, dan discan) pada step berikutnya, Template bisa di download
-            %a{href: "https://docs.google.com/uc?authuser=0&id=0ByAd-hBNx_8kTTd5bjRsVEdzNmc&export=download"}
+            Gunakan Template Surat ini untuk diisi oleh perekomendasi Anda, lalu unggah dokumen tersebut (sudah diisi, ditandatangani, dan discan) pada step berikutnya, Template bisa diunduh
+            %a{href: "https://docs.google.com/uc?authuser=0&id=0ByAd-hBNx_8kYTQ3TzJ0NS1wOTA&export=download"}
               di sini
 
       .form-actions
