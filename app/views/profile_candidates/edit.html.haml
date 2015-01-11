@@ -47,6 +47,9 @@
         %th{'data-hide' => 'all'} Komitmen ke Organisasi Awal untuk FIM
         %th{'data-hide' => 'all'} Info dari
         %th{'data-hide' => 'all'} Pertunjukan
+        %th{'data-hide' => 'all'} Parallel Room Pendidikan dan Kebudayaan
+        %th{'data-hide' => 'all'} Parallel Room Politik dan Hukum​
+        %th{'data-hide' => 'all'} Parallel Room Sosial dan Ekonomi​
         %th{'data-hide' => 'all'} Peminatan Diskusi Pangan
         %th{'data-hide' => 'all'} Peminatan Diskusi Kebijakan Publik
         %th{'data-hide' => 'all'} Peminatan Diskusi Energi dan Lingkungan
@@ -123,6 +126,9 @@
         %td= @profile.is_committed_to_own_organization == true ? 'Iya' : 'Tidak'
         %td= @profile.information_from
         %td= @profile.performance_type
+        %td= @profile.pararel_room_pendidikan_kebudayaan
+        %td= @profile.pararel_room_sosial_ekonomi
+        %td= @profile.pararel_room_politik_hukum
         %td= @profile.diskusi_pangan
         %td= @profile.diskusi_kebijakan_publik
         %td= @profile.diskusi_energi_lingkungan
