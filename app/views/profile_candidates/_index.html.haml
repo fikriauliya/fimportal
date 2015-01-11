@@ -71,16 +71,21 @@
         %th{'data-hide' => 'all'} Komitmen ke Organisasi Awal untuk FIM
         %th{'data-hide' => 'all'} Info dari
         %th{'data-hide' => 'all'} Pertunjukan
-        %th{'data-hide' => 'all'} Peminatan Diskusi Ekonomi Pembangunan
+        %th{'data-hide' => 'all'} Peminatan Diskusi Pangan
         %th{'data-hide' => 'all'} Peminatan Diskusi Kebijakan Publik
         %th{'data-hide' => 'all'} Peminatan Diskusi Energi dan Lingkungan
-        %th{'data-hide' => 'all'} Peminatan Diskusi Pendidikan dan Parenting
+        %th{'data-hide' => 'all'} Peminatan Diskusi Parenting
         %th{'data-hide' => 'all'} Peminatan Diskusi Media Literasi
         %th{'data-hide' => 'all'} Peminatan Diskusi Social Entrepreneurship
-        %th{'data-hide' => 'all'} Peminatan Diskusi Pangan Gizi Kesehatan
-        %th{'data-hide' => 'all'} Peminatan Diskusi Traventure
-        %th{'data-hide' => 'all'} Peminatan Diskusi People Development
+        %th{'data-hide' => 'all'} Peminatan Diskusi Kesehatan
+        %th{'data-hide' => 'all'} Peminatan Diskusi Travel and Adventure
         %th{'data-hide' => 'all'} Peminatan Diskusi Liberal Arts
+        %th{'data-hide' => 'all'} Peminatan Diskusi Personal People Development
+        %th{'data-hide' => 'all'} Peminatan Diskusi Masyarakat Ekonomi ASEAN
+        %th{'data-hide' => 'all'} Peminatan Diskusi Sinematografi
+        %th{'data-hide' => 'all'} Peminatan Diskusi Budaya
+        %th{'data-hide' => 'all'} Peminatan Diskusi Kependidikan
+        %th{'data-hide' => 'all'} Esai Bung Hatta
         %th{'data-hide' => 'all'} Pilihan Jalur
         %th{'data-hide' => 'all'} INFO Khusus
       
@@ -150,16 +155,21 @@
           %td= profile.is_committed_to_own_organization == true ? 'Iya' : 'Tidak'
           %td= profile.information_from
           %td= profile.performance_type
-          %td= profile.diskusi_ekonomipembangunan
-          %td= profile.diskusi_kebijakanpublik
-          %td= profile.diskusi_energidanlingkungan
-          %td= profile.diskusi_pendidikandanparenting
-          %td= profile.diskusi_medialiterasi
-          %td= profile.diskusi_socialentre
-          %td= profile.diskusi_pangangizikesehatan
-          %td= profile.diskusi_travel
-          %td= profile.diskusi_peopledev
-          %td= profile.diskusi_liberalarts
+          %td= profile.diskusi_pangan
+          %td= profile.diskusi_kebijakan_publik
+          %td= profile.diskusi_energi_lingkungan
+          %td= profile.diskusi_parenting
+          %td= profile.diskusi_media_literasi
+          %td= profile.diskusi_sosial_enterpreneurship
+          %td= profile.diskusi_kesehatan
+          %td= profile.diskusi_travel_adventure
+          %td= profile.diskusi_liberal_arts
+          %td= profile.diskusi_personal_people_development
+          %td= profile.diskusi_masyarakat_ekonomi_ASEAN
+          %td= profile.diskusi_sinematografi
+          %td= profile.diskusi_budaya
+          %td= profile.diskusi_kependidikan
+          %td= profile.essay_about_bunghatta
           %td= profile.choose_type
           %td
             %div
