@@ -29,16 +29,28 @@
         %th Facebook
         %th Twitter
         %th Email
-        %th FC Ekonomi Pembangunan
+        %th FC Pangan
         %th FC Kebijakan Publik
         %th FC Energi dan Lingkungan
-        %th FC Pendidikan dan Parenting
+        %th FC Parenting
         %th FC Media Literasi
         %th FC Sosial Enterpreneurship
-        %th FC Pangan Gizi dan Kesehatan
-        %th FC Traventure
-        %th FC People Development
+        %th FC Kesehatan
+        %th FC Travel dan Adventure
         %th FC Liberal Arts
+        %th FC Personal People Development
+        %th FC Masyarakat Ekonomi ASEAN
+        %th FC Sinematografi
+        %th FC Budaya
+        %th FC Kependidikan
+        %th Esai Bung Hatta
+        %th Karya Bung Hatta
+        %th Jawaban Kuesioner nomor 1
+        %th Jawaban Kuesioner nomor 2
+        %th Jawaban Kuesioner nomor 3
+        %th Jawaban Kuesioner nomor 4
+        %th Jawaban Kuesioner nomor 5
+        %th Jawaban Kuesioner nomor 6
         %th Pilihan Jalur Peserta
         %th Komitmen ke FIM Pusat
         %th Komitmen ke FIM Regional
@@ -74,16 +86,28 @@
           %td= profile.facebook_url
           %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
           %td= profile.user.email
-          %td= profile.diskusi_ekonomipembangunan
-          %td= profile.diskusi_kebijakanpublik
-          %td= profile.diskusi_energidanlingkungan
-          %td= profile.diskusi_pendidikandanparenting
-          %td= profile.diskusi_medialiterasi
-          %td= profile.diskusi_socialentre
-          %td= profile.diskusi_pangangizikesehatan
-          %td= profile.diskusi_travel
-          %td= profile.diskusi_peopledev
-          %td= profile.diskusi_liberalarts
+          %td= profile.diskusi_pangan
+          %td= profile.diskusi_kebijakan_publik
+          %td= profile.diskusi_energi_lingkungan
+          %td= profile.diskusi_parenting
+          %td= profile.diskusi_media_literasi
+          %td= profile.diskusi_sosial_enterpreneurship
+          %td= profile.diskusi_kesehatan
+          %td= profile.diskusi_travel_adventure
+          %td= profile.diskusi_liberal_arts
+          %td= profile.diskusi_personal_people_development
+          %td= profile.diskusi_masyarakat_ekonomi_ASEAN
+          %td= profile.diskusi_sinematografi
+          %td= profile.diskusi_budaya
+          %td= profile.diskusi_kependidikan
+          %td= profile.essay_about_bunghatta
+          %td= profile.creation_bung_hatta
+          %td= profile.question_1
+          %td= profile.question_2
+          %td= profile.question_3
+          %td= profile.question_4
+          %td= profile.question_5
+          %td= profile.question_6
           - if profile.choose_type == 0 then
             %td Strategic Leader
           - elsif profile.choose_type == 1 then
