@@ -347,7 +347,7 @@
       .form-inputs
         = f.input :fullname, :label => "Nama lengkap"
         = f.input :dob, :input_html => {:style => 'width:auto'}, :label => "Tanggal lahir", 
-          start_year: Date.today.year - 30, end_year: Date.today.year - 12, order: [:day, :month, :year]
+          start_year: Date.today.year - 31, end_year: Date.today.year - 12, order: [:day, :month, :year]
         = f.input :place_of_birth, :label => "Tempat lahir"
         = f.input :gender, :label => "Jenis kelamin", :as => :select, :collection => [["Laki-laki", 0], ["Perempuan", 1]]
         = f.input :religion, :label => "Agama", :collection => ["Islam", "Katolik", "Protestan", "Hindu", "Budha", "Konghuchu"]
