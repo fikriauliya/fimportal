@@ -29,6 +29,9 @@
         %th Facebook
         %th Twitter
         %th Email
+        %th Parallel Room Pendidikan dan Kebudayaan
+        %th Parallel Room Politik dan Hukum​
+        %th Parallel Room Sosial dan Ekonomi​
         %th FC Pangan
         %th FC Kebijakan Publik
         %th FC Energi dan Lingkungan
@@ -86,6 +89,9 @@
           %td= profile.facebook_url
           %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
           %td= profile.user.email
+          %td= profile.pararel_room_pendidikan_kebudayaan
+          %td= profile.pararel_room_sosial_ekonomi
+          %td= profile.pararel_room_politik_hukum
           %td= profile.diskusi_pangan
           %td= profile.diskusi_kebijakan_publik
           %td= profile.diskusi_energi_lingkungan
