@@ -106,9 +106,9 @@
       %h4
         Pendaftar FIM 17
         ="(#{User.where("current_sign_in_at >= '09-01-2013'").count}"
-        pendaftar,
-        =ProfileCandidate.submitted.count
-        aplikasi lengkap)
+        pendaftar)
+        //=ProfileCandidate.submitted.count
+        //aplikasi lengkap)
     #map_canvas{:style => "width:650px; height:350px"}
 .row
   .span7.service-item
