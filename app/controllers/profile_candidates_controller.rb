@@ -130,7 +130,7 @@ class ProfileCandidatesController < ApplicationController
     @profiles = ProfileCandidate.submitted.chronological
     
     if params[:province]
-      @profiles = @profiles.where(:province => params[:povince])
+      @profiles = @profiles.where(:province => params[:province])
     end
     if params[:fullname]
       @profiles = @profiles.where("lower(fullname) like lower('%' || ? || '%')", params[:fullname])
