@@ -37,13 +37,16 @@
   .modal-footer
     %button.btn.btn-primary{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
 
-/
-  .row
-    .span12
-      .alert.alert-info
-        Status pendaftaran Anda bisa dicek dengan menekan tombol 'Status Pendaftaran Saya' di bawah. Tidak ada email konfirmasi pendaftaran yang dikirimkan panitia.
-        %br
-      Jika aplikasi Anda sudah lengkap, nama Anda akan ditampilkan di tombol 'Calon Peserta FIM 15' di bawah.
+
+.row
+  .span12
+    .alert.alert-info
+      %ul
+        %li 
+          %b Pendaftaran FIM 17 telah ditutup. 
+        %li Status pendaftaran Anda bisa dicek dengan menekan tombol 'Status Pendaftaran Saya' di bawah. 
+        %li Tidak ada email konfirmasi pendaftaran yang dikirimkan panitia.
+        %li Jika aplikasi Anda sudah lengkap, nama Anda akan ditampilkan di tombol 'Calon Peserta FIM 17' di bawah.
 .row
 
   /.span12
@@ -112,7 +115,7 @@
     #map_canvas{:style => "width:650px; height:350px"}
 .row
   .span7.service-item
-    =link_to "Pendaftaran", new_profile_candidate_path, 'class' => 'btn btn-primary'
+    //=link_to "Pendaftaran", new_profile_candidate_path, 'class' => 'btn btn-primary'
     =link_to "Calon Peserta FIM 17", profile_candidates_path, 'class' => 'btn btn-danger'
     =link_to "Statistik Pendaftar", statistics_public_path, 'class' => 'btn btn-warning'
     =link_to "Status Pendaftaran Saya", progress_status_profile_candidates_path, 'class' => 'btn btn-info'
