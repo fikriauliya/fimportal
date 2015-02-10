@@ -161,7 +161,7 @@ class ProfileCandidatesController < ApplicationController
   #step2 post
   def create
     if !current_user.profile_candidate.nil?
-      redirect_to step2a_profile_candidates_path
+      redirect_to step2_branching_profile_candidates_path
     else
       @profile = ProfileCandidate.new(params[:profile_candidate])
       @profile.user_id = current_user.id
