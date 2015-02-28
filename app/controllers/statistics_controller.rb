@@ -12,7 +12,7 @@ class StatisticsController < ApplicationController
 
     @new_users = User.where("current_sign_in_at >= '09-01-2013'").count(:all, :group => "(date(created_at) || to_char(date_part('hour', created_at),'999D9'))")
     @new_profile_candidates = ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013'").count(:all, :group => "(date(profile_candidates.created_at) || to_char(date_part('hour', profile_candidates.created_at),'999D9'))")
-    @new_submissions = ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013'").count(:all, :group => "(date(profile_candidates.submitted_at) || to_char(date_part('hour', profile_candidates.submitted_at),'999D9'))")
+    @new_submissions = ProfileCandidate.joins("INNER JOIN users ON users.id = profile_candidates.user_id AND users.current_sign_in_at >= '09-01-2013'").count(:all, :group => 'date(profile_candidates.submitted_at)', :order => 'date(profile_candidates.submitted_at) ASC')
   end
   
   def public
