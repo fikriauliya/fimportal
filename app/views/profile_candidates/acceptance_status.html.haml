@@ -46,13 +46,13 @@
           = display_base_errors @profile
 
           .form-inputs
-            = f.input :is_candidate_accept_offer, :label => "Bersedia mengikut FIM 16 secara penuh (centang jika iya)", :as => :boolean
+            = f.input :is_candidate_accept_offer, :label => "Bersedia mengikut FIM 17 secara penuh (centang jika iya)", :as => :boolean
           .form-actions
             = f.submit "Submit", :class => "btn btn-primary"
             
 
         %p 
-          Dengan ini, Anda menyatakan kesediaan menjadi peserta FIM 17 dan akan mengikuti seluruh kegiatan FIM 16 
+          Dengan ini, Anda menyatakan kesediaan menjadi peserta FIM 17 dan akan mengikuti seluruh kegiatan FIM 17 
           secara penuh tanpa terkecuali. Namun bila Anda tidak bersedia, maka status kesertaan Anda sebagai peserta 
           pelatihan FIM 17 akan dicabut.
 
@@ -81,10 +81,10 @@
             Anda telah memilih: 
             - if @profile.is_candidate_accept_offer
               %b Mengikuti 
-              Forum Indonesia Muda 16.
+              Forum Indonesia Muda 17.
             - else
               %b TIDAK Mengikuti 
-              Forum Indonesia Muda 16. Status kesertaan Anda sebagai peserta pelatihan FIM 16 akan dicabut.
+              Forum Indonesia Muda 17. Status kesertaan Anda sebagai peserta pelatihan FIM 17 akan dicabut.
 
           - if @profile.is_candidate_accept_offer
             %p
