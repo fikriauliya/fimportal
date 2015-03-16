@@ -152,7 +152,7 @@ class RecruiterController < ApplicationController
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
     
     @not_confirmeds = ProfileCandidate.where("is_accepted = true and is_candidate_accept_offer is NULL").order(:fullname).collect{|s| [s.fullname, s.school, s.phone]}
-    @confirmeds = ProfileCandidate.where(:is_candidate_accept_offer => true).order(:fullname).collect{|s| s.fullname}
-    @rejecteds = ProfileCandidate.where(:is_candidate_accept_offer => false).order(:fullname).collect{|s| s.fullname}
+    @confirmeds = ProfileCandidate.where(:is_candidate_accept_offer => true).order(:fullname).collect{|s| [s.fullname, s.school, s.phone]}
+    @rejecteds = ProfileCandidate.where(:is_candidate_accept_offer => false).order(:fullname).collect{|s| [s.fullname, s.school, s.phone]}
   end
 end

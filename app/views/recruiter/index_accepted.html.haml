@@ -7,8 +7,8 @@
     %h3 Confirmed
     %ol
       -@confirmeds.each do |a|
-        %li= a
+        %li= a[0] +' '+ a[1] +' '+ a[2]
     %h3 Rejected
     %ol
       -@rejecteds.each do |a|
-        %li= a
+        %li= a[0] +' '+ a[1] +' '+ a[2]
