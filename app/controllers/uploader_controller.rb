@@ -46,38 +46,6 @@ class UploaderController < ApplicationController
         @message << "No user = #{email}\\n"
       end
     end
-
-    identification_card_match = /^(.+)_KTP(.*)$/i.match(filename)
-    unless identification_card_match.nil?
-      @message << "Matched identification_card\\n"
-      email = identification_card_match[1]
-      user = User.find_by_email(email)
-      
-      unless user.nil?
-        profile_candidate = user.profile_candidate
-
-        if !profile_candidate.nil? && !profile_candidate.identification_card?
-          profile_candidate.identification_card = params[:file]
-          profile_candidate.save!
-
-          logger.info "Identification_card => #{params[:file]}\\n"
-          @message << "#{email} = #{params[:file]}\\n"
-          
-          UploaderMailer.photo_uploaded(email).deliver
-        else
-          logger.info "#{email} already have identification_card\\n"
-          @message << "#{email} already have identification_card\\n"
-          
-          if profile_candidate.status == 'NOT SUBMITTED'
-            UploaderMailer.identification_card_uploaded(email).deliver
-          else
-            UploaderMailer.completed_notification(email).deliver
-          end
-        end
-      else
-        @message << "No user = #{email}\\n"
-      end
-    end
     
     recommendation_letter_match = /^(.+)_Rekomendasi(.*)$/i.match(filename)
     unless recommendation_letter_match.nil?

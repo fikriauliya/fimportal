@@ -3,18 +3,8 @@ class ProfileCandidate < ActiveRecord::Base
     :hobby, :information_from, :location, :motivation, :non_formal_education, :organization, 
     :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
     :latitude, :longitude, :agreement, :photo, :recommendation_letter, :collaboration, 
-    :inspiring_story, :province, :is_announcement_displayed, :commit_agreement, 
-    :is_committed_to_central_fim, :is_committed_to_regional_fim, :is_committed_to_own_organization, :choose_type, :food_except,
-    :diskusi_ekonomipembangunan, :diskusi_kebijakanpublik, :diskusi_energidanlingkungan, :diskusi_pendidikandanparenting, 
-    :diskusi_medialiterasi, :diskusi_socialentre, :diskusi_pangangizikesehatan, :diskusi_travel, :diskusi_peopledev,
-    :diskusi_liberalarts, :identification_card, :is_accepted, :is_candidate_accept_offer,
-    :pararel_room_pendidikan_kebudayaan, :pararel_room_sosial_ekonomi, :pararel_room_politik_hukum, :creation_bung_hatta,
-    :question_1, :question_2, :question_3, :question_4, :question_5, :question_6,
-    :diskusi_pangan, :diskusi_kebijakan_publik, :diskusi_energi_lingkungan, :diskusi_parenting, :diskusi_media_literasi,
-    :diskusi_sosial_enterpreneurship, :diskusi_kesehatan, :diskusi_travel_adventure, :diskusi_liberal_arts,
-    :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya, :diskusi_kependidikan,
-    :essay_about_bunghatta
-
+    :inspiring_story, :province, :is_announcement_displayed
+    
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
   attr_accessible :biodata, :is_photo_visible_to_public, :is_visible_to_public,
@@ -24,35 +14,24 @@ class ProfileCandidate < ActiveRecord::Base
     :organization_point, :committee_point, :personal_knowledge_point, :document_completeness_point,
     :reliability_point, :willingness_point, 
     :special_location_comment, :special_character_comment, :status,
-    :school,:essay_point, :cv_point, :recommendation_letter_point,
+    :school,
     :as => :recruiter
+    
+  attr_accessible :workshop, :is_update_allowed, :status, :as => :update_workshop
   
-  attr_accessible :is_candidate_accept_offer, :as => :update_acceptance
-
   belongs_to :user
   belongs_to :marked_by, :class_name => "User"
   
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
-    :information_from, :location, :phone, :place_of_birth, :religion, 
-    :school, :agreement, :province, :choose_type, 
-    :pararel_room_pendidikan_kebudayaan, :pararel_room_sosial_ekonomi, :pararel_room_politik_hukum,
-    :question_1, :question_2, :question_3, :question_4, :question_5, :question_6,
-    :diskusi_pangan, :diskusi_kebijakan_publik, :diskusi_energi_lingkungan, :diskusi_parenting, :diskusi_media_literasi,
-    :diskusi_sosial_enterpreneurship, :diskusi_kesehatan, :diskusi_travel_adventure, :diskusi_liberal_arts,
-    :diskusi_personal_people_development, :diskusi_masyarakat_ekonomi_ASEAN, :diskusi_sinematografi, :diskusi_budaya, :diskusi_kependidikan,
-    :essay_about_bunghatta,
-    :presence => true
-
-    #Temporarily not checked :inspiring_story,  :motivation, :collaboration
+    :information_from, :location, :motivation, :phone, :place_of_birth, :religion, 
+    :school, :agreement, :inspiring_story, :collaboration, :province, :presence => true
     
-  # validates_length_of :motivation, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
-  # validates_length_of :inspiring_story, :maximum => 500, :too_long => "Terlalu panjang, melebihi 500 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
-  # validates_length_of :collaboration, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
+  validates_length_of :motivation, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
+  validates_length_of :inspiring_story, :maximum => 500, :too_long => "Terlalu panjang, melebihi 500 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
+  validates_length_of :collaboration, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
   validates_length_of :biodata, :too_long => 'Terlalu panjang, melebihi 160 karakter', :maximum => 160
   
-  validates_length_of :fullname, :place_of_birth, :religion, :phone, :blood_type, :school, :information_from, :photo, :identification_card, :recommendation_letter, :status, :province, :facebook, :twitter, :maximum => 255
-  
-  validates_length_of :essay_about_bunghatta, :too_long => 'Terlalu panjang, melebihi 1000 karakter', :maximum => 1000, :tokenizer => lambda {|str| str.scan(/\S+/) }
+  validates_length_of :fullname, :place_of_birth, :religion, :phone, :blood_type, :school, :information_from, :photo, :recommendation_letter, :status, :province, :facebook, :twitter, :maximum => 255
   
   # validates_format_of :agreement, :with => lambda {|me|
      # /\s*Saya,\s*\[?\s*#{me.fullname.nil? ? '' : me.fullname.strip}\s*\]? \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 15 pada tanggal 27 Oktober - 3 November 2013\s*/i
@@ -115,18 +94,14 @@ class ProfileCandidate < ActiveRecord::Base
   end
   
   def total_point
-    if choose_type.eql?(0) then
-     ((40 * essay_point + 55 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
-    elsif choose_type == 1 then
-     ((70 * essay_point + 25 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
-    elsif choose_type == 2 then
-     ((55 * essay_point + 40 * cv_point + 5 * recommendation_letter_point)/100.0).round(2)
-    end
- end
+    ((65 * cv_total_point + 35 * motivation_total_point)/100.0).round(2)
+  end
   
   def self.to_alphabet(point)
     case point
     when 0
+      'E'
+    when 1
       'D'
     when 2
       'C'
@@ -135,14 +110,16 @@ class ProfileCandidate < ActiveRecord::Base
     when 4
       'A'
     else
-      'D'
+      'E'
     end
   end
   
   def self.from_alphabet(alp)
     case alp
-    when 'D'
+    when 'E'
       0
+    when 'D'
+      1
     when 'C'
       2
     when 'B'

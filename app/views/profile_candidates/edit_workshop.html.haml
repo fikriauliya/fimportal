@@ -1,0 +1,38 @@
+.span8{:style => 'margin-top:20px'}
+  %p
+    Ada penambahan deskripsi pada formulir pendaftaran. Yang semula tertulis:
+  %p
+    %b
+      "Pelatihan workshop kepemudaan yang pernah diikuti. (Format: [tahun];[nama pelatihan])"
+  %p
+    dilengkapi menjadi
+  %p 
+    %b
+      "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti. (Format: [tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi])"
+  %hr
+  %p
+    %ul
+      %li Jika Anda ingin mengubah isian Anda, silakan update kotak isian di bawah ini dan klik "Simpan".
+      %li Jika Anda tidak ingin mengubah isian Anda, silakan klik "Tidak ada perubahan".
+  
+  %p
+    Anda hanya bisa mengubahnya 
+    %b satu kali.
+    Setelah Anda klik salah satu dari 2 tombol di bawah, formulir akan diperiksa oleh tim seleksi, dan halaman ini 
+    %u
+      %b
+        tidak
+    akan ditampilkan lagi
+    
+.span8
+  .well
+    = simple_form_for(@profile, :url => update_workshop_profile_candidates_path(:changed => 'true'), :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
+      = f.error_notification
+      = display_base_errors @profile
+
+      .form-inputs
+        = f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti. Format: [tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]", 
+          :input_html => {:rows => 8, :class => "span5"}
+      .form-actions
+        = f.submit "Simpan", :class => "btn btn-primary"
+        = link_to "Tidak ada perubahan", update_workshop_profile_candidates_path(:changed => 'false'), :method => 'put', :class => "btn btn-danger"

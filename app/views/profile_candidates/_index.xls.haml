@@ -1,318 +1,93 @@
-- if params[:filter].eql?('all')
-  %table
-    %thead
+%table
+  %thead
+    %tr
+      %th Id
+      %th Nama
+      %th Dinilai oleh
+      %th Organisasi
+      %th Kepanitiaan
+      %th Wawasan
+      %th Kelengkapan
+      %th Total CV
+
+      %th Reliability
+      %th Willingness
+      %th Total Motivasi
+      
+      %th Grand Total
+
+      %th Domisili khusus
+      %th Karakter khusus
+      %th Asal Institusi
+      %th Provinsi
+      %th Surat rekomendasi
+      %th Tanggal lahir
+      %th Tempat lahir
+      %th Alamat
+      %th Gender
+      %th Agama
+      %th Handphone
+      %th Hobi
+      %th Gol darah
+      %th Angkatan
+      %th Pendidikan non-formal
+      %th Organisasi
+      %th Kepanitiaan
+      %th Pelatihan / Seminar / Konferensi / Kompetisi
+      %th Motivasi
+      %th Kolaborasi yang ditawarkan
+      %th Kisah yang menginspirasi
+      %th Info dari
+      %th Daftar ke
+      %th Pertunjukan
+      %th Direkomendasikan
+      %th Facebook
+      %th Twitter
+      %th Email
+  %tbody
+    - profiles.each_with_index do |profile, index|
       %tr
-        %th Id
-        %th Nama
-        %th Dinilai oleh
-        %th Nilai CV
-        %th Nilai Essai
-        %th Nilai Surat Rekomendasi
-        %th Total
-        %th Keterangan
-        %th Tipologi
-        %th Asal Institusi
-        %th Provinsi
-        %th Surat rekomendasi
-        %th Tanggal lahir
-        %th Tempat lahir
-        %th Alamat
-        %th Gender
-        %th Agama
-        %th Handphone
-        %th Hobi
-        %th Gol darah
-        %th Angkatan
-        %th Info dari
-        %th Daftar ke
-        %th Pertunjukan
-        %th Facebook
-        %th Twitter
-        %th Email
-        %th Parallel Room Pendidikan dan Kebudayaan
-        %th Parallel Room Politik dan Hukum​
-        %th Parallel Room Sosial dan Ekonomi​
-        %th FC Pangan
-        %th FC Kebijakan Publik
-        %th FC Energi dan Lingkungan
-        %th FC Parenting
-        %th FC Media Literasi
-        %th FC Sosial Enterpreneurship
-        %th FC Kesehatan
-        %th FC Travel dan Adventure
-        %th FC Liberal Arts
-        %th FC Personal People Development
-        %th FC Masyarakat Ekonomi ASEAN
-        %th FC Sinematografi
-        %th FC Budaya
-        %th FC Kependidikan
-        %th Esai Bung Hatta
-        %th Karya Bung Hatta
-        %th Jawaban Kuesioner nomor 1
-        %th Jawaban Kuesioner nomor 2
-        %th Jawaban Kuesioner nomor 3
-        %th Jawaban Kuesioner nomor 4
-        %th Jawaban Kuesioner nomor 5
-        %th Jawaban Kuesioner nomor 6
-        %th Pilihan Jalur Peserta
-        %th Komitmen ke FIM Pusat
-        %th Komitmen ke FIM Regional
-        %th Komitmen ke Bantu FIM dengan Komunitas Sendiri
-    %tbody
-      - profiles.each_with_index do |profile, index|
-        %tr
-          %td= profile.id
-          %td= link_to(profile.fullname, profile.photo)
-          %td= !profile.marked_by.nil? ? profile.marked_by.email : ""
+        %td= profile.id
+        %td= link_to(profile.fullname, profile.photo)
+        %td= !profile.marked_by.nil? ? profile.marked_by.email : ""
           
-          %td= ProfileCandidate.to_alphabet(profile.cv_point)
-          %td= ProfileCandidate.to_alphabet(profile.essay_point)
-          %td= ProfileCandidate.to_alphabet(profile.recommendation_letter_point)  
-          %td= profile.total_point
-          %td= profile.special_location_comment
-          %td= profile.special_character_comment
-          %td= profile.school
-          %td= profile.province
-          %td= link_to('Download', profile.recommendation_letter)
-          %td= profile.dob.strftime("%d %B, %Y")
-          %td= profile.place_of_birth
-          %td= profile.location
-          %td= profile.gender == "0" ? 'Laki-laki' : 'Perempuan'
-          %td= profile.religion
-          %td= "'#{profile.phone}"
-          %td= profile.hobby
-          %td= profile.blood_type
-          %td= profile.batch
-          %td= profile.information_from
-          %td= profile.application_count
-          %td= profile.performance_type
-          %td= profile.facebook_url
-          %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
-          %td= profile.user.email
-          %td= profile.pararel_room_pendidikan_kebudayaan
-          %td= profile.pararel_room_sosial_ekonomi
-          %td= profile.pararel_room_politik_hukum
-          %td= profile.diskusi_pangan
-          %td= profile.diskusi_kebijakan_publik
-          %td= profile.diskusi_energi_lingkungan
-          %td= profile.diskusi_parenting
-          %td= profile.diskusi_media_literasi
-          %td= profile.diskusi_sosial_enterpreneurship
-          %td= profile.diskusi_kesehatan
-          %td= profile.diskusi_travel_adventure
-          %td= profile.diskusi_liberal_arts
-          %td= profile.diskusi_personal_people_development
-          %td= profile.diskusi_masyarakat_ekonomi_ASEAN
-          %td= profile.diskusi_sinematografi
-          %td= profile.diskusi_budaya
-          %td= profile.diskusi_kependidikan
-          %td= profile.essay_about_bunghatta
-          %td= profile.creation_bung_hatta
-          %td= profile.question_1
-          %td= profile.question_2
-          %td= profile.question_3
-          %td= profile.question_4
-          %td= profile.question_5
-          %td= profile.question_6
-          - if profile.choose_type == 0 then
-            %td Strategic Leader
-          - elsif profile.choose_type == 1 then
-            %td Local Leader
-          - elsif profile.choose_type == 2 then
-            %td Activist Based On Character
-          %td= profile.is_committed_to_central_fim == true ? 'Iya' : 'Tidak'
-          %td= profile.is_committed_to_regional_fim == true ? 'Iya' : 'Tidak'
-          %td= profile.is_committed_to_own_organization == true ? 'Iya' : 'Tidak'
-- elsif params[:filter].eql?('strategic')
-  %table
-    %thead
-      %tr
-        %th Id
-        %th Nama
-        %th Dinilai oleh
-        %th Nilai CV
-        %th Nilai Essai
-        %th Nilai Surat Rekomendasi
-        %th Total
-        %th Keterangan
-        %th Tipologi
-        %th Asal Institusi
-        %th Facebook
-        %th Twitter
-        %th Email
-        %th Aktivitas Pencapaian 1
-        %th Alasan Pencapaian 1
-        %th Aktivitas Pencapaian 2
-        %th Alasan Pencapaian 2
-        %th Aktivitas Pencapaian 3
-        %th Alasan Pencapaian 3
-        %th Aktivitas Pencapaian 4
-        %th Alasan Pencapaian 4
-        %th Aktivitas Pencapaian 5
-        %th Alasan Pencapaian 5
-        %th Essai tentang Indonesia
-        %th Nama Organisasi
-        %th Tahun berdiri
-        %th Bidang Organisasi
-        %th Kegiatan yang telah berlangsung
-        %th Jumlah Anggota Organisasi
-        %th Tujuan Pendirian Organisasi
-        %th Capaian Organisasi
-        %th Kontak Organisasi
-        %th Jaringan Organisasi
-    %tbody
-      - profiles.each_with_index do |profile, index|
-        - if !profile.user.strategic_leader_profile.nil?
-          %tr
-            %td= profile.id
-            %td= link_to(profile.fullname, profile.photo)
-            %td= !profile.marked_by.nil? ? profile.marked_by.email : ""          
-            %td= ProfileCandidate.to_alphabet(profile.cv_point)
-            %td= ProfileCandidate.to_alphabet(profile.essay_point)
-            %td= ProfileCandidate.to_alphabet(profile.recommendation_letter_point)  
-            %td= profile.total_point
-            %td= profile.special_location_comment
-            %td= profile.special_character_comment
-            %td= profile.school
-            %td= profile.facebook_url
-            %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
-            %td= profile.user.email
-            %td= profile.user.strategic_leader_profile.activity1_information
-            %td= profile.user.strategic_leader_profile.activity1_reason
-            %td= profile.user.strategic_leader_profile.activity2_information
-            %td= profile.user.strategic_leader_profile.activity2_reason
-            %td= profile.user.strategic_leader_profile.activity3_information
-            %td= profile.user.strategic_leader_profile.activity3_reason
-            %td= profile.user.strategic_leader_profile.activity4_information
-            %td= profile.user.strategic_leader_profile.activity4_reason
-            %td= profile.user.strategic_leader_profile.activity5_information
-            %td= profile.user.strategic_leader_profile.activity5_reason
-            %td= profile.user.strategic_leader_profile.essay_about_indonesia
-            %td= profile.user.strategic_leader_profile.organization_name
-            %td= profile.user.strategic_leader_profile.organization_year
-            %td= profile.user.strategic_leader_profile.organization_category
-            %td= profile.user.strategic_leader_profile.organization_activity
-            %td= profile.user.strategic_leader_profile.organization_count_member
-            %td= profile.user.strategic_leader_profile.organization_goal
-            %td= profile.user.strategic_leader_profile.organization_achievement
-            %td= profile.user.strategic_leader_profile.organization_contact
-            %td= profile.user.strategic_leader_profile.organization_network
-- elsif params[:filter].eql?('local')
-  %table
-    %thead
-      %tr
-        %th Id
-        %th Nama
-        %th Dinilai oleh
-        %th Nilai CV
-        %th Nilai Essai
-        %th Nilai Surat Rekomendasi
-        %th Total
-        %th Keterangan
-        %th Tipologi
-        %th Asal Institusi
-        %th Facebook
-        %th Twitter
-        %th Email
-        %th Essai tentang Organisasi
-        %th Nama Organisasi
-        %th Tahun berdiri
-        %th Bidang Organisasi
-        %th Kegiatan yang telah berlangsung
-        %th Jumlah Anggota Organisasi
-        %th Tujuan Pendirian Organisasi
-        %th Capaian Organisasi
-        %th Kontak Organisasi
-        %th Jaringan Organisasi
-    %tbody
-      - profiles.each_with_index do |profile, index|
-        - if !profile.user.local_leader_profile.nil?
-          %tr
-            %td= profile.id
-            %td= link_to(profile.fullname, profile.photo)
-            %td= !profile.marked_by.nil? ? profile.marked_by.email : ""          
-            %td= ProfileCandidate.to_alphabet(profile.cv_point)
-            %td= ProfileCandidate.to_alphabet(profile.essay_point)
-            %td= ProfileCandidate.to_alphabet(profile.recommendation_letter_point)  
-            %td= profile.total_point
-            %td= profile.special_location_comment
-            %td= profile.special_character_comment
-            %td= profile.school
-            %td= profile.facebook_url
-            %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
-            %td= profile.user.email
-            %td= profile.user.local_leader_profile.essay_about_organization
-            %td= profile.user.local_leader_profile.organization_name
-            %td= profile.user.local_leader_profile.organization_year
-            %td= profile.user.local_leader_profile.organization_category
-            %td= profile.user.local_leader_profile.organization_activity
-            %td= profile.user.local_leader_profile.organization_count_member
-            %td= profile.user.local_leader_profile.organization_goal
-            %td= profile.user.local_leader_profile.organization_achievement
-            %td= profile.user.local_leader_profile.organization_contact
-            %td= profile.user.local_leader_profile.organization_network
-- elsif params[:filter].eql?('activist')
-  %table
-    %thead
-      %tr
-        %th Id
-        %th Nama
-        %th Dinilai oleh
-        %th Nilai CV
-        %th Nilai Essai
-        %th Nilai Surat Rekomendasi
-        %th Total
-        %th Keterangan
-        %th Tipologi
-        %th Asal Institusi
-        %th Facebook
-        %th Twitter
-        %th Email
-        %th Aktivitas Pencapaian 1
-        %th Alasan Pencapaian 1
-        %th Aktivitas Pencapaian 2
-        %th Alasan Pencapaian 2
-        %th Aktivitas Pencapaian 3
-        %th Alasan Pencapaian 3
-        %th Aktivitas Pencapaian 4
-        %th Alasan Pencapaian 4
-        %th Aktivitas Pencapaian 5
-        %th Alasan Pencapaian 5
-        %th Essai action plan pasca pelatihan
-        %th tipografi menurut peserta
-    %tbody
-      - profiles.each_with_index do |profile, index|
-        - if !profile.user.activist_profile.nil?
-          %tr
-            %td= profile.id
-            %td= link_to(profile.fullname, profile.photo)
-            %td= !profile.marked_by.nil? ? profile.marked_by.email : ""          
-            %td= ProfileCandidate.to_alphabet(profile.cv_point)
-            %td= ProfileCandidate.to_alphabet(profile.essay_point)
-            %td= ProfileCandidate.to_alphabet(profile.recommendation_letter_point)  
-            %td= profile.total_point
-            %td= profile.special_location_comment
-            %td= profile.special_character_comment
-            %td= profile.school
-            %td= profile.facebook_url
-            %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
-            %td= profile.user.email
-            %td= profile.user.activist_profile.activity1_information
-            %td= profile.user.activist_profile.activity1_reason
-            %td= profile.user.activist_profile.activity2_information
-            %td= profile.user.activist_profile.activity2_reason
-            %td= profile.user.activist_profile.activity3_information
-            %td= profile.user.activist_profile.activity3_reason
-            %td= profile.user.activist_profile.activity4_information
-            %td= profile.user.activist_profile.activity4_reason
-            %td= profile.user.activist_profile.activity5_information
-            %td= profile.user.activist_profile.activity5_reason
-            %td= profile.user.activist_profile.essay_about_pasca_training
-            - if profile.user.activist_profile.tipografi == 0 then
-              %td Konseptor
-            - elsif profile.user.activist_profile.tipografi == 1 then
-              %td Organizer
-            - elsif profile.user.activist_profile.tipografi == 2 then
-              %td Eksekutor
-            - elsif profile.user.activist_profile.tipografi == 3 then
-              %td Kontroller
+        %td= ProfileCandidate.to_alphabet(profile.organization_point)
+        %td= ProfileCandidate.to_alphabet(profile.committee_point)
+        %td= ProfileCandidate.to_alphabet(profile.personal_knowledge_point)
+        %td= ProfileCandidate.to_alphabet(profile.document_completeness_point)
+        %td= profile.cv_total_point
+        
+        %td= ProfileCandidate.to_alphabet(profile.reliability_point)
+        %td= ProfileCandidate.to_alphabet(profile.willingness_point)
+        %td= profile.motivation_total_point
+        
+        %td= profile.total_point
+        
+        %td= profile.special_location_comment
+        %td= profile.special_character_comment
+        %td= profile.school
+        %td= profile.province
+        %td= link_to('Download', profile.recommendation_letter)
+        %td= profile.dob.strftime("%d %B, %Y")
+        %td= profile.place_of_birth
+        %td= profile.location
+        %td= profile.gender == "0" ? 'Laki-laki' : 'Perempuan'
+        %td= profile.religion
+        %td= "'#{profile.phone}"
+        %td= profile.hobby
+        %td= profile.blood_type
+        %td= profile.batch
+        %td= profile.non_formal_education? ? raw(profile.non_formal_education.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
+        %td= profile.organization? ? raw(profile.organization.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
+        %td= profile.committee? ? raw(profile.committee.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
+        %td= profile.workshop? ? raw(profile.workshop.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
+        %td= profile.motivation? ? raw(profile.motivation.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
+        %td= profile.collaboration? ? raw(profile.collaboration.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
+        %td= profile.inspiring_story? ? raw(profile.inspiring_story.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
+        %td= profile.information_from
+        %td= profile.application_count
+        %td= profile.performance_type
+        %td= profile.referal
+        %td= profile.facebook_url
+        %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
+        %td= profile.user.email

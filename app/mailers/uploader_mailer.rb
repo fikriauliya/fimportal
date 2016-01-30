@@ -10,10 +10,6 @@ class UploaderMailer < ActionMailer::Base
     mail to: receiver_email, subject: "[FIM] Pemberitahuan: Foto sudah diunggah"
   end
 
-  def identification_card_uploaded(receiver_email)
-    mail to: receiver_email, subject: "[FIM] Pemberitahuan: KTP sudah diunggah"
-  end
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

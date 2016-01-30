@@ -1,31 +1,65 @@
-= render :partial => 'layouts/step_navigator', :locals => {:step => 1}
+= render :partial => 'step_navigator', :locals => {:step => 1}
 
-%h3 Selamat Datang Calon Peserta FIM 17! 
+%h3 Selamat datang calon peserta FIM!
 %p
   Sebelum Anda mengisi informasi pendaftaran, silakan membuat akun terlebih dahulu.
 %p
   Dokumen yang perlu Anda siapkan:
   %ul
     %li
-      Foto yang menampilkan wajah dengan jelas dengan latar belakang satu warna.
+      Foto yang menampilkan wajah dengan jelas.
       %br
       Ukuran maximum foto: 
       %b 300KB
       dan tipe file yang dibolehkan adalah 
       %b .png, .jpg, .bmp
     %li
-      Scan/foto KTP yang menampilkan wajah dan data diri yang terb​aca jelas.
-      %br
-      Ukuran maximum KTP: 
-      %b 300KB
-      dan tipe file yang dibolehkan adalah 
-      %b .png, .jpg, .bmp
-    %li
-      Scan/foto/softcopy surat rekomendasi sesuai format yang ada di dalam formulir pendaftaran 
+      Scan/foto/softcopy surat rekomendasi dari organisasi/institusi yang pernah/sedang Anda ikuti. 
       %br
       Format file bisa .pdf, .doc, .png, atau lainnya yang penting bisa terbaca dengan mudah.
       %br
-      Template surat bisa ​diunduh saat mengisi isian pendaftaran​.
+      Ukuran maksimum file: 
+      %b 2 MB.
+      Surat rekomendasi harus mencantumkan:
+      %ul
+        %li
+          Kop surat organisasi/institusi
+        %li
+          Identitas lengkap diri Anda (misal: nama, NIM/NPM, jurusan)
+        %li
+          Nama jabatan dan periode menjabatnya
+        %li   
+          Pernyataan dan 
+          %b tanda tangan 
+          dari ketua organisasi/institusi bahwa Anda pernah/sedang aktif di organisasi/institusi tersebut
+        %li 
+          Alasan merekomendasikan Anda untuk mengikuti pelatihan Leadership & Character Building FIM 15.
+%p
+  Jika surat rekomendasi ada lebih dari satu, mohon diarsipkan menjadi satu (format ZIP atau RAR) sebelum dikirimkan.
+  %br
+  Anda bisa menggunakan program seperti 
+  = link_to '7 Zip', 'http://www.7-zip.org/'
+  , 
+  = link_to 'WinRAR', 'http://www.rarlab.com/'
+  ,
+  = link_to 'WinZip', 'http://www.winzip.com'
+  , atau fitur bawaan
+  = link_to 'Windows', 'http://www.pcworld.com/article/228109/Files.html'
 
+.row
+  .span8
+    .well
+      %p{:style => 'color:blue'}
+      Bila pada pendaftaran FIM sebelumnya Anda sudah pernah registrasi, silakan 
+      %b Log in 
+      di kolom kanan. 
+      %br
+      Isian Anda yang lama akan otomatis terisi sehingga proses registrasi bisa lebih cepat.
+      %br
+      Namun demikian, sangat disarankan untuk memperbaharui isian dengan data pribadi Anda yang lebih baru.
+      %br
+      %b 
+        Khusus untuk surat rekomendasi, harus diperbarui dengan surat rekomendasi untuk 
+        %u FIM 15.
 
 = render :partial => 'devise/shared/register_or_sign_in', :locals => {:user => @user}

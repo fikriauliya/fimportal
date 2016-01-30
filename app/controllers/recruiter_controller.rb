@@ -35,14 +35,6 @@ class RecruiterController < ApplicationController
       else
         @profiles = @profiles.chronological
       end
-
-      if params[:filter].eql?('strategic')
-        @profiles = @profiles.where{choose_type.eq(0)}
-      elsif params[:filter].eql?('local')
-        @profiles = @profiles.where{choose_type.eq(1)}
-      elsif params[:filter].eql?('activist')
-        @profiles = @profiles.where{choose_type.eq(2)}
-      end
       
       respond_to do |format|
         format.xls
@@ -86,10 +78,6 @@ class RecruiterController < ApplicationController
       else
         @profiles = @profiles.chronological
       end
-
-      if params[:unassigned]
-        @profiles = @profiles.where("status = 'SUBMITTED' AND marked_by_id IS NULL")
-      end
       
       @profiles = @profiles.paginate(:page => params[:page],:per_page => 20)      
       respond_to do |format|
@@ -97,11 +85,6 @@ class RecruiterController < ApplicationController
         format.json { render json: @profiles }
       end
     end
-  end
-
-  def export
-    authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
-    @users = User.joins{profile_candidate}.where{profile_candidate.status.eq('NOT SUBMITTED')}
   end
   
   def new_upload
@@ -146,13 +129,5 @@ class RecruiterController < ApplicationController
     end
     
     redirect_to recruiter_index_path, :notice => "Data sudah diupdate, mohon dikoreksi"
-  end
-
-  def index_accepted
-    authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
-    
-    @not_confirmeds = ProfileCandidate.where("is_accepted = true and is_candidate_accept_offer is NULL").order(:fullname).collect{|s| [s.fullname, s.school, s.phone]}
-    @confirmeds = ProfileCandidate.where(:is_candidate_accept_offer => true).order(:fullname).collect{|s| [s.fullname, s.school, s.phone]}
-    @rejecteds = ProfileCandidate.where(:is_candidate_accept_offer => false).order(:fullname).collect{|s| [s.fullname, s.school, s.phone]}
   end
 end

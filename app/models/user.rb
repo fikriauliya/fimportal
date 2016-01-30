@@ -12,7 +12,4 @@ class User < ActiveRecord::Base
   
   has_one :profile
   has_one :profile_candidate
-  has_one :strategic_leader_profile
-  has_one :local_leader_profile
-  has_one :activist_profile
 end

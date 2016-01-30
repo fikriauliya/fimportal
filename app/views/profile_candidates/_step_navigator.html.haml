@@ -1,0 +1,16 @@
+%ul.nav.nav-pills
+  %li{:class => (step == 1 ? 'active' : '')}
+    =link_to step1_profile_candidates_path do
+      1) Registrasi
+  %li{:class => (step == 2 ? 'active' : '')}
+    =link_to step2_profile_candidates_path do
+      2) Pengisian Formulir
+  %li{:class => (step == 3 ? 'active' : '')}
+    =link_to step3_profile_candidates_path do
+      3) Unggah Foto
+  %li{:class => (step == 4 ? 'active' : '')}
+    =link_to step4_profile_candidates_path do
+      4) Unggah Surat Rekomendasi
+  %li{:class => (step == 5 ? 'active' : '')}
+    =link_to step5_profile_candidates_path do
+      5) Konfirmasi

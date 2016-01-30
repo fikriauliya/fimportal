@@ -16,239 +16,32 @@
     window.onload = loadScript;
     
     var isGeoCoded = false;
+    
+    function updateInspiringStoryWordCount() {
+      var words = $('#profile_candidate_inspiring_story').val().match(/\S+/g);
+      if (words != null) {
+        $("#remaining_inspiring_story_words").text("Sisa kata: " + (500 - words.length));
+      }
+    }
+        
+    function updateMotivationWordCount() {
+      var words = $('#profile_candidate_motivation').val().match(/\S+/g);
+      if (words != null) {
+        $("#remaining_motivation_words").text("Sisa kata: " + (200 - words.length));
+      }
+    }
 
-    $(document).ready(function () {
-
-                //reset the dropdowns to the first entry, which is a blank
-                //$('select.mutually_exclusive_select_lists').prop('selectedIndex', 0);
-                //all initial entries of first dropdown; all entries are the same for all dropdownlists
-                var $allEntries = $('select').first();
-                //count the number of dropdownlist
-                var $countSelects = $('select').length;
-                //putting entries into array; hardcoded id (change later on)
-                var $allEntries = $('#list').find('option');
-
-                //monitor changes to the select list
-                $('select.mutually_exclusive_select_lists').change(function () {
-                    //the focused dropdown
-                    var $focusedDropdown = $(this);
-                    //the focused dropdown list id
-                    var selectedListId = $(this).attr("id");
-                    //the selected option of the focused dropdownlist
-                    var $optionSelected = $.trim($('#' + selectedListId + ' option:selected').text());
-                    //other options that were not selected for the focused dropdownlist
-                    var $otherOptions = $('#' + selectedListId + ' option:selected').siblings('option');
-                    //the focused list object converted into an array
-                    var listItems = [];
-                    $otherOptions.each(function () {
-                        listItems.push($.trim($(this).text()));
-                    });
-                    var lengthListItems = listItems.length;
-                    //siblings are the dropdownlist that are not in focus
-                    //find all siblings that are dropdownlist
-                    var $allsiblings = $(this).siblings('select');
-                    //preserve the $allEntries variable by making a copy to $originalEntries
-                    var $originalEntries = $allEntries;
-                    //array for storing entries that are visible for other dropdownlists
-                    var validListItems = [];
-                    //empty array for storing entries that weren't selected in any of the dropdownlist
-                    var newListItems = [];
-                    //entries that should be taken out and should not appear on the other dropdownlists
-                    var avoidListItems = [];
-                    //array in array
-                    var arrayInArray = [];
-                    var indexArray = [];
-                    //count the original number of dropdowns
-                    var countAllDropdownEntries = -1;
-                    var furtherIndexArray = [];
-                    //the original list items in array form
-                    $originalEntries.each(function () {
-                        countAllDropdownEntries += 1;
-                        oneOfThem = $.trim($(this).text().replace(/\s+/g, " "));
-                        arrayInArray.push(oneOfThem);
-                        arrayInArray.push(countAllDropdownEntries);
-                        indexArray.push(arrayInArray);
-                        validListItems.push(oneOfThem);
-                        arrayInArray = [];
-                    });
-                    var lengthOriginalEntries = $originalEntries.length;
-
-                    //all of the currently selected values of all the dropdownlists        
-                    $('select.mutually_exclusive_select_lists').each(function () {
-                        //all of the selected entries for the dropdownlists
-                        var currentid = '#' + $(this).attr('id');
-                        var entrySelected = $.trim($(currentid).find('option:selected').text());
-
-                        //selected values in all of the list that are not blank
-                        avoidListItems.push(entrySelected);
-                        //search within the index array for the item that was pushed into the avoidListItems
-                        for (var b = 0; b < indexArray.length; b++) {
-                            if (indexArray[b][0] == entrySelected) {
-                                furtherIndexArray.push(indexArray[b]);
-                            }
-                        }
-                    });
-
-                    //getting the selected entries off the dropdownlists
-                    for (var i = 0; i < avoidListItems.length; i++) {
-                        //validListitem is the original list
-                        for (var j = 0; j < validListItems.length; j++) {
-                            //match between avoidListItem and validListItems
-                            if (avoidListItems[i] == validListItems[j]) {
-                                //make a copy of validListItems
-                                newListItems = validListItems;
-                                //splice the newListItems for entries that should show
-                                newListItems.splice(j, 1);
-                                j = validListItems.length;
-                            }
-                        }
-                    }
-
-                    //getting the indexes for the validListItems from the origlist
-                    //going through all of the dropdownlists
-                    $('select.mutually_exclusive_select_lists').each(function () {
-                        //variable to reference the entry
-                        $listAdd = $(this);
-                        //the id of the entry
-                        var currentid = '#' + $(this).attr('id');
-                        var $selectList = $(currentid + " option");
-                        var $selectedFromList = $.trim($(currentid + " option:selected").text());
-                        //siblings are the dropdownlist that are not in focus
-
-                        //for dropdownlist that have nothing selected                        
-                        if ($selectedFromList == "") {
-                            $selectList.remove();
-                            for (var m = 0; m < validListItems.length; m++) {
-                                if (m == 0) {
-                                    $listAdd.append('<option> </option>')
-                                }
-                                $listAdd.append('<option>' + validListItems[m] + '</option>');
-                            }
-                        } else {
-                            var countInvalid = 0;
-                            //case where muliple dropdownlist don't have a blank focused item
-                            $selectList.each(function () {
-                                //entries to replace the current dropdownlist entries
-                                //removal process to rid of entries that are already selected in the dropdownlists
-                                for (var q = 0; q < validListItems.length; q++) {
-                                    var entryFromList = $(this);
-                                    //entry that was not selected and that is not empty
-                                    if ($.trim($(this).text()).length !== 0 && $.trim($(this).text()) !== $selectedFromList) {
-                                        //entries that did not match up to the validListItems
-                                        if (validListItems[q] !== $.trim($(this).text())) {
-                                            countInvalid += 1;
-                                            if (q == validListItems.length - 1) {
-                                                //all comparison lead to invalid; remove 
-                                                if (countInvalid == validListItems.length) {
-                                                    $(this).remove();
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                //clear out the count
-                                countInvalid = 0;
-                            });
-                        }
-                    });
-                    //index for the validListItems
-                    var validListItemsIndex = [];
-
-                    for (var a = 0; a < validListItems.length; a++) {
-                        //the indexArray is the orig dropdownlist entries
-                        for (var b = 0; b < indexArray.length; b++) {
-                            if (validListItems[a] == indexArray[b][0]) {
-                                validListItemsIndex.push(indexArray[b][1]);
-                            }
-                        }
-                    }
-
-                    var siblingEntries = [];
-                    var validSiblingIndex = [];
-                    var siblingEntriesTemp = [];
-
-                    //for siblings with something selected to add in the missing valid entries                    
-                    $allsiblings.each(function () {
-                        $optionsSibling = $allsiblings.find('option:selected');
-                        var currentIdSibling = '#' + $(this).attr('id');
-                        var entrySelectedSibling = $.trim($(currentIdSibling).find('option:selected').text());
-                        if (entrySelectedSibling.length !== 0) {
-                            siblingEntriesTemp.push(currentIdSibling);
-                            //add index and using temp array
-                            for (var b = 0; b < indexArray.length; b++) {
-                                if (entrySelectedSibling == indexArray[b][0]) {
-                                    siblingEntriesTemp.push(indexArray[b][1]);
-                                }
-                            };
-                            siblingEntries.push(siblingEntriesTemp);
-                            siblingEntriesTemp = [];
-                        }
-                    })
-
-                    //for storing the validlistItems and the selected entry index
-                    var combinedIndex = [];
-
-                    //adding onto the entries of siblings with selected entries
-                    for (var z = 0; z < siblingEntries.length; z++) {
-                        combinedIndex = [];
-                        var siblingIDEntry = siblingEntries[z][0];
-                        var optionsSibling = $(siblingIDEntry + "").find('option');
-                        var optionsSiblingSelected = $(siblingIDEntry + "").find('option:selected');
-                        var siblingIdEntryIndex = siblingEntries[z][1];
-
-                        //entries of validList into the combined index
-                        for (var a = 0; a < validListItemsIndex.length; a++) {
-                            combinedIndex.push(validListItemsIndex[a]);
-                        }
-                        combinedIndex.push(siblingIdEntryIndex);
-                        combinedIndex.sort();
-
-                        var siblingRestore = [];
-
-                        //adding the options back into the sibling
-                        for (var c = 0; c < indexArray.length; c++) {
-                            for (var d = 0; d < combinedIndex.length; d++) {
-                                if (indexArray[c][1] == combinedIndex[d]) {
-                                    siblingRestore.push(indexArray[c][0]);
-                                }
-                                if ((d == combinedIndex.length - 1)) {
-                                    if (c == indexArray.length - 1) {
-                                        optionsSibling.remove();
-                                        for (var n = 0; n < combinedIndex.length; n++) {
-                                            for (var m = 0; m < indexArray.length; m++) {
-                                                if (n == 0 && m == 0) {
-                                                    $(siblingIDEntry + "").append('<option></option>');
-                                                }
-                                                if (combinedIndex[n] == indexArray[m][1]) {
-                                                    $(siblingIDEntry + "").append('<option>' + indexArray[m][0] + '</option>');
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        //for reselecting the original entry in the sibling dropdown
-                        for (var m = 0; m < indexArray.length; m++) {
-                            if (indexArray[m][1] == siblingIdEntryIndex) {
-                                var stringToSelect = indexArray[m][0];
-                                var index = $(siblingIDEntry + " option:contains(" + stringToSelect + ")").index();
-                                $(siblingIDEntry + "").prop('selectedIndex', index);
-                                var siblingsAllOptions = $(siblingIDEntry + " option");
-                                if (siblingsAllOptions.eq(0).text() == siblingsAllOptions.eq(1).text()) {
-                                    siblingsAllOptions.eq(0).remove();
-                                }
-                            }
-                        }
-
-                        //reset the index for the next sibling
-                        siblingIdEntryIndex = [];
-                    }
-                });
-            });
-
+    function updateCollaborationWordCount() {
+      var words = $('#profile_candidate_collaboration').val().match(/\S+/g);
+      if (words != null) {
+        $("#remaining_collaboration_words").text("Sisa kata: " + (200 - words.length));
+      }
+    }
+        
     $(document).ready(function() {
+      updateMotivationWordCount();
+      updateInspiringStoryWordCount();
+      updateCollaborationWordCount();
       
       $("#profile_candidate_motivation").keyup(function() {
         updateMotivationWordCount();
@@ -347,71 +140,41 @@
       .form-inputs
         = f.input :fullname, :label => "Nama lengkap"
         = f.input :dob, :input_html => {:style => 'width:auto'}, :label => "Tanggal lahir", 
-          start_year: Date.today.year - 31, end_year: Date.today.year - 12, order: [:day, :month, :year]
+          start_year: Date.today.year - 30, end_year: Date.today.year - 12, order: [:day, :month, :year]
         = f.input :place_of_birth, :label => "Tempat lahir"
         = f.input :gender, :label => "Jenis kelamin", :as => :select, :collection => [["Laki-laki", 0], ["Perempuan", 1]]
         = f.input :religion, :label => "Agama", :collection => ["Islam", "Katolik", "Protestan", "Hindu", "Budha", "Konghuchu"]
-        = f.input :location, :label => "Alamat lengkap saat ini (contoh: Jalan Kaliurang Km 10, Wonorejo, Ngaglik, Sleman, Yogyakarta, Indonesia)", :as => :text, :input_html => {:rows => 5, :class => "span4"}
+        = f.input :location, :label => "Alamat lengkap (contoh: Jalan Kaliurang Km 10, Wonorejo, Ngaglik, Sleman, Yogyakarta, Indonesia)", :as => :text, :input_html => {:rows => 5, :class => "span4"}
         = f.input :province, :label => "Provinsi domisili saat ini", :collection => ["Luar negeri"] + ProfileCandidate.all_province
         = f.input :phone, :label => "Nomor telepon"
         = f.input :hobby, :label => "Hobi", :as => :string
         = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"]
         = f.input :school, :label => "Nama institusi pendidikan terakhir/yang sedang dijalani. Contoh: Universitas Indonesia", :input_html => {"data-provide" => "typeahead", "data-source" => all_school_json}
-        = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2014)
-        //= f.input :non_formal_education, :label => "Pendidikan non-formal.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama institusi];</i>", :input_html => {:rows => 8, :class => "span5"}
-        //= f.input :organization, :label => "Pengalaman organisasi.<br/><b>Format</b>:<i>[tahun mulai]-[tahun selesai];[nama organisasi];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
-        //= f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
-        //= f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
-        %hr{:noshade => "", :size => "3"}/
-        %h4 
-          %i Peminatan Paral​l​el Room
-        %blockquote
-          %div
-            %i Parallel room 
-            merupakan ruang diskusi pada saat pelatihan dengan subtema yang lebih spesifik mengenai pemikiran Bung Hatta dari  berbagai bidang
-        = f.input :pararel_room_pendidikan_kebudayaan, :label => "Pendidikan dan Kebudayaan​", :collection => (1..3), :input_html => {:id => "pararel_1", :class => "ekslusif_pararel_room"}
-        = f.input :pararel_room_sosial_ekonomi, :label => "Politik dan Hukum​", :collection => (1..3), :input_html => {:id => "pararel_2", :class => "ekslusif_pararel_room"}
-        = f.input :pararel_room_politik_hukum, :label => "Sosial dan Ekonomi​", :collection => (1..3), :input_html => {:id => "pararel_3", :class => "ekslusif_pararel_room"}
-        %hr{:noshade => "", :size => "3"}/
-        %h4 Peminatan Diskusi
-        %blockquote
-          %div
-            Berikut ini adalah daftar topik FIM Club (kelompok diskusi FIM lintas generasi dengan platform Whatsapp). Mohon berikan peringkat 1 (paling berminat) – 14 (paling tidak berminat), pada topik-topik berikut : 
-        
-        = f.input :diskusi_pangan, :label => "Pangan", :collection => (1..14), :input_html => {:id => "list", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_kebijakan_publik, :label => "Kebijakan Publik", :collection => (1..14), :input_html => {:id => "list2", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_energi_lingkungan, :label => "Energi dan Lingkungan", :collection => (1..14), :input_html => {:id => "list3", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_parenting, :label => "Parenting", :collection => (1..14), :input_html => {:id => "list4", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_media_literasi, :label => "Media Literasi", :collection => (1..14), :input_html => {:id => "list5", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_sosial_enterpreneurship, :label => "Sosial Enterpreneurship", :collection => (1..14), :input_html => {:id => "list6", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_kesehatan, :label => "Kesehatan", :collection => (1..14), :input_html => {:id => "list7", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_travel_adventure, :label => "Travel and Adventure", :collection => (1..14), :input_html => {:id => "list8", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_liberal_arts, :label => "Liberal Arts", :collection => (1..14), :input_html => {:id => "list9", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_personal_people_development, :label => "Personal & People Development", :collection => (1..14), :input_html => {:id => "list10", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_masyarakat_ekonomi_ASEAN, :label => "Masyarakat Ekonomi ASEAN", :collection => (1..14), :input_html => {:id => "list11", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_sinematografi, :label => "Sinematografi", :collection => (1..14), :input_html => {:id => "list12", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_budaya, :label => "Budaya", :collection => (1..14), :input_html => {:id => "list13", :class => "mutually_exclusive_select_lists"}
-        = f.input :diskusi_kependidikan, :label => "Kependidikan", :collection => (1..14), :input_html => {:id => "list14", :class => "mutually_exclusive_select_lists"}
-        %hr{:noshade => "", :size => "3"}/
-        /= f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
+        = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2013)
+        = f.input :non_formal_education, :label => "Pendidikan non-formal.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama institusi];</i>", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :organization, :label => "Pengalaman organisasi.<br/><b>Format</b>:<i>[tahun mulai]-[tahun selesai];[nama organisasi];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
+
+        = f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
           %label#remaining_motivation_words
-            //Sisa kata: 200  
+            Sisa kata: 200  
         
-        //= f.input :collaboration, :label => 'Apa kolaborasi yang Anda tawarkan untuk bisa dikerjakan bersama-sama rekan-rekan FIM jika terpilih ikut FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
+        = f.input :collaboration, :label => 'Apa kolaborasi yang Anda tawarkan untuk bisa dikerjakan bersama-sama rekan-rekan FIM jika terpilih ikut FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
           %label#remaining_collaboration_words
-            //Sisa kata: 200
+            Sisa kata: 200
         
-        //= f.input :inspiring_story, :label => "Uraikan pengalaman sukses dan gagal yang paling berkesan dalam hidupmu (maks 500 kata)", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :inspiring_story, :label => "Uraikan pengalaman sukses dan gagal yang paling berkesan dalam hidupmu (maks 500 kata)", :input_html => {:rows => 8, :class => "span5"}
         .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
           %label#remaining_inspiring_story_words
-            //Sisa kata: 500
+            Sisa kata: 500
         
-        = f.input :information_from, :label => "Sumber informasi FIM (darimana Anda mengetahui pendaftaran FIM 17)", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut", "Lainnya"]
-        = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM. <br/><b>Format</b>:<i>[FIM ke- berapa mendaftar ][Tahun]</i> contoh : [FIM ke 1][2012][FIM ke 2][2012][FIM ke 3][2013]", :input_html => {:rows => 4, :class => "span5"}, :as => :text
-        = f.input :food_except, :label => "Apakah Anda mempunyai alergi terhadap makanan atau hal lain ? Jika Iya, sebutkan", :input_html => {:rows => 4, :class => "span5"}, :as => :text
-        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 17. Contoh: Tari Pendet, main biola, monolog, dll", :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :information_from, :label => "Sumber informasi FIM", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut", "Lainnya"]
+        = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM", :collection => [["Belum pernah", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], [">5", 6]]
+        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 15. Contoh: Tari Pendet, main biola, monolog, dll",
+            :input_html => {:rows => 4, :class => "span5"}, :as => :text
         
         .controls
           %label
@@ -419,69 +182,11 @@
               %p
                 Salin dan Lengkapi Pernyataan Dibawah ini
               %small
-                Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 17 pada tanggal 29 April - 3 Mei 2015.
-        = f.input :agreement, :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.agreement? || @profile.agreement.empty?) ? 'Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 17 pada tanggal 29 April - 3 Mei 2015' : @profile.agreement)}
-        %br
-        .controls
-          %label
-            %blockquote
-              %p
-                Salin Pernyataan Dibawah ini
-              %small
-                Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM, apabila saya diterima sebagai peserta FIM 17. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah (Dapat memilih lebih dari 1)
-        = f.input :commit_agreement, :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.commit_agreement? || @profile.commit_agreement.empty?) ? 'Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM, apabila saya diterima sebagai peserta FIM 17. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah (Dapat memilih lebih dari 1)' : @profile.commit_agreement)}
-
-        = f.input :is_committed_to_central_fim, :label => "Saya akan komitmen pada FIM Pusat (Media, Program, Fundraising, Kesekretariatan"
-        = f.input :is_committed_to_regional_fim, :label => "Saya akan komitmen pada FIM regional"
-        %blockquote
-          %div
-            List FIM Regional bisa dilihat
-            %a{href: "http://i.forumindonesiamuda.org/jaringan-fim/"}
-              disini
-        = f.input :is_committed_to_own_organization, :label => "Saya akan kembali aktif ke dalam organisasi sendiri dan akan membuka jejaring dengan FIM dalam minimal 1 kegiatan bersama"
-        %h4 Karya bertemakan Bung Hatta
-        %blockquote
-          %div
-            Karya ini bersifat tidak wajib (optional). Anda dapat menyertakan karya Anda berupa lagu atau film pendek yang bertemakan Bung Hatta. Karya yang disertakan merupakan karya orisinal, sebelumnya tidak pernah diikutkan lomba atau dipublikasikan. 
-            Jika Anda lolos seleksi FIM 17, maka karya Anda akan menjadi hak milik FIM. 
-            %br
-            Jika ada, silakan tuliskan link-nya di bawah ini. (Soundcloud, youtube)
-        = f.input :creation_bung_hatta, :label => "Link Karya"
-        %h4 Kuesioner Bung Hatta
-        = f.input :question_1, :label => "Dari mana pertama kali mengetahui sosok Bung Hatta?", :collection => ["Sekolah", "keluarga (orang tua/saudara)", "Teman", "Televisi", "Radio", "Lainnya"]
-        = f.input :question_2, :label => "Hal pertama apa yang Anda ketahui tentang Bung Hatta?", :collection => ["Bapak proklamasi", "Wakil presiden RI", "Bapak koperasi", "Pahlawan nasional Indonesia", "Lainnya"]
-        = f.input :question_3, :label => "Menurut Anda, apa karakter yang paling khas dari Bung Hatta? Mengapa?", :input_html => {:rows => 4, :class => "span5"}, :as => :text
-        = f.input :question_4, :label => "Adakah hal lain yang ingin diketahui tentang Bung Hatta? (Jika ada sebutkan, jika tidak, tulis 'Tidak ada')", :input_html => {:rows => 4, :class => "span5"}, :as => :text
-        = f.input :question_5, :label => "Jika ada film tentang Bung Hatta, sisi kehidupan mana yang sebaiknya mendapat porsi lebih?", :collection => ["Kehidupan masa kecil", "Perjuangan selama di Belanda", "Masa kemerdekaan", "Kehidupan keluarga", "Lainnya"]
-        = f.input :question_6, :label => "Bagaimana menurut Anda strategi baru untuk melahirkan 'Hatta Muda'?", :input_html => {:rows => 4, :class => "span5"}, :as => :text
-        %h4 Esai tentang “Bung Hatta”
-        %blockquote
-          %div
-            Ceritakan bagian perjalanan hidup Bung Hatta yang menunjukkan salah satu dari tujuh pilar karakter FIM yang juga cenderung dimiliki oleh Anda. Sampaikan pengalaman Anda terkait pilar tersebut.
-            Sertakan referensi bacaan (buku/website) yang digunakan dalam esai
-        = f.input :essay_about_bunghatta, :label => "Esai (Maksimal 1000 kata", :input_html => {:rows => 8, :class => "span5"}
-        %br
-        %h2 Pilihan Jalur Peserta
-        %h4 Strategic Leader
-        %blockquote
-          %div
-            Pemimpin atau calon pemimpin organisasi kepemudaan ekstra kampus atau organisasi kepemimpinan strategis lainnya
-            %br
-            orang-orang yang aktif di organisasi ekstra-kampus (seperti BEM SI, KAMMI, HMI, GMNI, PMII, KMII, PII, dll) maupun yang aktif di partai politik (kader partai atau aktif di underbow partai seperti di organisasi kepemudaan suatu partai)
-        %h4 Local Leader
-        %blockquote
-          %div
-            Aktivis di tiap provinsi yang telah menggerakkan komunitas  sehingga menciptakan perubahan lokal di daerahnya 
-            %br
-            Bidang komunitasnya pun bisa beragam misalnya komunitas pendidikan (seperti Indonesia Mengajar, Komunitas Jendela, dll), komunitas lingkungan (seperti Transformasi Hijau, dll), komunitas sosial (seperti Save Street Child), komunitas kesehatan (seperti Volunteer Doctor, Pencerah Nusantara), atau komunitas yang kamu inisiasi di daerahmu dan membawa manfaat sosial di sana
-        %h4 Activist Based on Character
-        %blockquote
-          %div
-            Aktivis pemuda dari berbagai bidang yang ingin berkarya dan berjejaring bersama-sama dengan FIM
-            %br
-            Aktivis berbagai bidang yang dimaksud adalah aktivis BEM (baik tingkat jurusan, fakultas, maupun universitas), mahasiswa pada umumnya yang ingin berkontribusi, maupun aktivis di organisasi intra-kampus ataupun unit kegiatan mahasiswa lainnya
-        = f.input :choose_type, :label => "Pilihan Anda", :as => :radio_buttons, :collection => [["Strategic Leader", 0], ["Local Leader", 1], ["Activist Based on Character", 2]]
-        //= f.input :referal, :label => "Jika ada, tuliskan nama alumni FIM yang merekomendasikan Anda untuk menjadi peserta FIM 15", :as => :string
+                Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 15 pada tanggal 27 Oktober - 3 November 2013
+        = f.input :agreement,
+          :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.agreement? || @profile.agreement.empty?) ? 'Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 15 pada tanggal 27 Oktober - 3 November 2013' : @profile.agreement)}
+        
+        = f.input :referal, :label => "Jika ada, tuliskan nama alumni FIM yang merekomendasikan Anda untuk menjadi peserta FIM 15", :as => :string
         = f.hidden_field :latitude
         = f.hidden_field :longitude
   

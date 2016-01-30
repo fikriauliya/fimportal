@@ -1,5 +1,5 @@
-= render :partial => 'layouts/step_navigator', :locals => {:step => 2}
-= render :partial => 'layouts/announcement_popup', :locals => {:is_announcement_displayed => @is_announcement_displayed}
+= render :partial => 'step_navigator', :locals => {:step => 2}
+= render :partial => 'announcement_popup', :locals => {:is_announcement_displayed => @is_announcement_displayed}
     
 %h2 Pendaftaran FIM
 %ul
@@ -19,7 +19,7 @@
     Anda bisa mengisi formulir ini terlebih dahulu, kemudian mengunggah foto dan surat rekomendasi di lain waktu
   %li
     Jika kemudian ada data yang ingin diperbaiki, Anda bisa kembali ke halaman ini dengan menekan tombol 
-    %b "​2) Bagian ​Umum"
+    %b "< Prev"
 
 
 = render 'form'

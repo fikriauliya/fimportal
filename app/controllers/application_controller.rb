@@ -41,20 +41,4 @@ class ApplicationController < ActionController::Base
       get_latitudes_longitudes(profiles)
     }
   end
-
-  def check_submission_status!
-    @profile = current_user.profile_candidate
-    if !@profile.nil? && (@profile.status == "SUBMITTED" || @profile.status == "MARKED")
-      redirect_to profile_candidates_path, :notice => "Data Anda sudah kami terima. Terimakasih"
-    end
-  end
-
-  def check_announcement(profile)
-    is_announcement_displayed = profile.is_announcement_displayed
-    if is_announcement_displayed
-      profile.is_announcement_displayed = false
-      profile.save
-    end
-    is_announcement_displayed
-  end
 end

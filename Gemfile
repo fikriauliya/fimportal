@@ -41,4 +41,3 @@ gem 'dalli'
 gem 'memcachier'
 gem 'unicorn'
 gem "rack-timeout"
-gem "squeel"

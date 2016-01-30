@@ -24,8 +24,8 @@
   
         %br
         %br
-        = link_to "< Back", step2_branching_profile_candidates_path, :class => 'btn btn-danger'
-        = link_to "Next >", step3a_profile_candidates_path, :class => 'btn btn-primary'
+        = link_to "< Back", step2_profile_candidates_path, :class => 'btn btn-danger'
+        = link_to "Next >", step4_profile_candidates_path, :class => 'btn btn-primary'
 
 .row
   .span8
@@ -44,9 +44,6 @@
         %li 
           Foto: 
           %b= "#{current_user.email}_Foto"
-        %li 
-          KTP: 
-          %b= "#{current_user.email}_KTP"
         %li
           Surat rekomendasi: 
           %b= "#{current_user.email}_Rekomendasi"
@@ -56,6 +53,11 @@
       Mohon ketelitiannya, kami tidak memproses nama-nama seperti 
       "Surat_rekomendasi_agus@yahoo.com", "IMG_00012", 
       "FIM", atau "agus@yahoo.com_Surat_Rekomendasi_1".
+      
+    %p
+      Jika ada lebih dari satu surat rekomendasi, mohon 
+      %b disatukan 
+      surat-surat rekomendasinya dengan format ZIP. Foto dan surat rekomendasi diupload terpisah (tidak disatukan dalam ZIP).
       
     %p
       Dokumen Anda akan kami periksa secara manual (memakan waktu maksimum 1 hari). Setelah diproses, Anda akan diinformasikan via email untuk melanjutkan langkah-langkah berikutnya. Mohon secara rutin periksa email Anda.
