@@ -1,25 +1,25 @@
-/ = render :partial => 'step_navigator', :locals => {:step => 2}
+= render :partial => 'step_navigator', :locals => {:step => 2}
 = render :partial => 'announcement_popup', :locals => {:is_announcement_displayed => @is_announcement_displayed}
     
-%h2 Pendaftaran FIM baru bisa diisi mulai tgl 8 Februari 2016
-/ %ul
-/   %li Silahkan isi data dengan lengkap, kelengkapan merupakan syarat utama untuk menjadi salah satu peserta FIM
-/   %li 
-/     Kolom isian yang memilki tanda 
-/     %b * 
-/     di samping kirinya 
-/     %b harus
-/     diisi
-/   %li{:style => 'color:blue'}
-/     Data di tiap halaman akan tersimpan tiap kali Anda menekan tombol 
-/     %b "Next >"
-/   %li
-/     Hanya jika Anda tidak bisa menekan tombol "Next >", mohon dicek apakah browsernya memenuhi syarat (Internet Explorer 9+, Chrome 9+, Safari, atau Firefox 7+).
-/   %li
-/     Anda bisa mengisi formulir ini terlebih dahulu, kemudian mengunggah foto dan surat rekomendasi di lain waktu
-/   %li
-/     Jika kemudian ada data yang ingin diperbaiki, Anda bisa kembali ke halaman ini dengan menekan tombol 
-/     %b "< Prev"
+%h2 Pendaftaran FIM
+%ul
+  %li Silahkan isi data dengan lengkap, kelengkapan merupakan syarat utama untuk menjadi salah satu peserta FIM
+  %li 
+    Kolom isian yang memilki tanda 
+    %b * 
+    di samping kirinya 
+    %b harus
+    diisi
+  %li{:style => 'color:blue'}
+    Data di tiap halaman akan tersimpan tiap kali Anda menekan tombol 
+    %b "Next >"
+  %li
+    Hanya jika Anda tidak bisa menekan tombol "Next >", mohon dicek apakah browsernya memenuhi syarat (Internet Explorer 9+, Chrome 9+, Safari, atau Firefox 7+).
+  %li
+    Anda bisa mengisi formulir ini terlebih dahulu, kemudian mengunggah foto dan surat rekomendasi di lain waktu
+  %li
+    Jika kemudian ada data yang ingin diperbaiki, Anda bisa kembali ke halaman ini dengan menekan tombol 
+    %b "< Prev"
 
 
-/ = render 'form'
+= render 'form'

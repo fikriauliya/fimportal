@@ -46,20 +46,20 @@
   , atau fitur bawaan
   = link_to 'Windows', 'http://www.pcworld.com/article/228109/Files.html'
 
-.row
-  .span8
-    .well
-      %p{:style => 'color:blue'}
-      Bila pada pendaftaran FIM sebelumnya Anda sudah pernah registrasi, silakan 
-      %b Log in 
-      di kolom kanan. 
-      %br
-      Isian Anda yang lama akan otomatis terisi sehingga proses registrasi bisa lebih cepat.
-      %br
-      Namun demikian, sangat disarankan untuk memperbaharui isian dengan data pribadi Anda yang lebih baru.
-      %br
-      %b 
-        Khusus untuk surat rekomendasi, harus diperbarui dengan surat rekomendasi untuk 
-        %u FIM 15.
+/ .row
+/   .span8
+/     .well
+/       %p{:style => 'color:blue'}
+/       Bila pada pendaftaran FIM sebelumnya Anda sudah pernah registrasi, silakan 
+/       %b Log in 
+/       di kolom kanan. 
+/       %br
+/       Isian Anda yang lama akan otomatis terisi sehingga proses registrasi bisa lebih cepat.
+/       %br
+/       Namun demikian, sangat disarankan untuk memperbaharui isian dengan data pribadi Anda yang lebih baru.
+/       %br
+/       %b 
+/         Khusus untuk surat rekomendasi, harus diperbarui dengan surat rekomendasi untuk 
+/         %u FIM 15.
 
 = render :partial => 'devise/shared/register_or_sign_in', :locals => {:user => @user}

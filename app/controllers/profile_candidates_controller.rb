@@ -13,25 +13,30 @@ class ProfileCandidatesController < ApplicationController
   def step1
     @user = User.new
     if user_signed_in?
-      redirect_to step2_profile_candidates_path
+      redirect_to hold_registration_profile_candidates_path
     else
-      session[:after_sign_in_path_for] = step2_profile_candidates_path
+      session[:after_sign_in_path_for] = hold_registration_profile_candidates_path
     end
+  end
+
+  def hold_registration
+
   end
   
   def step2
-    @profile = current_user.profile_candidate
+    redirect_to step1_profile_candidates_path
+    # @profile = current_user.profile_candidate
     
-    if @profile.nil?
-      @profile = ProfileCandidate.new
-    else
-      @is_announcement_displayed = check_announcement(@profile)
-    end
+    # if @profile.nil?
+    #   @profile = ProfileCandidate.new
+    # else
+    #   @is_announcement_displayed = check_announcement(@profile)
+    # end
 
-    respond_to do |format|
-      format.html 
-      format.json { render json: @profile }
-    end
+    # respond_to do |format|
+    #   format.html 
+    #   format.json { render json: @profile }
+    # end
   end
   
   def step3

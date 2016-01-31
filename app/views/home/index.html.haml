@@ -19,12 +19,12 @@
 #myModal.modal.hide.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
   .modal-header
     %button.close{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", "data-dismiss" => "modal", :type => "button"} ×
-    %h4#myModalLabel Portal Pendafataran FIM 17
+    %h4#myModalLabel Portal Pendafataran FIM 18
   .modal-body
     %p
-      Selamat datang di Portal Pendaftaran FIM 17!
+      Selamat datang di Portal Pendaftaran FIM 18!
     %p
-      Agar selalu mendapatkan informasi terbaru tentang FIM 17, kami rekomendasikan untuk like Facebook
+      Agar selalu mendapatkan informasi terbaru tentang FIM 18, kami rekomendasikan untuk like Facebook
       %b Forum Indonesia Muda
       atau follow Twitter
       %b @fimnews
@@ -59,14 +59,14 @@
         FIM (Forum Indonesia Muda)
       adalah sebuah forum independen yang beranggotakan pemuda dan mahasiswa dari berbagai perguruan tinggi maupun organisasi kepemudaan di Indonesia, dari Aceh sampai Papua, bahkan yang sedang berada di luar negeri.
     %p
-      Setelah sukses menyelenggarakan Leadership & Life Skill Training selama 1 dekade,
-      %b FIM 17
-      akan diselenggarakan pada tanggal 29 April - 3 Mei 2015 di Jakarta.
+      Setelah sukses menyelenggarakan Leadership & Life Skill Training selama lebih dari satu dekade,
+      %b FIM 18
+      akan diselenggarakan pada tanggal 26 - 30 April 2016 di Jakarta.
 
     %p
-      Pendaftaran dibuka antara tanggal 10 Januari – 10 Februari 2015 (23.59 WIB). Berkas peserta akan diseleksi sesuai prosedur, untuk memenuhi kapasitas peserta FIM 17 sebanyak 130 orang, dengan batas usia
+      Pendaftaran dibuka antara tanggal 8 - 29 Februari 2016 (23.59 WIB). Berkas peserta akan diseleksi sesuai prosedur, untuk memenuhi kapasitas peserta FIM 18 sebanyak 150 orang, dengan batas usia 
       %b 18-30
-      tahun. Peserta terpilih akan diumumkan pada tanggal 29 Maret 2015.
+      tahun. Peserta terpilih akan diumumkan pada tanggal 4 April 2016.
     %p
       Informasi lebih lanjut soal FIM dapat dilihat di
       %a{href: "http://www.forumindonesiamuda.org"}
@@ -97,7 +97,7 @@
     %p
       Contact Person:
       %b
-        Ishom (085732733925)
+        Lukman (08977737745)
       dan
       %b
         Ilma (081382972438)
@@ -109,7 +109,7 @@
   .span7
     - cache('brief_statistics', :expires_in => 10.minutes) do
       %h4
-        Pendaftar FIM 17
+        Pendaftar FIM 18
         ="(#{User.where("current_sign_in_at >= '09-01-2013'").count}"
         pendaftar)
         //=ProfileCandidate.submitted.count
@@ -118,7 +118,7 @@
 .row
   .span7.service-item
     =link_to "Pendaftaran", new_profile_candidate_path, 'class' => 'btn btn-primary'
-    =link_to "Calon Peserta FIM 17", profile_candidates_path, 'class' => 'btn btn-danger'
+    =link_to "Calon Peserta FIM 18", profile_candidates_path, 'class' => 'btn btn-danger'
     =link_to "Statistik Pendaftar", statistics_public_path, 'class' => 'btn btn-warning'
     =link_to "Status Pendaftaran Saya", progress_status_profile_candidates_path, 'class' => 'btn btn-info'
 
