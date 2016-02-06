@@ -1,0 +1,47 @@
+= render :partial => 'step_navigator', :locals => {:step => 4.5}
+= render :partial => 'announcement_popup', :locals => {:is_announcement_displayed => @is_announcement_displayed}
+
+%h2 Pendaftaran FIM
+%p 
+  Unggah scan/foto/softcopy surat rekomendasi dari organisasi/institusi yang pernah/sedang kamu ikuti.
+  %br
+  Format file bisa .pdf, .doc, .png, atau lainnya yang penting bisa terbaca dengan mudah.
+  %br
+  Ukuran maksimum file: 
+  %b 2 MB
+%p
+  Surat rekomendasi harus mencantumkan:
+  %ul
+    %li
+      Kop surat organisasi/institusi
+    %li
+      Identitas lengkap diri kamu (misal: nama, NIM/NPM, jurusan)
+    %li
+      Nama jabatan dan periode menjabatnya
+    %li   
+      Pernyataan dan 
+      %b tkamu tangan 
+      dari ketua organisasi/institusi bahwa kamu pernah/sedang aktif di organisasi/institusi tersebut
+    %li 
+      Alasan merekomendasikan kamu untuk mengikuti pelatihan Leadership & Character Building FIM.
+    %li 
+      <b> Format surat rekomendasi bisa diunduh 
+      = link_to 'Di Sini', 'https://drive.google.com/file/d/0B21febnlfw57eVdvLW5vR2IzNjQ/view?usp=sharing'
+
+%p
+  Jika surat rekomendasi ada lebih dari satu, mohon diarsipkan menjadi satu (format ZIP atau RAR) sebelum dikirimkan
+  %br
+  kamu bisa menggunakan program seperti 
+  = link_to '7 Zip', 'http://www.7-zip.org/'
+  , 
+  = link_to 'WinRAR', 'http://www.rarlab.com/'
+  ,
+  = link_to 'WinZip', 'http://www.winzip.com'
+  , atau fitur bawaan
+  = link_to 'Windows', 'http://www.pcworld.com/article/228109/Files.html'
+  ,
+  = link_to 'Surat Rekomendasi', 'https://docs.google.com/uc?authuser=0&id=0ByAd-hBNx_8kUy02cllvMmJvSW8&export=download'
+
+  
+      
+= render 'form_recommendation_letter'

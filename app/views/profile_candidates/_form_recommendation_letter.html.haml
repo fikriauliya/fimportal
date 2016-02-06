@@ -23,29 +23,34 @@
         
         %br
         %br
-        = link_to "< Back", step3_profile_candidates_path, :class => 'btn btn-danger'
+        = link_to "< Back", step4_profile_candidates_path, :class => 'btn btn-danger'
         = link_to "Next >", step5_profile_candidates_path, :class => 'btn btn-primary'
 
 .row
   .span8
     %p
-      %h4 === Yang tertulis di bawah ini hanya berlaku jika Anda mengalami kesulitan teknis ===
+      %h4 === Yang tertulis di bawah ini hanya berlaku jika kamu mengalami kesulitan teknis ===
     %p
       Jika setelah 
       %b berkali-kali 
-      mencoba mengunggah melalui sistem di atas tetap tidak berhasil, Anda bisa mengunggah foto dan/atau surat rekomendasi melalui sistem alternatif kami di:
+      mencoba mengunggah melalui sistem di atas tetap tidak berhasil, kamu bisa mengunggah foto dan/atau surat rekomendasi melalui sistem alternatif kami di:
       = link_to "http://www.dropitto.me/fim", "http://www.dropitto.me/fim"
       , dengan password: daftarfim
     
     %p
-      Namai file Anda sebagai berikut:
+      Na%p
+      Namai file kamu sebagai berikut:
       %ul
         %li 
           Foto: 
           %b= "#{current_user.email}_Foto"
         %li 
-          Surat rekomendasi: 
-          %b= "#{current_user.email}_Rekomendasi"
+          KTP / KK: 
+          %b= "#{current_user.email}_KTP"
+        %li 
+          Surat Rekomendasi: 
+          %b= "#{current_user.email}_Surat_Rekomendasi"
+       
     
     %p
       %b Perhatian: file yang tidak dinamai sesuai format penamaan di atas TIDAK akan kami proses.
@@ -59,6 +64,6 @@
       surat-surat rekomendasinya dengan format ZIP. Foto dan surat rekomendasi diupload terpisah (tidak disatukan dalam ZIP).
       
     %p
-      Dokumen Anda akan kami periksa secara manual (memakan waktu maksimum 1 hari). Setelah diproses, Anda akan diinformasikan via email untuk melanjutkan langkah-langkah berikutnya. Mohon secara rutin periksa email Anda.
+      Dokumen kamu akan kami periksa secara manual (memakan waktu maksimum 1 hari). Setelah diproses, kamu akan diinformasikan via email untuk melanjutkan langkah-langkah berikutnya. Mohon secara rutin periksa email Anda.
     %p
-      Jika Anda tidak menerima email dalam 1 hari, artinya aplikasi Anda tidak bisa kami proses (misal: tidak memenuhi kaidah penamaan di atas). Silakan hubungi info@forumindonesiamuda.org
+      Jika kamu tidak menerima email dalam 1 hari, artinya aplikasi kamu tidak bisa kami proses (misal: tidak memenuhi kaidah penamaan di atas). Silakan hubungi info@forumindonesiamuda.org

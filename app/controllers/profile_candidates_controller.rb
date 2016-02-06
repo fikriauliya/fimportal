@@ -6,16 +6,16 @@ class ProfileCandidatesController < ApplicationController
   def check_submission_status!
     @profile = current_user.profile_candidate
     if !@profile.nil? && (@profile.status == "SUBMITTED" || @profile.status == "MARKED")
-      redirect_to profile_candidates_path, :notice => "Data Anda sudah kami terima. Terimakasih"
+      redirect_to profile_candidates_path, :notice => "Data kamu sudah kami terima. Terimakasih"
     end
   end
   
   def step1
     @user = User.new
     if user_signed_in?
-      redirect_to hold_registration_profile_candidates_path
+      redirect_to step2_profile_candidates_path
     else
-      session[:after_sign_in_path_for] = hold_registration_profile_candidates_path
+      session[:after_sign_in_path_for] = step2_profile_candidates_path
     end
   end
 
@@ -24,19 +24,19 @@ class ProfileCandidatesController < ApplicationController
   end
   
   def step2
-    redirect_to step1_profile_candidates_path
-    # @profile = current_user.profile_candidate
+    # redirect_to step1_profile_candidates_path
+    @profile = current_user.profile_candidate
     
-    # if @profile.nil?
-    #   @profile = ProfileCandidate.new
-    # else
-    #   @is_announcement_displayed = check_announcement(@profile)
-    # end
+    if @profile.nil?
+      @profile = ProfileCandidate.new
+    else
+      @is_announcement_displayed = check_announcement(@profile)
+    end
 
-    # respond_to do |format|
-    #   format.html 
-    #   format.json { render json: @profile }
-    # end
+    respond_to do |format|
+      format.html 
+      format.json { render json: @profile }
+    end
   end
   
   def step3
@@ -45,7 +45,7 @@ class ProfileCandidatesController < ApplicationController
       redirect_to step2_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
     else
       if params[:uploaded]
-        flash[:notice] = "Foto Anda sudah diupload. Jika tidak ingin menganti, silakan klik Next"
+        flash[:notice] = "Foto kamu sudah diupload. Jika tidak ingin menganti, silakan klik Next"
       else
         flash[:notice] = nil
       end
@@ -57,6 +57,25 @@ class ProfileCandidatesController < ApplicationController
       end
     end
   end 
+
+  # def step3a
+  #   @profile = current_user.profile_candidate
+  #   if @profile.nil?
+  #     redirect_to step3_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
+  #   else
+  #     if params[:uploaded]
+  #       flash[:notice] = "Foto kamu sudah diupload. Jika tidak ingin menganti, silakan klik Next"
+  #     else
+  #       flash[:notice] = nil
+  #     end
+  #     @is_announcement_displayed = check_announcement(@profile)
+      
+  #     respond_to do |format|
+  #       format.html 
+  #       format.json { render json: @profile }
+  #     end
+  #   end
+  # end 
   
   def step4
     @profile = current_user.profile_candidate
@@ -64,7 +83,7 @@ class ProfileCandidatesController < ApplicationController
       redirect_to step3_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
     else
       if params[:uploaded]
-        flash[:notice] = "Surat rekomendasi Anda sudah diupload. Jika tidak ingin mengganti, silakan klik Next"
+        flash[:notice] = "KTP / KK kamu sudah diunggah. Jika tidak ingin mengganti, silakan klik Next"
       else
         flash[:notice] = nil
       end
@@ -77,9 +96,30 @@ class ProfileCandidatesController < ApplicationController
     end
   end
   
+
+  def step4a
+    @profile = current_user.profile_candidate
+    if @profile.nil?
+      redirect_to step4_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
+    else
+      if params[:uploaded]
+        flash[:notice] = "Surat rekomendasi kamu  sudah diupload. Jika tidak ingin mengganti, silakan klik Next"
+      else
+        flash[:notice] = nil
+      end
+      @is_announcement_displayed = check_announcement(@profile)
+      
+      respond_to do |format|
+        format.html 
+        format.json { render json: @profile }
+      end
+    end
+  end 
+
+
   def step5
     @profile = current_user.profile_candidate
-    if @profile.nil? or !@profile.recommendation_letter?
+    if @profile.nil? or !@profile.identification_card?
       redirect_to step4_profile_candidates_path, :alert => 'Mohon isi halaman ini terlebih dahulu'
     else
       @is_announcement_displayed = check_announcement(@profile)
@@ -130,7 +170,7 @@ class ProfileCandidatesController < ApplicationController
     else
       @profile = ProfileCandidate.new(params[:profile_candidate])
       @profile.user_id = current_user.id
-      
+      binding.pry
       respond_to do |format|
         if @profile.save
           format.html { redirect_to step3_profile_candidates_path }
@@ -149,7 +189,7 @@ class ProfileCandidatesController < ApplicationController
     
     respond_to do |format|
       if @profile.update_attributes(params[:profile_candidate])
-        format.html { redirect_to step3_profile_candidates_path, notice: 'Data Anda telah diupdate' }
+        format.html { redirect_to step3_profile_candidates_path, notice: 'Data kamu telah diupdate' }
         format.json { head :no_content }
       else
         format.html { render action: "step2" }
@@ -169,6 +209,17 @@ class ProfileCandidatesController < ApplicationController
     end
   end
   
+  def upload_identification_card
+    @profile = current_user.profile_candidate
+    if !params[:profile_candidate].nil? && @profile.update_attribute(:identification_card, params[:profile_candidate][:identification_card])
+      @success = true
+      render "upload_identification_card_response", :layout => false
+    else
+      @success = false
+      render "upload_identification_card_response", :layout => false
+    end
+  end
+  
   def upload_recommendation_letter
     @profile = current_user.profile_candidate
     if !params[:profile_candidate].nil? && @profile.update_attribute(:recommendation_letter, params[:profile_candidate][:recommendation_letter])
@@ -179,27 +230,29 @@ class ProfileCandidatesController < ApplicationController
       render "upload_recommendation_letter_response", :layout => false
     end
   end
-  
+
   def submit_confirmation
     @profile = current_user.profile_candidate
     if params[:confirmation] && params[:confirmation] == "1" && @profile.update_attributes({:status => 'SUBMITTED', :submitted_at => Time.now}, :as => :confirmation_step)
       Rails.cache.delete('profile_candidates_latitudes_longitudes')
-      redirect_to profile_candidates_path, notice: 'Data Anda sudah kami terima. Terimakasih'
+      redirect_to profile_candidates_path, notice: 'Data kamu sudah kami terima. Terimakasih'
     else
-      redirect_to step5_profile_candidates_path, :alert => 'Anda harus mencentang persetujuan di bawah'
+      redirect_to step5_profile_candidates_path, :alert => 'kamu harus mencentang persetujuan di bawah'
     end
   end
   
   #only for updating biodata
   def update_biodata
     @profile = current_user.profile_candidate
-    
+
+    binding.pry
     respond_to do |format|
       if @profile.update_attributes(params[:profile_candidate], :as => :additional_fields)
-        format.html { redirect_to profile_candidates_path, notice: 'Data Anda telah diupdate' }
+        format.html { redirect_to profile_candidates_path, notice: 'Data kamu telah diupdate' }
         format.json { head :no_content }
       else
-        format.html { redirect_to profile_candidates_path, alert: 'Data Anda tidak valid. Pastikan jumlah karakter tidak melebihi 160 karakter' }
+        Rails.logger.info(@profile.errors.messages.inspect)
+        format.html { redirect_to profile_candidates_path, alert: 'Data kamu tidak valid. Pastikan jumlah karakter tidak melebihi 160 karakter' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
@@ -209,10 +262,10 @@ class ProfileCandidatesController < ApplicationController
     if user_signed_in?
       @profile = current_user.profile_candidate
       if @profile.nil? 
-        redirect_to root_path, :alert => "Anda belum mengumpulkan biodata, silakan diisi melalui sistem registrasi"
+        redirect_to root_path, :alert => "kamu belum mengumpulkan biodata, silakan diisi melalui sistem registrasi"
       else
         if !@profile.is_update_allowed
-          redirect_to root_path, :alert => "Data Anda sudah dikumpulkan, tidak bisa diganti lagi"
+          redirect_to root_path, :alert => "Data kamu sudah dikumpulkan, tidak bisa diganti lagi"
         end
       end
     else
@@ -225,18 +278,19 @@ class ProfileCandidatesController < ApplicationController
     @profile = current_user.profile_candidate
     if params[:changed] == 'true'
       if @profile.is_update_allowed && @profile.update_attributes({:workshop => params[:profile_candidate][:workshop], :is_update_allowed => false, :status => 'SUBMITTED'}, :as => :update_workshop)
-        redirect_to profile_candidates_path, :notice => "Data Anda telah diupdate dan akan diproses oleh tim seleksi. Terimakasih" 
+        redirect_to profile_candidates_path, :notice => "Data kamu telah diupdate dan akan diproses oleh tim seleksi. Terimakasih" 
       else
         render "edit_workshop"
       end
     else
       @profile.update_attribute(:is_update_allowed, false)
-      redirect_to profile_candidates_path, :notice => "Tidak ada perubahan. Data Anda akan diproses oleh tim seleksi. Terimakasih"
+      redirect_to profile_candidates_path, :notice => "Tidak ada perubahan. Data kamu akan diproses oleh tim seleksi. Terimakasih"
     end
   end
   
   def edit
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
+    binding.pry
     @profile = ProfileCandidate.find(params[:id])
   end
   
@@ -272,6 +326,10 @@ class ProfileCandidatesController < ApplicationController
     end
     is_announcement_displayed
   end
+
+  def download
+    send_file @thing.document.path, :type => 'application/pdf', :filename => @thing.permalink
+  end
   
   def progress_status
     email = params[:email]
@@ -288,4 +346,5 @@ class ProfileCandidatesController < ApplicationController
       end
     end
   end
+
 end

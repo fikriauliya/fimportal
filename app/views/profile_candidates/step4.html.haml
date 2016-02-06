@@ -1,39 +1,19 @@
 = render :partial => 'step_navigator', :locals => {:step => 4}
 = render :partial => 'announcement_popup', :locals => {:is_announcement_displayed => @is_announcement_displayed}
-
+    
 %h2 Pendaftaran FIM
 %p 
-  Unggah scan/foto/softcopy surat rekomendasi dari organisasi/institusi yang pernah/sedang Anda ikuti.
+  Unggah KTP/KK kamu.
   %br
-  Format file bisa .pdf, .doc, .png, atau lainnya yang penting bisa terbaca dengan mudah.
-  %br
-  Ukuran maksimum file: 
-  %b 2 MB
+  Ukuran maximum KTP/KK: 
+  %b 300KB
+  dan tipe file yang dibolehkan adalah 
+  %b .png, .jpg, .bmp
+
 %p
-  Surat rekomendasi harus mencantumkan:
-  %ul
-    %li
-      Kop surat organisasi/institusi
-    %li
-      Identitas lengkap diri Anda (misal: nama, NIM/NPM, jurusan)
-    %li
-      Nama jabatan dan periode menjabatnya
-    %li   
-      Pernyataan dan 
-      %b tanda tangan 
-      dari ketua organisasi/institusi bahwa Anda pernah/sedang aktif di organisasi/institusi tersebut
-    %li 
-      Alasan merekomendasikan Anda untuk mengikuti pelatihan Leadership & Character Building FIM.
-%p
-  Jika surat rekomendasi ada lebih dari satu, mohon diarsipkan menjadi satu (format ZIP atau RAR) sebelum dikirimkan
-  %br
-  Anda bisa menggunakan program seperti 
-  = link_to '7 Zip', 'http://www.7-zip.org/'
-  , 
-  = link_to 'WinRAR', 'http://www.rarlab.com/'
-  ,
-  = link_to 'WinZip', 'http://www.winzip.com'
-  , atau fitur bawaan
-  = link_to 'Windows', 'http://www.pcworld.com/article/228109/Files.html'
-      
-= render 'form_recommendation_letter'
+  Jika foto kamu lebih besar dari 300 KB, kamu bisa mengecilkannya melalui website
+  = link_to 'www.picresize.com', 'http://www.picresize.com/'
+  atau menggunakan program
+  = link_to 'FastStone resizer', 'http://www.faststone.org/FSResizerDownload.htm'
+= render 'form_identification_card'
+

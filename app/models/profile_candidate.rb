@@ -1,9 +1,17 @@
 class ProfileCandidate < ActiveRecord::Base
-  attr_accessible :application_count, :batch, :blood_type, :committee, :dob, :fullname, :gender, 
-    :hobby, :information_from, :location, :motivation, :non_formal_education, :organization, 
-    :performance_type, :phone, :place_of_birth, :referal, :religion, :school, :workshop, 
+  attr_accessible :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
+    :hobby, :information_from, :location, :is_committed_to_central_fim, :is_committed_to_regional_fim, :is_committed_to_own_organization,
+    :performance_type, :phone, :place_of_birth, :referal, :religion, :school, 
     :latitude, :longitude, :agreement, :photo, :recommendation_letter, :collaboration, 
-    :inspiring_story, :province, :is_announcement_displayed
+    :province, :line, :instagram, :is_announcement_displayed,
+    :alergi_makanan, :name_of_activity_one, :time_of_activity_one, :organizer_one, :scope_one, :achievment_one, :Person_in_charge_one,
+    :reason_one, :name_of_activity_two, :time_of_activity_two, :organizer_two, :scope_two, :achievment_two, :Person_in_charge_two,
+    :reason_two, :name_of_activity_three, :time_of_activity_three, :organizer_three, :scope_three, :achievment_three, :Person_in_charge_three, :reason_three,
+    :name_of_activity_four, :time_of_activity_four, :organizer_four, :scope_four, :achievment_four, :Person_in_charge_four, :reason_four,
+    :name_of_activity_five, :time_of_activity_five, :organizer_five, :scope_five, :achievment_five, :Person_in_charge_five, :reason_five,
+    :project_type, :identification_card, :other_category, :food_except, :project_name, :why, :who, :where, :what, :indicator,
+    :scale, :strength, :this_year, :facebook, :twitter, :impact, :right_person, :plan_implementation, :person_type, :endorser_name, :endorser_email
+
     
   attr_accessible :status, :submitted_at, :as => :confirmation_step
   
@@ -17,21 +25,27 @@ class ProfileCandidate < ActiveRecord::Base
     :school,
     :as => :recruiter
     
-  attr_accessible :workshop, :is_update_allowed, :status, :as => :update_workshop
+  #attr_accessible :workshop, :is_update_allowed, :status, :as => :update_workshop
   
   belongs_to :user
   belongs_to :marked_by, :class_name => "User"
   
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
-    :information_from, :location, :motivation, :phone, :place_of_birth, :religion, 
-    :school, :agreement, :inspiring_story, :collaboration, :province, :presence => true
+    :information_from, :location, :phone, :place_of_birth, :religion, 
+    :name_of_activity_one, :time_of_activity_one, :organizer_one, :scope_one, :achievment_one, :Person_in_charge_one,
+    :reason_one, :name_of_activity_two, :time_of_activity_two, :organizer_two, :scope_two, :achievment_two, :Person_in_charge_two,
+    :reason_two, :name_of_activity_three, :time_of_activity_three, :organizer_three, :scope_three, :achievment_three, :Person_in_charge_three, :reason_three,
+    :name_of_activity_four, :time_of_activity_four, :organizer_four, :scope_four, :achievment_four, :Person_in_charge_four, :reason_four,
+    :name_of_activity_five, :time_of_activity_five, :organizer_five, :scope_five, :achievment_five, :Person_in_charge_five, :reason_five,
+    :project_type, :project_name, :why, :who, :where, :what, :indicator, :scale, :strength, :this_year, :impact, :right_person, :plan_implementation,
+    :school, :agreement, :province, :endorser_email, :endorser_name, :presence => true
     
-  validates_length_of :motivation, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
-  validates_length_of :inspiring_story, :maximum => 500, :too_long => "Terlalu panjang, melebihi 500 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
+  # validates_length_of :motivation, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
+  # validates_length_of :inspiring_story, :maximum => 500, :too_long => "Terlalu panjang, melebihi 500 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
   validates_length_of :collaboration, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
   validates_length_of :biodata, :too_long => 'Terlalu panjang, melebihi 160 karakter', :maximum => 160
-  
-  validates_length_of :fullname, :place_of_birth, :religion, :phone, :blood_type, :school, :information_from, :photo, :recommendation_letter, :status, :province, :facebook, :twitter, :maximum => 255
+  validates_length_of :reason_one, :maximum => 350, :too_long => "Terlalu panjang, melebihi 350 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
+  validates_length_of :fullname, :recommendation_letter, :identification_card, :place_of_birth, :religion, :phone, :blood_type, :school, :information_from, :photo, :status, :province, :facebook, :twitter, :line, :instagram, :food_except, :maximum => 255
   
   # validates_format_of :agreement, :with => lambda {|me|
      # /\s*Saya,\s*\[?\s*#{me.fullname.nil? ? '' : me.fullname.strip}\s*\]? \s*menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 15 pada tanggal 27 Oktober - 3 November 2013\s*/i

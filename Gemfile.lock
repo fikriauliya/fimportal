@@ -125,6 +125,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     memcachier (0.0.2)
+    method_source (0.8.2)
     mime-types (1.21)
     multi_json (1.6.1)
     newrelic_rpm (3.5.7.59)
@@ -132,6 +133,10 @@ GEM
     orm_adapter (0.4.0)
     pg (0.14.1)
     polyglot (0.3.3)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.4.5)
@@ -195,6 +200,7 @@ GEM
     simple_form (2.0.4)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    slop (3.6.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -250,6 +256,7 @@ DEPENDENCIES
   memcachier
   newrelic_rpm
   pg
+  pry
   quiet_assets (>= 1.0.1)
   rack-timeout
   rails (= 3.2.12)
@@ -265,4 +272,4 @@ DEPENDENCIES
   will_paginate (> 3.0)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

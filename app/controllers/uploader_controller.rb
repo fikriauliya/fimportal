@@ -56,7 +56,7 @@ class UploaderController < ApplicationController
       unless user.nil?
         profile_candidate = user.profile_candidate
 
-        if !profile_candidate.nil? && profile_candidate.photo? && !profile_candidate.recommendation_letter?
+        if !profile_candidate.nil? && profile_candidate.photo? && !profile_candidate.identification_card?
           profile_candidate.recommendation_letter = params[:file]
           profile_candidate.save!
 

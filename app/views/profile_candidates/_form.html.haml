@@ -17,19 +17,19 @@
     
     var isGeoCoded = false;
     
-    function updateInspiringStoryWordCount() {
-      var words = $('#profile_candidate_inspiring_story').val().match(/\S+/g);
-      if (words != null) {
-        $("#remaining_inspiring_story_words").text("Sisa kata: " + (500 - words.length));
-      }
-    }
+    / function updateInspiringStoryWordCount() {
+    /   var words = $('#profile_candidate_inspiring_story').val().match(/\S+/g);
+    /   if (words != null) {
+    /     $("#remaining_inspiring_story_words").text("Sisa kata: " + (500 - words.length));
+    /   }
+    / }
         
-    function updateMotivationWordCount() {
-      var words = $('#profile_candidate_motivation').val().match(/\S+/g);
-      if (words != null) {
-        $("#remaining_motivation_words").text("Sisa kata: " + (200 - words.length));
-      }
-    }
+    / function updateMotivationWordCount() {
+    /   var words = $('#profile_candidate_motivation').val().match(/\S+/g);
+    /   if (words != null) {
+    /     $("#remaining_motivation_words").text("Sisa kata: " + (200 - words.length));
+    /   }
+    / }
 
     function updateCollaborationWordCount() {
       var words = $('#profile_candidate_collaboration').val().match(/\S+/g);
@@ -37,20 +37,30 @@
         $("#remaining_collaboration_words").text("Sisa kata: " + (200 - words.length));
       }
     }
+
+    function updateReasonOneWordCount() {
+      var words = $('#profile_candidate_collaboration').val().match(/\S+/g);
+      if (words != null) {
+        $("#remaining_reason_one_words").text("Sisa kata: " + (350 - words.length));
+      }
+    }
         
     $(document).ready(function() {
-      updateMotivationWordCount();
-      updateInspiringStoryWordCount();
+      // updateMotivationWordCount();
+      // updateInspiringStoryWordCount();
       updateCollaborationWordCount();
-      
-      $("#profile_candidate_motivation").keyup(function() {
-        updateMotivationWordCount();
-      });
-      $("#profile_candidate_inspiring_story").keyup(function() {
-        updateInspiringStoryWordCount();
-      });
+      updateReasonOneWordCount();
+      // $("#profile_candidate_motivation").keyup(function() {
+      //   updateMotivationWordCount();
+      // });
+      // $("#profile_candidate_inspiring_story").keyup(function() {
+      //   updateInspiringStoryWordCount();
+      // });
       $("#profile_candidate_collaboration").keyup(function() {
         updateCollaborationWordCount();
+      });
+      $("#profile_candidate_Reason_one").keyup(function() {
+        updateReasonOneWordCount();
       });
       
       var latitudes = ['', '4.69513', '-8.40952', '-6.40582', '-3.80065', '0.55251', '-6.21154', '-1.48518', '-7.09091', '-7.15097', 
@@ -138,6 +148,7 @@
       = display_base_errors @profile
 
       .form-inputs
+        <b> Data Diri </b> </br>
         = f.input :fullname, :label => "Nama lengkap"
         = f.input :dob, :input_html => {:style => 'width:auto'}, :label => "Tanggal lahir", 
           start_year: Date.today.year - 30, end_year: Date.today.year - 12, order: [:day, :month, :year]
@@ -147,46 +158,155 @@
         = f.input :location, :label => "Alamat lengkap (contoh: Jalan Kaliurang Km 10, Wonorejo, Ngaglik, Sleman, Yogyakarta, Indonesia)", :as => :text, :input_html => {:rows => 5, :class => "span4"}
         = f.input :province, :label => "Provinsi domisili saat ini", :collection => ["Luar negeri"] + ProfileCandidate.all_province
         = f.input :phone, :label => "Nomor telepon"
-        = f.input :hobby, :label => "Hobi", :as => :string
+        = f.input :facebook, :label => "Facebook"
+        = f.input :twitter, :label => "Twitter</br> Contoh :@fimnews"
+        = f.input :instagram, :label => "Instagram </br> Contoh :@fimnews"
+        = f.input :line, :label => "ID Line"
+        = f.input :hobby, :label => "Hobi </br> gunakan pemisah (,) jika lebih dari satu", :as => :string
         = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"]
         = f.input :school, :label => "Nama institusi pendidikan terakhir/yang sedang dijalani. Contoh: Universitas Indonesia", :input_html => {"data-provide" => "typeahead", "data-source" => all_school_json}
-        = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2013)
-        = f.input :non_formal_education, :label => "Pendidikan non-formal.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama institusi];</i>", :input_html => {:rows => 8, :class => "span5"}
-        = f.input :organization, :label => "Pengalaman organisasi.<br/><b>Format</b>:<i>[tahun mulai]-[tahun selesai];[nama organisasi];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
-        = f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
-        = f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
-
-        = f.input :motivation, :label => 'Motivasi mengikuti FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
-        .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
-          %label#remaining_motivation_words
-            Sisa kata: 200  
-        
-        = f.input :collaboration, :label => 'Apa kolaborasi yang Anda tawarkan untuk bisa dikerjakan bersama-sama rekan-rekan FIM jika terpilih ikut FIM (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
-        .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
-          %label#remaining_collaboration_words
-            Sisa kata: 200
-        
-        = f.input :inspiring_story, :label => "Uraikan pengalaman sukses dan gagal yang paling berkesan dalam hidupmu (maks 500 kata)", :input_html => {:rows => 8, :class => "span5"}
-        .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
-          %label#remaining_inspiring_story_words
-            Sisa kata: 500
-        
-        = f.input :information_from, :label => "Sumber informasi FIM", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut", "Lainnya"]
+        = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2014)
+        = f.input :food_except, :label => "Apakah kamu memiliki alergi terhadap makanan atau hal lain? Jika iya, sebutkan", :input_html => {:rows => 8, :class => "span5"}
         = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM", :collection => [["Belum pernah", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], [">5", 6]]
-        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 15. Contoh: Tari Pendet, main biola, monolog, dll",
-            :input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 18. Contoh: Tari Pendet, Bermain Instrumen, Monolog, dll",:input_html => {:rows => 4, :class => "span5"}, :as => :text
+        = f.input :information_from, :label => "Sumber informasi FIM", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut","Line@", "Lainnya"]
+
+        <b> </br>Informasi Pemberi Rekomendasi </b>
+        <br>Setelah kamu menekan tombol <b> Next </b> pada tahap ini, maka secara otomatis portal rekomendasi akan dikirimkan pada email di bawah ini
+        = f.input :endorser_name, :label => "Nama Perekomendasi"
+        = f.input :endorser_email, :label => "Email Perekomendasi"
+
+
         
+
+        </br><b> Lima Aktivitas dan Pencapaian </b> </br>
+        <p> Sebutkan dan jelaskan 5 aktivitas dan/atau pencapaian terbaik yang telah kamu raih.
+        Aktivitas dan pencapaian di sini diartikan dalam bidang yang luas, bisa jadi berupa pengalaman organisasi, pengalaman kepanitiaan, pengalaman mendirikan organisasi, menjuarai kompetisi, partisipasi dalam suatu konferensi, penulisan ilmiah, dll. <p>
+
+
+        </br>Aktivitas dan Pencapaian ke-1
+        = f.input :name_of_activity_one, :label => "Aktivitas/Pencapaian", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :time_of_activity_one, :label => "Waktu/Durasi", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :organizer_one, :label => "Penyelenggara", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :scope_one, :label => " Cakupan Wilayah", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :achievment_one, :label => "Peran/Prestasi", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :Person_in_charge_one, :label => "Penanggung Jawab", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :reason_one, :label => "Alasan mengapa aktivitas/pencapaian ini merupakan yang terbaik bagi kamu (maksimal 350 kata) ", :input_html => {:rows => 8, :class => "span5"}
+        / .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
+        /   %label#remaining_reason_one_words 
+        </br>
+
+        </br>Aktivitas dan Pencapaian ke-2
+        = f.input :name_of_activity_two, :label => "Aktivitas/Pencapaian", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :time_of_activity_two, :label => "Waktu/Durasi", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :organizer_two, :label => "Penyelenggara", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :scope_two, :label => " Cakupan Wilayah", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :achievment_two, :label => "Peran/Prestasi", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :Person_in_charge_two, :label => "Penanggung Jawab", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :reason_two, :label => "Alasan mengapa aktivitas/pencapaian ini merupakan yang terbaik bagi kamu (maksimal 350 kata) ", :input_html => {:rows => 8, :class => "span5"}
+        </br>
+
+        </br>Aktivitas dan Pencapaian ke-3
+        = f.input :name_of_activity_three, :label => "Aktivitas/Pencapaian", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :time_of_activity_three, :label => "Waktu/Durasi", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :organizer_three, :label => "Penyelenggara", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :scope_three, :label => " Cakupan Wilayah", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :achievment_three, :label => "Peran/Prestasi", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :Person_in_charge_three, :label => "Penanggung Jawab", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :reason_three, :label => "Alasan mengapa aktivitas/pencapaian ini merupakan yang terbaik bagi kamu (maksimal 350 kata) ", :input_html => {:rows => 8, :class => "span5"}
+        </br>
+
+        </br>Aktivitas dan Pencapaian ke-4
+        = f.input :name_of_activity_four, :label => "Aktivitas/Pencapaian", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :time_of_activity_four, :label => "Waktu/Durasi", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :organizer_four, :label => "Penyelenggara", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :scope_four, :label => " Cakupan Wilayah", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :achievment_four, :label => "Peran/Prestasi", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :Person_in_charge_four, :label => "Penanggung Jawab", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :reason_four, :label => "Alasan mengapa aktivitas/pencapaian ini merupakan yang terbaik bagi kamu (maksimal 350 kata) ", :input_html => {:rows => 8, :class => "span5"}
+        </br>
+
+        </br>Aktivitas dan Pencapaian ke-5
+        = f.input :name_of_activity_five, :label => "Aktivitas/Pencapaian", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :time_of_activity_five, :label => "Waktu/Durasi", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :organizer_five, :label => "Penyelenggara", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :scope_five, :label => " Cakupan Wilayah", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :achievment_five, :label => "Peran/Prestasi", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :Person_in_charge_five, :label => "Penanggung Jawab", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :reason_five, :label => "Alasan mengapa aktivitas/pencapaian ini merupakan yang terbaik bagi kamu (maksimal 350 kata) ", :input_html => {:rows => 8, :class => "span5"}
+        </br>
+
+        </br><b> Rencana Proyek Pasca Pelatihan FIM 18</b> </br>
+        Pada bagian ini kamu diminta untuk menjelaskan rencana jangka pendek yang akan kamu lakukan ketika menyandang status sebagai anak FIM. </br>
+        =f.input :project_type, :label => "Bidang Kegiatan Proyek", :collection=> ["Pendidikan Budaya", "Sosial", "Ekonomi dan Industri Kreatif", "Sains dan Teknologi", "Politik dan Kebijakan Publik"]
+        =f.input :project_name, :label => "Nama Proyek", :input_html => {:rows => 8, :class => "span5"}
+        =f.input :why, :label => "Kenapa kamu ingin melakukan proyek ini ? ", :input_html => {:rows => 8, :class => "span5"}
+        =f.input :who, :label => "Siapa saja yang terlibat dalam proyek ini ? ", :input_html => {:rows => 8, :class => "span5"}
+        =f.input :where, :label => "Dimana proyek ini akan dilakukan ? ", :input_html => {:rows => 8, :class => "span5"}
+        =f.input :what, :label => "Apa saja yang dilakukan dalam proyek ini?(berikan penjelasan singkat)", :input_html => {:rows => 8, :class => "span5"}
+        =f.input :indicator, :label => "Apa saja indikator keberhasilan proyek ini ? (harus dapat dikuantifikasi) misal: jumlah peserta 50 orang, kegiatan terpublikasi di tiga media nasional, dsb", :input_html => {:rows => 8, :class => "span5"}
+        =f.input :scale, :label => "Dari skala 1 sampai 10, seberapa realistis proyek ini bisa dilakukan oleh FIM ? ", :collection => (1..10)
+        =f.input :strength, :label => "Kenapa proyek ini penting untuk dilakukan ? ", :input_html => {:rows => 8, :class => "span5"}
+        =f.input :this_year, :label => "Apakah proyek ini tepat dilakukan tahun ini ? ", :collection=> ["YA", "TIDAK"]
+        =f.input :impact, :label => "Apakah dampak yang dihasilkan dari proyek ini sesuai dengan usaha yang dilakukan ? ", :collection=> ["YA", "TIDAK"]
+        =f.input :right_person, :label => "Apakah kamu orang yang tepat untuk menjadi penanggung jawab proyek ini ? ", :collection=> ["YA", "TIDAK"]
+        =f.input :plan_implementation, :label => "Bagaimana prencanaan proyek dan cara mewujudkan proyek ini berdasarkan timeline (maks 350 kata)", :input_html => {:rows => 8, :class => "span5"}
+       
+
+
+        </br><b> Kategori </b> </br>
+        = f.input :person_type, :label => "Bagaimana kamu mendefinisikan dirimu sendiri?", :collection => ["Aktivis Sosial", "Organisatoris", "Entrepreneur", "Social Entrepreneur", "Agamawan", "Akademisi", "Profesional", "Seniman", "Lainnya"]
+        =f.input :other_category, :label => "<b> [Penting] </b> kolom ini hanya diisi jika kamu memilih LAINNYA, pada kategori di atas</br> Isikan yang sesuai dengan Kamu "
+        
+
+
+
+        / = f.input :non_formal_education, :label => "Pendidikan non-formal.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama institusi];</i>", :input_html => {:rows => 8, :class => "span5"}
+        / = f.input :organization, :label => "Pengalaman organisasi.<br/><b>Format</b>:<i>[tahun mulai]-[tahun selesai];[nama organisasi];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
+        / = f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
+        
+        /   = f.input :motivation, :label => 'Motivasi mengikuti FIM 18 (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
+        / .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
+        /   %label#remaining_motivation_words
+        /     Sisa kata: 200  
+
+        / = f.input :inspiring_story, :label => "Uraikan pengalaman sukses dan gagal yang paling berkesan dalam hidupmu (maks 500 kata)", :input_html => {:rows => 8, :class => "span5"}
+        / .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
+        /   %label#remaining_inspiring_story_words
+        /     Sisa kata: 500
+
+        / = f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
+        
+        / = f.input :collaboration, :label => 'Apa kolaborasi yang kamu tawarkan untuk bisa dikerjakan bersama-sama rekan-rekan FIM jika terpilih ikut FIM 18 (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
+        / .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
+        /   %label#remaining_collaboration_words
+            
+        
+
+        </br><b> Pernyataan Komitmen </b> </br>
+        <p> Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM apabila saya diterima sebagai peserta FIM 18. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah : (dapat memilih lebih dari 1) <p>
+
+        = f.input :is_committed_to_central_fim, :label => " 1. Saya akan komitmen pada FIM Pusat (Media, Program, Fundraising, Kesekretariatan"
+        = f.input :is_committed_to_regional_fim, :label => "2. Saya akan komitmen pada FIM regional"
+        %blockquote
+          %div
+            List FIM Regional bisa dilihat
+            %a{href: "http://i.forumindonesiamuda.org/jaringan-fim/" , :target => "_blank"}
+              disini
+        = f.input :is_committed_to_own_organization, :label => "Saya akan kembali aktif ke dalam organisasi sendiri dan akan membuka jejaring dengan FIM dalam minimal 1 kegiatan bersama"
+       
+
         .controls
           %label
             %blockquote
               %p
                 Salin dan Lengkapi Pernyataan Dibawah ini
               %small
-                Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 15 pada tanggal 27 Oktober - 3 November 2013
+                Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 18
         = f.input :agreement,
-          :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.agreement? || @profile.agreement.empty?) ? 'Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 15 pada tanggal 27 Oktober - 3 November 2013' : @profile.agreement)}
-        
-        = f.input :referal, :label => "Jika ada, tuliskan nama alumni FIM yang merekomendasikan Anda untuk menjadi peserta FIM 15", :as => :string
+          :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.agreement? || @profile.agreement.empty?) ? 'Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 18 ' : @profile.agreement)}
+     
+
         = f.hidden_field :latitude
         = f.hidden_field :longitude
   

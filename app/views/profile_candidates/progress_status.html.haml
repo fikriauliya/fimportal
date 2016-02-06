@@ -19,6 +19,9 @@
             %td Sudah mengunggah surat rekomendasi?
             %td= @is_recommendation_letter_uploaded ? "Ya" : "Belum"
           %tr
+            %td Sudah mengunggah KTP / KK?
+            %td= @is_identification_card_uploaded ? "Ya" : "Belum"
+          %tr
             %td Sudah mengkonfirmasi pengumpulan?
             %td= @is_submitted ? "Ya" : "Belum"
       -unless @is_submitted
