@@ -340,7 +340,9 @@ class ProfileCandidatesController < ApplicationController
         @is_biodata_filled = !profile_candidate.nil?
         if @is_biodata_filled
           @is_photo_uploaded = profile_candidate.photo?
+          @is_identification_card_uploaded = profile_candidate.identification_card?
           @is_recommendation_letter_uploaded = profile_candidate.recommendation_letter?
+          @is_identification_card_uploaded = profile_candidate.identification_card?
           @is_submitted = profile_candidate.status != 'NOT SUBMITTED' 
         end
       end
