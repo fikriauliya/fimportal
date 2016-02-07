@@ -23,7 +23,7 @@ FimAlumni::Application.routes.draw do
   resources :profile_candidates, :path => 'candidates', :except => [:show] do
     collection do
       get 'step1'
-      get 'hold_registration'
+      # get 'hold_registration'
       get 'step2'
       get 'step3'
 
