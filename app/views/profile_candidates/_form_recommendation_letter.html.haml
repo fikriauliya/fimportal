@@ -1,6 +1,11 @@
 .row
   .span8
     .well
+
+
+        
+
+
       = s3_uploader_form post: upload_recommendation_letter_profile_candidates_path, as: "profile_candidate[recommendation_letter]", 
         id: "myS3Uploader", max_file_size: 30.megabytes do
         - if @profile.recommendation_letter?
@@ -13,6 +18,8 @@
             Untuk mengganti surat rekomendasi, silakan unggah surat rekomendasi baru Anda.
             %br
             Jika tidak ingin mengganti, silakan klik Next
+
+
   
         = file_field_tag :file, multiple: true
         %script{id:"template-upload", type:"text/x-tmpl"}
@@ -26,6 +33,7 @@
         = link_to "< Back", step4_profile_candidates_path, :class => 'btn btn-danger'
         = link_to "Next >", step5_profile_candidates_path, :class => 'btn btn-primary'
 
+
 .row
   .span8
     %p
@@ -34,11 +42,10 @@
       Jika setelah 
       %b berkali-kali 
       mencoba mengunggah melalui sistem di atas tetap tidak berhasil, kamu bisa mengunggah foto dan/atau surat rekomendasi melalui sistem alternatif kami di:
-      = link_to "http://www.dropitto.me/fim", "http://www.dropitto.me/fim"
-      , dengan password: daftarfim
+      %b= link_to "https://dropitto.me/fim18", "https://dropitto.me/fim18"
+      , dengan password: daftarfim18
     
-    %p
-      Na%p
+    %%p
       Namai file kamu sebagai berikut:
       %ul
         %li 
@@ -57,12 +64,6 @@
       Mohon ketelitiannya, kami tidak memproses nama-nama seperti 
       "Surat_rekomendasi_agus@yahoo.com", "IMG_00012", 
       "FIM", atau "agus@yahoo.com_Surat_Rekomendasi_1".
-      
-    %p
-      Jika ada lebih dari satu surat rekomendasi, mohon 
-      %b disatukan 
-      surat-surat rekomendasinya dengan format ZIP. Foto dan surat rekomendasi diupload terpisah (tidak disatukan dalam ZIP).
-      
     %p
       Dokumen kamu akan kami periksa secara manual (memakan waktu maksimum 1 hari). Setelah diproses, kamu akan diinformasikan via email untuk melanjutkan langkah-langkah berikutnya. Mohon secara rutin periksa email Anda.
     %p

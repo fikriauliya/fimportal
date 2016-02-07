@@ -170,7 +170,7 @@ class ProfileCandidatesController < ApplicationController
     else
       @profile = ProfileCandidate.new(params[:profile_candidate])
       @profile.user_id = current_user.id
-      binding.pry
+      
       respond_to do |format|
         if @profile.save
           format.html { redirect_to step3_profile_candidates_path }
@@ -245,7 +245,7 @@ class ProfileCandidatesController < ApplicationController
   def update_biodata
     @profile = current_user.profile_candidate
 
-    binding.pry
+    
     respond_to do |format|
       if @profile.update_attributes(params[:profile_candidate], :as => :additional_fields)
         format.html { redirect_to profile_candidates_path, notice: 'Data kamu telah diupdate' }
@@ -290,7 +290,7 @@ class ProfileCandidatesController < ApplicationController
   
   def edit
     authorize! :update, ProfileCandidate, :message => 'Not authorized as a recruiter.'
-    binding.pry
+    
     @profile = ProfileCandidate.find(params[:id])
   end
   

@@ -38,7 +38,7 @@ class ProfileCandidate < ActiveRecord::Base
     :name_of_activity_four, :time_of_activity_four, :organizer_four, :scope_four, :achievment_four, :Person_in_charge_four, :reason_four,
     :name_of_activity_five, :time_of_activity_five, :organizer_five, :scope_five, :achievment_five, :Person_in_charge_five, :reason_five,
     :project_type, :project_name, :why, :who, :where, :what, :indicator, :scale, :strength, :this_year, :impact, :right_person, :plan_implementation,
-    :school, :agreement, :province, :endorser_email, :endorser_name, :presence => true
+    :school, :agreement, :province, :presence => true
     
   # validates_length_of :motivation, :maximum => 200, :too_long => "Terlalu panjang, melebihi 200 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
   # validates_length_of :inspiring_story, :maximum => 500, :too_long => "Terlalu panjang, melebihi 500 kata", :tokenizer => lambda {|str| str.scan(/\S+/) }
@@ -108,7 +108,7 @@ class ProfileCandidate < ActiveRecord::Base
   end
   
   def total_point
-    ((65 * cv_total_point + 35 * motivation_total_point)/100.0).round(2)
+    ((65 * cv_total_point90 + 35 * motivation_total_point)/100.0).round(2)
   end
   
   def self.to_alphabet(point)
