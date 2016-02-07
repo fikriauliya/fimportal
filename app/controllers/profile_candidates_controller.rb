@@ -19,9 +19,9 @@ class ProfileCandidatesController < ApplicationController
     end
   end
 
-  def hold_registration
+  # def hold_registration
 
-  end
+  # end
   
   def step2
     # redirect_to step1_profile_candidates_path

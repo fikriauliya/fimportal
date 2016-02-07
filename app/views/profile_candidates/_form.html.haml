@@ -17,19 +17,6 @@
     
     var isGeoCoded = false;
     
-    / function updateInspiringStoryWordCount() {
-    /   var words = $('#profile_candidate_inspiring_story').val().match(/\S+/g);
-    /   if (words != null) {
-    /     $("#remaining_inspiring_story_words").text("Sisa kata: " + (500 - words.length));
-    /   }
-    / }
-        
-    / function updateMotivationWordCount() {
-    /   var words = $('#profile_candidate_motivation').val().match(/\S+/g);
-    /   if (words != null) {
-    /     $("#remaining_motivation_words").text("Sisa kata: " + (200 - words.length));
-    /   }
-    / }
 
     function updateCollaborationWordCount() {
       var words = $('#profile_candidate_collaboration').val().match(/\S+/g);
@@ -46,16 +33,10 @@
     }
         
     $(document).ready(function() {
-      // updateMotivationWordCount();
-      // updateInspiringStoryWordCount();
+     
       updateCollaborationWordCount();
       updateReasonOneWordCount();
-      // $("#profile_candidate_motivation").keyup(function() {
-      //   updateMotivationWordCount();
-      // });
-      // $("#profile_candidate_inspiring_story").keyup(function() {
-      //   updateInspiringStoryWordCount();
-      // });
+     
       $("#profile_candidate_collaboration").keyup(function() {
         updateCollaborationWordCount();
       });
@@ -185,8 +166,7 @@
         = f.input :achievment_one, :label => "Peran/Prestasi", :input_html => {:rows => 3, :class => "span5"}
         = f.input :Person_in_charge_one, :label => "Penanggung Jawab", :input_html => {:rows => 3, :class => "span5"}
         = f.input :reason_one, :label => "Alasan mengapa aktivitas/pencapaian ini merupakan yang terbaik bagi kamu (maksimal 350 kata) ", :input_html => {:rows => 5, :class => "span5"}
-        / .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
-        /   %label#remaining_reason_one_words 
+       
         </br>
 
         </br>Aktivitas dan Pencapaian ke-2
@@ -257,29 +237,6 @@
         = f.input :endorser_name, :label => "Nama Perekomendasi"
         = f.input :endorser_email, :label => "Email Perekomendasi"
 
-
-
-
-        / = f.input :non_formal_education, :label => "Pendidikan non-formal.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama institusi];</i>", :input_html => {:rows => 8, :class => "span5"}
-        / = f.input :organization, :label => "Pengalaman organisasi.<br/><b>Format</b>:<i>[tahun mulai]-[tahun selesai];[nama organisasi];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
-        / = f.input :committee, :label => "Pengalaman kepanitiaan.<br/><b>Format</b>: <i>[tahun mulai]-[tahun selesai];[nama kepanitiaan];[jabatan];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
-        
-        /   = f.input :motivation, :label => 'Motivasi mengikuti FIM 18 (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
-        / .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
-        /   %label#remaining_motivation_words
-        /     Sisa kata: 200  
-
-        / = f.input :inspiring_story, :label => "Uraikan pengalaman sukses dan gagal yang paling berkesan dalam hidupmu (maks 500 kata)", :input_html => {:rows => 8, :class => "span5"}
-        / .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
-        /   %label#remaining_inspiring_story_words
-        /     Sisa kata: 500
-
-        / = f.input :workshop, :label => "Pelatihan / Seminar / Konferensi / Kompetisi yang pernah diikuti.<br/><b>Format</b>: <i>[tahun];[nama kegiatan];[deskripsi singkat];[tingkat, misal:internasional, institusi, provinsi]</i>", :input_html => {:rows => 8, :class => "span5"}
-        
-        / = f.input :collaboration, :label => 'Apa kolaborasi yang kamu tawarkan untuk bisa dikerjakan bersama-sama rekan-rekan FIM jika terpilih ikut FIM 18 (maks 200 kata)', :input_html => {:rows => 8, :class => "span5"}
-        / .controls{:style => 'margin-top:-15px; margin-bottom:25px;'}
-        /   %label#remaining_collaboration_words
-            
         
 
         </br><b> Pernyataan Komitmen </b> </br>
