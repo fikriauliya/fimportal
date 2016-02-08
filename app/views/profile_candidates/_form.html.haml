@@ -146,7 +146,7 @@
         = f.input :hobby, :label => "Hobi </br> gunakan pemisah (,) jika lebih dari satu", :as => :string
         = f.input :blood_type, :label => "Golongan darah", :collection => ["A", "B", "AB", "O"]
         = f.input :school, :label => "Nama institusi pendidikan terakhir/yang sedang dijalani. Contoh: Universitas Indonesia", :input_html => {"data-provide" => "typeahead", "data-source" => all_school_json}
-        = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2014)
+        = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2015)
         = f.input :food_except, :label => "Apakah kamu memiliki alergi terhadap makanan atau hal lain? Jika iya, sebutkan", :input_html => {:rows => 3, :class => "span5"}
         = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM", :collection => [["Belum pernah", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], [">5", 6]]
         = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 18. Contoh: Tari Pendet, Bermain Instrumen, Monolog, dll",:input_html => {:rows => 3, :class => "span5"}, :as => :text
