@@ -1,37 +1,55 @@
 .row
   .span8
-    .well
+  .well
+    = simple_form_for(@profile, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
+      = f.error_notification
+      = display_base_errors @profile
+
+      .form-inputs
+        Masukan nama dan email perekomendasi di bawah ini jika kamu ingin melampirkan surat rekomendasi.
+        Secara otimatis sistem akan mengirimkan URL pengisian formulir rekomendasi kepada email di bawah ini paling lambat 1 x 24 Jam
+        %b ingat,
+        hanya email yang pertama yang akan kami proses.
+        %br
+        %br
+
+        = f.input :endorser_name, :label => "Nama Perekomendasi"
+        = f.input :endorser_email, :label => "Email Perekomendasi"
 
 
-        
-
-
-      = s3_uploader_form post: upload_recommendation_letter_profile_candidates_path, as: "profile_candidate[recommendation_letter]", 
-        id: "myS3Uploader", max_file_size: 30.megabytes do
-        - if @profile.recommendation_letter?
-          .controls
-            = link_to "Surat rekomendasi [#{@profile.fullname}]", @profile.recommendation_letter
-      
-        -if @profile.recommendation_letter?
-          %br
-          %p 
-            Untuk mengganti surat rekomendasi, silakan unggah surat rekomendasi baru Anda.
-            %br
-            Jika tidak ingin mengganti, silakan klik Next
-
-
-  
-        = file_field_tag :file, multiple: true
-        %script{id:"template-upload", type:"text/x-tmpl"}
-          %div{id:"file-{%=o.unique_id%}", :class=>"upload"}
-            {%=o.name%}
-            .progress
-              .bar{style:"width: 0%"}
-        
         %br
         %br
         = link_to "< Back", step4_profile_candidates_path, :class => 'btn btn-danger'
         = link_to "Next >", step5_profile_candidates_path, :class => 'btn btn-primary'
+/ .row
+/   .span8
+/     .well
+/       = s3_uploader_form post: upload_recommendation_letter_profile_candidates_path, as: "profile_candidate[recommendation_letter]", 
+/         id: "myS3Uploader", max_file_size: 30.megabytes do
+/         - if @profile.recommendation_letter?
+/           .controls
+/             = link_to "Surat rekomendasi [#{@profile.fullname}]", @profile.recommendation_letter
+      
+/         -if @profile.recommendation_letter?
+/           %br
+/           %p 
+/             Untuk mengganti surat rekomendasi, silakan unggah surat rekomendasi baru Anda.
+/             %br
+/             Jika tidak ingin mengganti, silakan klik Next
+
+
+  
+/         = file_field_tag :file, multiple: true
+/         %script{id:"template-upload", type:"text/x-tmpl"}
+/           %div{id:"file-{%=o.unique_id%}", :class=>"upload"}
+/             {%=o.name%}
+/             .progress
+/               .bar{style:"width: 0%"}
+        
+/         %br
+/         %br
+/         = link_to "< Back", step4_profile_candidates_path, :class => 'btn btn-danger'
+/         = link_to "Next >", step5_profile_candidates_path, :class => 'btn btn-primary'
 
 
 .row
@@ -45,7 +63,7 @@
       %b= link_to "https://dropitto.me/fim18", "https://dropitto.me/fim18"
       , dengan password: daftarfim18
     
-    %%p
+    %p
       Namai file kamu sebagai berikut:
       %ul
         %li 
@@ -54,9 +72,7 @@
         %li 
           KTP / KK: 
           %b= "#{current_user.email}_KTP"
-        %li 
-          Surat Rekomendasi: 
-          %b= "#{current_user.email}_Surat_Rekomendasi"
+       
        
     
     %p
