@@ -6,21 +6,25 @@
       = display_base_errors @profile
 
       .form-inputs
-        Masukan nama dan email perekomendasi di bawah ini jika kamu ingin melampirkan surat rekomendasi.
-        Secara otimatis sistem akan mengirimkan URL pengisian formulir rekomendasi kepada email di bawah ini paling lambat 1 x 24 Jam
-        %b ingat,
+        Masukan nama dan email perekomendasi di bawah ini jika kamu ingin melampirkan surat rekomendasi. Lalu tekan
+        %b Simpan
+        Secara otimatis sistem akan mengirimkan URL pengisian formulir rekomendasi kepada email di bawah ini paling lambat 1 x 24 Jam. 
+        %b Ingat,
         hanya email yang pertama yang akan kami proses.
         %br
-        %br
+        
 
         = f.input :endorser_name, :label => "Nama Perekomendasi"
         = f.input :endorser_email, :label => "Email Perekomendasi"
 
+        .form-actions
+          = f.button :submit, 'Simpan', :class => 'btn btn-success'
 
-        %br
-        %br
         = link_to "< Back", step4_profile_candidates_path, :class => 'btn btn-danger'
         = link_to "Next >", step5_profile_candidates_path, :class => 'btn btn-primary'
+
+
+        
 / .row
 /   .span8
 /     .well
