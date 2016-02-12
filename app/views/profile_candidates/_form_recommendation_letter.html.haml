@@ -1,7 +1,7 @@
 .row
   .span8
   .well
-    = simple_form_for(@profile, :html => {:id => 'profile_form', :class => 'form-horizontal'}) do |f|
+    = simple_form_for(@profile, :html => {:id => 'recommendation_letter_step', :class => 'form-horizontal'}) do |f|
       = f.error_notification
       = display_base_errors @profile
 
@@ -18,7 +18,15 @@
         = f.input :endorser_email, :label => "Email Perekomendasi"
 
         .form-actions
-          = f.button :submit, 'Simpan', :class => 'btn btn-success'
+          / = f.button :submit, 'Simpan', :class => 'btn btn-success', :=> "Nama dan email perekomendasi telah disimpan."
+          = f.submit "Simpan", :onclick => "return confirm('Nama dan email perekomendasi telah disimpan')", :class => 'btn btn-success'
+
+          / = f.button :submit, "Sign in", :class => 'btn-primary'
+          / = f.submit "Next >", :class => "btn btn-primary"
+          / = f.submit "Send me reset password instructions", :class => "button", :confirm => "An email to reset your password has been sent"
+
+
+
 
         = link_to "< Back", step4_profile_candidates_path, :class => 'btn btn-danger'
         = link_to "Next >", step5_profile_candidates_path, :class => 'btn btn-primary'
@@ -82,8 +90,9 @@
     %p
       %b Perhatian: file yang tidak dinamai sesuai format penamaan di atas TIDAK akan kami proses.
       Mohon ketelitiannya, kami tidak memproses nama-nama seperti 
-      "Surat_rekomendasi_agus@yahoo.com", "IMG_00012", 
-      "FIM", atau "agus@yahoo.com_Surat_Rekomendasi_1".
+      "KTP_agus@yahoo.com", "IMG_00012", 
+      "FIM", atau "agus@yahoo.com_Foto_1".
+      
     %p
       Dokumen kamu akan kami periksa secara manual (memakan waktu maksimum 1 hari). Setelah diproses, kamu akan diinformasikan via email untuk melanjutkan langkah-langkah berikutnya. Mohon secara rutin periksa email Anda.
     %p
