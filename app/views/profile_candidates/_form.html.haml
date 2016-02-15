@@ -18,31 +18,31 @@
     var isGeoCoded = false;
     
 
-    function updateCollaborationWordCount() {
-      var words = $('#profile_candidate_collaboration').val().match(/\S+/g);
-      if (words != null) {
-        $("#remaining_collaboration_words").text("Sisa kata: " + (200 - words.length));
-      }
-    }
+    / function updateCollaborationWordCount() {
+    /   var words = $('#profile_candidate_collaboration').val().match(/\S+/g);
+    /   if (words != null) {
+    /     $("#remaining_collaboration_words").text("Sisa kata: " + (200 - words.length));
+    /   }
+    / }
 
-    function updateReasonOneWordCount() {
-      var words = $('#profile_candidate_collaboration').val().match(/\S+/g);
-      if (words != null) {
-        $("#remaining_reason_one_words").text("Sisa kata: " + (350 - words.length));
-      }
-    }
+    / function updateReasonOneWordCount() {
+    /   var words = $('#profile_candidate_collaboration').val().match(/\S+/g);
+    /   if (words != null) {
+    /     $("#remaining_reason_one_words").text("Sisa kata: " + (350 - words.length));
+    /   }
+    / }
         
-    $(document).ready(function() {
+    / $(document).ready(function() {
      
-      updateCollaborationWordCount();
-      updateReasonOneWordCount();
+    /   updateCollaborationWordCount();
+    /   updateReasonOneWordCount();
      
-      $("#profile_candidate_collaboration").keyup(function() {
-        updateCollaborationWordCount();
-      });
-      $("#profile_candidate_Reason_one").keyup(function() {
-        updateReasonOneWordCount();
-      });
+    /   $("#profile_candidate_collaboration").keyup(function() {
+    /     updateCollaborationWordCount();
+    /   });
+    /   $("#profile_candidate_Reason_one").keyup(function() {
+    /     updateReasonOneWordCount();
+    /   });
       
       var latitudes = ['', '4.69513', '-8.40952', '-6.40582', '-3.80065', '0.55251', '-6.21154', '-1.48518', '-7.09091', '-7.15097', 
         '-7.53606', '-0.27878', '-3.09264', '-1.68149', '1.64063', '0.56033', '-2.74105', '0.293347', '-4.55858', '-3.23846',
