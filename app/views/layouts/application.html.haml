@@ -4,7 +4,7 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     %link{rel: "shortcut icon", href: "/favicon.ico"}
     %title= content_for?(:title) ? yield(:title) : "Pendaftaran Forum Indonesia Muda 18"
-    %meta{:content => content_for?(:description) ? yield(:description) : "Portal resmi Forum Indonesia Muda. FIM 18 akan diselenggarakan pada tanggal 26 - 30 April 2016 di Jakarta. Masa pendaftaran antara tanggal 8 - 29 Februari 2016 (23.59 WIB). Informasi lebih lanjut dapat dilihat di forumindonesiamuda.org.", :name => "description"}
+    %meta{:content => content_for?(:description) ? yield(:description) : "Portal resmi Forum Indonesia Muda. FIM 18 akan diselenggarakan segera di Jakarta. Masa pendaftaran antara tanggal 8 - 29 Februari 2016 (23.59 WIB). Informasi lebih lanjut dapat dilihat di forumindonesiamuda.org.", :name => "description"}
     %link{rel: 'image_src', href: 'http://portal.forumindonesiamuda.org/logo.png'}
     
     = stylesheet_link_tag "application", :media => "all"
@@ -14,17 +14,30 @@
     = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
     :javascript
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-38929357-1']);
-      _gaq.push(['_setDomainName', 'forumindonesiamuda.org']);
-      _gaq.push(['_trackPageview']);
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-48323794-5', 'auto');
+      ga('send', 'pageview');
+
+
+
+      / var _gaq = _gaq || [];
+      / _gaq.push(['_setAccount', 'UA-38929357-1']);
+      / _gaq.push(['_setDomainName', 'forumindonesiamuda.org']);
+      / _gaq.push(['_trackPageview']);
     
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-      
+      / (function() {
+      /   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      /   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      /   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      / })();
+          
+
+
+
     :javascript
       var BrowserDetect = {
         init: function () {
