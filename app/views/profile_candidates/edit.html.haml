@@ -15,26 +15,29 @@
         %th{:style=>"width:10%"}  KTP / KK
         
         %th{:style=>'width:10%'} Dinilai oleh
-        %th{'data-hide' => 'all'} Organisasi
-        %th{'data-hide' => 'all'} Kepanitiaan
-        %th{'data-hide' => 'all'} Wawasan
-        %th{'data-hide' => 'all'} Kelengkapan
-        %th{:style=>'width:5%'} CV
+        / %th{'data-hide' => 'all'} Organisasi
+        %th{'data-hide' => 'all'} CV point
+        %th{'data-hide' => 'all'} Esai Point
+        %th{'data-hide' => 'all'} Dokumen
+        %th{:style=>'width:3%'} CV 50%
 
-        %th{'data-hide' => 'all'} Reliability
-        %th{'data-hide' => 'all'} Willingness
-        %th{:style=>'width:5%'} Motiv
+        / %th{'data-hide' => 'all'} Reliability
+        / %th{'data-hide' => 'all'} Willingness
+        %th{:style=>'width:3%'} Esai 45%
+        %th{:style=>'width:3%'} Dokumen 5%
         
-        %th{:style=>'width:5%'} Total
+        %th{:style=>'width:6%'} Total
 
-        %th{:style=>'width:10%'} Domisili khusus
-        %th{:style=>'width:10%'} Karakter khusus
+        %th{:style=>'width:10%'} Keterangan khusus
+        /Domisili khusus
+        %th{:style=>'width:10%'} Hasil kepo recruiter
+        /karakter khusus 
         %th{:style=>'width:5%'} Pernah daftar
 
 
         %th{'data-hide' => 'all'} Institusi
         %th{'data-hide' => 'all'} Provinsi
-        %th{'data-hide' => 'all'} Surat rekomendasi
+        / %th{'data-hide' => 'all'} Surat rekomendasi
         
 
         %th{'data-hide' => 'all'} Biodata singkat
@@ -62,6 +65,7 @@
         %th{'data-hide'=>'all'} Facebook
         %th{'data-hide' => 'all'} ID line
         %th{'data-hide'=>'all'} Twitter
+        %th{'data-hide'=>'all'} Instagram
         %th{'data-hide'=>'all'} Email
 
         %th{'data-hide' => 'all'} Nama Perekomendasi
@@ -154,15 +158,16 @@
               = image_tag(@profile.identification_card, :style => 'width:40px; height:40px')
         %td= !@profile.marked_by.nil? ? @profile.marked_by.email : ""
         
-        %td= ProfileCandidate.to_alphabet(@profile.organization_point)
+        / %td= ProfileCandidate.to_alphabet(@profile.organization_point)
         %td= ProfileCandidate.to_alphabet(@profile.committee_point)
         %td= ProfileCandidate.to_alphabet(@profile.personal_knowledge_point)
         %td= ProfileCandidate.to_alphabet(@profile.document_completeness_point)
-        %td= @profile.cv_total_point
+        %td= @profile.committee_point
         
-        %td= ProfileCandidate.to_alphabet(@profile.reliability_point)
-        %td= ProfileCandidate.to_alphabet(@profile.willingness_point)
-        %td= @profile.motivation_total_point
+        / %td= ProfileCandidate.to_alphabet(@profile.reliability_point)
+        / %td= ProfileCandidate.to_alphabet(@profile.willingness_point)
+        %td= @profile.personal_knowledge_point
+        %td= @profile.document_completeness_point
         
         %td= @profile.total_point
         
@@ -171,7 +176,7 @@
         %td= @profile.application_count
         %td= @profile.school
         %td= @profile.province
-        %td= link_to('Download', @profile.recommendation_letter)
+        / %td= link_to('Download', @profile.recommendation_letter)
         
         %td= @profile.biodata
         %td= @profile.dob
@@ -197,6 +202,7 @@
         %td= @profile.facebook_url
         %td= @profile.line
         %td= @profile.twitter? ? link_to(@profile.twitter, "https://twitter.com/#{@profile.twitter}") : "-"
+        %td= @profile.instagram
         %td= @profile.user.email
         %td= @profile.endorser_name
         %td= @profile.endorser_email
@@ -282,14 +288,14 @@
         = f.input :id, :as => :hidden
         - if params[:page]
           = hidden_field_tag 'page', params[:page]
-        = f.input :organization_point, :label => "Pengalaman organisasi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :committee_point, :label => "Pengalaman kepanitiaan", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :personal_knowledge_point, :label => "Keterampilan dan wawasan pribadi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :document_completeness_point, :label => "Kelengkapan berkas", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :reliability_point, :label => "Reliability", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :willingness_point, :label => "Willingness", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
-        = f.input :special_location_comment, :label => "Domisili khusus", :input_html => {:rows => 8, :class => "span5"}
-        = f.input :special_character_comment, :label => "Karakteristik khusus", :input_html => {:rows => 8, :class => "span5"}
+        / = f.input :organization_point, :label => "Pengalaman organisasi", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
+        = f.input :committee_point, :label => "CV point", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
+        = f.input :personal_knowledge_point, :label => "Esai", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
+        = f.input :document_completeness_point, :label => "Dokumen", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
+        / = f.input :reliability_point, :label => "Reliability", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
+        / = f.input :willingness_point, :label => "Willingness", :collection => [["A", 4], ["B", 3], ["C", 2], ["D", 1], ["E", 0]], :include_blank => false
+        = f.input :special_location_comment, :label => "Keterangan khusus", :input_html => {:rows => 8, :class => "span5"}
+        = f.input :special_character_comment, :label => "Hasil kepo recruiter", :input_html => {:rows => 8, :class => "span5"}
         = f.input :school, :label => "Insitusi (jika perlu ada perbaikan)", :input_html => {:style => 'width:300px', "data-provide" => "typeahead", "data-source" => all_school_json}
       .form-actions
         = f.submit "Simpan", :class => "btn btn-primary"

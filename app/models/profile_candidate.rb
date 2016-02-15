@@ -32,9 +32,9 @@ class ProfileCandidate < ActiveRecord::Base
   
   validates :application_count, :batch, :blood_type, :dob, :fullname, :gender, 
     :information_from, :location, :phone, :place_of_birth, :religion, 
-    :name_of_activity_one, :time_of_activity_one, :organizer_one, :scope_one, :achievment_one, :Person_in_charge_one,
-    :reason_one, :name_of_activity_two, :time_of_activity_two, :organizer_two, :scope_two, :achievment_two, :Person_in_charge_two,
-    :reason_two, :name_of_activity_three, :time_of_activity_three, :organizer_three, :scope_three, :achievment_three, :Person_in_charge_three, :reason_three,
+    :name_of_activity_one, :time_of_activity_one, :organizer_one, :scope_one, :achievment_one, :Person_in_charge_one, :reason_one,
+    :name_of_activity_two, :time_of_activity_two, :organizer_two, :scope_two, :achievment_two, :Person_in_charge_two, :reason_two,
+    :name_of_activity_three, :time_of_activity_three, :organizer_three, :scope_three, :achievment_three, :Person_in_charge_three, :reason_three,
     :name_of_activity_four, :time_of_activity_four, :organizer_four, :scope_four, :achievment_four, :Person_in_charge_four, :reason_four,
     :name_of_activity_five, :time_of_activity_five, :organizer_five, :scope_five, :achievment_five, :Person_in_charge_five, :reason_five,
     :project_type, :project_name, :why, :who, :where, :what, :indicator, :scale, :strength, :this_year, :impact, :right_person, :plan_implementation,
@@ -99,16 +99,20 @@ class ProfileCandidate < ActiveRecord::Base
     end
   end
   
-  def cv_total_point
-    ((30 * organization_point + 30 * committee_point + 30 * personal_knowledge_point + 10 * document_completeness_point)/100.0).round(2)
-  end
+  # def cv_total_point
+  #   ((30 * organization_point + 30 * committee_point + 30 * personal_knowledge_point + 10 * document_completeness_point)/100.0).round(2)
+  # end
   
-  def motivation_total_point
-    ((50 * reliability_point + 50 * willingness_point)/100.0).round(2)
-  end
+  # def motivation_total_point
+  #   ((50 * reliability_point + 50 * willingness_point)/100.0).round(2)
+  # end
   
+  # def total_point
+  #   ((65 * cv_total_point + 35 * motivation_total_point)/100.0).round(2)
+  # end
+
   def total_point
-    ((65 * cv_total_point90 + 35 * motivation_total_point)/100.0).round(2)
+    ((50 * committee_point + 45 * personal_knowledge_point + 5 * document_completeness_point)/100.0).round(2)
   end
   
   def self.to_alphabet(point)

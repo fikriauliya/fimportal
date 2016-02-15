@@ -20,13 +20,13 @@
         %tr
           %td= profile.fullname
 
-          %td= ProfileCandidate.to_alphabet(profile.organization_point)
+          / %td= ProfileCandidate.to_alphabet(profile.organization_point)
           %td= ProfileCandidate.to_alphabet(profile.committee_point)
           %td= ProfileCandidate.to_alphabet(profile.personal_knowledge_point)
           %td= ProfileCandidate.to_alphabet(profile.document_completeness_point)
           
-          %td= ProfileCandidate.to_alphabet(profile.reliability_point)
-          %td= ProfileCandidate.to_alphabet(profile.willingness_point)
+          / %td= ProfileCandidate.to_alphabet(profile.reliability_point)
+          / %td= ProfileCandidate.to_alphabet(profile.willingness_point)
           
           %td= profile.special_location_comment
           %td= profile.special_character_comment
@@ -34,12 +34,12 @@
 =form_tag recruiter_save_upload_path do
   - @profiles.each do |profile|
     =hidden_field_tag 'profile_candidates[][id]', profile.id
-    =hidden_field_tag 'profile_candidates[][organization_point]', profile.organization_point
+    / =hidden_field_tag 'profile_candidates[][organization_point]', profile.organization_point
     =hidden_field_tag 'profile_candidates[][committee_point]', profile.committee_point
     =hidden_field_tag 'profile_candidates[][personal_knowledge_point]', profile.personal_knowledge_point
     =hidden_field_tag 'profile_candidates[][document_completeness_point]', profile.document_completeness_point
-    =hidden_field_tag 'profile_candidates[][reliability_point]', profile.reliability_point
-    =hidden_field_tag 'profile_candidates[][willingness_point]', profile.willingness_point
+    / =hidden_field_tag 'profile_candidates[][reliability_point]', profile.reliability_point
+    / =hidden_field_tag 'profile_candidates[][willingness_point]', profile.willingness_point
     =hidden_field_tag 'profile_candidates[][special_location_comment]', profile.special_location_comment
     =hidden_field_tag 'profile_candidates[][special_character_comment]', profile.special_character_comment
   =submit_tag "Submit", :class => "btn btn-primary"

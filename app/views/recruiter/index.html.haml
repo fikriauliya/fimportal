@@ -60,12 +60,12 @@
             %th Sisa
             %th Min
             %th Max
-            %th Avg Organi
-            %th Avg Kepani
-            %th Avg Wawasa
-            %th Avg Dokume
-            %th Avg Reliab
-            %th Avg Willin
+            / %th Avg Organi
+            %th Avg CV
+            %th Avg Esai
+            %th Avg Dokumen
+            / %th Avg Reliab
+            / %th Avg Willin
             %th Avg Total
         %tbody
           - Role.includes(:users).find_by_name('recruiter').users.each do |r|
@@ -79,12 +79,12 @@
               %td= count_submitted(r.id)
               %td= min_point(r.id)
               %td= max_point(r.id)
-              %td= average_point(r.id, :organization_point)
+              / %td= average_point(r.id, :organization_point)
               %td= average_point(r.id, :committee_point)
               %td= average_point(r.id, :personal_knowledge_point)
               %td= average_point(r.id, :document_completeness_point)
-              %td= average_point(r.id, :reliability_point)
-              %td= average_point(r.id, :willingness_point)
+              / %td= average_point(r.id, :reliability_point)
+              / %td= average_point(r.id, :willingness_point)
               %td= average_point(r.id)
           %tr
             %td
@@ -111,18 +111,21 @@
               %b= min_point(:all)
             %td
               %b= max_point(:all)
+            / %td
+            /   %b= average_point(:all, :organization_point)
             %td
-              %b= average_point(:all, :organization_point)
-            %td
-              %b= average_point(:all, :committee_point)
+              %b= average_point(:all, :committee_point) 
+              /CV point
             %td
               %b= average_point(:all, :personal_knowledge_point)
+              /Esai point
             %td
               %b= average_point(:all, :document_completeness_point)
-            %td
-              %b= average_point(:all, :reliability_point)
-            %td
-              %b= average_point(:all, :willingness_point)
+
+            / %td
+            /   %b= average_point(:all, :reliability_point)
+            / %td
+            /   %b= average_point(:all, :willingness_point)
             %td
               %b= average_point(:all)
               
