@@ -113,6 +113,8 @@ class ProfileCandidatesController < ApplicationController
         format.html 
         format.json { render json: @profile }
       end
+
+      # UserMailer.notify(@user).deliver
     end
   end 
 
@@ -165,6 +167,7 @@ class ProfileCandidatesController < ApplicationController
 
   #step2 post
   def create
+
     if !current_user.profile_candidate.nil?
       redirect_to step3_profile_candidates_path
     else
@@ -197,6 +200,21 @@ class ProfileCandidatesController < ApplicationController
       end
     end
   end
+
+  def recommendation_letter_step
+    @profile = current_user.profile_candidate
+    binding.pry
+    respond_to do |format|
+      if @profile.update_attributes(params[:profile_candidate])
+        format.html { redirect_to step4a_profile_candidates_path, notice: 'Data kamu telah diupdate' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "step4a" }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   
   def upload_photo
     @profile = current_user.profile_candidate
@@ -239,6 +257,12 @@ class ProfileCandidatesController < ApplicationController
     else
       redirect_to step5_profile_candidates_path, :alert => 'kamu harus mencentang persetujuan di bawah'
     end
+  end
+
+  def recommendation_letter_step
+    @profile = current_user.profile_candidate
+    @profile.save!
+    redirect_to step4a_profile_candidates_path, :alert => 'kamu harus mencentang persetujuan di bawah'
   end
   
   #only for updating biodata
@@ -341,7 +365,7 @@ class ProfileCandidatesController < ApplicationController
         if @is_biodata_filled
           @is_photo_uploaded = profile_candidate.photo?
           @is_identification_card_uploaded = profile_candidate.identification_card?
-          @is_recommendation_letter_uploaded = profile_candidate.recommendation_letter?
+          # @is_recommendation_letter_uploaded = profile_candidate.recommendation_letter?
           @is_identification_card_uploaded = profile_candidate.identification_card?
           @is_submitted = profile_candidate.status != 'NOT SUBMITTED' 
         end
