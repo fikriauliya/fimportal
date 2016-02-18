@@ -88,8 +88,8 @@
       %th{'data-hide'=>'all'} Instagram
       %th{'data-hide'=>'all'} Email
 
-      %th{'data-hide' => 'all'} Nama Perekomendasi
-      %th{'data-hide' => 'all'} Email Perekomendasi
+      / %th{'data-hide' => 'all'} Nama Perekomendasi
+      / %th{'data-hide' => 'all'} Email Perekomendasi
   %tbody
     - profiles.each_with_index do |profile, i|
       %tr
@@ -157,5 +157,5 @@
         %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
         %td= profile.instagram
         %td= (full_column || profile.is_email_displayed) ? profile.user.email : "-"
-        %td= profile.endorser_name
-        %td= profile.endorser_email
+        / %td= profile.endorser_name
+        / %td= profile.endorser_email

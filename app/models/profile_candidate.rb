@@ -112,7 +112,7 @@ class ProfileCandidate < ActiveRecord::Base
   # end
 
   def total_point
-    ((50 * committee_point + 45 * personal_knowledge_point + 5 * document_completeness_point)/100.0).round(2)
+    ((65 * committee_point + 30 * personal_knowledge_point + 5 * document_completeness_point)/100.0).round(2)
   end
   
   def self.to_alphabet(point)

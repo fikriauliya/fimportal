@@ -19,18 +19,19 @@
 #myModal.modal.hide.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
   .modal-header
     %button.close{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", "data-dismiss" => "modal", :type => "button"} ×
-    %h4#myModalLabel Portal Pendafataran FIM 18
+    %h4#myModalLabel Portal Pendafataran Bukalapak Forum Indonesia Muda
   .modal-body
     %p
+      Suatu hal yang baik, besar, unik dan penuh kebermanfatan bisa saja dimulai dari sini,
       %b
-        Suatu hal yang baik, besar, unik dan penuh kebermanfatan bisa saja dimulai dari sini,  FIM 18!
-    / %p
-    /   %b
-    /     Berkolaborasi bersama
-    /   %br
-    /   %img{:alt => "Mountain View", :src => "http://www.forumindonesiamuda.org/wp-content/uploads/2016/02/PhotoGrid_1454845304130.jpg", :style => "width:520px;height:180px"}/
+        Bukalapak Forum Indonesia Muda!
     %p
-      Selalu ikuti informasi terbaru tentang FIM 18,di 
+      Berkolaborasi bersama
+      %br
+      %br
+      %img{:alt => "Mountain View", :src => "http://4.bp.blogspot.com/-v0231c4EXM8/VcQDzokPgBI/AAAAAAAAh6c/9whGadViSdM/s1600/Logo_bukalapak.png", :style => "width:320px;height:80px"}/
+    %p
+      Selalu ikuti informasi terbaru tentang Forum Indonesia Muda,di 
     %a{href: "http://www.forumindonesiamuda.org"}
       forumindonesiamuda.org, 
     %a{href: "http://line.me/ti/p/%40cnz0088f"}
@@ -54,7 +55,7 @@
       .alert.alert-info
         Status pendaftaran kamu bisa dicek dengan menekan tombol 'Status Pendaftaran Saya' di bawah. Tidak ada email konfirmasi pendaftaran yang dikirimkan panitia.
         %br
-      Jika aplikasi kamu sudah lengkap, nama kamu akan ditampilkan di tombol 'Calon Peserta FIM 18' di bawah.
+      Jika aplikasi kamu sudah lengkap, nama kamu akan ditampilkan di tombol 'Calon Peserta Bukalapak Forum Indonesia Muda' di bawah.
 .row
 
   /.span12
@@ -70,21 +71,20 @@
         FIM (Forum Indonesia Muda)
       adalah sebuah forum independen yang beranggotakan pemuda dan mahasiswa dari berbagai perguruan tinggi maupun organisasi kepemudaan di Indonesia, dari Aceh sampai Papua, bahkan yang sedang berada di luar negeri.
     %p
-      Setelah sukses menyelenggarakan Leadership & Life Skill Training selama lebih dari satu dekade, di tahun 2016 ini 
-      %b FIM 
-      hadir kembali dengan mengangkat tema 
-      %b FIM 18, Garuda Muda, Guncangkan Dunia! 
+      Setelah sukses menyelenggarakan Leadership & Life Skill Training selama lebih dari satu dekade, di tahun 2016 ini FIM hadir kembali dan dengan bangga mempersembahkan pelatihan 
+      %b Bukalapak Forum Indonesia Muda, Koneksi Selaras Aksi
       yang akan diselenggarakan segera di Jakarta.
 
     %p
-      Pendaftaran dibuka antara tanggal 1 - 29 Februari 2016 (23.59 WIB). Berkas peserta akan diseleksi sesuai prosedur, untuk memenuhi kapasitas peserta FIM 18 sebanyak 150 orang, dengan batas usia 
+      Pendaftaran dibuka antara tanggal 1 - 29 Februari 2016 (23.59 WIB). Berkas peserta akan diseleksi sesuai prosedur, untuk memenuhi kapasitas peserta Bukalapak Forum Indonesia Muda sebanyak 150 orang, dengan batas usia 
       %b 18-30
       tahun.
-    / %p
-    /   %b
-    /   Berkolaborasi bersama
-    /   %br
-    /   %img{:alt => "Mountain View", :src => "http://www.forumindonesiamuda.org/wp-content/uploads/2016/02/PhotoGrid_1454845304130.jpg", :style => "width:520px;height:180px"}/
+    %p
+      %b
+      Berkolaborasi bersama
+      %br
+      %br
+      %img{:alt => "Mountain View", :src => "http://4.bp.blogspot.com/-v0231c4EXM8/VcQDzokPgBI/AAAAAAAAh6c/9whGadViSdM/s1600/Logo_bukalapak.png", :style => "width:320px;height:80px"}/
 
 
     %p
@@ -107,7 +107,7 @@
       Jawaban pertanyaan yang sering ditanyakan bisa dibaca di
       %b
         = link_to "FAQ.", home_faq_path
-      Jika pertanyaanmu tidak ada di FAQ, silakan mengajukannya ke narahubung FIM 18.
+      Jika pertanyaanmu tidak ada di FAQ, silakan mengajukannya ke narahubung Bukalapak Forum Indonesia Muda.
     %p
       Narahubung:
       %b
@@ -123,7 +123,7 @@
   .span7
     - cache('brief_statistics', :expires_in => 10.minutes) do
       %h4
-        Pendaftar FIM 18
+        Pendaftar Bukalapak Forum Indonesia Muda
         ="(#{User.where("current_sign_in_at >= '01-01-2016'").count}"
         pendaftar)
         //=ProfileCandidate.submitted.count
@@ -132,7 +132,7 @@
 .row
   .span7.service-item
     =link_to "Pendaftaran", new_profile_candidate_path, 'class' => 'btn btn-primary'
-    =link_to "Calon Peserta FIM 18", profile_candidates_path, 'class' => 'btn btn-danger'
+    =link_to "Calon Peserta Bukalapak Forum Indonesia Muda", profile_candidates_path, 'class' => 'btn btn-danger'
     =link_to "Statistik Pendaftar", statistics_public_path, 'class' => 'btn btn-warning'
     =link_to "Status Pendaftaran Saya", progress_status_profile_candidates_path, 'class' => 'btn btn-info'
 

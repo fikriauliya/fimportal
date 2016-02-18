@@ -125,7 +125,7 @@
         = f.input :batch, :label => "Angkatan masuk pendidikan tertinggi", :collection => (2000..2015)
         = f.input :food_except, :label => "Apakah kamu memiliki alergi terhadap makanan atau hal lain? Jika iya, sebutkan", :input_html => {:rows => 3, :class => "span5"}
         = f.input :application_count, :label => "Sudah berapa kali mendaftar FIM", :collection => [["Belum pernah", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], [">5", 6]]
-        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat FIM 18. Contoh: Tari Pendet, Bermain Instrumen, Monolog, dll",:input_html => {:rows => 3, :class => "span5"}, :as => :text
+        = f.input :performance_type, :label => "Tuliskan jenis ekspresi seni, kedaerahan atau kontemporer, yang bisa kamu tampilkan saat Bukalapak Forum Indonesia Muda. Contoh: Tari Pendet, Bermain Instrumen, Monolog, dll",:input_html => {:rows => 3, :class => "span5"}, :as => :text
         = f.input :information_from, :label => "Sumber informasi FIM", :collection => ["Poster/Selebaran", "Jejaring sosial (Facebook/Twitter)", "Alumni FIM", "Website", "Informasi mulut ke mulut","Line@", "Lainnya"]
         
 
@@ -185,7 +185,7 @@
         = f.input :reason_five, :label => "Alasan mengapa aktivitas/pencapaian ini merupakan yang terbaik bagi kamu (maksimal 350 kata) ", :input_html => {:rows => 5, :class => "span5"}
         </br>
 
-        </br><b> Rencana Proyek Pasca Pelatihan FIM 18</b> </br>
+        </br><b> Rencana Proyek Pasca Pelatihan Bukalapak Forum Indonesia Muda</b> </br>
         Pada bagian ini kamu diminta untuk menjelaskan rencana jangka pendek yang akan kamu lakukan ketika menyandang status sebagai anak FIM. </br>
         =f.input :project_type, :label => "Bidang Kegiatan Proyek", :collection=> ["Pendidikan Budaya", "Sosial", "Ekonomi dan Industri Kreatif", "Sains dan Teknologi", "Politik dan Kebijakan Publik"]
         =f.input :project_name, :label => "Nama Proyek", :input_html => {:rows => 3, :class => "span5"}
@@ -216,7 +216,7 @@
         
 
         </br><b> Pernyataan Komitmen </b> </br>
-        <p> Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM apabila saya diterima sebagai peserta FIM 18. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah : (dapat memilih lebih dari 1) <p>
+        <p> Dengan ini, saya bersedia untuk aktif selama minimal 1 tahun pada kegiatan pasca FIM apabila saya diterima sebagai peserta Bukalapak Forum Indonesia Muda. Adapun pilihan kegiatan Pasca Training yang saya pilih adalah : (dapat memilih lebih dari 1) <p>
 
         = f.input :is_committed_to_central_fim, :label => " 1. Saya akan komitmen pada FIM Pusat (Media, Program, Fundraising, Kesekretariatan"
         = f.input :is_committed_to_regional_fim, :label => "2. Saya akan komitmen pada FIM regional"
@@ -234,9 +234,9 @@
               %p
                 Salin dan Lengkapi Pernyataan Dibawah ini
               %small
-                Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 18
+                Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan Bukalapak Forum Indonesia Muda
         = f.input :agreement,
-          :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.agreement? || @profile.agreement.empty?) ? 'Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan FIM 18 ' : @profile.agreement)}
+          :label => false, :input_html => {:rows => 3, :class => "span5", :value => ((!@profile.agreement? || @profile.agreement.empty?) ? 'Saya, [NAMA LENGKAP] menyatakan bahwa keterangan di atas diisi dengan sebenar-benarnya dan saya bersedia mengikuti seluruh rangkaian kegiatan pelatihan Bukalapak Forum Indonesia Muda ' : @profile.agreement)}
      
 
         = f.hidden_field :latitude

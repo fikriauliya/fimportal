@@ -1,7 +1,7 @@
 .row
   .span8
   .well
-    = simple_form_for(@profile, :html => {:id => 'recommendation_letter_step', :class => 'form-horizontal'}) do |f|
+    = simple_form_for(@profile, :url => url_for(:action => 'recommendation_letter_step', :controller => 'profile_candidates'), :html => {:class => 'form-horizontal'}) do |f|
       = f.error_notification
       = display_base_errors @profile
 
@@ -16,6 +16,7 @@
 
         = f.input :endorser_name, :label => "Nama Perekomendasi"
         = f.input :endorser_email, :label => "Email Perekomendasi"
+        / = f.input :email, :required => true
 
         .form-actions
           / = f.button :submit, 'Simpan', :class => 'btn btn-success', :=> "Nama dan email perekomendasi telah disimpan."
@@ -72,7 +73,7 @@
       Jika setelah 
       %b berkali-kali 
       mencoba mengunggah melalui sistem di atas tetap tidak berhasil, kamu bisa mengunggah foto dan/atau surat rekomendasi melalui sistem alternatif kami di:
-      %b= link_to "https://dropitto.me/fim18", "https://dropitto.me/fim18"
+      %b= link_to "https://dropitto.me/fim", "https://dropitto.me/fim18"
       , dengan password: daftarfim18
     
     %p
