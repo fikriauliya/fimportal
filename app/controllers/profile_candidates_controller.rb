@@ -203,7 +203,6 @@ class ProfileCandidatesController < ApplicationController
 
   def recommendation_letter_step
     @profile = current_user.profile_candidate
-    binding.pry
     respond_to do |format|
       if @profile.update_attributes(params[:profile_candidate])
         format.html { redirect_to step4a_profile_candidates_path, notice: 'Data kamu telah diupdate' }
