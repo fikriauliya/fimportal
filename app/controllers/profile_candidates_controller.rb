@@ -258,11 +258,11 @@ class ProfileCandidatesController < ApplicationController
     end
   end
 
-  def recommendation_letter_step
-    @profile = current_user.profile_candidate
-    @profile.save!
-    redirect_to step4a_profile_candidates_path, :alert => 'kamu harus mencentang persetujuan di bawah'
-  end
+  # def recommendation_letter_step
+  #   @profile = current_user.profile_candidate
+  #   @profile.save!
+  #   redirect_to step4a_profile_candidates_path, :alert => 'kamu harus mencentang persetujuan di bawah'
+  # end
   
   #only for updating biodata
   def update_biodata
