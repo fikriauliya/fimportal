@@ -260,8 +260,16 @@ class ProfileCandidatesController < ApplicationController
 
   def recommendation_letter_step
     @profile = current_user.profile_candidate
-    @profile.save!
-    redirect_to step4a_profile_candidates_path, :alert => 'kamu harus mencentang persetujuan di bawah'
+
+    respond_to do |format|
+      if @profile.update_attributes(params[:profile_candidate])
+        format.html { redirect_to step4a_profile_candidates_path, alert: 'Data kamu telah diupdate' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to step4a_profile_candidates_path, alert: 'Data kamu gagal disimpan' }
+        format.json { head :no_content }
+      end
+    end
   end
   
   #only for updating biodata
