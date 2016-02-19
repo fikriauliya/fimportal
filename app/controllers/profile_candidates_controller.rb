@@ -201,18 +201,18 @@ class ProfileCandidatesController < ApplicationController
     end
   end
 
-  def recommendation_letter_step
-    @profile = current_user.profile_candidate
-    respond_to do |format|
-      if @profile.update_attributes(params[:profile_candidate])
-        format.html { redirect_to step4a_profile_candidates_path, notice: 'Data kamu telah diupdate' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "step4a" }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def recommendation_letter_step
+  #   @profile = current_user.profile_candidate
+  #   respond_to do |format|
+  #     if @profile.update_attributes(params[:profile_candidate])
+  #       format.html { redirect_to step4a_profile_candidates_path, notice: 'Data kamu telah diupdate' }
+  #       format.json { head :no_content }
+  #     else
+  #       format.html { render action: "step4a" }
+  #       format.json { render json: @profile.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   
   def upload_photo
@@ -258,11 +258,11 @@ class ProfileCandidatesController < ApplicationController
     end
   end
 
-  # def recommendation_letter_step
-  #   @profile = current_user.profile_candidate
-  #   @profile.save!
-  #   redirect_to step4a_profile_candidates_path, :alert => 'kamu harus mencentang persetujuan di bawah'
-  # end
+  def recommendation_letter_step
+    @profile = current_user.profile_candidate
+    @profile.save!
+    redirect_to step4a_profile_candidates_path, :alert => 'kamu harus mencentang persetujuan di bawah'
+  end
   
   #only for updating biodata
   def update_biodata
