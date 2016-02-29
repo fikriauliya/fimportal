@@ -22,12 +22,13 @@
     %h4#myModalLabel Portal Pendafataran Bukalapak Forum Indonesia Muda
   .modal-body
     %p
-      Suatu hal yang baik, besar, unik dan penuh kebermanfatan bisa saja dimulai dari sini,
+      
       %b
-        Bukalapak Forum Indonesia Muda!
+        %h4 Pendaftaran Bukalapak Forum Indonesia Muda Telah Ditutup
     %p
-      Berkolaborasi bersama
-      %br
+      Terima kasih untuk seluruh calon peserta BLFIM yang telah mendaftar, pengumuman peserta yang lolos seleksi akan kami informasikan segera. Status pendaftaran kamu bisa dicek dengan menekan tombol 'Status Pendaftaran Saya' dan Jika aplikasi kamu sudah lengkap, nama Kamu akan ditampilkan di tombol 'Calon Peserta Bukalapak Forum Indonesia Muda' 
+    %p
+      Berkolaborasi bersama Bukalapak.com
       %br
       %img{:alt => "Mountain View", :src => "http://4.bp.blogspot.com/-v0231c4EXM8/VcQDzokPgBI/AAAAAAAAh6c/9whGadViSdM/s1600/Logo_bukalapak.png", :style => "width:320px;height:80px"}/
     %p
@@ -49,13 +50,6 @@
   .modal-footer
     %button.btn.btn-primary{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
 
-/ 
-  .row
-    .span12
-      .alert.alert-info
-        Status pendaftaran kamu bisa dicek dengan menekan tombol 'Status Pendaftaran Saya' di bawah. Tidak ada email konfirmasi pendaftaran yang dikirimkan panitia.
-        %br
-      Jika aplikasi kamu sudah lengkap, nama kamu akan ditampilkan di tombol 'Calon Peserta Bukalapak Forum Indonesia Muda' di bawah.
 .row
 
   /.span12
@@ -65,8 +59,13 @@
   /    %br
   /    =link_to "Lihat hasil saya", acceptance_status_profile_candidates_path, 'class' => 'btn btn-danger'
   .span5
-    %h3 Forum Indonesia Muda
+    %h4 Pendaftaran Bukalapak Forum Indonesia Muda
+    %h3 Telah Ditutup
+    %img{:alt => "Mountain View", :src => "http://www.forumindonesiamuda.org/wp-content/uploads/2016/02/IMG-20160229-WA0048.jpg", :style => "width:420px;height:420px"}
     %p
+      Status pendaftaran kamu bisa dicek dengan menekan tombol 'Status Pendaftaran Saya' dan Jika aplikasi kamu sudah lengkap, nama Kamu akan ditampilkan di tombol 'Calon Peserta Bukalapak Forum Indonesia Muda' di bawah ini
+    %br
+
       %b
         FIM (Forum Indonesia Muda)
       adalah sebuah forum independen yang beranggotakan pemuda dan mahasiswa dari berbagai perguruan tinggi maupun organisasi kepemudaan di Indonesia, dari Aceh sampai Papua, bahkan yang sedang berada di luar negeri.
@@ -115,25 +114,25 @@
       dan
       %b
         Ilma (081382972438)
-    %p
-      %br
-      %b
-      Berkolaborasi bersama
-      %br
-      %br
-      %img{:alt => "Mountain View", :src => "http://4.bp.blogspot.com/-v0231c4EXM8/VcQDzokPgBI/AAAAAAAAh6c/9whGadViSdM/s1600/Logo_bukalapak.png", :style => "width:320px;height:80px"}/
+    
+
   .span7
     - cache('brief_statistics', :expires_in => 10.minutes) do
-      %h4
+      %h5
         Pendaftar Bukalapak Forum Indonesia Muda
         ="(#{User.where("current_sign_in_at >= '01-01-2016'").count}"
         pendaftar)
         //=ProfileCandidate.submitted.count
         //aplikasi lengkap)
     #map_canvas{:style => "width:650px; height:350px"}
+
+    %br
+    %a.twitter-timeline{"data-widget-id" => "308020397293568000", :href => "https://twitter.com/fimnews"} Tweets by @fimnews
+    :javascript
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 .row
   .span7.service-item
-    =link_to "Pendaftaran", new_profile_candidate_path, 'class' => 'btn btn-primary'
+    //=link_to "Pendaftaran", new_profile_candidate_path, 'class' => 'btn btn-primary'
     =link_to "Calon Peserta Bukalapak Forum Indonesia Muda", profile_candidates_path, 'class' => 'btn btn-danger'
     %br
     %br
@@ -163,10 +162,10 @@
     %br
     / .fb-comments{"data-href" => "http://portal.forumindonesiamuda.org", "data-num-posts" => "15", "data-width" => "600"}
 
-  .span4
-    %a.twitter-timeline{"data-widget-id" => "308020397293568000", :href => "https://twitter.com/fimnews"} Tweets by @fimnews
-    :javascript
-      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+  / .span4
+  /   %a.twitter-timeline{"data-widget-id" => "308020397293568000", :href => "https://twitter.com/fimnews"} Tweets by @fimnews
+  /   :javascript
+  /     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
 -unless cookies[:hide_like_suggestion]
   -cookies[:hide_like_suggestion] = {value: true, expires: 3.day.from_now}
