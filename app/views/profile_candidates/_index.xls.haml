@@ -4,23 +4,14 @@
       %th Id
       %th Nama
       %th Dinilai oleh
-      %th Organisasi
-      %th Kepanitiaan
-      %th Wawasan
-      %th Kelengkapan
-      %th Total CV
-
-      %th Reliability
-      %th Willingness
-      %th Total Motivasi
-      
-      %th Grand Total
-
-      %th Domisili khusus
-      %th Karakter khusus
+      %th CV Point
+      %th Esai Point
+      %th Dokumen 
+      %th Total Point
+      %th Keterangan Khusus
+      %th Hasil kepo recruiter
       %th Asal Institusi
       %th Provinsi
-      %th Surat rekomendasi
       %th Tanggal lahir
       %th Tempat lahir
       %th Alamat
@@ -30,44 +21,82 @@
       %th Hobi
       %th Gol darah
       %th Angkatan
-      %th Pendidikan non-formal
-      %th Organisasi
-      %th Kepanitiaan
-      %th Pelatihan / Seminar / Konferensi / Kompetisi
-      %th Motivasi
-      %th Kolaborasi yang ditawarkan
-      %th Kisah yang menginspirasi
+      %th Alergi Makanan
       %th Info dari
       %th Daftar ke
       %th Pertunjukan
-      %th Direkomendasikan
+      %th Nama Perekomendasi
+      %th Email Perekomendasi
       %th Facebook
+      %th ID line
+      %th Instagram
       %th Twitter
       %th Email
+
+      %th PENCAPAIAN KE
+      %th Aktivitas/ Pencapaian
+      %th Waktu/Durasi
+      %th Penyelenggara
+      %th Cakupan Wilayah
+      %th Peran/Prestasi
+      %th Penanggung Jawab
+      %th Kenapa ini Jadi Pencapaian Terbaik
+
+      %th PENCAPAIAN KE
+      %th Aktivitas/ Pencapaian
+      %th Waktu/Durasi
+      %th Penyelenggara
+      %th Cakupan Wilayah
+      %th Peran/Prestasi
+      %th Penanggung Jawab
+      %th Kenapa ini Jadi Pencapaian Terbaik
+
+      %th PENCAPAIAN KE
+      %th Aktivitas/ Pencapaian
+      %th Waktu/Durasi
+      %th Penyelenggara
+      %th Cakupan Wilayah
+      %th Peran/Prestasi
+      %th Penanggung Jawab
+      %th Kenapa ini Jadi Pencapaian Terbaik
+
+      %th PENCAPAIAN KE
+      %th Aktivitas/ Pencapaian
+      %th Waktu/Durasi
+      %th Penyelenggara
+      %th Cakupan Wilayah
+      %th Peran/Prestasi
+      %th Penanggung Jawab
+      %th Kenapa ini Jadi Pencapaian Terbaik
+
+      %th PENCAPAIAN KE
+      %th Aktivitas/ Pencapaian
+      %th Waktu/Durasi
+      %th Penyelenggara
+      %th Cakupan Wilayah
+      %th Peran/Prestasi
+      %th Penanggung Jawab
+      %th Kenapa ini Jadi Pencapaian Terbaik
+
+
+     
+
+
+
   %tbody
     - profiles.each_with_index do |profile, index|
       %tr
         %td= profile.id
         %td= link_to(profile.fullname, profile.photo)
         %td= !profile.marked_by.nil? ? profile.marked_by.email : ""
-          
-        %td= ProfileCandidate.to_alphabet(profile.organization_point)
         %td= ProfileCandidate.to_alphabet(profile.committee_point)
         %td= ProfileCandidate.to_alphabet(profile.personal_knowledge_point)
         %td= ProfileCandidate.to_alphabet(profile.document_completeness_point)
-        %td= profile.cv_total_point
-        
-        %td= ProfileCandidate.to_alphabet(profile.reliability_point)
-        %td= ProfileCandidate.to_alphabet(profile.willingness_point)
-        %td= profile.motivation_total_point
-        
         %td= profile.total_point
-        
         %td= profile.special_location_comment
         %td= profile.special_character_comment
         %td= profile.school
         %td= profile.province
-        %td= link_to('Download', profile.recommendation_letter)
         %td= profile.dob.strftime("%d %B, %Y")
         %td= profile.place_of_birth
         %td= profile.location
@@ -77,17 +106,67 @@
         %td= profile.hobby
         %td= profile.blood_type
         %td= profile.batch
-        %td= profile.non_formal_education? ? raw(profile.non_formal_education.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
-        %td= profile.organization? ? raw(profile.organization.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
-        %td= profile.committee? ? raw(profile.committee.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
-        %td= profile.workshop? ? raw(profile.workshop.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
-        %td= profile.motivation? ? raw(profile.motivation.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
-        %td= profile.collaboration? ? raw(profile.collaboration.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
-        %td= profile.inspiring_story? ? raw(profile.inspiring_story.gsub(/\r\n?/, '<br style="mso-data-placement:same-cell;"/>')) : ''
+        %td= profile.food_except
         %td= profile.information_from
         %td= profile.application_count
         %td= profile.performance_type
-        %td= profile.referal
+        %td= profile.endorser_name
+        %td= profile.endorser_email
         %td= profile.facebook_url
+        %td= profile.line
+        %td= profile.instagram
         %td= profile.twitter? ? link_to(profile.twitter, "https://twitter.com/#{profile.twitter}") : "-"
         %td= profile.user.email
+
+
+        %td= 1
+        %td= profile.name_of_activity_one
+        %td= profile.time_of_activity_one
+        %td= profile.organizer_one
+        %td= profile.scope_one
+        %td= profile.achievment_one
+        %td= profile.Person_in_charge_one
+        %td= simple_format (profile.reason_one)
+
+        %td=  2
+        %td= profile.name_of_activity_two
+        %td= profile.time_of_activity_two
+        %td= profile.organizer_two
+        %td= profile.scope_two
+        %td= profile.achievment_two
+        %td= profile.Person_in_charge_two
+        %td= simple_format (profile.reason_two)
+
+
+        %td= 3
+        %td= profile.name_of_activity_three
+        %td= profile.time_of_activity_three
+        %td= profile.organizer_three
+        %td= profile.scope_three
+        %td= profile.achievment_three
+        %td= profile.Person_in_charge_three
+        %td= simple_format (profile.reason_three)
+
+
+        %td= 4
+        %td= profile.name_of_activity_four
+        %td= profile.time_of_activity_four
+        %td= profile.organizer_four
+        %td= profile.scope_four
+        %td= profile.achievment_four
+        %td= profile.Person_in_charge_four
+        %td= simple_format (profile.reason_four)
+
+
+        %td= 5
+        %td= profile.name_of_activity_five
+        %td= profile.time_of_activity_five
+        %td= profile.organizer_five
+        %td= profile.scope_five
+        %td= profile.achievment_five
+        %td= profile.Person_in_charge_five
+        %td= simple_format (profile.reason_five)
+
+
+
+        

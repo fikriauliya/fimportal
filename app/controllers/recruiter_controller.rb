@@ -101,12 +101,12 @@ class RecruiterController < ApplicationController
     CSV.foreach(file.path, headers: true) do |row|
       profile = ProfileCandidate.find_by_id(row["Id"])
       if profile.marked_by == current_user
-        profile.organization_point = ProfileCandidate.from_alphabet(row["Organisasi"])
+        # profile.organization_point = ProfileCandidate.from_alphabet(row["Organisasi"])
         profile.committee_point = ProfileCandidate.from_alphabet(row["Kepanitiaan"])
         profile.personal_knowledge_point = ProfileCandidate.from_alphabet(row["Wawasan"])
         profile.document_completeness_point = ProfileCandidate.from_alphabet(row["Kelengkapan"])
-        profile.reliability_point = ProfileCandidate.from_alphabet(row["Reliability"])
-        profile.willingness_point = ProfileCandidate.from_alphabet(row["Willingness"])
+        # profile.reliability_point = ProfileCandidate.from_alphabet(row["Reliability"])
+        # profile.willingness_point = ProfileCandidate.from_alphabet(row["Willingness"])
       
         profile.special_location_comment = row["Domisili khusus"]
         profile.special_character_comment = row["Karakter khusus"]
